@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/05 16:26:28 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/06 17:06:00 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fdf
+NAME		= minishell
 LIB_DIR		= libft/
 LIB_NAME	= libft.a
 MLX_DIR		= minilibx-linux/
