@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/09 11:39:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/09 18:26:52 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef	enum
 // Struct for tokens
 typedef struct	s_token
 {
-	e_token_type type;
-	char *value;
-	struct s_token *next;
+	e_token_type	type;
+	char			*str;
+	struct s_token	*next;
 }				t_token;
 
 # define SPECIFIERS	"|<>$="

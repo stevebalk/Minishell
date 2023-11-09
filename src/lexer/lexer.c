@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/09 11:52:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/09 18:30:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_token	*create_token(void)
 		exit(errno);
 	token->next = NULL;
 	token->type = TOKEN_EOF;
-	token->value = NULL;
+	token->str = NULL;
 	return (token);
 }
 
@@ -67,29 +67,42 @@ int	set_token_type(char *str, t_token *token)
 	return (1);
 }
 
-void	lexer(char **argv, t_token *head)
+int	set_token_value(const char *str, t_token *token)
 {
-	int	pos;
+	int	ret;
+
+	ret = 0;
+	while (!ft_strchr(SPECIFIERS, str[ret]) || str[ret] != '\0')
+		ret++;
+	token->str = malloc((ret + 1) * sizeof(char));
+	if (token->str == NULL)
+		exit(EXIT_FAILURE); // TODO Change to proper error handling
+	ft_strlcpy(token->str, str, ret);
+	return (ret);
+}
+
+t_token	*lexer(char *argv)
+{
+	t_token	*head;
 	t_token	*cur_token;
 
-	pos = 0;
+	if (*argv == '\0')
+		return (NULL);
+	head = create_token();
 	cur_token = head;
-	while (argv[1][pos] != '\0')
+	while (*argv != '\0')
 	{
 		if (ft_strchr(SPECIFIERS, **argv))
-			pos += set_token_type(&argv[1][0], cur_token);
+			argv += set_token_type(argv, cur_token);
 		else
-		{
-			
-		}
+			argv += set_token_value(argv, cur_token);
 	}
+	return (head);
 }
 
 int main(int argc, char **argv)
 {
-	t_token	head;
-
-	fill_default_token(&head);
-	lexer(argv, &head);
-
+	t_token	*head;
+	
+	head = lexer(*(argv + 1));
 }
