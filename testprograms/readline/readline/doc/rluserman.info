@@ -2,9 +2,9 @@ This is rluserman.info, produced by makeinfo version 6.8 from
 rluserman.texi.
 
 This manual describes the end user interface of the GNU Readline Library
-(version 8.2, 12 August 2022), a library which aids in the consistency
-of user interface across discrete programs which provide a command line
-interface.
+(version 8.2, 19 September 2022), a library which aids in the
+consistency of user interface across discrete programs which provide a
+command line interface.
 
    Copyright (C) 1988-2022 Free Software Foundation, Inc.
 
@@ -153,9 +153,9 @@ Printing characters
      Undo the last editing command.  You can undo all the way back to an
      empty line.
 
-(Depending on your configuration, the <Backspace> key be set to delete
-the character to the left of the cursor and the <DEL> key set to delete
-the character underneath the cursor, like 'C-d', rather than the
+(Depending on your configuration, the <Backspace> key might be set to
+delete the character to the left of the cursor and the <DEL> key set to
+delete the character underneath the cursor, like 'C-d', rather than the
 character to the left of the cursor.)
 
 
@@ -217,9 +217,9 @@ available to be yanked back later, when you are typing another line.
      as those used by 'M-f'.
 
 'M-<DEL>'
-     Kill from the cursor the start of the current word, or, if between
-     words, to the start of the previous word.  Word boundaries are the
-     same as those used by 'M-b'.
+     Kill from the cursor to the start of the current word, or, if
+     between words, to the start of the previous word.  Word boundaries
+     are the same as those used by 'M-b'.
 
 'C-w'
      Kill from the cursor to the previous whitespace.  This is different
@@ -478,7 +478,7 @@ Variable Settings
 
      'echo-control-characters'
           When set to 'on', on operating systems that indicate they
-          support it, readline echoes a character corresponding to a
+          support it, Readline echoes a character corresponding to a
           signal generated from the keyboard.  The default is 'on'.
 
      'editing-mode'
@@ -649,7 +649,8 @@ Variable Settings
           If set to 'on', Readline will undo all changes to history
           lines before returning when 'accept-line' is executed.  By
           default, history lines may be modified and retain individual
-          undo lists across calls to 'readline'.  The default is 'off'.
+          undo lists across calls to 'readline()'.  The default is
+          'off'.
 
      'show-all-if-ambiguous'
           This alters the default behavior of the completion functions.
@@ -676,7 +677,7 @@ Variable Settings
           If set to 'on', this alters the default completion behavior
           when inserting a single match into the line.  It's only active
           when performing completion in the middle of a word.  If
-          enabled, readline does not insert characters from the
+          enabled, Readline does not insert characters from the
           completion that match characters after point in the word being
           completed, so portions of the word following the cursor are
           not duplicated.  For instance, if this is enabled, attempting
@@ -726,7 +727,7 @@ Key Bindings
      part of the key name.  The name of the key can be expressed in
      different ways, depending on what you find most comfortable.
 
-     In addition to command names, readline allows keys to be bound to a
+     In addition to command names, Readline allows keys to be bound to a
      string that is inserted when the key is pressed (a MACRO).
 
      KEYNAME: FUNCTION-NAME or MACRO
@@ -1448,7 +1449,7 @@ File: rluserman.info,  Node: Keyboard Macros,  Next: Miscellaneous Commands,  Pr
      characters in the macro appear as if typed at the keyboard.
 
 'print-last-kbd-macro ()'
-     Print the last keboard macro defined in a format suitable for the
+     Print the last keyboard macro defined in a format suitable for the
      INPUTRC file.
 
 
@@ -1495,12 +1496,12 @@ File: rluserman.info,  Node: Miscellaneous Commands,  Prev: Keyboard Macros,  Up
 
 'character-search (C-])'
      A character is read and point is moved to the next occurrence of
-     that character.  A negative count searches for previous
+     that character.  A negative argument searches for previous
      occurrences.
 
 'character-search-backward (M-C-])'
      A character is read and point is moved to the previous occurrence
-     of that character.  A negative count searches for subsequent
+     of that character.  A negative argument searches for subsequent
      occurrences.
 
 'skip-csi-sequence ()'
@@ -1508,7 +1509,7 @@ File: rluserman.info,  Node: Miscellaneous Commands,  Prev: Keyboard Macros,  Up
      those defined for keys like Home and End.  Such sequences begin
      with a Control Sequence Indicator (CSI), usually ESC-[.  If this
      sequence is bound to "\e[", keys producing such sequences will have
-     no effect unless explicitly bound to a readline command, instead of
+     no effect unless explicitly bound to a Readline command, instead of
      inserting stray characters into the editing buffer.  This is
      unbound by default, but usually bound to ESC-[.
 
@@ -2053,30 +2054,30 @@ their use in free software.
 
 
 Tag Table:
-Node: Top906
-Node: Command Line Editing1428
-Node: Introduction and Notation2082
-Node: Readline Interaction3707
-Node: Readline Bare Essentials4900
-Node: Readline Movement Commands6685
-Node: Readline Killing Commands7647
-Node: Readline Arguments9567
-Node: Searching10613
-Node: Readline Init File12767
-Node: Readline Init File Syntax13924
-Node: Conditional Init Constructs37216
-Node: Sample Init File41414
-Node: Bindable Readline Commands44540
-Node: Commands For Moving45596
-Node: Commands For History47356
-Node: Commands For Text52321
-Node: Commands For Killing56025
-Node: Numeric Arguments58740
-Node: Commands For Completion59881
-Node: Keyboard Macros61851
-Node: Miscellaneous Commands62540
-Node: Readline vi Mode66463
-Node: GNU Free Documentation License67377
+Node: Top909
+Node: Command Line Editing1431
+Node: Introduction and Notation2085
+Node: Readline Interaction3710
+Node: Readline Bare Essentials4903
+Node: Readline Movement Commands6694
+Node: Readline Killing Commands7656
+Node: Readline Arguments9579
+Node: Searching10625
+Node: Readline Init File12779
+Node: Readline Init File Syntax13936
+Node: Conditional Init Constructs37240
+Node: Sample Init File41438
+Node: Bindable Readline Commands44564
+Node: Commands For Moving45620
+Node: Commands For History47380
+Node: Commands For Text52345
+Node: Commands For Killing56049
+Node: Numeric Arguments58764
+Node: Commands For Completion59905
+Node: Keyboard Macros61875
+Node: Miscellaneous Commands62565
+Node: Readline vi Mode66494
+Node: GNU Free Documentation License67408
 
 End Tag Table
 

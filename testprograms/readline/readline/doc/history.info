@@ -1,9 +1,9 @@
 This is history.info, produced by makeinfo version 6.8 from
 history.texi.
 
-This document describes the GNU History library (version 8.2, 12 August
-2022), a programming tool that provides a consistent user interface for
-recalling lines of previously typed input.
+This document describes the GNU History library (version 8.2, 19
+September 2022), a programming tool that provides a consistent user
+interface for recalling lines of previously typed input.
 
    Copyright (C) 1988-2022 Free Software Foundation, Inc.
 
@@ -230,7 +230,7 @@ or edit, the word or words selected from the history event.
      '&' appears in NEW, it is replaced by OLD.  A single backslash will
      quote the '&'.  If OLD is null, it is set to the last OLD
      substituted, or, if no previous history substitutions took place,
-     the last STRING in a !?STRING'[?]' search.  If NEW is is null, each
+     the last STRING in a !?STRING'[?]' search.  If NEW is null, each
      matching OLD is deleted.  The final delimiter is optional if it is
      the last character on the input line.
 
@@ -1395,12 +1395,12 @@ Appendix C Function and Variable Index
 
 
 Tag Table:
-Node: Top847
-Node: Using History Interactively1492
-Node: History Interaction2000
-Node: Event Designators3898
-Node: Word Designators5172
-Node: Modifiers6932
+Node: Top850
+Node: Using History Interactively1495
+Node: History Interaction2003
+Node: Event Designators3901
+Node: Word Designators5175
+Node: Modifiers6935
 Node: Programming with GNU History8477
 Node: Introduction to History9221
 Node: History Storage10899

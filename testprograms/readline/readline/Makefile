@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/jopeters/Jonas/minishell/testprograms/readline/readline-8.2-rc4
+BUILD_DIR = /Users/jopeters/Jonas/minishell/testprograms/readline/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}

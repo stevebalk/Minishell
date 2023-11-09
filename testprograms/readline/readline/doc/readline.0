@@ -580,14 +580,14 @@ READLINE(3)                Library Functions Manual                READLINE(3)
        [1mprevious-screen-line[0m
               Attempt to move point to the same physical screen column on  the
               previous  physical  screen  line. This will not have the desired
-              effect if the current Readline line does not take up  more  than
+              effect if the current readline line does not take up  more  than
               one  physical line or if point is not greater than the length of
               the prompt plus the screen width.
        [1mnext-screen-line[0m
               Attempt to move point to the same physical screen column on  the
               next physical screen line. This will not have the desired effect
-              if the current Readline line does not  take  up  more  than  one
-              physical  line  or if the length of the current Readline line is
+              if the current readline line does not  take  up  more  than  one
+              physical  line  or if the length of the current readline line is
               not greater than the length of the prompt plus the screen width.
        [1mclear-display (M-C-l)[0m
               Clear the screen and, if  possible,  the  terminal's  scrollback
@@ -688,7 +688,7 @@ READLINE(3)                Library Functions Manual                READLINE(3)
               The  character  indicating  end-of-file  as set, for example, by
               ``stty''.  If this character is read when there are  no  charac-
               ters  on  the  line,  and point is at the beginning of the line,
-              Readline interprets it as the end of input and returns [1mEOF[22m.
+              readline interprets it as the end of input and returns [1mEOF[22m.
        [1mdelete-char (C-d)[0m
               Delete the character at point.  If this function is bound to the
               same character as the tty [1mEOF [22mcharacter, as [1mC-d [22mcommonly is, see
@@ -880,12 +880,12 @@ READLINE(3)                Library Functions Manual                READLINE(3)
               as the mark.
        [1mcharacter-search (C-])[0m
               A character is read and point is moved to the next occurrence of
-              that character.  A negative count searches for  previous  occur-
-              rences.
+              that character.  A negative argument searches for  previous  oc-
+              currences.
        [1mcharacter-search-backward (M-C-])[0m
               A  character  is  read and point is moved to the previous occur-
-              rence of that character.  A negative count searches  for  subse-
-              quent occurrences.
+              rence of that character.  A negative argument searches for  sub-
+              sequent occurrences.
        [1mskip-csi-sequence[0m
               Read  enough  characters to consume a multi-key sequence such as
               those defined for keys like Home and End.  Such sequences  begin
@@ -1172,4 +1172,4 @@ READLINE(3)                Library Functions Manual                READLINE(3)
 
 
 
-GNU Readline 8.2                2022 August 12                     READLINE(3)
+GNU Readline 8.2               2022 September 19                   READLINE(3)

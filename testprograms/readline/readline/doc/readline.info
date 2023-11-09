@@ -1,8 +1,9 @@
 This is readline.info, produced by makeinfo version 6.8 from rlman.texi.
 
-This manual describes the GNU Readline Library (version 8.2, 12 August
-2022), a library which aids in the consistency of user interface across
-discrete programs which provide a command line interface.
+This manual describes the GNU Readline Library (version 8.2, 19
+September 2022), a library which aids in the consistency of user
+interface across discrete programs which provide a command line
+interface.
 
    Copyright (C) 1988-2022 Free Software Foundation, Inc.
 
@@ -155,9 +156,9 @@ Printing characters
      Undo the last editing command.  You can undo all the way back to an
      empty line.
 
-(Depending on your configuration, the <Backspace> key be set to delete
-the character to the left of the cursor and the <DEL> key set to delete
-the character underneath the cursor, like 'C-d', rather than the
+(Depending on your configuration, the <Backspace> key might be set to
+delete the character to the left of the cursor and the <DEL> key set to
+delete the character underneath the cursor, like 'C-d', rather than the
 character to the left of the cursor.)
 
 
@@ -219,9 +220,9 @@ available to be yanked back later, when you are typing another line.
      as those used by 'M-f'.
 
 'M-<DEL>'
-     Kill from the cursor the start of the current word, or, if between
-     words, to the start of the previous word.  Word boundaries are the
-     same as those used by 'M-b'.
+     Kill from the cursor to the start of the current word, or, if
+     between words, to the start of the previous word.  Word boundaries
+     are the same as those used by 'M-b'.
 
 'C-w'
      Kill from the cursor to the previous whitespace.  This is different
@@ -480,7 +481,7 @@ Variable Settings
 
      'echo-control-characters'
           When set to 'on', on operating systems that indicate they
-          support it, readline echoes a character corresponding to a
+          support it, Readline echoes a character corresponding to a
           signal generated from the keyboard.  The default is 'on'.
 
      'editing-mode'
@@ -651,7 +652,8 @@ Variable Settings
           If set to 'on', Readline will undo all changes to history
           lines before returning when 'accept-line' is executed.  By
           default, history lines may be modified and retain individual
-          undo lists across calls to 'readline'.  The default is 'off'.
+          undo lists across calls to 'readline()'.  The default is
+          'off'.
 
      'show-all-if-ambiguous'
           This alters the default behavior of the completion functions.
@@ -678,7 +680,7 @@ Variable Settings
           If set to 'on', this alters the default completion behavior
           when inserting a single match into the line.  It's only active
           when performing completion in the middle of a word.  If
-          enabled, readline does not insert characters from the
+          enabled, Readline does not insert characters from the
           completion that match characters after point in the word being
           completed, so portions of the word following the cursor are
           not duplicated.  For instance, if this is enabled, attempting
@@ -728,7 +730,7 @@ Key Bindings
      part of the key name.  The name of the key can be expressed in
      different ways, depending on what you find most comfortable.
 
-     In addition to command names, readline allows keys to be bound to a
+     In addition to command names, Readline allows keys to be bound to a
      string that is inserted when the key is pressed (a MACRO).
 
      KEYNAME: FUNCTION-NAME or MACRO
@@ -1450,7 +1452,7 @@ File: readline.info,  Node: Keyboard Macros,  Next: Miscellaneous Commands,  Pre
      characters in the macro appear as if typed at the keyboard.
 
 'print-last-kbd-macro ()'
-     Print the last keboard macro defined in a format suitable for the
+     Print the last keyboard macro defined in a format suitable for the
      INPUTRC file.
 
 
@@ -1497,12 +1499,12 @@ File: readline.info,  Node: Miscellaneous Commands,  Prev: Keyboard Macros,  Up:
 
 'character-search (C-])'
      A character is read and point is moved to the next occurrence of
-     that character.  A negative count searches for previous
+     that character.  A negative argument searches for previous
      occurrences.
 
 'character-search-backward (M-C-])'
      A character is read and point is moved to the previous occurrence
-     of that character.  A negative count searches for subsequent
+     of that character.  A negative argument searches for subsequent
      occurrences.
 
 'skip-csi-sequence ()'
@@ -1510,7 +1512,7 @@ File: readline.info,  Node: Miscellaneous Commands,  Prev: Keyboard Macros,  Up:
      those defined for keys like Home and End.  Such sequences begin
      with a Control Sequence Indicator (CSI), usually ESC-[.  If this
      sequence is bound to "\e[", keys producing such sequences will have
-     no effect unless explicitly bound to a readline command, instead of
+     no effect unless explicitly bound to a Readline command, instead of
      inserting stray characters into the editing buffer.  This is
      unbound by default, but usually bound to ESC-[.
 
@@ -1923,7 +1925,7 @@ These variables are available to function writers.
      value 0x0402.
 
  -- Variable: int rl_gnu_readline_p
-     Always set to 1, denoting that this is GNU readline rather than
+     Always set to 1, denoting that this is GNU Readline rather than
      some emulation.
 
  -- Variable: const char * rl_terminal_name
@@ -2026,7 +2028,7 @@ These variables are available to function writers.
 
  -- Variable: Keymap rl_executing_keymap
      This variable is set to the keymap (*note Keymaps::) in which the
-     currently executing readline function was found.
+     currently executing Readline function was found.
 
  -- Variable: Keymap rl_binding_keymap
      This variable is set to the keymap (*note Keymaps::) in which the
@@ -2415,7 +2417,7 @@ associate a new function name with an arbitrary function.
      invoke FUNCTION in the keymap MAP.
 
  -- Function: void rl_function_dumper (int readable)
-     Print the readline function names and the key sequences currently
+     Print the Readline function names and the key sequences currently
      bound to them to 'rl_outstream'.  If READABLE is non-zero, the list
      is formatted in such a way that it can be made part of an 'inputrc'
      file and re-read.
@@ -2813,7 +2815,7 @@ File: readline.info,  Node: Miscellaneous Functions,  Next: Alternate Interface,
  -- Function: int rl_variable_bind (const char *variable, const char
           *value)
      Make the Readline variable VARIABLE have VALUE.  This behaves as if
-     the readline command 'set VARIABLE VALUE' had been executed in an
+     the Readline command 'set VARIABLE VALUE' had been executed in an
      'inputrc' file (*note Readline Init File Syntax::).
 
  -- Function: char * rl_variable_value (const char *variable)
@@ -2822,7 +2824,7 @@ File: readline.info,  Node: Miscellaneous Functions,  Next: Alternate Interface,
      'off'.
 
  -- Function: void rl_variable_dumper (int readable)
-     Print the readline variable names and their current values to
+     Print the Readline variable names and their current values to
      'rl_outstream'.  If READABLE is non-zero, the list is formatted in
      such a way that it can be made part of an 'inputrc' file and
      re-read.
@@ -2849,7 +2851,7 @@ File: readline.info,  Node: Miscellaneous Functions,  Next: Alternate Interface,
  -- Function: void rl_activate_mark (void)
      Enable an _active_ mark.  When this is enabled, the text between
      point and mark (the REGION) is displayed in the terminal's standout
-     mode (a FACE).  This is called by various readline functions that
+     mode (a FACE).  This is called by various Readline functions that
      set the mark and insert text, and is available for applications to
      call.
 
@@ -2858,9 +2860,9 @@ File: readline.info,  Node: Miscellaneous Functions,  Next: Alternate Interface,
 
  -- Function: void rl_keep_mark_active (void)
      Indicate that the mark should remain active when the current
-     readline function completes and after redisplay occurs.  In most
+     Readline function completes and after redisplay occurs.  In most
      cases, the mark remains active for only the duration of a single
-     bindable readline function.
+     bindable Readline function.
 
  -- Function: int rl_mark_active_p (void)
      Return a non-zero value if the mark is currently active; zero
@@ -2875,13 +2877,13 @@ File: readline.info,  Node: Alternate Interface,  Next: A Readline Example,  Pre
 An alternate interface is available to plain 'readline()'.  Some
 applications need to interleave keyboard I/O with file, device, or
 window system I/O, typically by using a main loop to 'select()' on
-various file descriptors.  To accommodate this need, readline can also
+various file descriptors.  To accommodate this need, Readline can also
 be invoked as a 'callback' function from an event loop.  There are
 functions available to make this easy.
 
  -- Function: void rl_callback_handler_install (const char *prompt,
           rl_vcpfunc_t *lhandler)
-     Set up the terminal for readline I/O and display the initial
+     Set up the terminal for Readline I/O and display the initial
      expanded value of PROMPT.  Save the value of LHANDLER to use as a
      handler function to call when a complete line of input has been
      entered.  The handler function receives the text of the line as an
@@ -3251,7 +3253,7 @@ to update its idea of the terminal size when it receives a 'SIGWINCH'.
 
  -- Function: void rl_echo_signal_char (int sig)
      If an application wishes to install its own signal handlers, but
-     still have readline display characters that generate signals,
+     still have Readline display characters that generate signals,
      calling this function with SIG set to 'SIGINT', 'SIGQUIT', or
      'SIGTSTP' will display the character generating that signal.
 
@@ -3623,7 +3625,7 @@ File: readline.info,  Node: Completion Variables,  Next: A Short Completion Exam
 
  -- Variable: int rl_completion_query_items
      Up to this many items will be displayed in response to a
-     possible-completions call.  After that, readline asks the user for
+     possible-completions call.  After that, Readline asks the user for
      confirmation before displaying them.  The default value is 100.  A
      negative value indicates that Readline should never ask for
      confirmation.
@@ -5211,13 +5213,13 @@ Function and Variable Index
 * shell-transpose-words (M-C-t):         Commands For Killing.
                                                               (line  32)
 * show-all-if-ambiguous:                 Readline Init File Syntax.
-                                                              (line 325)
+                                                              (line 326)
 * show-all-if-unmodified:                Readline Init File Syntax.
-                                                              (line 331)
+                                                              (line 332)
 * show-mode-in-prompt:                   Readline Init File Syntax.
-                                                              (line 340)
+                                                              (line 341)
 * skip-completed-text:                   Readline Init File Syntax.
-                                                              (line 346)
+                                                              (line 347)
 * skip-csi-sequence ():                  Miscellaneous Commands.
                                                               (line  52)
 * start-kbd-macro (C-x ():               Keyboard Macros.     (line   6)
@@ -5237,13 +5239,13 @@ Function and Variable Index
                                                               (line  39)
 * upcase-word (M-u):                     Commands For Text.   (line  61)
 * vi-cmd-mode-string:                    Readline Init File Syntax.
-                                                              (line 359)
+                                                              (line 360)
 * vi-editing-mode (M-C-j):               Miscellaneous Commands.
                                                               (line  92)
 * vi-ins-mode-string:                    Readline Init File Syntax.
-                                                              (line 370)
+                                                              (line 371)
 * visible-stats:                         Readline Init File Syntax.
-                                                              (line 381)
+                                                              (line 382)
 * yank (C-y):                            Commands For Killing.
                                                               (line  70)
 * yank-last-arg (M-. or M-_):            Commands For History.
@@ -5256,59 +5258,59 @@ Function and Variable Index
 
 
 Tag Table:
-Node: Top863
-Node: Command Line Editing1588
-Node: Introduction and Notation2240
-Node: Readline Interaction3864
-Node: Readline Bare Essentials5056
-Node: Readline Movement Commands6840
-Node: Readline Killing Commands7801
-Node: Readline Arguments9720
-Node: Searching10765
-Node: Readline Init File12918
-Node: Readline Init File Syntax14074
-Node: Conditional Init Constructs37365
-Node: Sample Init File41562
-Node: Bindable Readline Commands44687
-Node: Commands For Moving45742
-Node: Commands For History47501
-Node: Commands For Text52465
-Node: Commands For Killing56168
-Node: Numeric Arguments58882
-Node: Commands For Completion60022
-Node: Keyboard Macros61991
-Node: Miscellaneous Commands62679
-Node: Readline vi Mode66601
-Node: Programming with GNU Readline68418
-Node: Basic Behavior69404
-Node: Custom Functions73087
-Node: Readline Typedefs74570
-Node: Function Writing76204
-Node: Readline Variables77518
-Node: Readline Convenience Functions91193
-Node: Function Naming92265
-Node: Keymaps93527
-Node: Binding Keys96606
-Node: Associating Function Names and Bindings101154
-Node: Allowing Undoing104384
-Node: Redisplay106934
-Node: Modifying Text110993
-Node: Character Input112240
-Node: Terminal Management115321
-Node: Utility Functions117144
-Node: Miscellaneous Functions120472
-Node: Alternate Interface123891
-Node: A Readline Example126633
-Node: Alternate Interface Example128572
-Node: Readline Signal Handling132104
-Node: Custom Completers141357
-Node: How Completing Works142077
-Node: Completion Functions145384
-Node: Completion Variables148958
-Node: A Short Completion Example164764
-Node: GNU Free Documentation License177601
-Node: Concept Index202775
-Node: Function and Variable Index204296
+Node: Top866
+Node: Command Line Editing1591
+Node: Introduction and Notation2243
+Node: Readline Interaction3867
+Node: Readline Bare Essentials5059
+Node: Readline Movement Commands6849
+Node: Readline Killing Commands7810
+Node: Readline Arguments9732
+Node: Searching10777
+Node: Readline Init File12930
+Node: Readline Init File Syntax14086
+Node: Conditional Init Constructs37389
+Node: Sample Init File41586
+Node: Bindable Readline Commands44711
+Node: Commands For Moving45766
+Node: Commands For History47525
+Node: Commands For Text52489
+Node: Commands For Killing56192
+Node: Numeric Arguments58906
+Node: Commands For Completion60046
+Node: Keyboard Macros62015
+Node: Miscellaneous Commands62704
+Node: Readline vi Mode66632
+Node: Programming with GNU Readline68449
+Node: Basic Behavior69435
+Node: Custom Functions73118
+Node: Readline Typedefs74601
+Node: Function Writing76235
+Node: Readline Variables77549
+Node: Readline Convenience Functions91224
+Node: Function Naming92296
+Node: Keymaps93558
+Node: Binding Keys96637
+Node: Associating Function Names and Bindings101185
+Node: Allowing Undoing104415
+Node: Redisplay106965
+Node: Modifying Text111024
+Node: Character Input112271
+Node: Terminal Management115352
+Node: Utility Functions117175
+Node: Miscellaneous Functions120503
+Node: Alternate Interface123922
+Node: A Readline Example126664
+Node: Alternate Interface Example128603
+Node: Readline Signal Handling132135
+Node: Custom Completers141388
+Node: How Completing Works142108
+Node: Completion Functions145415
+Node: Completion Variables148989
+Node: A Short Completion Example164795
+Node: GNU Free Documentation License177632
+Node: Concept Index202806
+Node: Function and Variable Index204327
 
 End Tag Table
 
