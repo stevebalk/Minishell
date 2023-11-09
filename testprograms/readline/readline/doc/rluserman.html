@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This manual describes the end user interface of the GNU Readline Library
-(version 8.2, 12 August 2022), a library which aids in the
+(version 8.2, 19 September 2022), a library which aids in the
 consistency of user interface across discrete programs which provide
 a command line interface.
 
@@ -262,7 +262,7 @@ empty line.
 </p></dd>
 </dl>
 
-<p>(Depending on your configuration, the <tt class="key">Backspace</tt> key be set to
+<p>(Depending on your configuration, the <tt class="key">Backspace</tt> key might be set to
 delete the character to the left of the cursor and the <tt class="key">DEL</tt> key set
 to delete the character underneath the cursor, like <kbd>C-d</kbd>, rather
 than the character to the left of the cursor.)
@@ -348,7 +348,7 @@ Word boundaries are the same as those used by <kbd>M-f</kbd>.
 </p>
 </dd>
 <dt><span><kbd>M-<span class="key">DEL</span></kbd></span></dt>
-<dd><p>Kill from the cursor the start of the current word, or, if between
+<dd><p>Kill from the cursor to the start of the current word, or, if between
 words, to the start of the previous word.
 Word boundaries are the same as those used by <kbd>M-b</kbd>.
 </p>
@@ -660,7 +660,7 @@ been mapped to <code>self-insert</code>.  The default is &lsquo;<samp>off</samp>
 </dd>
 <dt id='index-echo_002dcontrol_002dcharacters'><span><code>echo-control-characters</code><a href='#index-echo_002dcontrol_002dcharacters' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>When set to &lsquo;<samp>on</samp>&rsquo;, on operating systems that indicate they support it,
-readline echoes a character corresponding to a signal generated from the
+Readline echoes a character corresponding to a signal generated from the
 keyboard.  The default is &lsquo;<samp>on</samp>&rsquo;.
 </p>
 </dd>
@@ -867,7 +867,7 @@ The default is &lsquo;<samp>off</samp>&rsquo;.
 <dd><p>If set to &lsquo;<samp>on</samp>&rsquo;, Readline will undo all changes to history lines
 before returning when <code>accept-line</code> is executed.  By default,
 history lines may be modified and retain individual undo lists across
-calls to <code>readline</code>.  The default is &lsquo;<samp>off</samp>&rsquo;.
+calls to <code>readline()</code>.  The default is &lsquo;<samp>off</samp>&rsquo;.
 </p>
 </dd>
 <dt id='index-show_002dall_002dif_002dambiguous'><span><code>show-all-if-ambiguous</code><a href='#index-show_002dall_002dif_002dambiguous' class='copiable-anchor'> &para;</a></span></dt>
@@ -899,7 +899,7 @@ The default value is &lsquo;<samp>off</samp>&rsquo;.
 <dt id='index-skip_002dcompleted_002dtext'><span><code>skip-completed-text</code><a href='#index-skip_002dcompleted_002dtext' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>If set to &lsquo;<samp>on</samp>&rsquo;, this alters the default completion behavior when
 inserting a single match into the line.  It&rsquo;s only active when
-performing completion in the middle of a word.  If enabled, readline
+performing completion in the middle of a word.  If enabled, Readline
 does not insert characters from the completion that match characters
 after point in the word being completed, so portions of the word
 following the cursor are not duplicated.
@@ -961,7 +961,7 @@ interpreted as part of the key name.
 The name of the key can be expressed in different ways, depending on
 what you find most comfortable.
 </p>
-<p>In addition to command names, readline allows keys to be bound
+<p>In addition to command names, Readline allows keys to be bound
 to a string that is inserted when the key is pressed (a <var>macro</var>).
 </p>
 
@@ -1885,7 +1885,7 @@ in the macro appear as if typed at the keyboard.
 </p>
 </dd>
 <dt id='index-print_002dlast_002dkbd_002dmacro-_0028_0029'><span><code>print-last-kbd-macro ()</code><a href='#index-print_002dlast_002dkbd_002dmacro-_0028_0029' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Print the last keboard macro defined in a format suitable for the
+<dd><p>Print the last keyboard macro defined in a format suitable for the
 <var>inputrc</var> file.
 </p>
 </dd>
@@ -1948,12 +1948,12 @@ the saved position, and the old cursor position is saved as the mark.
 </dd>
 <dt id='index-character_002dsearch-_0028C_002d_005d_0029'><span><code>character-search (C-])</code><a href='#index-character_002dsearch-_0028C_002d_005d_0029' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>A character is read and point is moved to the next occurrence of that
-character.  A negative count searches for previous occurrences.
+character.  A negative argument searches for previous occurrences.
 </p>
 </dd>
 <dt id='index-character_002dsearch_002dbackward-_0028M_002dC_002d_005d_0029'><span><code>character-search-backward (M-C-])</code><a href='#index-character_002dsearch_002dbackward-_0028M_002dC_002d_005d_0029' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>A character is read and point is moved to the previous occurrence
-of that character.  A negative count searches for subsequent
+of that character.  A negative argument searches for subsequent
 occurrences.
 </p>
 </dd>
@@ -1962,7 +1962,7 @@ occurrences.
 defined for keys like Home and End.  Such sequences begin with a
 Control Sequence Indicator (CSI), usually ESC-[.  If this sequence is
 bound to &quot;\e[&quot;, keys producing such sequences will have no effect
-unless explicitly bound to a readline command, instead of inserting
+unless explicitly bound to a Readline command, instead of inserting
 stray characters into the editing buffer.  This is unbound by default,
 but usually bound to ESC-[.
 </p>

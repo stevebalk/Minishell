@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This manual describes the GNU Readline Library
-(version 8.2, 12 August 2022), a library which aids in the
+(version 8.2, 19 September 2022), a library which aids in the
 consistency of user interface across discrete programs which provide
 a command line interface.
 
@@ -300,7 +300,7 @@ empty line.
 </p></dd>
 </dl>
 
-<p>(Depending on your configuration, the <tt class="key">Backspace</tt> key be set to
+<p>(Depending on your configuration, the <tt class="key">Backspace</tt> key might be set to
 delete the character to the left of the cursor and the <tt class="key">DEL</tt> key set
 to delete the character underneath the cursor, like <kbd>C-d</kbd>, rather
 than the character to the left of the cursor.)
@@ -386,7 +386,7 @@ Word boundaries are the same as those used by <kbd>M-f</kbd>.
 </p>
 </dd>
 <dt><span><kbd>M-<span class="key">DEL</span></kbd></span></dt>
-<dd><p>Kill from the cursor the start of the current word, or, if between
+<dd><p>Kill from the cursor to the start of the current word, or, if between
 words, to the start of the previous word.
 Word boundaries are the same as those used by <kbd>M-b</kbd>.
 </p>
@@ -698,7 +698,7 @@ been mapped to <code>self-insert</code>.  The default is &lsquo;<samp>off</samp>
 </dd>
 <dt id='index-echo_002dcontrol_002dcharacters'><span><code>echo-control-characters</code><a href='#index-echo_002dcontrol_002dcharacters' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>When set to &lsquo;<samp>on</samp>&rsquo;, on operating systems that indicate they support it,
-readline echoes a character corresponding to a signal generated from the
+Readline echoes a character corresponding to a signal generated from the
 keyboard.  The default is &lsquo;<samp>on</samp>&rsquo;.
 </p>
 </dd>
@@ -905,7 +905,7 @@ The default is &lsquo;<samp>off</samp>&rsquo;.
 <dd><p>If set to &lsquo;<samp>on</samp>&rsquo;, Readline will undo all changes to history lines
 before returning when <code>accept-line</code> is executed.  By default,
 history lines may be modified and retain individual undo lists across
-calls to <code>readline</code>.  The default is &lsquo;<samp>off</samp>&rsquo;.
+calls to <code>readline()</code>.  The default is &lsquo;<samp>off</samp>&rsquo;.
 </p>
 </dd>
 <dt id='index-show_002dall_002dif_002dambiguous'><span><code>show-all-if-ambiguous</code><a href='#index-show_002dall_002dif_002dambiguous' class='copiable-anchor'> &para;</a></span></dt>
@@ -937,7 +937,7 @@ The default value is &lsquo;<samp>off</samp>&rsquo;.
 <dt id='index-skip_002dcompleted_002dtext'><span><code>skip-completed-text</code><a href='#index-skip_002dcompleted_002dtext' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>If set to &lsquo;<samp>on</samp>&rsquo;, this alters the default completion behavior when
 inserting a single match into the line.  It&rsquo;s only active when
-performing completion in the middle of a word.  If enabled, readline
+performing completion in the middle of a word.  If enabled, Readline
 does not insert characters from the completion that match characters
 after point in the word being completed, so portions of the word
 following the cursor are not duplicated.
@@ -999,7 +999,7 @@ interpreted as part of the key name.
 The name of the key can be expressed in different ways, depending on
 what you find most comfortable.
 </p>
-<p>In addition to command names, readline allows keys to be bound
+<p>In addition to command names, Readline allows keys to be bound
 to a string that is inserted when the key is pressed (a <var>macro</var>).
 </p>
 
@@ -1923,7 +1923,7 @@ in the macro appear as if typed at the keyboard.
 </p>
 </dd>
 <dt id='index-print_002dlast_002dkbd_002dmacro-_0028_0029'><span><code>print-last-kbd-macro ()</code><a href='#index-print_002dlast_002dkbd_002dmacro-_0028_0029' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Print the last keboard macro defined in a format suitable for the
+<dd><p>Print the last keyboard macro defined in a format suitable for the
 <var>inputrc</var> file.
 </p>
 </dd>
@@ -1986,12 +1986,12 @@ the saved position, and the old cursor position is saved as the mark.
 </dd>
 <dt id='index-character_002dsearch-_0028C_002d_005d_0029'><span><code>character-search (C-])</code><a href='#index-character_002dsearch-_0028C_002d_005d_0029' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>A character is read and point is moved to the next occurrence of that
-character.  A negative count searches for previous occurrences.
+character.  A negative argument searches for previous occurrences.
 </p>
 </dd>
 <dt id='index-character_002dsearch_002dbackward-_0028M_002dC_002d_005d_0029'><span><code>character-search-backward (M-C-])</code><a href='#index-character_002dsearch_002dbackward-_0028M_002dC_002d_005d_0029' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>A character is read and point is moved to the previous occurrence
-of that character.  A negative count searches for subsequent
+of that character.  A negative argument searches for subsequent
 occurrences.
 </p>
 </dd>
@@ -2000,7 +2000,7 @@ occurrences.
 defined for keys like Home and End.  Such sequences begin with a
 Control Sequence Indicator (CSI), usually ESC-[.  If this sequence is
 bound to &quot;\e[&quot;, keys producing such sequences will have no effect
-unless explicitly bound to a readline command, instead of inserting
+unless explicitly bound to a Readline command, instead of inserting
 stray characters into the editing buffer.  This is unbound by default,
 but usually bound to ESC-[.
 </p>
@@ -2472,7 +2472,7 @@ value 0x0402.
 
 <dl class="def">
 <dt id="index-rl_005fgnu_005freadline_005fp"><span class="category">Variable: </span><span><em>int</em> <strong>rl_gnu_readline_p</strong><a href='#index-rl_005fgnu_005freadline_005fp' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Always set to 1, denoting that this is <small>GNU</small> readline rather than some
+<dd><p>Always set to 1, denoting that this is <small>GNU</small> Readline rather than some
 emulation.
 </p></dd></dl>
 
@@ -2611,7 +2611,7 @@ By default, this is set to <code>rl_deprep_terminal</code>
 <dl class="def">
 <dt id="index-rl_005fexecuting_005fkeymap"><span class="category">Variable: </span><span><em>Keymap</em> <strong>rl_executing_keymap</strong><a href='#index-rl_005fexecuting_005fkeymap' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>This variable is set to the keymap (see <a href="#Keymaps">Selecting a Keymap</a>) in which the
-currently executing readline function was found.
+currently executing Readline function was found.
 </p></dd></dl>
 
 <dl class="def">
@@ -3111,7 +3111,7 @@ invoke <var>function</var> in the keymap <var>map</var>.
 
 <dl class="def">
 <dt id="index-rl_005ffunction_005fdumper"><span class="category">Function: </span><span><em>void</em> <strong>rl_function_dumper</strong> <em>(int readable)</em><a href='#index-rl_005ffunction_005fdumper' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Print the readline function names and the key sequences currently
+<dd><p>Print the Readline function names and the key sequences currently
 bound to them to <code>rl_outstream</code>.  If <var>readable</var> is non-zero,
 the list is formatted in such a way that it can be made part of an
 <code>inputrc</code> file and re-read.
@@ -3655,7 +3655,7 @@ that it can be made part of an <code>inputrc</code> file and re-read.
 <dl class="def">
 <dt id="index-rl_005fvariable_005fbind"><span class="category">Function: </span><span><em>int</em> <strong>rl_variable_bind</strong> <em>(const char *variable, const char *value)</em><a href='#index-rl_005fvariable_005fbind' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>Make the Readline variable <var>variable</var> have <var>value</var>.
-This behaves as if the readline command
+This behaves as if the Readline command
 &lsquo;<samp>set <var>variable</var> <var>value</var></samp>&rsquo; had been executed in an <code>inputrc</code>
 file (see <a href="#Readline-Init-File-Syntax">Readline Init File Syntax</a>).
 </p></dd></dl>
@@ -3668,7 +3668,7 @@ For boolean variables, this string is either &lsquo;<samp>on</samp>&rsquo; or &l
 
 <dl class="def">
 <dt id="index-rl_005fvariable_005fdumper"><span class="category">Function: </span><span><em>void</em> <strong>rl_variable_dumper</strong> <em>(int readable)</em><a href='#index-rl_005fvariable_005fdumper' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Print the readline variable names and their current values
+<dd><p>Print the Readline variable names and their current values
 to <code>rl_outstream</code>.
 If <var>readable</var> is non-zero, the list is formatted in such a way
 that it can be made part of an <code>inputrc</code> file and re-read.
@@ -3703,7 +3703,7 @@ Readline saves in the history list.
 <dd><p>Enable an <em>active</em> mark.
 When this is enabled, the text between point and mark (the <var>region</var>) is
 displayed in the terminal&rsquo;s standout mode (a <var>face</var>).
-This is called by various readline functions that set the mark and insert
+This is called by various Readline functions that set the mark and insert
 text, and is available for applications to call.
 </p></dd></dl>
 
@@ -3714,10 +3714,10 @@ text, and is available for applications to call.
 
 <dl class="def">
 <dt id="index-rl_005fkeep_005fmark_005factive"><span class="category">Function: </span><span><em>void</em> <strong>rl_keep_mark_active</strong> <em>(void)</em><a href='#index-rl_005fkeep_005fmark_005factive' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Indicate that the mark should remain active when the current readline function
-completes and after redisplay occurs.
+<dd><p>Indicate that the mark should remain active when the current Readline
+function completes and after redisplay occurs.
 In most cases, the mark remains active for only the duration of a single
-bindable readline function.
+bindable Readline function.
 </p></dd></dl>
 
 <dl class="def">
@@ -3737,13 +3737,13 @@ Next: <a href="#A-Readline-Example" accesskey="n" rel="next">A Readline Example<
 <p>An alternate interface is available to plain <code>readline()</code>.  Some
 applications need to interleave keyboard I/O with file, device, or
 window system I/O, typically by using a main loop to <code>select()</code>
-on various file descriptors.  To accommodate this need, readline can
+on various file descriptors.  To accommodate this need, Readline can
 also be invoked as a &lsquo;callback&rsquo; function from an event loop.  There
 are functions available to make this easy.
 </p>
 <dl class="def">
 <dt id="index-rl_005fcallback_005fhandler_005finstall"><span class="category">Function: </span><span><em>void</em> <strong>rl_callback_handler_install</strong> <em>(const char *prompt, rl_vcpfunc_t *lhandler)</em><a href='#index-rl_005fcallback_005fhandler_005finstall' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Set up the terminal for readline I/O and display the initial
+<dd><p>Set up the terminal for Readline I/O and display the initial
 expanded value of <var>prompt</var>.  Save the value of <var>lhandler</var> to
 use as a handler function to call when a complete line of input has been
 entered.
@@ -4160,7 +4160,7 @@ a <code>SIGWINCH</code>.
 <dl class="def">
 <dt id="index-rl_005fecho_005fsignal_005fchar"><span class="category">Function: </span><span><em>void</em> <strong>rl_echo_signal_char</strong> <em>(int sig)</em><a href='#index-rl_005fecho_005fsignal_005fchar' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>If an application wishes to install its own signal handlers, but still
-have readline display characters that generate signals, calling this
+have Readline display characters that generate signals, calling this
 function with <var>sig</var> set to <code>SIGINT</code>, <code>SIGQUIT</code>, or
 <code>SIGTSTP</code> will display the character generating that signal.
 </p></dd></dl>
@@ -4613,7 +4613,7 @@ shell variables and hostnames.
 <dl class="def">
 <dt id="index-rl_005fcompletion_005fquery_005fitems"><span class="category">Variable: </span><span><em>int</em> <strong>rl_completion_query_items</strong><a href='#index-rl_005fcompletion_005fquery_005fitems' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>Up to this many items will be displayed in response to a
-possible-completions call.  After that, readline asks the user for
+possible-completions call.  After that, Readline asks the user for
 confirmation before displaying them.
 The default value is 100.  A negative value 
 indicates that Readline should never ask for confirmation.

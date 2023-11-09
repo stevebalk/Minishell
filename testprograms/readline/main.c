@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:48:54 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/09 11:53:15 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:03:07 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int main(void)
 
 /*
 
-gcc -o main.c -lreadline
+gcc main.c -lreadline
 
 */

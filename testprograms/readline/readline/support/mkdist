@@ -96,7 +96,7 @@ do
 	*)	echo "unknown file type $type" 1>&2 ;;
 	esac
 
-	# allow for trailing comments
+	# allow trailing comments
 	case "$mode" in
 	\#*)	mode= ;;
 	esac
