@@ -6,11 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/09 18:30:33 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/09 23:20:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/lexer.h"
+#include "../../include/lexer.h"
+
+#define MAX_LINES 1000
 
 void	append_token(t_token *head, t_token *new_token)
 {
@@ -72,7 +74,7 @@ int	set_token_value(const char *str, t_token *token)
 	int	ret;
 
 	ret = 0;
-	while (!ft_strchr(SPECIFIERS, str[ret]) || str[ret] != '\0')
+	while (!ft_strchr(TOKEN_TYPES, str[ret]) || str[ret] != '\0')
 		ret++;
 	token->str = malloc((ret + 1) * sizeof(char));
 	if (token->str == NULL)
@@ -81,28 +83,78 @@ int	set_token_value(const char *str, t_token *token)
 	return (ret);
 }
 
-t_token	*lexer(char *argv)
+t_token	*lexer(char *str)
 {
 	t_token	*head;
 	t_token	*cur_token;
 
-	if (*argv == '\0')
+	if (*str == '\0')
 		return (NULL);
 	head = create_token();
 	cur_token = head;
-	while (*argv != '\0')
+	while (*str != '\0')
 	{
-		if (ft_strchr(SPECIFIERS, **argv))
-			argv += set_token_type(argv, cur_token);
+		if (ft_strchr(SPECIFIERS, *str))
+			str += set_token_type(str, cur_token);
 		else
-			argv += set_token_value(argv, cur_token);
+			str += set_token_value(str, cur_token);
 	}
 	return (head);
 }
 
+/* TEST FUNCTION DELETE LATER */
+void	read_test_file(char **filename, char *test_lines[100])
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	line = NULL;
+	i = 0;
+	fd = open(*filename, O_RDONLY, 0644);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		exit(errno);
+	}
+	line = get_next_line(fd);
+	while (line != NULL && i < MAX_LINES)
+	{
+		test_lines[i] = line;
+		line = get_next_line(fd);
+		i++;
+	}
+	close(fd);
+}
+
 int main(int argc, char **argv)
 {
-	t_token	*head;
-	
-	head = lexer(*(argv + 1));
+	char	*test_lines[MAX_LINES];
+	int		i;
+
+
+	// t_token	*head;
+	i = 0;
+	if (argc == 2)
+	{
+		if (access(argv[1], F_OK) == 0)
+			read_test_file(argv + 1, test_lines);
+		else
+		{
+			perror("File doesn't exist");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		printf("Wrong input. Use: ./lexer <test_file>\n");
+		printf("Testfile should be filled with bash commands");
+		exit(EXIT_FAILURE);
+	}
+	while (test_lines[i] != NULL)
+	{
+		printf("%s\n", test_lines[0]);
+		i++;
+	}
+	// head = lexer(*(argv + 1));
 }

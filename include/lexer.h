@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/09 18:26:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/09 22:33:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
 
 
 // Enum for token types
@@ -51,6 +52,6 @@ typedef struct	s_token
 	struct s_token	*next;
 }				t_token;
 
-# define SPECIFIERS	"|<>$="
+# define TOKEN_TYPES	"|<>$="
 
 #endif
