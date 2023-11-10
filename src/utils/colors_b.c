@@ -6,9 +6,11 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 11:16:23 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:09:16 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/main.h"
 
 void	c_cyan(void)
 {

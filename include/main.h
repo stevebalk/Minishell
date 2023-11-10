@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_a.c                                         :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:14:39 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 12:08:57 by jopeters         ###   ########.fr       */
+/*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
+/*   Updated: 2023/11/10 12:15:54 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "../libs/readline/readline.h"
 
-void	c_red(void)
-{
-	printf("\033[0;31m");
-}
+int	main(void);
 
-void	c_green(void)
-{
-	printf("\033[0;32m");
-}
 
-void	c_blue(void)
-{
-	printf("\033[0;34m");
-}
+// Prompt
+char *prompt(char *in);
 
-void	c_purple(void)
-{
-	printf("\033[0;35m");
-}
-
-void	c_yellow(void)
-{
-	printf("\033[0;33m");
-}
+// Utils
+// Colors
+void c_red(void);
+void c_green(void);
+void c_blue(void);
+void c_purple(void);
+void c_yellow(void);
+void c_cyan(void);
+void clear_screen(void);
+void c_reset(void);

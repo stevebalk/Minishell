@@ -6,9 +6,11 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 11:20:01 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:14:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/main.h"
 
 char *prompt(char *in)
 {
@@ -16,7 +18,7 @@ char *prompt(char *in)
     c_yellow();printf(">>");
         
     c_cyan();
-    in = readline("");
+    in = readline(" ");
         
     c_green();
     printf("|%s|\n", in);
