@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 13:52:54 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:11:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int main(void)
 {
-    char *prompt_in = NULL;
+    char *prompt_in;
+    prompt_in = NULL;
 	
     clear_screen();
 
