@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/10 00:12:06 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/10 16:49:35 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/lexer.h"
+
+
+/*
+If quotes are not closed > Exit
+Export variables can only use alphanum characters
+$VAR   -- Legit
+$Var-/ -- Wrong
+*/
 
 #define MAX_LINES 1000
 
@@ -104,11 +112,14 @@ int	set_word_token(const char *str, t_token *token)
 	int	ret;
 
 	ret = 0;
-	while (!ft_strchr(TOKEN_TYPES, str[ret]) && str[ret] != '\0')
+	while (!ft_strchr(TOKEN_TYPES, str[ret]) && str[ret] != '\0' && str[ret] != ' ')
+		ret++;
+	if (str[ret] == ' ')
 		ret++;
 	token->str = malloc((ret + 1) * sizeof(char));
 	if (token->str == NULL)
 		exit(EXIT_FAILURE); // TODO: Implement proper error handling
+	token->type = TOKEN_WORD;
 	ft_strlcpy(token->str, str, ret + 1);
 	return (ret);
 }
@@ -128,6 +139,11 @@ t_token	*lexer(char *str)
 			str += set_special_token(str, cur_token);
 		else
 			str += set_word_token(str, cur_token);
+		if (*str != '\0')
+		{
+			cur_token->next = create_token();
+			cur_token = cur_token->next;
+		}
 	}
 	return (head);
 }
@@ -151,10 +167,21 @@ void	read_test_file(char **filename, char *test_lines[100])
 	while (line != NULL && i < MAX_LINES)
 	{
 		test_lines[i] = line;
+		test_lines[i][ft_strlen(test_lines[i]) - 1] = '\0';
 		line = get_next_line(fd);
 		i++;
 	}
 	close(fd);
+}
+
+void	print_lexer_struct(t_token *head)
+{
+	while (head != NULL)
+	{
+		printf("Type: %i\n", head->type);
+		printf("String: %s\n\n", head->str);
+		head = head->next;
+	}
 }
 
 int main(int argc, char **argv)
@@ -181,11 +208,11 @@ int main(int argc, char **argv)
 		printf("Testfile should be filled with bash commands");
 		exit(EXIT_FAILURE);
 	}
-	while (test_lines[i] != NULL)
-	{
-		printf("%s\n", test_lines[0]);
-		i++;
-	}
+	// while (test_lines[i] != NULL)
+	// {
+	// 	printf("%s\n", test_lines[0]);
+	// 	i++;
+	// }
 	head = lexer(test_lines[0]);
-	printf("%s", head->str);
+	print_lexer_struct(head);
 }

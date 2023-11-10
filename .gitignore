@@ -2,3 +2,4 @@ outfile*
 infile*
 obj/
 a.out
+.vscode/

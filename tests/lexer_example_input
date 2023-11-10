@@ -1,1 +1,3 @@
-<infile cat>outfile|cat>outfile
+<<infile cat>>outfile|cat>outfile|$A$A
+<infile grep "Hello World" >          outfile
+<$Ainfile cat>>
