@@ -6,3 +6,4 @@
 exit > outfile
 exit | cat > outfile
 exit | ls > outfile
+grep He "llo" */*
