@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/10 12:14:19 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/10 14:08:30 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,17 @@ NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
 CC			= cc
-CFLAGS		= -Werror -Wall -Wextra -g
+CFLAGS		= -Werror -Wall -Wextra -g 
 # CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-INCLUDE		= -I include -I /libs/libft/include
+INCLUDE		= -I include -I /libs/libft/include -I /libs/readline
+READLINE_DIR = /libs/readline/
+READLINE_NAME = libreadline.a
+
 
 # Colors
-
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
@@ -44,9 +46,17 @@ OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:		$(NAME)
 
+read:
+#			cd $(READLINE_DIR)
+#			./configure
+#			$(READLINE_DIR)/configure
+#			@make -C $(READLINE_DIR)
+			
+# $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
-			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -o $(NAME)
+#			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -o $(NAME) -lreadline
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
