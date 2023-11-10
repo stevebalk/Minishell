@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/10 14:11:01 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/10 18:16:07 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 INCLUDE		= -I include -I /libs/libft/include -I /libs/readline
-READLINE_DIR = /libs/readline/
+READLINE_DIR = /libs/readline
 READLINE_NAME = libreadline.a
 
 
@@ -38,6 +38,7 @@ WHITE = \033[0;97m
 SRC_FILES	=	main \
 				utils/colors_a \
 				utils/colors_b \
+				utils/history \
 				prompt/prompt
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -47,9 +48,11 @@ OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all:		$(NAME)
 
 read:
-#			cd $(READLINE_DIR)
+			@echo $(shell pwd) 
+			cd $(shell pwd)/libs/readline && @echo $(shell pwd) 			
 #			./configure
-#			$(READLINE_DIR)/configure
+#			cd $(READLINE_DIR) && ./configure
+#			./configure
 #			@make -C $(READLINE_DIR)
 			
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline

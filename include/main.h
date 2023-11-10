@@ -6,21 +6,34 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 13:52:24 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:17:03 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
+#include "../libs/libft/include/libft.h"
+#include <fcntl.h>
+
+typedef struct s_history
+{
+    char *line;
+    struct s_history *next;
+} t_history;
 
 
 int	main(void);
 
 // Prompt
-char *prompt(char *in);
+void prompt_handler(void);
+char *prompt_read(char *in);
 
 // Utils
+// history
+void	load_history(int fd);
+//void	write_history(t_history *history, int fd);
+
 // Colors
 void c_red(void);
 void c_green(void);

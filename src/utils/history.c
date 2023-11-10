@@ -1,28 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 18:10:17 by jopeters         ###   ########.fr       */
+/*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
+/*   Updated: 2023/11/10 18:17:08 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "../../include/main.h"
 
 
 
-int main(void)
+
+void load_history(int fd)
 {
-    int fd;
-    fd = open("history.txt", O_RDWR | O_CREAT, 0644);
-    printf("fd: %i\n", fd);
+    char *line;
+    line = get_next_line(fd);
     
-    load_history(fd);
-
-    prompt_handler();
+    while(line)
+    {
+		/*
+		add history linked list
+		*/
+        add_history(line);
+        line = get_next_line(fd);
+    }
     
-    return 0;
+    if (line)
+        free(line); 
 }
+
+// void write_history(t_history *history, int fd)
+// {
+// 	/*
+// 		Todo:
+// 		1. Truncate history file 
+// 		2. Append every linked list line
+// 	*/
+
+	
+// }
