@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/10 16:49:35 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/10 18:16:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	set_word_token(const char *str, t_token *token)
 	int	ret;
 
 	ret = 0;
-	while (!ft_strchr(TOKEN_TYPES, str[ret]) && str[ret] != '\0' && str[ret] != ' ')
+	while (!ft_strchr(TOKEN_TYPES, str[ret]) && str[ret] != '\0' && 
+			str[ret] != ' ' && str[ret] != '\"' && str[ret] != '\'')
 		ret++;
 	if (str[ret] == ' ')
 		ret++;
@@ -137,8 +138,10 @@ t_token	*lexer(char *str)
 	{
 		if (ft_strchr(TOKEN_TYPES, *str))
 			str += set_special_token(str, cur_token);
-		else
+		else if (*str != ' ')
 			str += set_word_token(str, cur_token);
+		else
+			str++;
 		if (*str != '\0')
 		{
 			cur_token->next = create_token();
