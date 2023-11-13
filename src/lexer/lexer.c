@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/13 16:20:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/13 16:53:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,6 @@ t_token	*create_token(void)
 	token->str = NULL;
 	return (token);
 }
-
-// int	set_special_token(char *str, t_token *token)
-// {
-// 	if (str[0] == '=')
-// 		token->type = TOKEN_ASSIGN;
-// 	else if (str[0] == '<')
-// 	{
-// 		if (str[1] == '<')
-// 		{
-// 			token->type = TOKEN_HERE_DOC;
-// 			return (2);
-// 		}
-// 		else
-// 			token->type = TOKEN_INFILE;
-// 	}
-// 	else if (str[0] == '>')
-// 	{
-// 		if (str[1] == '>')
-// 		{
-// 			token->type = TOKEN_REDIRECT_APPEND;
-// 			return (2);
-// 		}
-// 		else
-// 			token->type = TOKEN_REDIRECT;
-// 	}
-// 	else if (str[0] == '|')
-// 		token->type = TOKEN_PIPE;
-// 	return (1);
-// }
 
 int	set_special_token(char *str, t_token *token)
 {
@@ -142,7 +113,10 @@ int	set_word_token(const char *str, t_token *token)
 	}
 	token->str = malloc((ret + 1) * sizeof(char));
 	if (token->str == NULL)
+	{
+		perror("set_word_token: Malloc fail");
 		exit(EXIT_FAILURE); // TODO: Implement proper error handling
+	}
 	token->type = TOKEN_WORD;
 	ft_strlcpy(token->str, str, ret + 1);
 	return (ret);
@@ -244,11 +218,6 @@ int main(int argc, char **argv)
 		printf("Testfile should be filled with bash commands");
 		exit(EXIT_FAILURE);
 	}
-	// while (test_lines[i] != NULL)
-	// {
-	// 	printf("%s\n", test_lines[0]);
-	// 	i++;
-	// }
 	head = lexer(test_lines[0]);
 	print_lexer_struct(head);
 }

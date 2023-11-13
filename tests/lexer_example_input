@@ -1,3 +1,4 @@
+$A$A$A
 <<$A cat>>outfile|cat>outfile|"$A$A" sdklkl"dfskfjkl"
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
@@ -30,3 +31,5 @@ For example:
 echo hello > $NONEXISTENT
 
 So it's neseccary to throw an error in the parsing process if a redirection with NULL will happen.
+
+EXPANDER 
