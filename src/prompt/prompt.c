@@ -6,13 +6,13 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 18:20:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:48:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
-void prompt_handler(void)
+void prompt_handler(t_list **history_lst)
 {
     char *prompt_in;
     //char **history;
@@ -25,7 +25,14 @@ void prompt_handler(void)
     while((prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002")) != NULL)
     {   
         if (ft_strlen(prompt_in) > 0)
+        {
+            if (!history_lst)
+                *history_lst = ft_lstnew((void*)prompt_in);
+            else
+                ft_lstadd_back(history_lst, ft_lstnew((void*)prompt_in));
+            write_history_llst(FILE_HISTORY, history_lst);
             add_history(prompt_in);
+        }
         free(prompt_in);
     }
     printf("~prompt Handler()\n");

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 12:22:27 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:49:05 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,52 @@ void show_history_llist(t_list **lst)
     }
 }
 
+int has_newline(char *str)
+{
+    int i;
+    int nl;
+    
+    i = 0;
+    nl = 0;
+    
+    while(str[i])
+    {
+        if (str[i] == '\n')
+            nl = 1;
+        i++;
+    }
+
+    return (nl);
+}
+
 void write_history_llst(char *hist_file_name, t_list **history_lst)
 {
 	/*
 		Todo:
 		1. Truncate history file 
 		2. Append every linked list line
+
+        !!! if newline than no newline
 	*/
     t_list *tmp_lst;
     int fd;
     
-    fd = open(hist_file_name, O_TRUNC | O_CREAT);
-    close(fd);
-    fd = open(hist_file_name, O_APPEND | O_CREAT);
+    fd = open(hist_file_name, O_WRONLY | O_TRUNC | O_CREAT, 0664);
 
     tmp_lst = *history_lst;
     
-
     while(tmp_lst)
     {
-        write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+        //printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, has_newline((char*)tmp_lst->content));
+        
+        if (has_newline((char*)tmp_lst->content) && (char*)tmp_lst->content)
+            write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+        else
+        {
+            write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+            write(fd, "\n", 1);
+        }
+        
         tmp_lst = tmp_lst->next;
     }
     close(fd);

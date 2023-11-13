@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 11:58:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:25:34 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 int	main(void);
 
 // Prompt
-void prompt_handler(void);
+void prompt_handler(t_list **history_lst);
 char *prompt_read(char *in);
 
 // Utils

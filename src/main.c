@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 11:58:18 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:30:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
     add_history_llst_to_prompt(&hist_llst);
     printf("history length system: %i \n", history_length);
 
-    prompt_handler();
+    prompt_handler(&hist_llst);
     
     return 0;
 }
