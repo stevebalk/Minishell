@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/10 18:16:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/13 16:20:50 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,16 +107,39 @@ int	set_special_token(char *str, t_token *token)
 	return (ret);
 }
 
+int	get_matching_quote_len(const char *str)
+{
+	char	quote;
+	int		ret;
+
+	quote = *str;
+	ret = 1;
+	while (str[ret] != '\0')
+	{
+		if (str[ret] == quote)
+			return (ret + 1);
+		ret++;
+	}
+	perror("Quote fail");
+	exit(EXIT_FAILURE); // TODO PROPER ERROR HANDLING
+}
+
 int	set_word_token(const char *str, t_token *token)
 {
 	int	ret;
 
 	ret = 0;
-	while (!ft_strchr(TOKEN_TYPES, str[ret]) && str[ret] != '\0' && 
-			str[ret] != ' ' && str[ret] != '\"' && str[ret] != '\'')
+	while (str[ret] != '\0')
+	{
+		if (str[ret] == '\'' || str[ret] == '\"')
+		{
+			ret += get_matching_quote_len(str + ret);
+			continue;
+		}
+		else if (ft_is_space(str + ret) || ft_strchr(TOKEN_TYPES, str[ret]))
+			break ;
 		ret++;
-	if (str[ret] == ' ')
-		ret++;
+	}
 	token->str = malloc((ret + 1) * sizeof(char));
 	if (token->str == NULL)
 		exit(EXIT_FAILURE); // TODO: Implement proper error handling
@@ -132,21 +155,31 @@ t_token	*lexer(char *str)
 
 	if (*str == '\0')
 		return (NULL);
-	head = create_token();
-	cur_token = head;
+	head = NULL;
+	cur_token = NULL;
 	while (*str != '\0')
 	{
-		if (ft_strchr(TOKEN_TYPES, *str))
-			str += set_special_token(str, cur_token);
-		else if (*str != ' ')
-			str += set_word_token(str, cur_token);
-		else
+		if (ft_is_space(str))
+		{
 			str++;
-		if (*str != '\0')
+			continue ;
+		}
+		if (*str == '\0')
+			return head;
+		if (head != NULL)
 		{
 			cur_token->next = create_token();
 			cur_token = cur_token->next;
 		}
+		else
+		{
+			head = create_token();
+			cur_token = head;
+		}
+		if (ft_strchr(TOKEN_TYPES, *str))
+			str += set_special_token(str, cur_token);
+		else
+			str += set_word_token(str, cur_token);
 	}
 	return (head);
 }
@@ -191,9 +224,9 @@ int main(int argc, char **argv)
 {
 	char	*test_lines[MAX_LINES];
 	int		i;
-
-
 	t_token	*head;
+
+
 	i = 0;
 	if (argc == 2)
 	{

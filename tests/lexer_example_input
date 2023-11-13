@@ -1,4 +1,4 @@
-<<infile cat>>outfile|cat>outfile|$A$A
+<<$A cat>>outfile|cat>outfile|"$A$A" sdklkl"dfskfjkl"
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
 <infile cat>"outfile">"outfile2"<'../minishell/infile2
@@ -11,3 +11,22 @@ exit | cat > outfile
 exit | ls > outfile
 grep He "llo" */*
 < infile grep "Hello World this is awsome" | cat > outfile
+
+
+$ echo hello >
+bash: syntax error near unexpected token `newline`
+
+$ echo hello > ${NONEXISTENT}
+bash: ${NONEXISTENT}: ambiguous redirect
+
+$ echo hello > "${NONEXISTENT}"
+bash: : No such file or directory
+
+PARSER:
+When a redirect with a nonexistent env variable happens bash throws an ambigious redirect error.
+
+For example:
+< $NONEXISTENT echo Hello
+echo hello > $NONEXISTENT
+
+So it's neseccary to throw an error in the parsing process if a redirection with NULL will happen.
