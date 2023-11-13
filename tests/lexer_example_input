@@ -1,3 +1,13 @@
 <<infile cat>>outfile|cat>outfile|$A$A
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
+<infile cat>"outfile">"outfile2"<'../minishell/infile2
+<infile cat>"outfile">"outfile2"<'../minishell/infile2'
+<infile cat>"outfile">"outfile2"<"../minishell/infile2"
+<infile cat>"outfile">"outfile2"<'infile2'
+<infile cat>outfile>outfile2<infile2
+exit > outfile
+exit | cat > outfile
+exit | ls > outfile
+grep He "llo" */*
+< infile grep "Hello World this is awsome" | cat > outfile
