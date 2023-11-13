@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 10:54:41 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:58:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <readline/readline.h>
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
+
+#define FILE_HISTORY "history.txt"
 
 // typedef struct s_history
 // {
@@ -31,10 +33,12 @@ char *prompt_read(char *in);
 
 // Utils
 // history
-void load_history(int fd, t_list **history_lst);
-void show_history_list(t_list **lst);
+void load_history_llst(char *hist_file_name, t_list **history_lst);
+void write_history_llst(char *hist_file_name, t_list **history_lst);
+void show_history_llist(t_list **lst);
 void add_history_llst_to_prompt(t_list **history_lst);
-//void	write_history(t_history *history, int fd);
+
+
 
 // Colors
 void c_red(void);

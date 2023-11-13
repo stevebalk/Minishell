@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 10:57:36 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:22:27 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void add_history_llst_to_prompt(t_list **history_lst)
     }
 }
 
-void load_history(int fd, t_list **history_lst)
+void load_history_llst(char *hist_file_name, t_list **history_lst)
 {
     char *line;
-    // t_list *tmp_lst;
-    // tmp_lst = *history_lst;
+    int fd;
+    fd = open(hist_file_name, O_RDONLY | O_CREAT, 0644);
     line = get_next_line(fd);
 
     while(line)
@@ -49,9 +49,10 @@ void load_history(int fd, t_list **history_lst)
     
     if (line)
         free(line); 
+    close(fd);
 }
 
-void show_history_list(t_list **lst)
+void show_history_llist(t_list **lst)
 {
     int i;
     t_list *tmp_lst;
@@ -70,13 +71,27 @@ void show_history_list(t_list **lst)
     }
 }
 
-// void write_history(t_history *history, int fd)
-// {
-// 	/*
-// 		Todo:
-// 		1. Truncate history file 
-// 		2. Append every linked list line
-// 	*/
+void write_history_llst(char *hist_file_name, t_list **history_lst)
+{
+	/*
+		Todo:
+		1. Truncate history file 
+		2. Append every linked list line
+	*/
+    t_list *tmp_lst;
+    int fd;
+    
+    fd = open(hist_file_name, O_TRUNC | O_CREAT);
+    close(fd);
+    fd = open(hist_file_name, O_APPEND | O_CREAT);
 
-	
-// }
+    tmp_lst = *history_lst;
+    
+
+    while(tmp_lst)
+    {
+        write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+        tmp_lst = tmp_lst->next;
+    }
+    close(fd);
+}
