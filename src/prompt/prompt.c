@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 12:48:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:20:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void prompt_handler(t_list **history_lst)
 {
     char *prompt_in;
+    int count;
+    count = 0;
     //char **history;
     
     prompt_in = NULL;
@@ -22,7 +24,7 @@ void prompt_handler(t_list **history_lst)
     //clear_screen();
 
     //while((prompt_in = readline("\001\033[0;31mminihell\033[0;33m>>\033[0;36m")) != NULL)
-    while((prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002")) != NULL)
+    while((count < 3) &&((prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002")) != NULL))
     {   
         if (ft_strlen(prompt_in) > 0)
         {
@@ -33,9 +35,10 @@ void prompt_handler(t_list **history_lst)
             write_history_llst(FILE_HISTORY, history_lst);
             add_history(prompt_in);
         }
-        free(prompt_in);
+        //free(prompt_in);
+        count++;
     }
-    printf("~prompt Handler()\n");
+    c_red();printf("~prompt Handler()\n");
 }
 
 char *prompt_read(char *in)
