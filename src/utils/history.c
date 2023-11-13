@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 15:27:31 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:47:36 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,7 @@ void show_history_llist(t_list **lst)
     }
 }
 
-int find_newline(char *str)
-{
-    int i;
-    int nl;
-    
-    i = 0;
-    nl = 0;
-    
-    while(str[i])
-    {
-        if (str[i] == '\n')
-            nl = i;
-        i++;
-    }
 
-    return (nl);
-}
-
-void del_first_nl(char *str)
-{
-    int nl_pos;
-    nl_pos = find_newline(str);
-    if (nl_pos > 0)
-        str[nl_pos]= '\0';
-} 
 
 void limit_history_llst(t_list **history_lst)
 {
@@ -104,12 +80,10 @@ void limit_history_llst(t_list **history_lst)
 
     while(ft_lstsize(*history_lst) > MAX_HISTORY)
     {
-        printf("del first list \n");
+        c_red();printf("del first list > %s\n", (char*)(tmp_lst->content));c_reset();
         lst_delete_first(history_lst);
         show_history_llist(history_lst);
     }
-     
-
 }
 
 void write_history_llst(char *hist_file_name, t_list **history_lst)
@@ -118,7 +92,6 @@ void write_history_llst(char *hist_file_name, t_list **history_lst)
     int fd;
     
     fd = open(hist_file_name, O_WRONLY | O_TRUNC | O_CREAT, 0664);
-
     tmp_lst = *history_lst;
     
     while(tmp_lst)

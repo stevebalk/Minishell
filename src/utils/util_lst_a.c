@@ -6,59 +6,63 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 10:36:02 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:44:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-t_list	*ft_lstnew(int content)
-{
-	t_list	*tmp;
+#include "../../include/main.h"
 
-	tmp = NULL;
-	tmp = (t_list *) malloc (sizeof(t_list));
-	if (tmp == NULL)
-		return (0);
-	tmp->content = content;
-	tmp->next = NULL;
-	return (tmp);
+int find_newline(char *str)
+{
+    int i;
+    int nl;
+    
+    i = 0;
+    nl = 0;
+    
+    while(str[i])
+    {
+        if (str[i] == '\n')
+            nl = i;
+        i++;
+    }
+
+    return (nl);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void del_first_nl(char *str)
 {
-	new->next = *lst;
-	*lst = new;
+    int nl_pos;
+    nl_pos = find_newline(str);
+    if (nl_pos > 0)
+        str[nl_pos]= '\0';
+} 
+
+void	lst_delete_first(t_list **llist)
+{
+    if (*llist == NULL) 
+        return;
+    
+    t_list* temp = *llist; 
+    *llist = (*llist)->next; 
+    free(temp->content);
+    free(temp); 
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*current;
 
-	if (lst)
+void	lst_dealloc(t_list **llist)
+{
+	t_list	*cur;
+	t_list	*aux;
+
+	cur = *llist;
+	while (cur != NULL)
 	{
-		if (!*lst)
-			*lst = new;
-		else
-		{
-			current = ft_lstlast(*(lst));
-			current->next = new;
-		}
+		aux = cur;
+		cur = cur->next;
+        if (aux->content)
+           free(aux->content);
+		free(aux);
 	}
+	*llist = NULL;
 }
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*tmp;
-
-	tmp = *lst;
-	if (lst != NULL)
-	{
-		while (tmp)
-		{
-			tmp = tmp->next;
-			ft_lstdelone(*lst, del);
-			(*lst) = tmp;
-		}
-	}
-}
-*/
