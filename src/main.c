@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 15:46:32 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:50:43 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int main(void)
     load_history_llst(FILE_HISTORY, &hist_llst);
     limit_history_llst(&hist_llst);
     add_history_llst_to_prompt(&hist_llst);
+    write_history_llst(FILE_HISTORY, &hist_llst);
+
 
     prompt_handler(&hist_llst);    
     
