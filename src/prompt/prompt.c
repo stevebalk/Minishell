@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 14:34:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:36:42 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void prompt_handler(t_list **history_lst)
     char *prompt_in;
     int count;
     count = 0;
-    //char **history;
     
     prompt_in = NULL;
 	
@@ -33,6 +32,7 @@ void prompt_handler(t_list **history_lst)
                 *history_lst = ft_lstnew((void*)prompt_in);
             else
                 ft_lstadd_back(history_lst, ft_lstnew((void*)prompt_in));
+            limit_history_llst(history_lst);
             write_history_llst(FILE_HISTORY, history_lst);
             add_history(prompt_in);
         }
@@ -43,17 +43,3 @@ void prompt_handler(t_list **history_lst)
 
     c_red();printf("~prompt Handler()\n");
 }
-
-char *prompt_read(char *in)
-{
-    // c_red();printf("minihell");
-    // c_yellow();printf(">>");
-        
-    // c_cyan();
-    //in = readline("\033[0;31mminihell\033[0;33m>>\033[0;36m");
-        
-    //c_green();
-    //printf("|%s|\n", in);
-
-    return in;  
-}	

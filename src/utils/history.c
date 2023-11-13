@@ -6,13 +6,11 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 14:50:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:27:31 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
-
-
 
 void add_history_llst_to_prompt(t_list **history_lst)
 {
@@ -35,16 +33,12 @@ void load_history_llst(char *hist_file_name, t_list **history_lst)
 
     while(line)
     {
-		/*
-		add history linked list
-		*/
         del_first_nl(line);
         if (!history_lst)
             *history_lst = ft_lstnew((void*)line);
         else
             ft_lstadd_back(history_lst, ft_lstnew((void*)line));
       
-        //add_history(line);
         line = get_next_line(fd);
     }
     
@@ -95,22 +89,31 @@ void del_first_nl(char *str)
     int nl_pos;
     nl_pos = find_newline(str);
     if (nl_pos > 0)
-    {
-        //printf("nl in in >%s<  pos: %i\n", str, nl_pos);
         str[nl_pos]= '\0';
-    }
-    //printf("after del_nl >%s<  \n", str);
 } 
+
+void limit_history_llst(t_list **history_lst)
+{
+    t_list *tmp_lst;
+    tmp_lst = *history_lst;
+    
+    c_yellow();printf("()limit_history\n");
+    printf("history length system: %i \n", ft_lstsize(*history_lst));
+    c_reset();
+    show_history_llist(history_lst);
+
+    while(ft_lstsize(*history_lst) > MAX_HISTORY)
+    {
+        printf("del first list \n");
+        lst_delete_first(history_lst);
+        show_history_llist(history_lst);
+    }
+     
+
+}
 
 void write_history_llst(char *hist_file_name, t_list **history_lst)
 {
-	/*
-		Todo:
-		1. Truncate history file 
-		2. Append every linked list line
-
-        !!! if newline than no newline
-	*/
     t_list *tmp_lst;
     int fd;
     
@@ -120,7 +123,7 @@ void write_history_llst(char *hist_file_name, t_list **history_lst)
     
     while(tmp_lst)
     {
-        printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, find_newline((char*)tmp_lst->content));
+        //printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, find_newline((char*)tmp_lst->content));
         
         if (find_newline((char*)tmp_lst->content) && (char*)tmp_lst->content)
             write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
