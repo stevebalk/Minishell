@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 10:38:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:54:41 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char *prompt_read(char *in);
 // history
 void load_history(int fd, t_list **history_lst);
 void show_history_list(t_list **lst);
+void add_history_llst_to_prompt(t_list **history_lst);
 //void	write_history(t_history *history, int fd);
 
 // Colors

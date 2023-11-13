@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 10:50:47 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:36 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 
 
 
+void add_history_llst_to_prompt(t_list **history_lst)
+{
+    t_list *tmp_lst;
+    tmp_lst = *history_lst;
 
+    while(tmp_lst)
+    {
+        add_history((char *)tmp_lst->content);
+        tmp_lst = tmp_lst->next;
+    }
+}
 
 void load_history(int fd, t_list **history_lst)
 {
     char *line;
-    t_list *tmp_lst;
-    tmp_lst = *history_lst;
+    // t_list *tmp_lst;
+    // tmp_lst = *history_lst;
     line = get_next_line(fd);
 
     while(line)
@@ -31,9 +41,9 @@ void load_history(int fd, t_list **history_lst)
         if (!history_lst)
             *history_lst = ft_lstnew((void*)line);
         else
-            ft_lstadd_front(history_lst, ft_lstnew((void*)line));
+            ft_lstadd_back(history_lst, ft_lstnew((void*)line));
       
-        add_history(line);
+        //add_history(line);
         line = get_next_line(fd);
     }
     
