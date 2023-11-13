@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 12:25:34 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:49:24 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char *prompt_read(char *in);
 
 // Utils
 // history
+int find_newline(char *str);
+void del_first_nl(char *str);
 void load_history_llst(char *hist_file_name, t_list **history_lst);
 void write_history_llst(char *hist_file_name, t_list **history_lst);
 void show_history_llist(t_list **lst);

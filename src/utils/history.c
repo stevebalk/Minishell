@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 14:08:45 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:50:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void load_history_llst(char *hist_file_name, t_list **history_lst)
 		/*
 		add history linked list
 		*/
+        del_first_nl(line);
         if (!history_lst)
             *history_lst = ft_lstnew((void*)line);
         else
@@ -71,7 +72,7 @@ void show_history_llist(t_list **lst)
     }
 }
 
-int has_newline(char *str)
+int find_newline(char *str)
 {
     int i;
     int nl;
@@ -82,12 +83,24 @@ int has_newline(char *str)
     while(str[i])
     {
         if (str[i] == '\n')
-            nl = 1;
+            nl = i;
         i++;
     }
 
     return (nl);
 }
+
+void del_first_nl(char *str)
+{
+    int nl_pos;
+    nl_pos = find_newline(str);
+    if (nl_pos > 0)
+    {
+        //printf("nl in in >%s<  pos: %i\n", str, nl_pos);
+        str[nl_pos]= '\0';
+    }
+    //printf("after del_nl >%s<  \n", str);
+} 
 
 void write_history_llst(char *hist_file_name, t_list **history_lst)
 {
@@ -107,9 +120,9 @@ void write_history_llst(char *hist_file_name, t_list **history_lst)
     
     while(tmp_lst)
     {
-        //printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, has_newline((char*)tmp_lst->content));
+        printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, find_newline((char*)tmp_lst->content));
         
-        if (has_newline((char*)tmp_lst->content) && (char*)tmp_lst->content)
+        if (find_newline((char*)tmp_lst->content) && (char*)tmp_lst->content)
             write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
         else
         {
