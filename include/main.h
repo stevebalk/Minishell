@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 18:17:03 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:38:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
 
-typedef struct s_history
-{
-    char *line;
-    struct s_history *next;
-} t_history;
+// typedef struct s_history
+// {
+//     char *line;
+//     struct s_history *next;
+// } t_history;
 
 
 int	main(void);
@@ -31,7 +31,8 @@ char *prompt_read(char *in);
 
 // Utils
 // history
-void	load_history(int fd);
+void load_history(int fd, t_list **history_lst);
+void show_history_list(t_list **lst);
 //void	write_history(t_history *history, int fd);
 
 // Colors
