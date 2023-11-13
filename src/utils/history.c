@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 16:17:05 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:39:28 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,16 @@ void limit_history_llst(t_list **history_lst)
     t_list *tmp_lst;
     tmp_lst = *history_lst;
     
-    c_yellow();printf("()limit_history\n");
-    printf("history length system: %i \n", ft_lstsize(*history_lst));
-    c_reset();
-    show_history_llist(history_lst);
+    //c_yellow();printf("()limit_history\n");
+    //printf("history length system: %i \n", ft_lstsize(*history_lst));
+    //c_reset();
+    //show_history_llist(history_lst);
 
     while(ft_lstsize(*history_lst) > MAX_HISTORY)
     {
-        c_red();printf("del first list > %s\n", (char*)(tmp_lst->content));c_reset();
+        //c_red();printf("del first list > %s\n", (char*)(tmp_lst->content));c_reset();
         lst_delete_first(history_lst);
-        show_history_llist(history_lst);
+        //show_history_llist(history_lst);
     }
 }
 

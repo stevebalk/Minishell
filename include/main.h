@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 16:16:37 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:36:34 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
-#define CLR_SCREEN 0
+#define CLR_SCREEN 1
 
 
 int	main(void);
