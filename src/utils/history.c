@@ -6,11 +6,19 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 15:47:36 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:17:05 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
+
+void history_master(t_list **history_lst)
+{
+    load_history_llst(FILE_HISTORY, history_lst);
+    limit_history_llst(history_lst);
+    add_history_llst_to_prompt(history_lst);
+    write_history_llst(FILE_HISTORY, history_lst);
+}
 
 void add_history_llst_to_prompt(t_list **history_lst)
 {
@@ -65,8 +73,6 @@ void show_history_llist(t_list **lst)
         i++;
     }
 }
-
-
 
 void limit_history_llst(t_list **history_lst)
 {
