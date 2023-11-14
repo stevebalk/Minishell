@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/13 15:43:06 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/14 13:42:11 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,10 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
+				 
+
 SRC_FILES	=	main \
+				builtins/env_a \
 				utils/colors_a \
 				utils/colors_b \
 				utils/history \
@@ -66,6 +69,7 @@ $(NAME):	$(OBJ)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)/utils
+			@mkdir -p $(OBJ_DIR)/builtins
 			@mkdir -p $(OBJ_DIR)/prompt
 			
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"

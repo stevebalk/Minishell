@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 16:36:34 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:42:53 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@
 #define CLR_SCREEN 1
 
 
-int	main(void);
+int	main(int argc, char **argv, char **env);
 
 // Prompt
 void prompt_handler(t_list **history_lst);
+
+// builtin env
+void show_env_arr(char **env);
+void load_env(t_list **env_lst, char **env);
 
 
 // Utils

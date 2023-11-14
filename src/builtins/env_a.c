@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 13:43:27 by jopeters         ###   ########.fr       */
+/*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
+/*   Updated: 2023/11/14 13:43:15 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "../../include/main.h"
 
-
-
-int	main(int argc, char **argv, char **env)
+void show_env_arr(char **env)
 {
-    t_list *hist_llst;
-    hist_llst = NULL;
+	int i;
+	i = -1;
+	while(i++, env[i])
+		printf("i: %i  >%s<\n", i, env[i]);
+}
 
-    (void)argc;
-    (void)argv;
-    (void)env;
+void load_env(t_list **env_lst, char **env)
+{
+	(void)env_lst;
+	(void)env;
+/*
 
-    show_env_arr(env);
-        
-    // history_master(&hist_llst);
-    // prompt_handler(&hist_llst);    
-    
-    lst_dealloc(&hist_llst);
-    c_red(); printf("~main ()\n");c_reset();
-    return 0;
+
+
+*/
+
+	
 }
