@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:11:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:53:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void copy_llst(t_list **src_llst, t_list **new_llst)
 {
     c_yellow(); printf("copy_llst()\n"); c_reset();
     t_list *tmp_src;
+	char *str;
+
     tmp_src = *src_llst;
     
     if (tmp_src == NULL)
@@ -24,10 +26,13 @@ void copy_llst(t_list **src_llst, t_list **new_llst)
         
     while(tmp_src)
     {
+		str = (char *)malloc(sizeof(char) * (ft_strlen((char *)tmp_src->content) + 1));
+		ft_strlcpy(str, (char *)tmp_src->content, ft_strlen((char *)tmp_src->content) + 1);
+		
         if (!new_llst)
-                *new_llst = ft_lstnew(tmp_src->content);
+                *new_llst = ft_lstnew((void*)str);
         else
-                ft_lstadd_back(new_llst, ft_lstnew(tmp_src->content));   
+                ft_lstadd_back(new_llst, ft_lstnew((void*)str));   
                   
         tmp_src = tmp_src->next;        
     }

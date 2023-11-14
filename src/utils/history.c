@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 16:39:28 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:38:14 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void write_history_llst(char *hist_file_name, t_list **history_lst)
     {
         //printf("fd: %i   write >%s<   nl: %i\n", fd, (char*)tmp_lst->content, find_newline((char*)tmp_lst->content));
         
-        if (find_newline((char*)tmp_lst->content) && (char*)tmp_lst->content)
+        if (find_newline((char*)tmp_lst->content) > -1 && (char*)tmp_lst->content)
             write(fd, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
         else
         {

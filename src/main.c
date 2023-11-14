@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:34:27 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:52:55 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(int argc, char **argv, char **env)
     // prompt_handler(&hist_llst);    
     
     lst_dealloc(&hist_llst, 1);
-    lst_dealloc(&env_llst, 0);
-    lst_dealloc(&env_llst_sorted, 0);
+    lst_dealloc(&env_llst, 1);
+    lst_dealloc(&env_llst_sorted, 1);
     c_red(); printf("~main ()\n");c_reset();
     return 0;
 }

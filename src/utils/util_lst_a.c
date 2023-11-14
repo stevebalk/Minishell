@@ -6,19 +6,20 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:29:27 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:38:31 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
+// returns the position of \n otherwise -1
 int find_newline(char *str)
 {
     int i;
     int nl;
     
     i = 0;
-    nl = 0;
+    nl = -1;
     
     while(str[i])
     {
@@ -30,11 +31,12 @@ int find_newline(char *str)
     return (nl);
 }
 
+// replaced the first \n by \0
 void del_first_nl(char *str)
 {
     int nl_pos;
     nl_pos = find_newline(str);
-    if (nl_pos > 0)
+    if (nl_pos >= 0)
         str[nl_pos]= '\0';
 } 
 
@@ -49,7 +51,7 @@ void	lst_delete_first(t_list **llist)
     free(temp); 
 }
 
-
+// free llist and optional the content
 void	lst_dealloc(t_list **llist, int free_content)
 {
 	t_list	*cur;
@@ -65,19 +67,4 @@ void	lst_dealloc(t_list **llist, int free_content)
 		free(aux);
 	}
 	*llist = NULL;
-}
-
-void deleteList(t_list** head) 
-{
-    t_list *current = *head;
-    t_list *nextNode;
-
-    while (current != NULL) {
-        nextNode = current->next;
-        free(current->content); // Free the string
-        free(current);       // Free the node
-        current = nextNode;
-    }
-
-    *head = NULL; // Set the head to NULL
 }

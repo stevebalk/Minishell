@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:29:39 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:35:54 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void show_env_arr(char **env);
 void load_env_to_llst(t_list **env_lst, char **env);
 void show_env_llist(t_list **lst);
 
-void print_alphabetical(t_list **lst);
-char *get_alphabetical_entry(t_list **lst, char c);
+//void print_alphabetical(t_list **lst);
+//char *get_alphabetical_entry(t_list **lst, char c);
 
 
 // Utils
@@ -53,7 +53,6 @@ void lst_dealloc(t_list **llist, int free_content);
 void copy_llst(t_list **src_llst, t_list **new_llst);
 void swapNodes(t_list *a, t_list *b);
 void sortList(t_list *head);
-void deleteList(t_list** head);
 
 
 // Colors
