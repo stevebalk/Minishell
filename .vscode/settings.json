@@ -3,6 +3,10 @@
 		"main.h": "c",
 		"readline.h": "c",
 		"iterator": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"array": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c"
 	}
 }

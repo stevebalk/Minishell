@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 15:59:32 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:09:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	main(int argc, char **argv, char **env)
     show_env_llist(&env_llst);
 
     copy_llst(&env_llst, &env_llst_sorted);
+    
+    show_env_llist(&env_llst_sorted);
+    sortList(env_llst_sorted);
     show_env_llist(&env_llst_sorted);
 
     
