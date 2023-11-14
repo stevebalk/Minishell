@@ -1,5 +1,4 @@
-$A$A$A
-<<$A cat>>outfile|cat>outfile|"$A$A" sdklkl"dfskfjkl"
+<<$A cat>>outfile|cat>outfile|"$A$A"           			   	  sdklkl"dfskfjkl"
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
 <infile cat>"outfile">"outfile2"<'../minishell/infile2
@@ -22,6 +21,13 @@ bash: ${NONEXISTENT}: ambiguous redirect
 
 $ echo hello > "${NONEXISTENT}"
 bash: : No such file or directory
+
+/*
+If quotes are not closed > Exit
+Export variables can only use alphanum characters
+$VAR   -- Legit
+$Var-/ -- Wrong
+*/
 
 PARSER:
 When a redirect with a nonexistent env variable happens bash throws an ambigious redirect error.

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/10 14:57:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/14 14:17:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,17 @@ typedef	enum
 typedef struct	s_token
 {
 	e_token_type	type;
-	char			*str;
+	char			*content;
 	struct s_token	*next;
 }				t_token;
 
 # define TOKEN_TYPES	"|<>="
+
+t_token		*create_token(t_token *lx);
+void		append_token(t_token *head, t_token *new_token);
+void		lx_error(t_token *lx, char *msg, int shall_exit, int use_errno);
+int			set_special_token(char *str, t_token *token, t_token *lx);
+int			set_word_token(char *str, t_token *token, t_token *lx);
+t_token		*lexer(char *str);
 
 #endif
