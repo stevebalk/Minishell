@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 13:52:37 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:53:59 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int argc, char **argv, char **env)
     // prompt_handler(&hist_llst);    
     
     lst_dealloc(&hist_llst);
+    lst_dealloc(&env_llst);
+
     c_red(); printf("~main ()\n");c_reset();
     return 0;
 }
