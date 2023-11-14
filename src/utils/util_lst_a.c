@@ -6,11 +6,32 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 15:44:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:00:36 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
+
+void copy_llst(t_list **src_llst, t_list **new_llst)
+{
+    c_yellow(); printf("copy_llst()\n"); c_reset();
+    t_list *tmp_src;
+    tmp_src = *src_llst;
+    
+    if (tmp_src == NULL)
+        return;
+        
+    while(tmp_src)
+    {
+        if (!new_llst)
+                *new_llst = ft_lstnew(tmp_src->content);
+        else
+                ft_lstadd_back(new_llst, ft_lstnew(tmp_src->content));   
+                  
+        tmp_src = tmp_src->next;        
+    }
+    c_yellow(); printf("~copy_llst()\n"); c_reset();
+}
 
 int find_newline(char *str)
 {

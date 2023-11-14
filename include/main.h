@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 14:23:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:57:26 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int find_newline(char *str);
 void del_first_nl(char *str);
 void lst_delete_first(t_list **llist);
 void lst_dealloc(t_list **llist);
-
+void copy_llst(t_list **src_llst, t_list **new_llst);
 
 // Colors
 void c_red(void);
