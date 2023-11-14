@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 13:47:11 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:52:37 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void prompt_handler(t_list **history_lst);
 
 // builtin env
 void show_env_arr(char **env);
-void load_env(t_list **env_lst, char **env);
+void load_env_to_llst(t_list **env_lst, char **env);
 void show_env_llist(t_list **lst);
 
 

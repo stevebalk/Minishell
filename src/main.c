@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 13:48:06 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:52:37 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
     (void)env;
 
     show_env_arr(env);
-    load_env(&env_llst, env);
+    load_env_to_llst(&env_llst, env);
     show_env_llist(&env_llst);
     
     // history_master(&hist_llst);
