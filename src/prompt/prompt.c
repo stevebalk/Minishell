@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 12:21:42 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:21:44 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
                 *history_lst = ft_lstnew((void*)prompt_in);
             else
                 ft_lstadd_back(history_lst, ft_lstnew((void*)prompt_in));
+
+            // 
+            if (ft_strncmp(prompt_in, "exit", 4) == 0)
+                break;
             
             test_parser_export(env_llst, env_llst_sorted, prompt_in);
                 
