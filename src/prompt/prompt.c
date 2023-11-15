@@ -6,13 +6,13 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/13 16:45:10 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:21:42 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
-void prompt_handler(t_list **history_lst)
+void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted)
 {
     char *prompt_in;
     int count;
@@ -30,10 +30,14 @@ void prompt_handler(t_list **history_lst)
         //printf("has newline: %i   str >%s<\n", find_newline(prompt_in), prompt_in);
         if (ft_strlen(prompt_in) > 0)
         {
+            // Adding to history llst --> todo: should be done by a function
             if (!history_lst)
                 *history_lst = ft_lstnew((void*)prompt_in);
             else
                 ft_lstadd_back(history_lst, ft_lstnew((void*)prompt_in));
+            
+            test_parser_export(env_llst, env_llst_sorted, prompt_in);
+                
             limit_history_llst(history_lst);
             write_history_llst(FILE_HISTORY, history_lst);
             add_history(prompt_in);

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:35:54 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:23:08 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@
 int	main(int argc, char **argv, char **env);
 
 // Prompt
-void prompt_handler(t_list **history_lst);
+void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted);
 
 // builtin env
 void show_env_arr(char **env);
 void load_env_to_llst(t_list **env_lst, char **env);
 void show_env_llist(t_list **lst);
+void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str);
+void add_variable_to_llst(t_list **llst, char *var);
 
 //void print_alphabetical(t_list **lst);
 //char *get_alphabetical_entry(t_list **lst, char c);
