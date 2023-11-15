@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 14:34:10 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:43:33 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
     if (CLR_SCREEN == 1) 
         clear_screen();
 
-    //while((prompt_in = readline("\001\033[0;31mminihell\033[0;33m>>\033[0;36m")) != NULL)
-    //while((count < 3) &&((prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002")) != NULL))
     while((prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002")) != NULL)
     {   
         //printf("has newline: %i   str >%s<\n", find_newline(prompt_in), prompt_in);
