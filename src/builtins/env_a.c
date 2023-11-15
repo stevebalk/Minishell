@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 12:26:24 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:59:53 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,13 @@ void show_env_llist(t_list **lst)
         i++;
     }
 }
+
+
+
+/*
+Achtung:
+bei Export wird alles in "" gespeichert, auch wenn es als a='huhu' reinkommt
+bei Env wird es ohne "" gespeichert es sei denn es gehört dazu a='"huhu"'
+
+
+*/
