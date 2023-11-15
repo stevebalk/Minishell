@@ -6,12 +6,18 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:49:21 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:19:50 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
+void add_variable_to_llst(t_list llst, char* var)
+{
+	
+}
+
+// shows all entries of the env array coming from outside by argument 3
 void show_env_arr(char **env)
 {
 	c_yellow(); printf("show_env_arr()\n"); c_reset();
@@ -22,6 +28,7 @@ void show_env_arr(char **env)
 		printf("i: %i  >%s<\n", i, env[i]);
 }
 
+// copy the env array to a new llist
 void load_env_to_llst(t_list **env_lst, char **env)
 {
 	c_yellow(); printf("load_env()\n"); c_reset();
@@ -46,6 +53,7 @@ void load_env_to_llst(t_list **env_lst, char **env)
 	c_yellow(); printf("~load_env()\n"); c_reset();
 }
 
+// showing all list entrys seperated by a newline
 void show_env_llist(t_list **lst)
 {
     int i;
