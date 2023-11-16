@@ -1,4 +1,9 @@
-export a="huhu"
+export moin="huhu"
 export
-unset a
+unset moin
+export MOIN="huhu"
+export
+env
+unset MOIN
+env
 export
