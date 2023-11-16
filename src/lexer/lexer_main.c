@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/14 12:04:33 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/16 17:25:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	print_lexer_struct(t_token *lx)
 	while (lx != NULL)
 	{
 		printf("Type: %i\n", lx->type);
-		printf("String: %s\n\n", lx->content);
+		printf("String: %s\n", lx->content);
+		printf("Expandable: %d\n", lx->expandable);
+		printf("Join: %d\n", lx->join);
+		printf("\n");
 		lx = lx->next;
 	}
 }
@@ -53,10 +56,8 @@ void	print_lexer_struct(t_token *lx)
 int	main(int argc, char **argv)
 {
 	char	*test_lines[MAX_LINES];
-	int		i;
 	t_token	*lx;
 
-	i = 0;
 	if (argc == 2)
 	{
 		if (access(argv[1], F_OK) == 0)

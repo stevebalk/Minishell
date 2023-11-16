@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/14 16:03:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/16 16:29:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	set_token(t_token *token, char *str, t_token *lx)
 	ret = 0;
 	if (ft_strchr(TOKEN_TYPES, *str))
 		ret += set_special_token(str, token, lx);
+	else if (*str == '\'' || *str == '\"')
+		ret += set_word_quote_token(str, token, lx);
 	else
 		ret += set_word_token(str, token, lx);
 	return (ret);

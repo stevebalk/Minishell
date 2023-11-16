@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:02:12 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/14 14:25:14 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/16 16:12:30 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/lexer.h"
+
+t_token *get_last_token(t_token *lx)
+{
+	while (lx->next != NULL)
+		lx = lx->next;
+	return (lx);
+}
 
 /* Free linked token list. Starting at given node */
 void	free_lx(t_token *token)
@@ -51,6 +58,8 @@ t_token	*create_token(t_token *lx)
 		lx_error(lx, "Malloc failed", 1, 1);
 	token->next = NULL;
 	token->type = TOKEN_EOF;
+	token->join = 0;
 	token->content = NULL;
+	token->expandable = 1;
 	return (token);
 }
