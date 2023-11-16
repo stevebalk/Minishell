@@ -1,6 +1,4 @@
-123
-234
-456
-567
-dgfh
-cvbn
+export a="huhu"
+export
+unset a
+export

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 14:43:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:49:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
 {
     char *prompt_in;
     int count;
+	(void)count;
     count = 0;
     
     prompt_in = NULL;
@@ -38,7 +39,7 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
                 free(prompt_in);
                 break;
             }
-            
+            test_parser_unset(env_llst, env_llst_sorted, prompt_in);
             test_parser_export(env_llst, env_llst_sorted, prompt_in);
                 
             limit_history_llst(history_lst);

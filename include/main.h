@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 13:37:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/16 14:45:56 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str);
 void add_variable_to_llst(t_list **llst, char *var);
 
 // unset
+void test_parser_unset(t_list **env_llst, t_list **env_llst_sorted, char *str);
 t_list *find_var_in_llst(t_list **llst, char *var);
 
 

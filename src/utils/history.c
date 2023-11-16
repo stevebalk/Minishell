@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:38:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:47:33 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ void show_history_llist(t_list **lst)
 
 void limit_history_llst(t_list **history_lst)
 {
-    t_list *tmp_lst;
-    tmp_lst = *history_lst;
+    //t_list *tmp_lst;
+    //tmp_lst = *history_lst;
+	
     
     //c_yellow();printf("()limit_history\n");
     //printf("history length system: %i \n", ft_lstsize(*history_lst));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 16:59:53 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/16 23:06:07 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	}
 	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6)
 	{
-		add_variable_to_llst(env_llst, str);
-		add_variable_to_llst(env_llst_sorted, str);
+		add_variable_to_llst(env_llst, str+7);
+		add_variable_to_llst(env_llst_sorted, str+7);
 	}
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)
 	{
