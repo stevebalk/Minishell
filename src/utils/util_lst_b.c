@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/14 16:53:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:36:37 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,39 @@ void sortList(t_list *head)
         if (swapped == 0)
             break;
     }
+}
+
+void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
+    // If the linked list is empty or nodeToDelete is NULL
+    if (*head == NULL || nodeToDelete == NULL) 
+	{
+        return;
+    }
+
+    // If the node to delete is the head node
+    if (*head == nodeToDelete) 
+	{
+        t_list* temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+
+    // Find the previous node of the node to delete
+    t_list* prev = *head;
+    while (prev->next != NULL && prev->next != nodeToDelete) 
+	{
+        prev = prev->next;
+    }
+
+    // If the node wasn't found in the list
+    if (prev->next == NULL) 
+	{
+        return;
+    }
+
+    // Unlink the node from the linked list and free it
+    t_list* temp = prev->next;
+    prev->next = temp->next;
+    free(temp);
 }

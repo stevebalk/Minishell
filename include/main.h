@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/15 17:06:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:37:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str);
 void add_variable_to_llst(t_list **llst, char *var);
 
 // unset
-void find_var_in_llst(t_list **llst, char *var);
+t_list *find_var_in_llst(t_list **llst, char *var);
 
 
 //void print_alphabetical(t_list **lst);
@@ -59,7 +59,7 @@ void lst_dealloc(t_list **llist, int free_content);
 void copy_llst(t_list **src_llst, t_list **new_llst);
 void swapNodes(t_list *a, t_list *b);
 void sortList(t_list *head);
-
+void delete_node_from_llst(t_list **head, t_list* nodeToDelete);
 
 // Colors
 void c_red(void);
