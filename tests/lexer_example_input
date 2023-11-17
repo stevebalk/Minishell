@@ -1,7 +1,7 @@
+<infile cat>"outfile">"outfile2"<'../minishell/infile2 | cat
 <<$A cat>>outfile|cat>outfile|'$A$A'           			   	  sdklkl'"dfskfjkl"'
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
-<infile cat>"outfile">"outfile2"<'../minishell/infile2
 <infile cat>"outfile">"outfile2"<'../minishell/infile2'
 <infile cat>"outfile">"outfile2"<"../minishell/infile2"
 <infile cat>"outfile">"outfile2"<'infile2'
