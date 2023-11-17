@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/16 16:29:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/17 14:37:07 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_token	*token_list_append(t_token **head)
 		while (cur->next != NULL)
 			cur = cur->next;
 		cur->next = create_token(*head);
+		cur->next->prev = cur;
 	}
 	return (cur->next);
 }

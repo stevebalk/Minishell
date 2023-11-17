@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/16 19:05:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/17 14:38:54 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct	s_token
 	e_token_type	type;
 	char			*content;
 	int				join;
-	int				expandable;
 	struct s_token	*next;
+	struct s_token	*prev;
 }				t_token;
 
 # define TOKEN_TYPES	"|<>"
