@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 17:27:41 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:32:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ t_list *find_var_in_llst(t_list **llst, char *var)
 	while(tmp_lst)
 	{
 		tmp_str = (char*)tmp_lst->content;
-		printf("content >%s< char >%c<    len: %i      match: %i\n ", tmp_str, tmp_str[(ft_strlen(var))], (int)ft_strlen(var), ft_strncmp(var, (char*)tmp_lst->content, ft_strlen(var)) );
+		//printf("content >%s< char >%c<    len: %i      match: %i\n ", tmp_str, tmp_str[(ft_strlen(var))], (int)ft_strlen(var), ft_strncmp(var, (char*)tmp_lst->content, ft_strlen(var)) );
 
 		if ((ft_strncmp(var, (char*)tmp_lst->content, ft_strlen(var)) == 0) && (tmp_str[ft_strlen(var)] == '='))
 		{
-			c_red(); printf("-> found >%s< with = \n", var);
-			c_purple(); printf("->%s< \n", tmp_str);
-			//free(tmp_str);
+			c_green(); printf("  -> found var >%s< with = \n", var);
+			c_purple(); printf("  -> content >%s< \n", tmp_str);
 			return tmp_lst;
 			break;
 		}
