@@ -1,4 +1,10 @@
-export a="huhu"
-export a="moins"
 unset a
 export
+export a="huhu"
+export
+export a="moin"
+export
+unset a
+export
+export a="moin"
+export a="huhu"
