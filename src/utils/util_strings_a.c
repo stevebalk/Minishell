@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 15:13:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:31:34 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ char *get_string_til_first_symbol(char *str_in, char symbol)
 	tmp = (char*) malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, str_in, i + 1);
 	printf("string end >%s<\n", tmp);
-	return 0;
+	return tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 15:12:32 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:36:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
 	{
 		c_cyan(); printf("test_parser_export  add variable  >%s<   len: %i \n", str, (int)ft_strlen(str)); c_reset();
+		
+
+		char *tmp_string_without_equal;
+		tmp_string_without_equal = get_string_til_first_symbol(str+7, '=');
+		printf(" --> clean var name >%s<\n", tmp_string_without_equal);
 		// Check if variable is there if not add variable
-		if (find_var_in_llst(env_llst, str+7))
+		if (find_var_in_llst(env_llst, tmp_string_without_equal))
 		{
-			update_content_in_node(find_var_in_llst(env_llst, str+7), str+7);
+			update_content_in_node(find_var_in_llst(env_llst, get_string_til_first_symbol(str+7, '=')), str+7);
 		}
 		else
 			add_variable_to_llst(env_llst, str+7);
@@ -34,6 +39,8 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		
 		//
 		//add_variable_to_llst(env_llst_sorted, str+7);
+
+		//free(tmp_string_without_equal);
 	}
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3) // shows env list
 	{

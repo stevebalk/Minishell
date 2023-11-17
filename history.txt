@@ -1,5 +1,4 @@
-export
 export a="huhu"
-export
 env
 export a="moin"
+env
