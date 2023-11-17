@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 15:31:34 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:28:11 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void del_first_nl(char *str)
         str[nl_pos]= '\0';
 } 
 
-char *get_string_til_first_symbol(char *str_in, char symbol)
+char *get_string_till_first_symbol(char *str_in, char symbol)
 {
 	char *tmp;
 	int i;
