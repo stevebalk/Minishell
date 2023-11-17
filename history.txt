@@ -1,9 +1,5 @@
-export moin="huhu"
 export
-unset moin
-export MOIN="huhu"
+export a="huhu"
 export
 env
-unset MOIN
-env
-export
+export a="moin"

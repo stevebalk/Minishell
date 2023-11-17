@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_a.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 23:30:38 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/17 14:54:45 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void test_parser_unset(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	
 }
 
+// finds var in llst and returns the node
 t_list *find_var_in_llst(t_list **llst, char *var)
 {
 	t_list *tmp_lst;
@@ -46,16 +47,35 @@ t_list *find_var_in_llst(t_list **llst, char *var)
 			return tmp_lst;
 			break;
 		}
-
-		
-		
 		tmp_lst = tmp_lst->next;
 	}
-	
+	c_red(); printf("~find_var_in_llst() --> not found >%s<\n", var); c_reset();
 	return NULL;
 	
 }
 
+// updates the content of a node 
+void update_content_in_node(t_list *node, char *new_content)
+{
+	c_yellow(); printf("update_content_in_node() --> new_content >%s<   node->conten >%s<\n", new_content, (char*)node->content); c_reset();
+
+	if (node && node->content)
+		free(node->content);
+	else
+		return;
+	node->content = (char *)malloc(sizeof(char) * (ft_strlen(new_content) + 1));
+	node->content = new_content;
+}
+
+
 /*
-Todo: delete node from list (from push swap)
+
+Todo:
+export a="huhu"
+
+vorher checken ob schon vorhanden
+wenn vorhanden dann content freen 
+und neuen Inhalt hinzufügen
+
+
 */

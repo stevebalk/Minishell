@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 14:45:56 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/17 15:11:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void add_history_llst_to_prompt(t_list **history_lst);
 void limit_history_llst(t_list **history_lst);
 
 //util_lst
-int find_newline(char *str);
-void del_first_nl(char *str);
+
 void lst_delete_first(t_list **llist);
 void lst_dealloc(t_list **llist, int free_content);
 
@@ -61,6 +60,13 @@ void copy_llst(t_list **src_llst, t_list **new_llst);
 void swapNodes(t_list *a, t_list *b);
 void sortList(t_list *head);
 void delete_node_from_llst(t_list **head, t_list* nodeToDelete);
+
+void update_content_in_node(t_list *node, char *new_content);
+
+// util_string
+int find_newline(char *str);
+void del_first_nl(char *str);
+char *get_string_til_first_symbol(char *str_in, char symbol);
 
 // Colors
 void c_red(void);

@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/15 17:02:07 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/17 15:13:02 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC_FILES	=	main \
 				utils/history \
 				utils/util_lst_a \
 				utils/util_lst_b \
+				utils/util_strings_a \
 				prompt/prompt
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

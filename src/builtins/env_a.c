@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 23:06:07 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/17 15:12:32 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,27 @@
 // shows sorted env list when typing "export", 
 void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
-	if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6)
+	if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6) // Export  || sort and show list
 	{
 		sortList(*env_llst_sorted);
 		show_env_llist(env_llst_sorted);
 	}
-	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6)
+	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
 	{
-		add_variable_to_llst(env_llst, str+7);
-		add_variable_to_llst(env_llst_sorted, str+7);
+		c_cyan(); printf("test_parser_export  add variable  >%s<   len: %i \n", str, (int)ft_strlen(str)); c_reset();
+		// Check if variable is there if not add variable
+		if (find_var_in_llst(env_llst, str+7))
+		{
+			update_content_in_node(find_var_in_llst(env_llst, str+7), str+7);
+		}
+		else
+			add_variable_to_llst(env_llst, str+7);
+
+		
+		//
+		//add_variable_to_llst(env_llst_sorted, str+7);
 	}
-	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)
+	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3) // shows env list
 	{
 		show_env_llist(env_llst);
 	}
@@ -34,6 +44,7 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 // adding a string to a linked list i.a "A=hello"; no parsing involved!; creates a new llist if llist is null; mallocs for char *
 void add_variable_to_llst(t_list **llst, char *var)
 {
+	c_yellow(); printf("add_variable_to_llst() var >%s<\n", var); c_reset();
 	char *str;
 	str = (char *)malloc(sizeof(char) * (ft_strlen(var) + 1));
 	ft_strlcpy(str, var, ft_strlen(var) + 1);

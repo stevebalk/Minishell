@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 14:49:49 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/17 15:14:37 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
     char *prompt_in;
     int count;
 	(void)count;
+    (void)history_lst;
+    (void)env_llst;
+    (void)env_llst_sorted;
+    
     count = 0;
     
     prompt_in = NULL;
@@ -31,7 +35,9 @@ void prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
         //printf("has newline: %i   str >%s<\n", find_newline(prompt_in), prompt_in);
         if (ft_strlen(prompt_in) > 0)
         {
-            // Adding to history llst --> todo: should be done by a function
+            //get_string_til_first_symbol(prompt_in, '=');
+
+            
             add_variable_to_llst(history_lst, prompt_in);
             
             if (ft_strncmp(prompt_in, "exit", 4) == 0)
