@@ -1,3 +1,4 @@
 export a="huhu"
-export a="moin"
-env
+export a="moins"
+unset a
+export

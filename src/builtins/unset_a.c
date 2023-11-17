@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 17:32:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:36:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_list *find_var_in_llst(t_list **llst, char *var)
 		{
 			c_green(); printf("  -> found var >%s< with = \n", var);
 			c_purple(); printf("  -> content >%s< \n", tmp_str);
+			//free(tmp_str);
 			return tmp_lst;
 			break;
 		}

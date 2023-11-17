@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/16 13:36:37 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/17 18:40:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
     if (*head == nodeToDelete) 
 	{
         t_list* temp = *head;
+        free(temp->content);
         *head = (*head)->next;
         free(temp);
         return;
@@ -109,5 +110,6 @@ void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
     // Unlink the node from the linked list and free it
     t_list* temp = prev->next;
     prev->next = temp->next;
+    free(temp->content);
     free(temp);
 }
