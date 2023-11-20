@@ -6,12 +6,10 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:19:56 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:04:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:41:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../../include/parser.h"
-// #include "../../include/lexer.h"
 #include "minishell.h"
 
 t_cmd	*create_cmd_node(t_token *lx)
@@ -24,7 +22,6 @@ t_cmd	*create_cmd_node(t_token *lx)
 	return (ret);
 }
 
-// void	append_cmd_node(t_cmd **head, )
 
 t_cmd	*get_last_cmd_node(t_cmd *cmds)
 {
@@ -62,20 +59,41 @@ void	fill_cmds(t_token **lx, t_cmd *cmds)
 
 }
 
-t_cmd	parser(t_token *lx)
+void	append_cmd_node(t_parse *parse)
 {
-	t_cmd	*cmds;
-	t_cmd	*prev;
 	t_cmd	*cur;
 
-	cmds = NULL;
-	cur = NULL;
-	prev = NULL;
-	while (lx != NULL)
+	if (parse && parse->cmd == NULL)
 	{
-		if (cur == NULL)
-			cur = create_cmd_node();
-		while(lx != NULL && lx->type != TOKEN_PIPE)
+		parse->cmd = ft_calloc(1, sizeof(t_cmd));
+		if (parse->cmd == NULL)
+			parse_error(parse, "Malloc failed", 1, 1);
+		return;
+	}
+	cur = parse->cmd;
+	while (cur->next != NULL)
+		cur = cur->next;
+	cur->next = calloc(1, sizeof(t_cmd));
+	if (cur->next == NULL)
+			parse_error(parse, "Malloc failed", 1, 1);
+}
+
+void	parse_token(t_parse *parse)
+{
+	if (parse->tk->type == TOKEN_WORD)
+		
+}
+
+t_cmd	parser(t_token *lx)
+{
+	t_parse	parse;
+
+	parse.tk = lx;
+	parse.cmd = NULL;
+	while (parse.tk != NULL)
+	{
+		append_cmd_node(&parse);
+		while(parse.tk != NULL && parse.tk->type != TOKEN_PIPE)
 		{
 			parse_token(lx, cur);
 			

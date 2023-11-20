@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:02:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:16:57 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef	enum
 	TOKEN_EOF				= 7
 }		e_token_type;
 
+# define TOKEN_TYPES	"|<>"
+
 /* Token struct, created by the lexer to
 store the tokens used by the parser.
 
@@ -54,11 +56,8 @@ typedef struct	s_token
 
 /* Lexer */
 
-# define TOKEN_TYPES	"|<>"
 
 t_token		*create_token(t_token *tk_head);
-// void		append_token(t_token *head, t_token *new_token);
-// void		lx_error(t_token *lx, char *msg, int shall_exit, int use_errno);
 int			set_special_token(char *str, t_token *token, t_token *tk_head);
 int			set_word_token(char *str, t_token *token, t_token *tk_head);
 int			set_word_quote_token(char *str, t_token *token, t_token *tk_head);

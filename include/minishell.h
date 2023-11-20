@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:05:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:29:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_ms
 
 // void	ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 void	lx_error(t_token *tk_head, char *msg, int shall_exit, int use_errno);
+void	parse_error(t_parse *parse, char *msg, int shall_exit, int use_errno);
 
 /* Freeing stuff */
 void	free_lx(t_token *token);

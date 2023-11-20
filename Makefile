@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/20 16:04:09 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/20 17:11:43 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_FILES	=	main \
 				lexer/lexer \
 				lexer/lexer_util \
 				lexer/lexer_token_logic \
+				expander/expander \
 				# parser/parser \
 				
 
@@ -56,6 +57,7 @@ $(NAME):	$(OBJ)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)/lexer
+			@mkdir -p $(OBJ_DIR)/expander
 			# @mkdir -p $(OBJ_DIR)/parser
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
