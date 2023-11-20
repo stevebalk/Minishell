@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/16 16:12:53 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/18 20:21:54 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_FILES	=	lexer/lexer \
 				lexer/lexer_util \
 				lexer/lexer_main \
 				lexer/lexer_token_logic \
+				parser/parser \
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
