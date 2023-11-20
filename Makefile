@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/20 15:42:20 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/20 17:14:25 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC_FILES	=	main \
 				utils/util_lst_a \
 				utils/util_lst_b \
 				utils/util_strings_a \
+				utils/util_strings_b \
 				prompt/prompt \
 				prompt/signal
 

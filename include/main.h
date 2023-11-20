@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:48:45 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:23:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,15 @@ void	delete_node_from_llst(t_list **head, t_list *nodeToDelete);
 void	update_content_in_node(t_list *node, char *new_content);
 
 // util_string
-int		find_newline(char *str);
-void	del_first_nl(char *str);
+
 char	*get_string_till_first_symbol(char *str_in, char symbol);
 char	*get_string_without_symbols(char *str_in, char symbol);
-char	*add_symbols_tp_end_and_front(char *str_in, char symbol);
+char	*get_string_with_symbols_at_end_and_front(char *str_in, char symbol);
+char	*get_string_from_first_symbol(char *str_in, char symbol);
 
+int		get_first_symbol_pos(char *str, char symbol);
+int		find_newline(char *str);
+void	del_first_nl(char *str);
 
 // Colors
 void	c_red(void);

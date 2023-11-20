@@ -6,41 +6,13 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:45:54 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:27:38 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
-// returns the position of \n otherwise -1
-int	find_newline(char *str)
-{
-	int	i;
-	int	nl;
-
-    i = 0;
-    nl = -1;
-
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			nl = i;
-		i++;
-	}
-
-	return (nl);
-}
-
-// replaced the first \n by \0
-void	del_first_nl(char *str)
-{
-	int	nl_pos;
-
-	nl_pos = find_newline(str);
-	if (nl_pos >= 0)
-		str[nl_pos]= '\0';
-}
-
+// returns a string till the first occurence of the given symbol
 char	*get_string_till_first_symbol(char *str_in, char symbol)
 {
 	char	*new_str;
@@ -61,6 +33,29 @@ char	*get_string_till_first_symbol(char *str_in, char symbol)
 	return (new_str);
 }
 
+// returns a string from the first occurence of the given symbol (witout the symbol)
+char	*get_string_from_first_symbol(char *str_in, char symbol)
+{
+	char	*new_str;
+	int		pos_symbol;
+	int		len;
+
+	pos_symbol = get_first_symbol_pos(str_in, symbol);
+	if (pos_symbol == -1)
+		return (str_in);
+	len = ft_strlen(str_in);
+	
+	c_yellow(); printf("get_string_from_first_symbol()  str_in >%s<   symbol >%c<  pos_symbol: %i\n", str_in, symbol, pos_symbol);
+	//printf("len %i \n", len);
+	new_str = (char *)malloc(sizeof(char) * (len-pos_symbol + 1));
+	if (!new_str)
+		return (NULL);
+	ft_strlcpy(new_str, str_in + (pos_symbol + 1), (len-pos_symbol + 1));
+	printf("string end >%s<\n", new_str);
+	return (new_str);
+}
+
+// returns a string witout given symbols
 char	*get_string_without_symbols(char *str_in, char symbol)
 {
     c_yellow(); printf("get_string_without_symbols()  str_in >%s<   symbol >%c< \n", str_in, symbol);
@@ -93,7 +88,8 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 	return (new_str);
 }
 
-char *add_symbols_tp_end_and_front(char *str_in, char symbol)
+// returns a new string with symbols added in front and at the end
+char *get_string_with_symbols_at_end_and_front(char *str_in, char symbol)
 {
 	int		i;
 	int		i2;
