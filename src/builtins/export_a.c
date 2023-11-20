@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 13:31:29 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:48:12 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,8 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)	// shows env list
 		show_env_llist(env_llst);
 }
+
+/*
+
+
+*/

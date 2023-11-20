@@ -1,10 +1,10 @@
-export
-env
-Huhu
-Jiji
-Huhu
-JIjisd
-huhu
-huhu
 eit
 hu
+exir
+dfdf
+jij
+c="huhu"
+exoport
+export
+export a = "huhu"
+dfdf
