@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/10 12:09:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:38:24 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	c_cyan(void)
 	printf("\033[0;36m");
 }
 
-void    clear_screen(void)
+void	clear_screen(void)
 {
-    printf("\e[1;1H\e[2J");
+	printf("\e[1;1H\e[2J");
 }
 
 void	c_reset(void)

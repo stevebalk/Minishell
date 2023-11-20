@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 15:01:46 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:47:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	lst_delete_first(t_list **llist)
 {
-    if (*llist == NULL) 
-        return;
-    
-    t_list* temp = *llist; 
-    *llist = (*llist)->next; 
-    free(temp->content);
-    free(temp); 
+	t_list	*temp;
+
+	if (*llist == NULL)
+		return ;
+
+	temp = *llist;
+	*llist = (*llist)->next;
+	free(temp->content);
+	free(temp);
 }
 
 // free llist and optional the content
@@ -34,8 +36,8 @@ void	lst_dealloc(t_list **llist, int free_content)
 	{
 		aux = cur;
 		cur = cur->next;
-        if (aux->content && free_content)
-           free(aux->content);
+		if (aux->content && free_content)
+			free(aux->content);
 		free(aux);
 	}
 	*llist = NULL;
