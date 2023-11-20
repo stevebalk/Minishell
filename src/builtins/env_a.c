@@ -6,15 +6,17 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/17 18:33:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 10:24:48 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
 // shows sorted env list when typing "export", 
-void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
+void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
+	char	*tmp_clean_var_without_equal;
+	char	*tmp_string_witout_quotes;
 	if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6) // Export  || sort and show list
 	{
 		sortList(*env_llst_sorted);
@@ -23,11 +25,6 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
 	{
 		c_cyan(); printf("test_parser_export  add variable  >%s<   len: %i \n", str, (int)ft_strlen(str)); c_reset();
-		
-
-		char *tmp_clean_var_without_equal;
-		char *tmp_string_witout_quotes;
-		
 		tmp_clean_var_without_equal = get_string_till_first_symbol(str+7, '=');
 		tmp_string_witout_quotes = get_string_without_symbols(str+7, '"');
 		printf(" --> clean var name >%s<\n", tmp_clean_var_without_equal);
@@ -36,31 +33,22 @@ void test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		{
 			update_content_in_node(find_var_in_llst(env_llst, tmp_clean_var_without_equal), str + 7);
 			update_content_in_node(find_var_in_llst(env_llst_sorted, tmp_clean_var_without_equal), tmp_string_witout_quotes);
-
 		}
 		else
 		{
 			add_variable_to_llst(env_llst, str + 7);
 			add_variable_to_llst(env_llst_sorted, tmp_string_witout_quotes);
-
 		}
-
-		
-		//
-		//add_variable_to_llst(env_llst_sorted, str+7);
 
 		free(tmp_clean_var_without_equal);
 		free(tmp_string_witout_quotes);
-
 	}
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3) // shows env list
-	{
 		show_env_llist(env_llst);
-	}
 }
 
 // adding a string to a linked list i.a "A=hello"; no parsing involved!; creates a new llist if llist is null; mallocs for char *
-void add_variable_to_llst(t_list **llst, char *var)
+void	add_variable_to_llst(t_list **llst, char *var)
 {
 	c_yellow(); printf("add_variable_to_llst() var >%s<\n", var); c_reset();
 	char *str;
