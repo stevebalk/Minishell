@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 14:55:00 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:28:12 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	lst_dealloc(t_list **llist, int free_content)
 // updates the content of a node 
 void	update_content_in_node(t_list *node, char *new_content)
 {
-	c_yellow(); printf("update_content_in_node() --> new_content >%s<   node->conten >%s<\n", new_content, (char*)node->content); c_reset();
+	c_yellow(); printf("update_content_in_node() --> new_content >%s<   old node->content >%s<\n", new_content, (char*)node->content); c_reset();
 
 	if (node && node->content)
 		free(node->content);

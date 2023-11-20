@@ -1,10 +1,10 @@
-eit
-hu
-exir
-dfdf
-jij
-c="huhu"
-exoport
+make
+exot
+export a="huhu"
+export a="huhu2"
+unset a
+export a=huhu
+export a=huhu2
+env
 export
-export a = "huhu"
-dfdf
+env
