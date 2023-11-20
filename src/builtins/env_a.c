@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 10:35:26 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:02:47 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	char	*tmp_string_no_quotes;
 	if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6) // Export  || sort and show list
 	{
-		sortList(*env_llst_sorted);
+		sort_list(*env_llst_sorted);
 		show_env_llist(env_llst_sorted);
 	}
 	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list

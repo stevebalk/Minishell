@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 10:12:27 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:02:47 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	lst_delete_first(t_list **llist);
 void	lst_dealloc(t_list **llist, int free_content);
 
 void	copy_llst(t_list **src_llst, t_list **new_llst);
-void	swapNodes(t_list *a, t_list *b);
-void	sortList(t_list *head);
+void	swap_nodes(t_list *a, t_list *b);
+void	sort_list(t_list *head);
 void	delete_node_from_llst(t_list **head, t_list *nodeToDelete);
 
 void	update_content_in_node(t_list *node, char *new_content);

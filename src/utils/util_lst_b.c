@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 10:57:06 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:09:03 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	copy_llst(t_list **src_llst, t_list **new_llst)
 }
 
 // to swap data of two nodes
-void	swapNodes(t_list *a, t_list *b)
+void	swap_nodes(t_list *a, t_list *b)
 {
 	char	*temp;
 
@@ -50,7 +50,7 @@ void	swapNodes(t_list *a, t_list *b)
 }
 
 // to sort the list alphabetically
-void	sortList(t_list *head)
+void	sort_list(t_list *head)
 {
 	int		swapped;
 	t_list	*ptr1;
@@ -69,7 +69,7 @@ void	sortList(t_list *head)
 		{
 			if (ft_strncmp((char *)ptr1->content, (char *)ptr1->next->content, ft_strlen((char *)ptr1->content)) > 0)
 			{
-				swapNodes(ptr1, ptr1->next);
+				swap_nodes(ptr1, ptr1->next);
 				swapped = 1;
 			}
 			ptr1 = ptr1->next;
@@ -80,15 +80,21 @@ void	sortList(t_list *head)
 	}
 }
 
-void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
+void	delete_node_from_llst(t_list **head, t_list* nodeToDelete)
+{
+	t_list	*temp;
+	t_list	*prev;
+
+	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", nodeToDelete->content); c_reset();
+
     // If the linked list is empty or nodeToDelete is NULL
-    if (*head == NULL || nodeToDelete == NULL) 
+    if (*head == NULL || nodeToDelete == NULL)
 		return ;
 
     // If the node to delete is the head node
-	if (*head == nodeToDelete) 
+	if (*head == nodeToDelete)
 	{
-		t_list	*temp = *head;
+		temp = *head;
 		free(temp->content);
 		*head = (*head)->next;
 		free(temp);
@@ -96,7 +102,7 @@ void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
 	}
 
     // Find the previous node of the node to delete
-    t_list	*prev = *head;
+	prev = *head;
 	while (prev->next != NULL && prev->next != nodeToDelete) 
 		prev = prev->next;
 
@@ -105,8 +111,8 @@ void delete_node_from_llst(t_list **head, t_list* nodeToDelete) {
 		return ;
 
     // Unlink the node from the linked list and free it
-    t_list* temp = prev->next;
-    prev->next = temp->next;
-    free(temp->content);
-    free(temp);
+	temp = prev->next;
+	prev->next = temp->next;
+	free(temp->content);
+	free(temp);
 }

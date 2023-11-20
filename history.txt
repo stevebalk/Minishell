@@ -1,10 +1,10 @@
-export
 export a="huhu"
-export
-export a="moin"
+env
+unset a
+env
+unset a
+exirt
+export a="huhu"
+env
 export
 unset a
-export
-export a="moin"
-export a="huhu"
-export
