@@ -6,25 +6,25 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:14:36 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/17 14:51:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:03:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/lexer.h"
+#include "minishell.h"
 
 /* Creates and sets the token content/string */
 static void	create_token_content(t_token *token, char *str,
-								int size, t_token *lx)
+								int size, t_token *tk_head)
 {
 	token->content = malloc((size + 1) * sizeof(char));
 	if (token->content == NULL)
-		lx_error(lx, "Malloc failed", 1, 1);
+		lx_error(tk_head, "Malloc failed", 1, 1);
 	ft_strlcpy(token->content, str, size + 1);
 }
 
 /* Search for matching quote. If it doesn't find one it
 throws an error and exits the shell */
-static int	get_quote_length(char *str, t_token *lx)
+static int	get_quote_length(char *str, t_token *tk_head)
 {
 	int		ret;
 	char	quote;
@@ -37,13 +37,13 @@ static int	get_quote_length(char *str, t_token *lx)
 			return (ret + 1);
 		ret++;
 	}
-	lx_error(lx, "No matching quote", 1, 0);
+	lx_error(tk_head, "No matching quote", 1, 0);
 	return (ret);
 }
 
 /* Checks which metacharacter it is and sets the 
 token type accordingly. Returns token string length */
-int	set_special_token(char *str, t_token *token, t_token *lx)
+int	set_special_token(char *str, t_token *token, t_token *tk_head)
 {
 	int	ret;
 
@@ -64,7 +64,7 @@ int	set_special_token(char *str, t_token *token, t_token *lx)
 		token->type = TOKEN_REDIRECT;
 	else if (ft_strncmp(str, "|", 1) == 0)
 		token->type = TOKEN_PIPE;
-	create_token_content(token, str, ret, lx);
+	create_token_content(token, str, ret, tk_head);
 	return (ret);
 }
 
@@ -79,15 +79,15 @@ void	set_join_flag(char *str, t_token *token)
 }
 
 /* Set a word token until the matching quote, including quotes */
-int	set_word_quote_token(char *str, t_token *token, t_token *lx)
+int	set_word_quote_token(char *str, t_token *token, t_token *tk_head)
 {
 	int		length;
 
 	length = 0;
-	length = get_quote_length(str, lx);
+	length = get_quote_length(str, tk_head);
 	token->content = malloc((length + 1) * sizeof(char));
 	if (token->content == NULL)
-		lx_error(lx, "Malloc failed", 1, 1);
+		lx_error(tk_head, "Malloc failed", 1, 1);
 	ft_strlcpy(token->content, str, length + 1);
 	token->type = TOKEN_WORD;
 	set_join_flag(str + length, token);
@@ -96,7 +96,7 @@ int	set_word_quote_token(char *str, t_token *token, t_token *lx)
 
 /* Set a word token until it hits a whitespace, quote
 metacharacter or a newline */
-int	set_word_token(char *str, t_token *token, t_token *lx)
+int	set_word_token(char *str, t_token *token, t_token *tk_head)
 {
 	int length;
 
@@ -109,7 +109,7 @@ int	set_word_token(char *str, t_token *token, t_token *lx)
 		length++;
 	token->content = malloc((length + 1) * sizeof(char));
 	if (token->content == NULL)
-		lx_error(lx, "Malloc failed", 1, 1);
+		lx_error(tk_head, "Malloc failed", 1, 1);
 	ft_strlcpy(token->content, str, length + 1);
 	token->type = TOKEN_WORD;
 	set_join_flag(str + length, token);

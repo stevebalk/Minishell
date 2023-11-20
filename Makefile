@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/18 20:21:54 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/20 16:04:09 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,13 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRC_FILES	=	lexer/lexer \
+SRC_FILES	=	main \
+				error/error_handling \
+				free/free_structs \
+				lexer/lexer \
 				lexer/lexer_util \
-				lexer/lexer_main \
 				lexer/lexer_token_logic \
-				parser/parser \
+				# parser/parser \
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -54,6 +56,9 @@ $(NAME):	$(OBJ)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)/lexer
+			# @mkdir -p $(OBJ_DIR)/parser
+			@mkdir -p $(OBJ_DIR)/error
+			@mkdir -p $(OBJ_DIR)/free
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 

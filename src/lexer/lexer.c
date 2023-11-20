@@ -6,11 +6,11 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/17 15:47:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 15:48:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/lexer.h"
+#include "minishell.h"
 
 /* Creates a new empty token and appends it to
 the linked list. If there is no head token it

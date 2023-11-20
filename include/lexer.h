@@ -6,19 +6,12 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/17 14:38:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 16:02:05 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
-
-#include "../libs/libft/include/libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <fcntl.h>
-
 
 // Enum for token types
 /*
@@ -42,12 +35,13 @@ typedef	enum
 	TOKEN_EOF				= 7
 }		e_token_type;
 
-// Struct for tokens
-/*
+/* Token struct, created by the lexer to
+store the tokens used by the parser.
+
+Doubly linked list
 type		= Which token type (WORD, PIPE, REDIRECT ...)
 content		= String for the specific token
 join		= Should the content joined with the next token?
-expandable	= Should a variable like $A be expanded?
 */
 typedef struct	s_token
 {
@@ -58,14 +52,16 @@ typedef struct	s_token
 	struct s_token	*prev;
 }				t_token;
 
+/* Lexer */
+
 # define TOKEN_TYPES	"|<>"
 
-t_token		*create_token(t_token *lx);
-void		append_token(t_token *head, t_token *new_token);
-void		lx_error(t_token *lx, char *msg, int shall_exit, int use_errno);
-int			set_special_token(char *str, t_token *token, t_token *lx);
-int			set_word_token(char *str, t_token *token, t_token *lx);
-int			set_word_quote_token(char *str, t_token *token, t_token *lx);
+t_token		*create_token(t_token *tk_head);
+// void		append_token(t_token *head, t_token *new_token);
+// void		lx_error(t_token *lx, char *msg, int shall_exit, int use_errno);
+int			set_special_token(char *str, t_token *token, t_token *tk_head);
+int			set_word_token(char *str, t_token *token, t_token *tk_head);
+int			set_word_quote_token(char *str, t_token *token, t_token *tk_head);
 t_token		*lexer(char *str);
 t_token		*get_last_token(t_token *lx);
 

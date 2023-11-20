@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_main.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/17 14:43:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/20 15:49:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/lexer.h"
+#include "minishell.h"
 
 #define MAX_LINES 1000
 
@@ -40,24 +40,24 @@ void	read_test_file(char **filename, char *test_lines[100])
 	close(fd);
 }
 
-void	print_lexer_struct(t_token *lx)
+void	print_lexer_struct(t_token *tk)
 {
-	while (lx != NULL)
+	while (tk != NULL)
 	{
-		// printf("prev: %p\n", lx->prev);
-		printf("Type: %i\n", lx->type);
-		printf("String: %s\n", lx->content);
-		printf("Join: %d\n", lx->join);
-		// printf("Cur:  %p\n", lx);
+		// printf("prev: %p\n", tk->prev);
+		printf("Type: %i\n", tk->type);
+		printf("String: %s\n", tk->content);
+		printf("Join: %d\n", tk->join);
+		// printf("Cur:  %p\n", tk);
 		printf("\n");
-		lx = lx->next;
+		tk = tk->next;
 	}
 }
 
 int	main(int argc, char **argv)
 {
 	char	*test_lines[MAX_LINES];
-	t_token	*lx;
+	t_ms	ms;
 
 	if (argc == 2)
 	{
@@ -75,6 +75,6 @@ int	main(int argc, char **argv)
 		printf("Testfile should be filled with bash commands");
 		exit(EXIT_FAILURE);
 	}
-	lx = lexer(test_lines[0]);
-	print_lexer_struct(lx);
+	ms.tk = lexer(test_lines[0]);
+	print_lexer_struct(ms.tk);
 }
