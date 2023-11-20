@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:43:54 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:48:45 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	show_env_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 
 // export
-void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str);
+void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_offset);
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);

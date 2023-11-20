@@ -1,10 +1,10 @@
-export a=huhu2
-env
-export
-env
-export a="huhu"
-export
-env
 export a="huhu"
 exiz
 export a="huhu"
+export a="huhu"
+git push
+env
+export
+unset a
+env
+export
