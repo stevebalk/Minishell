@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 11:01:12 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:45:54 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,22 @@ void	del_first_nl(char *str)
 
 char	*get_string_till_first_symbol(char *str_in, char symbol)
 {
-	char	*tmp;
+	char	*new_str;
 	int		i;
 
 	i = 0;
-	tmp = str_in;
+	new_str = str_in;
 
 	while (str_in[i] != symbol)
 		i++;
 	c_yellow(); printf("get_string_til_first_symbol()  str_in >%s<   symbol >%c< \n", str_in, symbol);
 	printf("i: %i \n", i);
-	tmp = (char *)malloc(sizeof(char) * (i + 1));
-	ft_strlcpy(tmp, str_in, i + 1);
-	printf("string end >%s<\n", tmp);
-	return (tmp);
+	new_str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!new_str)
+		return (NULL);
+	ft_strlcpy(new_str, str_in, i + 1);
+	printf("string end >%s<\n", new_str);
+	return (new_str);
 }
 
 char	*get_string_without_symbols(char *str_in, char symbol)
@@ -76,6 +78,8 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 			count++;
 	}
 	new_str = (char *)malloc(sizeof(char) *(ft_strlen(str_in) - count + 1));
+	if (!new_str)
+		return (NULL);
 	i = 0;
 	i2 = 0;
 	while (str_in[i])
@@ -86,5 +90,24 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 	}
 
     c_purple(); printf(" --->string without %c  >%s< \n", symbol, new_str);
+	return (new_str);
+}
+
+char *add_symbols_tp_end_and_front(char *str_in, char symbol)
+{
+	int		i;
+	int		i2;
+	char	*new_str;
+
+	i = 0;
+	i2 = 0;
+	new_str = (char *)malloc(sizeof(char) *(ft_strlen(str_in) + 3));
+	if (!new_str)
+		return (NULL);
+	new_str[i2++] = symbol;
+	while (str_in[i])
+		new_str[i2++] = str_in[i++];
+	new_str[i2] = symbol;
+	new_str[++i2] = '\0';
 	return (new_str);
 }

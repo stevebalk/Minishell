@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:25:01 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:35:06 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		// Check if variable is there if not add variable
 	if (find_var_in_llst(env_llst, clean_var_no_equal))
 	{
-		update_content_in_node(find_var_in_llst(env_llst, clean_var_no_equal), str + 7);
-		update_content_in_node(find_var_in_llst(env_llst_sorted, clean_var_no_equal), tmp_string_no_quotes);
+		update_content_in_node(find_var_in_llst(env_llst, clean_var_no_equal), tmp_string_no_quotes);
+		update_content_in_node(find_var_in_llst(env_llst_sorted, clean_var_no_equal), str + 7);
 	}
 	else
 	{
-		add_variable_to_llst(env_llst, str + 7);
-		add_variable_to_llst(env_llst_sorted, tmp_string_no_quotes);
+		add_variable_to_llst(env_llst, tmp_string_no_quotes);
+		add_variable_to_llst(env_llst_sorted, str + 7);
 	}
 
 	free(clean_var_no_equal);

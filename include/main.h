@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:24:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:43:54 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int		find_newline(char *str);
 void	del_first_nl(char *str);
 char	*get_string_till_first_symbol(char *str_in, char symbol);
 char	*get_string_without_symbols(char *str_in, char symbol);
+char	*add_symbols_tp_end_and_front(char *str_in, char symbol);
+
 
 // Colors
 void	c_red(void);
