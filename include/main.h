@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 13:56:19 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:29:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@
 #include <readline/history.h>
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
+#include <signal.h>
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
-#define CLR_SCREEN 1
+#define CLR_SCREEN 0
 
 int		main(int argc, char **argv, char **env);
 
 // Prompt
 void	prompt_handler(t_list **history_lst, t_list **env_llst,
 			t_list **env_llst_sorted);
+
+// prompt/signal
+void	handle_sigint(int sig);
 
 // builtin env
 void	show_env_arr(char **env);

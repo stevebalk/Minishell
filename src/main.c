@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 11:02:47 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:32:05 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv, char **env)
 	env_llst_sorted = NULL;
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, handle_sigint);
+
 	show_env_arr(env);
 	load_env_to_llst(&env_llst, env);
 	copy_llst(&env_llst, &env_llst_sorted);
