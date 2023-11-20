@@ -1,10 +1,7 @@
-export a="huhu"
-env
-unset a
-env
-unset a
-exirt
-export a="huhu"
-env
+Huhu
 export
-unset a
+env
+Huhu
+Jiji
+Huhu
+JIjisd

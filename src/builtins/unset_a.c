@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 10:38:04 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:28:40 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,9 @@ void	update_content_in_node(t_list *node, char *new_content)
 	ft_strlcpy(node->content, new_content, ft_strlen(new_content) + 1);
 }
 
+/*
+export a="huhu"  // creates a var named a with value huhu in env and "huhu" in export
+unset a="huhu"    // bash: unset: `a=huhu': not a valid identifier
+unset a 		  // deleted a and value in export and env
+unset			  // does nothing
+*/

@@ -6,13 +6,14 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 11:02:47 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:56:19 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
+#include <readline/history.h>
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
 
