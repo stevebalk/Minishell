@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:10:30 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:45:15 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/21 14:13:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 /* struct to store the words and if it should get joined,
 from lexer tokens */
-typedef struct	s_pword
-{
-	char	*word;
-	int		join;
-}
+// typedef struct	s_pword
+// {
+// 	char	*word;
+// 	int		join;
+// }
 
 /* Redirection struct, used by t_cmd to save
 redirections in a linked list*/

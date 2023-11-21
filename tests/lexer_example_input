@@ -1,5 +1,5 @@
+<<$A cat>>outfile|cat>outfile|'$A$A'"fdsfsdfsdkl$A kl"'"dfskfjkl"'
 <infile cat>"outfile">"outfile2"<../minishell/infile2 | cat
-<<$A cat>>outfile|cat>outfile|'$A$A'           			   	  sdklkl'"dfskfjkl"'
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
 <infile cat>"outfile">"outfile2"<'../minishell/infile2'
@@ -25,7 +25,7 @@ bash: : No such file or directory
 /*
 If quotes are not closed > Exit
 Export variables can only use alphanum characters
-$VAR   -- Legit
+$_VAR_   -- Legit
 $Var-/ -- Wrong
 */
 
@@ -39,3 +39,6 @@ echo hello > $NONEXISTENT
 So it's neseccary to throw an error in the parsing process if a redirection with NULL will happen.
 
 EXPANDER 
+
+cat $fjks	== NULL
+cat "$fjks"	== ""
