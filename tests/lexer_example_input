@@ -42,3 +42,10 @@ EXPANDER
 
 cat $fjks	== NULL
 cat "$fjks"	== ""
+
+cat $ 
+cat $3333
+cat $....
+cat $2aaa
+cat $aa33aa
+cat $$

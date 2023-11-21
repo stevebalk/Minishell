@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:29:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/21 16:11:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_ms
 {
 	t_token	*tk;
 	t_cmd	*cmd;
+	t_list	*envp;
 }				t_ms;
 
 /* Error handling */
