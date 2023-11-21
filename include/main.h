@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 15:52:50 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:22:36 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
+
+typedef struct s_var_names
+{
+	char *var_name;
+	char *value;
+	char *value_without_quotes;
+	char *value_added_quotes;
+} t_var_names;
 
 int		main(int argc, char **argv, char **env);
 
@@ -43,6 +51,8 @@ void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 void	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str);
+
+void show_var_names(t_var_names *var);
 
 // export b
 int		check_var_name(char *str);
@@ -96,3 +106,4 @@ void	c_yellow(void);
 void	c_cyan(void);
 void	clear_screen(void);
 void	c_reset(void);
+

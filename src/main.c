@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:09:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:25:14 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void test_var_names(void)
 	c_yellow(); printf("test_var_names()\n"); c_reset();
 
 	char *tmp1 = "a=huhu";
-	char *tmp2 = "_a=huhu";
+	char *tmp2 = "_a=\"huhu\"";
 	char *tmp3 = "_9a=huhu";
 	char *tmp4 = "9_a=huhu";
 	char *tmp5 = "9=huhu";

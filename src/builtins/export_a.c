@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:08:47 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:24:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,37 @@ void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_
 	free(var_added_quotes);
 }
 
+t_var_names get_var_names(char *str)
+{
+	t_var_names tmp;
+	
+	tmp.var_name = get_string_till_first_symbol(str, '=');
+	tmp.value = get_string_from_first_symbol(str, '=');
+	tmp.value_without_quotes = get_string_without_symbols(tmp.value, '"');
+	tmp.value_added_quotes = get_string_with_symbols_at_end_and_front(tmp.value_without_quotes, '"');
+	
+	return (tmp);
+}
+
+void show_var_names(t_var_names *var)
+{
+	c_purple(); printf("show_var_names() \n"); 
+	c_blue();
+	
+	printf("   var_name >%s<\n", var->var_name);
+	printf("   value >%s<\n", var->value);
+	printf("   value_without_quotes >%s<\n", var->value_without_quotes);
+	printf("   value_added_quotes >%s<\n", var->value_added_quotes);
+
+	c_reset();
+}
+
 // gets a single arg like "a=huhu" and adds to export and/or env if valid
 void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	(void) env_llst;
 	(void) env_llst_sorted;
+	t_var_names var;
 	
 	c_yellow(); printf("export_single_arg  >%s<   \n", str); c_reset();
 	if (!check_var_name(str))
@@ -77,7 +103,12 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		printf("export: ‘%s': not a valid identifier\n", str);	// XXX should be proper error handling; if the value is in "" there is no "" in the error message, maybe the lexar, parser solves this
 		return ;
 	}
-	c_yellow(); printf("~export_single_arg  >%s<   \n", str); c_reset();
+	
+	var = get_var_names(str);
+	show_var_names(&var);
+
+	
+	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
 
 }
 
