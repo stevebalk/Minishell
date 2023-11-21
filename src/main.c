@@ -6,11 +6,32 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 17:28:19 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:41:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
+
+void test_var_names(void)
+{
+	c_yellow(); printf("test_var_names()\n"); c_reset();
+
+	char *tmp1 = "a=huhu";
+	char *tmp2 = "_a=huhu";
+	char *tmp3 = "_9a=huhu";
+	char *tmp4 = "9_a=huhu";
+	char *tmp5 = "9=huhu";
+
+
+	printf("check >%s<  valid: %i \n", tmp1, check_var_name(tmp1));
+	printf("check >%s<  valid: %i \n", tmp2, check_var_name(tmp2));
+	printf("check >%s<  valid: %i \n", tmp3, check_var_name(tmp3));
+	printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
+	printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
+
+	
+}
+
 
 int	main(int argc, char **argv, char **env)
 {
@@ -25,16 +46,18 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 
-	signal(SIGINT, handle_sigint);
-	show_env_arr(env);
-	load_env_to_llst(&env_llst, env);
-	copy_llst(&env_llst, &env_llst_sorted);
-	sort_list(env_llst_sorted);
-	history_master(&hist_llst);
-	prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
-	lst_dealloc(&hist_llst, 1);
-	lst_dealloc(&env_llst, 1);
-	lst_dealloc(&env_llst_sorted, 1);
+	test_var_names();
+
+	// signal(SIGINT, handle_sigint);
+	// show_env_arr(env);
+	// load_env_to_llst(&env_llst, env);
+	// copy_llst(&env_llst, &env_llst_sorted);
+	// sort_list(env_llst_sorted);
+	// history_master(&hist_llst);
+	// prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
+	// lst_dealloc(&hist_llst, 1);
+	// lst_dealloc(&env_llst, 1);
+	// lst_dealloc(&env_llst_sorted, 1);
 	c_red();
 	printf("~main ()\n");
 	c_reset();

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 17:15:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 13:32:14 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,18 @@ bash: export: `=moin': not a valid identifier
 
 export c='"moin"'		 --> in export c="\"moin\"" in env c="moin"
 export d="huhu weiter "  --> in export d="huhu weiter "  in env d=huhu weiter | ohne die pipe aber mit leerzeichen 
+
+
+export a=		--> kein Fehler;
+a=""			in Export
+a=				in env
+
+export b		--> kein Fehler, aber nichts in ENV!
+b				in Export
+
+
+export d = huhu		--> fehler, aber er legt d und huhu an
+bash: export: `=': not a valid identifier
+d				in export
+huhu			in export
 */
