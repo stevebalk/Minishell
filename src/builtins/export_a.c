@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:24:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:29:01 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_var_names get_var_names(char *str)
 {
 	t_var_names tmp;
 	
+	//ft_strlcpy(tmp.raw, str, ft_strlen(str));
 	tmp.var_name = get_string_till_first_symbol(str, '=');
 	tmp.value = get_string_from_first_symbol(str, '=');
 	tmp.value_without_quotes = get_string_without_symbols(tmp.value, '"');
@@ -82,6 +83,7 @@ void show_var_names(t_var_names *var)
 	c_purple(); printf("show_var_names() \n"); 
 	c_blue();
 	
+	printf("   raw >%s<\n", var->raw);
 	printf("   var_name >%s<\n", var->var_name);
 	printf("   value >%s<\n", var->value);
 	printf("   value_without_quotes >%s<\n", var->value_without_quotes);

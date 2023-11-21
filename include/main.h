@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:22:36 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:27:37 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 typedef struct s_var_names
 {
+	char *raw;
 	char *var_name;
 	char *value;
 	char *value_without_quotes;
