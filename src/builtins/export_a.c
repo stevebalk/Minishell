@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 13:32:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:08:47 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_
 	free(var_added_quotes);
 }
 
+// gets a single arg like "a=huhu" and adds to export and/or env if valid
+void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
+{
+	(void) env_llst;
+	(void) env_llst_sorted;
+	
+	c_yellow(); printf("export_single_arg  >%s<   \n", str); c_reset();
+	if (!check_var_name(str))
+	{
+		printf("export: ‘%s': not a valid identifier\n", str);	// XXX should be proper error handling; if the value is in "" there is no "" in the error message, maybe the lexar, parser solves this
+		return ;
+	}
+	c_yellow(); printf("~export_single_arg  >%s<   \n", str); c_reset();
+
+}
+
+
+
 
 //void export_master()
 
@@ -92,4 +110,11 @@ export d = huhu		--> fehler, aber er legt d und huhu an
 bash: export: `=': not a valid identifier
 d				in export
 huhu			in export
+
+export 9="huhu"
+bash: export: `9=huhu': not a valid identifier
+
+bash-3.2$ export 9=huhu
+bash: export: `9=huhu': not a valid identifier
+
 */

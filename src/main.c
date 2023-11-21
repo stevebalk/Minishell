@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 15:41:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:09:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ void test_var_names(void)
 	printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
 	printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
 
-	
+	export_single_arg(NULL, NULL, tmp1);
+	export_single_arg(NULL, NULL, tmp2);
+	export_single_arg(NULL, NULL, tmp3);
+	export_single_arg(NULL, NULL, tmp4);
+	export_single_arg(NULL, NULL, tmp5);
+
 }
 
 
