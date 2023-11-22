@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:27:37 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:31:43 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ char	*get_string_till_first_symbol(char *str_in, char symbol);
 char	*get_string_without_symbols(char *str_in, char symbol);
 char	*get_string_with_symbols_at_end_and_front(char *str_in, char symbol);
 char	*get_string_from_first_symbol(char *str_in, char symbol);
+char	*get_string_from_string(char *str_in);
+
 
 int		get_first_symbol_pos(char *str, char symbol);
 int		find_newline(char *str);

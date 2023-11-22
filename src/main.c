@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:25:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:34:07 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
-
+	(void)hist_llst;
+	(void)env_llst;
+	(void)env_llst_sorted;
+	
 	test_var_names();
 
 	// signal(SIGINT, handle_sigint);

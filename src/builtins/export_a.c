@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:29:01 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:48:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,23 @@ t_var_names get_var_names(char *str)
 {
 	t_var_names tmp;
 	
-	//ft_strlcpy(tmp.raw, str, ft_strlen(str));
+	c_blue(); printf("get_var_names() string >%s<\n", str); 
+
+	tmp.raw = get_string_from_string(str);
 	tmp.var_name = get_string_till_first_symbol(str, '=');
 	tmp.value = get_string_from_first_symbol(str, '=');
 	tmp.value_without_quotes = get_string_without_symbols(tmp.value, '"');
 	tmp.value_added_quotes = get_string_with_symbols_at_end_and_front(tmp.value_without_quotes, '"');
 	
+	c_red(); printf("get_var_names() string >%s<\n", str); 
+
 	return (tmp);
 }
 
 void show_var_names(t_var_names *var)
 {
 	c_purple(); printf("show_var_names() \n"); 
-	c_blue();
+	c_blue(); fflush(stdout);
 	
 	printf("   raw >%s<\n", var->raw);
 	printf("   var_name >%s<\n", var->var_name);

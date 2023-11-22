@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 17:27:38 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:43:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_string_till_first_symbol(char *str_in, char symbol)
 	if (!new_str)
 		return (NULL);
 	ft_strlcpy(new_str, str_in, i + 1);
-	printf("string end >%s<\n", new_str);
+	c_red();printf("string end >%s<\n", new_str);
 	return (new_str);
 }
 
@@ -51,7 +51,7 @@ char	*get_string_from_first_symbol(char *str_in, char symbol)
 	if (!new_str)
 		return (NULL);
 	ft_strlcpy(new_str, str_in + (pos_symbol + 1), (len-pos_symbol + 1));
-	printf("string end >%s<\n", new_str);
+	c_red();printf("string end >%s<\n", new_str);
 	return (new_str);
 }
 
@@ -84,7 +84,7 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 		i++;
 	}
 
-    c_purple(); printf(" --->string without %c  >%s< \n", symbol, new_str);
+    c_red(); printf(" --->string without %c  >%s< \n", symbol, new_str);
 	return (new_str);
 }
 
@@ -94,7 +94,8 @@ char *get_string_with_symbols_at_end_and_front(char *str_in, char symbol)
 	int		i;
 	int		i2;
 	char	*new_str;
-
+    c_yellow(); printf("get_string_with_symbols_at_end_and_front()  str_in >%s<   symbol >%c< \n", str_in, symbol);
+	fflush(stdout);
 	i = 0;
 	i2 = 0;
 	new_str = (char *)malloc(sizeof(char) *(ft_strlen(str_in) + 3));
@@ -105,5 +106,23 @@ char *get_string_with_symbols_at_end_and_front(char *str_in, char symbol)
 		new_str[i2++] = str_in[i++];
 	new_str[i2] = symbol;
 	new_str[++i2] = '\0';
+	c_red(); printf(" --->string with front end %c  >%s< \n", symbol, new_str);
+
+	return (new_str);
+}
+
+// copy the string with ft_strlcpy and allocate a new string
+char *get_string_from_string(char *str_in)
+{
+	int		len;
+	char	*new_str;
+    c_yellow(); printf("get_string_from_string  str_in >%s<   \n", str_in);
+
+	len = ft_strlen(str_in);
+	new_str = (char *)malloc(sizeof(char) *(len + 1));
+	if (!new_str)
+		return (NULL);
+	c_red(); printf("get_string_from_string ret: %i\n", (int)ft_strlcpy(new_str, str_in, len));
+
 	return (new_str);
 }

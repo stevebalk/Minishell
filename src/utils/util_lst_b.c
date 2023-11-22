@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 11:09:03 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:34:57 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	delete_node_from_llst(t_list **head, t_list* nodeToDelete)
 	t_list	*temp;
 	t_list	*prev;
 
-	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", nodeToDelete->content); c_reset();
+	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)nodeToDelete->content); c_reset();
 
     // If the linked list is empty or nodeToDelete is NULL
     if (*head == NULL || nodeToDelete == NULL)
