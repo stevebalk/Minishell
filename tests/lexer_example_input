@@ -49,3 +49,37 @@ cat $....
 cat $2aaa
 cat $aa33aa
 cat $$
+
+Legit syntax for out expander:
+First char after $ should be a-z or _
+
+ERROR: 
+	SYNTAX ERROR NEAR UNEXPECTED TOKEN:
+		< <
+		< |
+
+	AMBIGOUS REDIRECT:
+		< $NONEXISTENT
+
+
+
+Return values:
+	Return NULL:
+		$NONEXISTENT
+		$3 (First number)
+		$333 (ignore $3 and return 33)
+
+	Return empty string:
+		"$NONEXISTENT"
+		''
+		""
+
+	Return last error code:
+		$?
+
+	Return $ + Whatever after it:
+		$....fdfs
+		$///fdfd
+		Everything that doesn't match alphanum, '_' or $?
+
+
