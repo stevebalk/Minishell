@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 16:43:21 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 17:20:43 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void test_var_names(void)
 	// char *tmp4 = "9_a=huhu";
 	// char *tmp5 = "9=huhu";
 	char *tmp6 = "c";
-	//char *tmp7 = "c=";
+	char *tmp7 = "c=";
 
 
 
@@ -33,7 +33,7 @@ void test_var_names(void)
 	// printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
 	// printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
 	printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
-	//printf("check >%s<  valid: %i \n", tmp7, check_var_name(tmp7));
+	printf("check >%s<  valid: %i \n", tmp7, check_var_name(tmp7));
 
 
 	// export_single_arg(NULL, NULL, tmp1);
@@ -42,7 +42,7 @@ void test_var_names(void)
 	// export_single_arg(NULL, NULL, tmp4);
 	// export_single_arg(NULL, NULL, tmp5);
 	export_single_arg(NULL, NULL, tmp6);
-	//export_single_arg(NULL, NULL, tmp7);
+	export_single_arg(NULL, NULL, tmp7);
 
 
 }
