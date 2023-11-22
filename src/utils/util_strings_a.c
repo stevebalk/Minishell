@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 11:43:55 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:58:45 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,23 +107,32 @@ char *get_string_with_symbols_at_end_and_front(char *str_in, char symbol)
 		new_str[i2++] = str_in[i++];
 	new_str[i2] = symbol;
 	new_str[++i2] = '\0';
+	//printf("i2: %i\n", i2);
 	c_red(); printf(" --->string with front end %c  >%s< \n", symbol, new_str);
 
 	return (new_str);
 }
 
-// copy the string with ft_strlcpy and allocate a new string
+// copy the string and allocate a new string
 char *get_string_from_string(char *str_in)
 {
 	int		len;
+	int		i;
 	char	*new_str;
-    c_yellow(); printf("get_string_from_string  str_in >%s<   \n", str_in);
 
 	len = ft_strlen(str_in);
+	c_yellow(); printf("get_string_from_string  str_in >%s<   len: %i \n", str_in, len);
+
+	i = -1;
 	new_str = (char *)malloc(sizeof(char) *(len + 1));
 	if (!new_str)
 		return (NULL);
-	ft_strlcpy(new_str, str_in, len);
+
+	while(str_in[++i])
+		new_str[i] = str_in[i];
+
+	new_str[i] = '\0';
+	c_red(); printf("~get_string_from_string  str_in >%s<   len: %i \n", new_str, (int)ft_strlen(new_str));
 
 	return (new_str);
 }

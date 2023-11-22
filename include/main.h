@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 10:56:46 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:46:09 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
 
+// contains, the copy of a  export var like >a="huhu"<; the var_name >a<, the raw value >"huhu"< the value witout quotes >huhu< and the value with quotes >"huhu"< 
 typedef struct s_var_names
 {
-	char *raw;
+	char *raw_copy;
 	char *var_name;
-	char *value;
+	char *raw_value;
 	char *value_without_quotes;
 	char *value_added_quotes;
 } t_var_names;
@@ -111,6 +112,7 @@ void	clear_screen(void);
 void	c_reset(void);
 
 // utils dealloc
+void	ini_var_names_to_null(t_var_names *var); // XXX muss woanders hin
 void	dealloc_var_names(t_var_names *var);
 
 

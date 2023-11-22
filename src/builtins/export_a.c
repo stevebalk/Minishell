@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 11:24:52 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 16:46:28 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void get_var_names(t_var_names *var, char *str)
 	c_blue(); printf("get_var_names() string >%s<\n", str); 
 
 
-	var->raw = get_string_from_string(str);
+	var->raw_copy = get_string_from_string(str);
 	var->var_name = get_string_till_first_symbol(str, '=');
-	var->value = get_string_from_first_symbol(str, '=');
-	var->value_without_quotes = get_string_without_symbols(var->value, '"');
+	var->raw_value = get_string_from_first_symbol(str, '=');
+	var->value_without_quotes = get_string_without_symbols(var->raw_value, '"');
 	var->value_added_quotes = get_string_with_symbols_at_end_and_front(var->value_without_quotes, '"');
 
 	c_red(); printf("get_var_names() string >%s<\n", str); 
@@ -87,6 +87,7 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	(void) env_llst;
 	(void) env_llst_sorted;
 	t_var_names var;
+	ini_var_names_to_null(&var);
 	
 	c_yellow(); printf("export_single_arg  >%s<   \n", str); c_reset();
 	if (!check_var_name(str))
@@ -97,7 +98,7 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	
 	get_var_names(&var, str);
 	show_var_names(&var);
-	dealloc_var_names(&var);
+	//dealloc_var_names(&var);
 	
 	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
 
