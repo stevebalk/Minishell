@@ -6,7 +6,7 @@
 #    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/22 10:57:44 by jonas            ###   ########.fr        #
+#    Updated: 2023/11/22 11:35:15 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
 CC			= cc
-CFLAGS		= -Werror -Wall -Wextra -g 
-# CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
+CFLAGS		= -Werror -Wall -Wextra -g
+#CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/

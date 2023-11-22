@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 10:43:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 11:32:20 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 		if (str_in[i] == symbol)
 			count++;
 	}
-	new_str = (char *)malloc(sizeof(char) *(ft_strlen(str_in) - count + 1));
+	c_green(); printf("count: %i   str_len: %i\n", count, (int)ft_strlen(str_in) );
+	new_str = (char *)malloc(sizeof(char) *((int)ft_strlen(str_in) - count + 1));
 	if (!new_str)
 		return (NULL);
 	i = 0;
@@ -81,9 +82,10 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 	{
 		if (str_in[i] != symbol)
 			new_str[i2++] = str_in[i];
+
 		i++;
 	}
-
+	new_str[i2] = '\0';
     c_red(); printf(" --->string without %c  >%s< \n", symbol, new_str);
 	return (new_str);
 }
@@ -122,7 +124,7 @@ char *get_string_from_string(char *str_in)
 	new_str = (char *)malloc(sizeof(char) *(len + 1));
 	if (!new_str)
 		return (NULL);
-	c_red(); printf("get_string_from_string ret: %i\n", (int)ft_strlcpy(new_str, str_in, len));
+	ft_strlcpy(new_str, str_in, len);
 
 	return (new_str);
 }
