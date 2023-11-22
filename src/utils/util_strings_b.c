@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_b.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:09:30 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 17:12:41 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:27:19 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,12 @@ int get_first_symbol_pos(char *str, char symbol)
 	}
 
 	return (-1);
+}
+
+int has_str_sympbol(char *str, char symbol)
+{
+	if (get_first_symbol_pos(str, symbol) > -1)
+		return (1);
+	else
+		return (0);
 }

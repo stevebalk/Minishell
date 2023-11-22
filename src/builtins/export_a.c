@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 16:46:28 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 17:46:10 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void get_var_names(t_var_names *var, char *str)
 	c_blue(); printf("get_var_names() string >%s<\n", str); 
 
 
+	var->has_equal = has_str_sympbol(str, '=');
 	var->raw_copy = get_string_from_string(str);
 	var->var_name = get_string_till_first_symbol(str, '=');
 	var->raw_value = get_string_from_first_symbol(str, '=');
@@ -95,10 +96,24 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		printf("export: ‘%s': not a valid identifier\n", str);	// XXX should be proper error handling; if the value is in "" there is no "" in the error message, maybe the lexar, parser solves this
 		return ;
 	}
+
 	
 	get_var_names(&var, str);
 	show_var_names(&var);
-	//dealloc_var_names(&var);
+
+	if (!var.has_equal)
+	{
+		printf("no = \n");
+		add_variable_to_llst(env_llst_sorted, var.var_name);		// if no "="  then add only to export 
+	}
+	else
+	{
+		printf(" = \n");
+		add_variable_to_llst(env_llst, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_without_quotes));
+		add_variable_to_llst(env_llst_sorted, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_added_quotes));
+	}
+	
+	dealloc_var_names(&var);
 	
 	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
 

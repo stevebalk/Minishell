@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 16:46:09 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 17:27:34 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_var_names
 	char *raw_value;
 	char *value_without_quotes;
 	char *value_added_quotes;
+	int	has_equal;
 } t_var_names;
 
 int		main(int argc, char **argv, char **env);
@@ -100,6 +101,7 @@ char	*get_string_from_string(char *str_in);
 int		get_first_symbol_pos(char *str, char symbol);
 int		find_newline(char *str);
 void	del_first_nl(char *str);
+int		has_str_sympbol(char *str, char symbol);
 
 // Colors
 void	c_red(void);
