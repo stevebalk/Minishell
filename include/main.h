@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 10:31:43 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 10:56:46 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,3 +110,9 @@ void	c_cyan(void);
 void	clear_screen(void);
 void	c_reset(void);
 
+// utils dealloc
+void	dealloc_var_names(t_var_names *var);
+
+
+// Jonas Temp
+void	show_var_names(t_var_names *var);

@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 10:48:15 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 10:59:13 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,6 @@ t_var_names get_var_names(char *str)
 	return (tmp);
 }
 
-void show_var_names(t_var_names *var)
-{
-	c_purple(); printf("show_var_names() \n"); 
-	c_blue(); fflush(stdout);
-	
-	printf("   raw >%s<\n", var->raw);
-	printf("   var_name >%s<\n", var->var_name);
-	printf("   value >%s<\n", var->value);
-	printf("   value_without_quotes >%s<\n", var->value_without_quotes);
-	printf("   value_added_quotes >%s<\n", var->value_added_quotes);
-
-	c_reset();
-}
 
 // gets a single arg like "a=huhu" and adds to export and/or env if valid
 void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
@@ -112,7 +99,7 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	
 	var = get_var_names(str);
 	show_var_names(&var);
-
+	dealloc_var_names(&var);
 	
 	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
 
