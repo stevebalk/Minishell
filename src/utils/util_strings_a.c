@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 11:32:20 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/22 11:43:55 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 	{
 		if (str_in[i] != symbol)
 			new_str[i2++] = str_in[i];
-
 		i++;
 	}
 	new_str[i2] = '\0';
