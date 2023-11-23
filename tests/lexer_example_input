@@ -80,6 +80,6 @@ Return values:
 	Return $ + Whatever after it:
 		$....fdfs
 		$///fdfd
-		Everything that doesn't match alphanum, '_' or $?
+		Everything that `doesn`'t match alphanum, '_' or $?
 
 

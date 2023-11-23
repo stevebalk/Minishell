@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 19:44:41 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/23 13:43:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,63 +227,11 @@ Also frees the old string */
 
 // ---------------------------------------- //
 
-/* Returns TRUE if ' or " */
-int	is_quote(char *str)
+size_t	is_exit_env_variable(char *str)
 {
-	if (ft_strchr(QUOTE, *str) == NULL)
-		return (0);
-	return (1);
-}
-
-/* Returns TRUE if ' */
-int	is_single_quote(char *str)
-{
-	if (*str == '\'')
+	if (ft_strncmp(str, "$?", 2) == 0)
 		return (1);
 	return (0);
-}
-
-/* Returns TRUE if " */
-int	is_double_quote(char *str)
-{
-	if (*str == '\"')
-		return (1);
-	return (0);
-}
-
-/* Returns TRUE if "$" */
-int	is_variable(char *str)
-{
-	if (*str == '$')
-		return (1);
-	return (0);
-}
-
-t_expand	*create_expand_node(t_ms *ms)
-{
-	t_expand	*node;
-
-	node = malloc(1 * sizeof(t_expand));
-	if (node == NULL)
-		ms_error(ms, "Malloc failed", 1, 1);
-	node->next = NULL;
-	node->str = NULL;
-	return (node);
-}
-
-t_expand	*append_chunk(t_ms *ms)
-{
-	t_expand	*cur;
-
-	if (ms->exp == NULL)
-	{
-		ms->exp = create_expand_node(ms);
-		return ;
-	}
-	while (cur->next != NULL)
-		cur = cur->next;
-	cur->next = create_expand_node(ms);
-	return (cur->next);
 }
 
 void	fill_chunk(t_expand *chunk, char *str, size_t len, t_ms *ms)
@@ -291,14 +239,57 @@ void	fill_chunk(t_expand *chunk, char *str, size_t len, t_ms *ms)
 	char	*new_str;
 
 	new_str = malloc((len + 1) * sizeof(char));
-	if (new_str == NULL)
-		ms_error(ms, "Malloc failed", 1, 1);
+	check_if_malloc_failed((void *)new_str, ms);
 	chunk->str = new_str;
 }
 
 void	expand_varible(char **str, t_ms *ms, char *quote)
 {
-	
+	char		*str_start;
+	size_t		len;
+	t_expand	*chunk;
+	size_t		should_expand;
+
+	str_start = *str;
+	should_expand = 1;
+	chunk = append_chunk(ms);
+	if (is_exit_env_variable(*str)) // "$?"
+	{
+		*str += 2;
+		chunk->str = ft_strdup(ms->last_exit_code);
+		check_if_malloc_failed((void *)chunk->str, ms);
+		return ;
+	}
+	(*str)++;
+	if (ft_isdigit(**str)) // "$2"
+	{
+		(*str)++;
+		return ;
+	}
+	if (!ft_isalpha(**str) || **str != '_') // "$///" or "$."
+	{
+		while (!ft_is_space(*str && !is_quote(*str) && **str != '\0'))
+			(*str)++;
+		chunk->str = malloc((*str - str_start + 1) * sizeof(char));
+		check_if_malloc_failed((void *)chunk->str, ms);
+		ft_strlcpy(chunk->str, str_start, *str - str_start + 1);
+	}
+	else	// $adas oe $dadas...
+	{
+		char	*temp;
+		char	*env_var;
+
+		while ((ft_isalnum(*str) || *str == '_') && **str != '\0')
+			(*str)++;
+		temp = malloc((*str - str_start + 1) * sizeof(char));
+		check_if_malloc_failed((void *)temp, ms);
+		ft_strlcpy(temp, str_start, *str - str_start + 1);
+		env_var = get_env_variable_value(temp);
+		if (env_var == NULL)
+			return (NULL);
+		/// FIXXXXXX
+		ft_strlcpy(chunk->str, env_var, strlen(env_var) + 1);
+	}
 }
 
 void	expand_no_quotes(char **str, t_ms *ms, char *quote)
@@ -350,3 +341,14 @@ void	expander(t_ms *ms)
 		}
 	}
 }
+
+// typedef struct s_env
+// {
+// 	char	*var_name;
+// 	char	*var_value;
+// }				t_env;
+
+// var_name == "a";
+// var_value == "huhu";
+
+// printf("%s=%s", var_name, var_value);

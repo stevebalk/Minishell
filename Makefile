@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/22 14:18:08 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/23 11:34:18 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,14 @@ WHITE = \033[0;97m
 
 SRC_FILES	=	main \
 				error/error_handling \
+				error/error_checks \
 				free/free_structs \
 				lexer/lexer \
 				lexer/lexer_util \
 				lexer/lexer_token_logic \
 				expander/expander \
 				expander/expander_checks \
+				expander/expander_list_func \
 				# parser/parser \
 				
 

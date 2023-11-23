@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 14:37:16 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/23 11:34:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ typedef struct	s_ms
 	t_cmd		*cmd;
 	t_list		*envp;
 	t_expand	*exp;
+	char		*last_exit_code;
 }				t_ms;
 
 /* Error handling */
+
+void	check_if_malloc_failed(void *src, t_ms *ms);
 
 // void	ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 void	ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
