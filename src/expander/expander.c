@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/23 13:43:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/23 16:41:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,55 +241,6 @@ void	fill_chunk(t_expand *chunk, char *str, size_t len, t_ms *ms)
 	new_str = malloc((len + 1) * sizeof(char));
 	check_if_malloc_failed((void *)new_str, ms);
 	chunk->str = new_str;
-}
-
-void	expand_varible(char **str, t_ms *ms, char *quote)
-{
-	char		*str_start;
-	size_t		len;
-	t_expand	*chunk;
-	size_t		should_expand;
-
-	str_start = *str;
-	should_expand = 1;
-	chunk = append_chunk(ms);
-	if (is_exit_env_variable(*str)) // "$?"
-	{
-		*str += 2;
-		chunk->str = ft_strdup(ms->last_exit_code);
-		check_if_malloc_failed((void *)chunk->str, ms);
-		return ;
-	}
-	(*str)++;
-	if (ft_isdigit(**str)) // "$2"
-	{
-		(*str)++;
-		return ;
-	}
-	if (!ft_isalpha(**str) || **str != '_') // "$///" or "$."
-	{
-		while (!ft_is_space(*str && !is_quote(*str) && **str != '\0'))
-			(*str)++;
-		chunk->str = malloc((*str - str_start + 1) * sizeof(char));
-		check_if_malloc_failed((void *)chunk->str, ms);
-		ft_strlcpy(chunk->str, str_start, *str - str_start + 1);
-	}
-	else	// $adas oe $dadas...
-	{
-		char	*temp;
-		char	*env_var;
-
-		while ((ft_isalnum(*str) || *str == '_') && **str != '\0')
-			(*str)++;
-		temp = malloc((*str - str_start + 1) * sizeof(char));
-		check_if_malloc_failed((void *)temp, ms);
-		ft_strlcpy(temp, str_start, *str - str_start + 1);
-		env_var = get_env_variable_value(temp);
-		if (env_var == NULL)
-			return (NULL);
-		/// FIXXXXXX
-		ft_strlcpy(chunk->str, env_var, strlen(env_var) + 1);
-	}
 }
 
 void	expand_no_quotes(char **str, t_ms *ms, char *quote)

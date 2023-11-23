@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/23 11:34:18 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/23 16:39:20 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,9 @@ SRC_FILES	=	main \
 				lexer/lexer_util \
 				lexer/lexer_token_logic \
 				expander/expander \
-				expander/expander_checks \
-				expander/expander_list_func \
+				expander/expand_variable \
+				expander/checks \
+				expander/list_func \
 				# parser/parser \
 				
 

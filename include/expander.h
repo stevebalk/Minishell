@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:09:04 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/23 11:01:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/23 16:49:43 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int			is_variable(char *str);
 
 t_expand	*create_expand_node(t_ms *ms);
 t_expand	*append_chunk(t_ms *ms);
+
+void	expand_varible(char **str, t_ms *ms, char *quote);
 
 
 #endif
