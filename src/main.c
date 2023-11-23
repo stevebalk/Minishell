@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 12:29:42 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:17:14 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ int	main(int argc, char **argv, char **env)
 	copy_llst(&env_llst, &env_llst_sorted);
 	
 	//test_var_names(env_llst, env_llst_sorted );
-	char *str = join_three_string("a", "=", "huhu");
+	char *str = join_three_string("aaaa", "=", "huhu");
 	c_blue(); 
 	printf("string: %s\n", str);
+	free(str);
 
-	show_env_llist(&env_llst);
-	sort_list(env_llst_sorted);
-	show_env_llist(&env_llst_sorted);
+	//show_env_llist(&env_llst);
+	//sort_list(env_llst_sorted);
+	//show_env_llist(&env_llst_sorted);
 
 	// history_master(&hist_llst);
 	// prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
