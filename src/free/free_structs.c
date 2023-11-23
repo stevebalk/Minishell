@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 14:44:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/22 14:35:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_lx(t_token *token)
 	t_token	*cur;
 	t_token	*next;
 
+	if (token == NULL)
+		return ;
 	cur = token;
 	while (cur != NULL)
 	{
@@ -34,6 +36,8 @@ void	free_redir(t_redir *redir)
 	t_redir	*cur;
 	t_redir	*next;
 
+	if (redir == NULL)
+		return ;
 	cur = redir;
 	while (cur != NULL)
 	{
@@ -50,6 +54,8 @@ void	free_cmd(t_cmd *cmd)
 	t_cmd	*cur;
 	t_cmd	*next;
 
+	if (cmd == NULL)
+		return ;
 	cur = cmd;
 	while (cur != NULL)
 	{
@@ -60,5 +66,21 @@ void	free_cmd(t_cmd *cmd)
 			free_redir(cur->redirs);
 		free(cur);
 		cur = next;
+	}
+}
+
+void	free_exp(t_expand *exp)
+{
+	t_expand	*next;
+
+	if (exp == NULL)
+		return ;
+	while (exp != NULL)
+	{
+		next = exp->next;
+		if (exp->chunk)
+			free(exp->chunk);
+		free(exp);
+		exp = next;
 	}
 }

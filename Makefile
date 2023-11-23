@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/20 17:11:43 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/22 14:18:08 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_FILES	=	main \
 				lexer/lexer_util \
 				lexer/lexer_token_logic \
 				expander/expander \
+				expander/expander_checks \
 				# parser/parser \
 				
 

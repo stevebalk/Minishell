@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 16:16:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/22 14:31:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ typedef struct	s_token
 {
 	e_token_type	type;
 	char			*content;
-	int				join;
 	struct s_token	*next;
 	struct s_token	*prev;
 }				t_token;
 
 /* Lexer */
-
 
 t_token		*create_token(t_token *tk_head);
 int			set_special_token(char *str, t_token *token, t_token *tk_head);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/20 15:49:22 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/22 13:49:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_lexer_struct(t_token *tk)
 		// printf("prev: %p\n", tk->prev);
 		printf("Type: %i\n", tk->type);
 		printf("String: %s\n", tk->content);
-		printf("Join: %d\n", tk->join);
+		// printf("Join: %d\n", tk->join);
 		// printf("Cur:  %p\n", tk);
 		printf("\n");
 		tk = tk->next;

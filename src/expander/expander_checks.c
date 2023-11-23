@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_util.c                                       :+:      :+:    :+:   */
+/*   expander_checks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 12:02:12 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 13:46:07 by sbalk            ###   ########.fr       */
+/*   Created: 2023/11/22 14:14:53 by sbalk             #+#    #+#             */
+/*   Updated: 2023/11/22 14:38:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token *get_last_token(t_token *token)
+void	check_valid_quote_count(t_token *token, t_ms *ms)
 {
-	while (token->next != NULL)
-		token = token->next;
-	return (token);
-}
+	char	*str;
+	char	quote;
 
-/* Creates initilized token if successful */
-t_token	*create_token(t_token *tk_head)
-{
-	t_token	*token;
-
-	token = malloc(sizeof(t_token));
-	if (token == NULL)
-		lx_error(tk_head, "Malloc failed", 1, 1);
-	token->next = NULL;
-	token->prev = NULL;
-	token->type = TOKEN_EOF;
-	token->content = NULL;
-	return (token);
+	quote = 0;
+	str = token->content;
+	while (*str != '\0')
+	{
+		if ((*str == '\'' || *str == '\"') && quote == 0)
+			quote = *str;
+		else if (*str == quote)
+			quote = 0;
+	}
+	if (quote != 0)
+		ms_error(ms, "Wrong number of quotes", 1, 0);
 }
