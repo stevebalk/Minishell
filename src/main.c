@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 15:24:18 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:34:32 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// char *tmp5 = "9=huhu";
 	char *tmp6 = "c";
 	char *tmp7 = "d=gg";
+	char *tmp8 = "d=88";
 
 
 
@@ -47,7 +48,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	c_purple(); printf("############################################\n");
 
 	export_single_arg(&env_llst, &env_llst_sorted, tmp6);
-	export_single_arg(&env_llst, &env_llst_sorted, tmp7);
+	export_single_arg(&env_llst, &env_llst_sorted, tmp8);
 
 }
 

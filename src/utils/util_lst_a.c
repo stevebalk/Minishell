@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:28:12 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:39:31 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	while (tmp_lst)
 	{
 		tmp_str = (char*)tmp_lst->content;
-		if ((ft_strncmp(var, (char*)tmp_lst->content, ft_strlen(var)) == 0) && (tmp_str[ft_strlen(var)] == '='))
+		if ((ft_strncmp(var, (char*)tmp_lst->content, ft_strlen(var)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var)) || (tmp_str[ft_strlen(var)] == '=')))
 		{
 			c_green(); printf("  -> found var >%s< with = \n", var);
 			c_purple(); printf("  -> content >%s< \n", tmp_str);
