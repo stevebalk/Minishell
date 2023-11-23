@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 16:26:56 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:53:33 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	return (NULL);
 }
 
+// returns the value of a variable; you have to free the mem; var_name without "="
 char *get_val_of_var(t_list **llst, char *var_name)
 {
 	t_list	*tmp_lst;
@@ -88,6 +89,7 @@ char *get_val_of_var(t_list **llst, char *var_name)
 	char	*tmp_value;
 	t_var_names tmp_var;
 
+	tmp_value = NULL;
 	tmp_lst = *llst;
 	c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
 	while (tmp_lst)
@@ -96,16 +98,16 @@ char *get_val_of_var(t_list **llst, char *var_name)
 		if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || (tmp_str[ft_strlen(var_name)] == '=')))
 		{
 			get_var_names(&tmp_var, tmp_str);
-			c_green(); printf("  -> found var >%s< with \n", var_name);
 			c_purple(); printf("  -> Value >%s< \n", tmp_var.value_without_quotes);
-		
+			if (!tmp_var.value_without_quotes)
+				return (NULL);
 			tmp_value = (char *)malloc(sizeof(char) * ft_strlen(tmp_var.value_without_quotes));
-
+			if (!tmp_value)
+				return (NULL);
 			ft_strlcpy(tmp_value, tmp_var.value_without_quotes, ft_strlen(tmp_var.value_without_quotes) +1);
 			dealloc_var_names(&tmp_var);
 			//free(tmp_str);
-			if (!tmp_value)
-				return (NULL);
+
 			c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 
 			return (tmp_value);

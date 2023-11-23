@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 16:14:36 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:52:44 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// char *tmp2 = "_a=\"huhu\"";
 	// char *tmp3 = "_9a=huhu";
 	// char *tmp4 = "9_a=huhu";
-	// char *tmp5 = "9=huhu";
+	char *tmp5 = "dd=huhu";
 	char *tmp6 = "c";
 	char *tmp7 = "d=gg";
 	char *tmp8 = "d=88";
@@ -32,7 +32,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// printf("check >%s<  valid: %i \n", tmp2, check_var_name(tmp2));
 	// printf("check >%s<  valid: %i \n", tmp3, check_var_name(tmp3));
 	// printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
-	// printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
+	printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
 	printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
 	printf("check >%s<  valid: %i \n", tmp7, check_var_name(tmp7));
 
@@ -41,7 +41,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// export_single_arg(NULL, NULL, tmp2);
 	// export_single_arg(NULL, NULL, tmp3);
 	// export_single_arg(NULL, NULL, tmp4);
-	// export_single_arg(NULL, NULL, tmp5);
+	export_single_arg(&env_llst, &env_llst_sorted, tmp5);
 	export_single_arg(&env_llst, &env_llst_sorted, tmp6);
 	export_single_arg(&env_llst, &env_llst_sorted, tmp7);
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv, char **env)
 	sort_list(env_llst_sorted);
 	show_env_llist(&env_llst_sorted);
 
-	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
+	char *tmp_del = get_val_of_var(&env_llst_sorted, "c");
 	printf("tmp_del >%s<\n", tmp_del);
 	free(tmp_del);
 
