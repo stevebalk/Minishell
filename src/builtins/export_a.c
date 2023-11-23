@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 13:43:31 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:13:02 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,37 @@ void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_va
 	unabhängig ob env oder export list
 	 
 	*/
+	char *env_var_with_value;
+	char *exp_var_with_value;
+
+	env_var_with_value = join_three_string(var->var_name, "=", var->value_without_quotes);
+	exp_var_with_value = join_three_string(var->var_name, "=", var->value_added_quotes);
+
+	// env list
+	if (find_var_in_llst(env_llst, var->var_name))
+	{
+		if (var->has_equal)
+			update_content_in_node(find_var_in_llst(env_llst, var->var_name), env_var_with_value);
+	}
+	else
+	{
+		add_variable_to_llst(env_llst, env_var_with_value);
+	}
+
+	// exp list
+	if (find_var_in_llst(env_llst_sorted, var->var_name))
+	{
+		if (var->has_equal)
+			update_content_in_node(find_var_in_llst(env_llst_sorted, var->var_name), exp_var_with_value);
+	}
+	else
+	{
+			add_variable_to_llst(env_llst_sorted, exp_var_with_value);
+	}
+
+	free(env_var_with_value);
+	free(exp_var_with_value);
+	
 }
 
 
