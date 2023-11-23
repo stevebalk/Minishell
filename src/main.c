@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 17:42:43 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/23 12:29:42 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// char *tmp3 = "_9a=huhu";
 	// char *tmp4 = "9_a=huhu";
 	// char *tmp5 = "9=huhu";
-	char *tmp6 = "c";
-	char *tmp7 = "d=";
+	//char *tmp6 = "c";
+	char *tmp7 = "d=gg";
 
 
 
@@ -32,7 +32,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// printf("check >%s<  valid: %i \n", tmp3, check_var_name(tmp3));
 	// printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
 	// printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
-	printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
+	//printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
 	printf("check >%s<  valid: %i \n", tmp7, check_var_name(tmp7));
 
 
@@ -41,7 +41,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// export_single_arg(NULL, NULL, tmp3);
 	// export_single_arg(NULL, NULL, tmp4);
 	// export_single_arg(NULL, NULL, tmp5);
-	export_single_arg(&env_llst, &env_llst_sorted, tmp6);
+	//export_single_arg(&env_llst, &env_llst_sorted, tmp6);
 	export_single_arg(&env_llst, &env_llst_sorted, tmp7);
 
 
@@ -70,8 +70,10 @@ int	main(int argc, char **argv, char **env)
 	load_env_to_llst(&env_llst, env);
 	copy_llst(&env_llst, &env_llst_sorted);
 	
-	test_var_names(env_llst, env_llst_sorted );
-
+	//test_var_names(env_llst, env_llst_sorted );
+	char *str = join_three_string("a", "=", "huhu");
+	c_blue(); 
+	printf("string: %s\n", str);
 
 	show_env_llist(&env_llst);
 	sort_list(env_llst_sorted);

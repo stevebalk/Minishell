@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 17:46:10 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/23 12:27:46 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	(void) env_llst;
 	(void) env_llst_sorted;
+	char *tmp_str;
+	tmp_str = NULL;
 	t_var_names var;
 	ini_var_names_to_null(&var);
 	
@@ -109,8 +111,13 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	else
 	{
 		printf(" = \n");
-		add_variable_to_llst(env_llst, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_without_quotes));
-		add_variable_to_llst(env_llst_sorted, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_added_quotes));
+		// tmp_str = ft_strjoin(var.var_name, "=");
+		// tmp_str = ft_strjoin(tmp_str, var.value_without_quotes);
+		// add_variable_to_llst(env_llst, tmp_str);
+		if (tmp_str)
+			free(tmp_str);
+		//add_variable_to_llst(env_llst, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_without_quotes));
+		//add_variable_to_llst(env_llst_sorted, ft_strjoin(ft_strjoin(var.var_name, "="), var.value_added_quotes));
 	}
 	
 	dealloc_var_names(&var);
