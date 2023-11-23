@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 15:13:02 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:32:58 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,32 +108,13 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	Function that checks if variable is there (like in the old "export_arg()")   
 	if yes --> Update of not --> create list entry
 	*/
-	if (!var.has_equal)
-	{
-		printf("no = \n");
-		add_variable_to_llst(env_llst_sorted, var.var_name);		// if no "="  then add only to export 
-	}
-	else
-	{
-		// todo function for create or update list in 
-		printf(" = \n");
-
-		tmp_str = join_three_string(var.var_name, "=", var.value_without_quotes);
-		add_variable_to_llst(env_llst, tmp_str);
-		if (tmp_str)
-			free(tmp_str);
-			
-		tmp_str = join_three_string(var.var_name, "=", var.value_added_quotes);
-		add_variable_to_llst(env_llst_sorted, tmp_str);
-
-		if (tmp_str)
-			free(tmp_str);
-	}
+	
+	
+	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
 	
 	dealloc_var_names(&var);
 	
 	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
-
 }
 
 // xxx hier weitermachen
@@ -145,11 +126,14 @@ void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_va
 	unabhängig ob env oder export list
 	 
 	*/
+	c_yellow(); printf("update_or_create_llst_var  >%s<   \n", var->raw_value); c_reset();
+
 	char *env_var_with_value;
 	char *exp_var_with_value;
 
 	env_var_with_value = join_three_string(var->var_name, "=", var->value_without_quotes);
 	exp_var_with_value = join_three_string(var->var_name, "=", var->value_added_quotes);
+
 
 	// env list
 	if (find_var_in_llst(env_llst, var->var_name))
@@ -159,9 +143,10 @@ void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_va
 	}
 	else
 	{
-		add_variable_to_llst(env_llst, env_var_with_value);
+		if (var->has_equal)
+			add_variable_to_llst(env_llst, env_var_with_value);
 	}
-
+	
 	// exp list
 	if (find_var_in_llst(env_llst_sorted, var->var_name))
 	{
@@ -170,12 +155,17 @@ void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_va
 	}
 	else
 	{
+		if (var->has_equal)
 			add_variable_to_llst(env_llst_sorted, exp_var_with_value);
+		else
+			add_variable_to_llst(env_llst_sorted, var->var_name);
 	}
-
-	free(env_var_with_value);
-	free(exp_var_with_value);
 	
+	if (env_var_with_value)
+		free(env_var_with_value);
+	if (exp_var_with_value)
+		free(exp_var_with_value);
+	c_red(); printf("~export_single_arg  >%s<   \n", var->raw_value); c_reset();
 }
 
 
