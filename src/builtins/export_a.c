@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 13:22:01 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:43:31 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		show_env_llist(env_llst);
 }
 
-// adds/updates a variable to export and env
+// adds/updates a variable to export and env OLD !!!
 void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_offset)
 {
 	char	*clean_var_no_equal;
@@ -103,6 +103,11 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	get_var_names(&var, str);
 	show_var_names(&var);
 
+
+    /*todo
+	Function that checks if variable is there (like in the old "export_arg()")   
+	if yes --> Update of not --> create list entry
+	*/
 	if (!var.has_equal)
 	{
 		printf("no = \n");
@@ -110,6 +115,7 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	}
 	else
 	{
+		// todo function for create or update list in 
 		printf(" = \n");
 
 		tmp_str = join_three_string(var.var_name, "=", var.value_without_quotes);
@@ -130,7 +136,16 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 
 }
 
-
+// xxx hier weitermachen
+void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_var_names *var)
+{
+	/* Suchen ob variable existiert
+	wenn ja -> update
+	wenn nein -> add
+	unabhängig ob env oder export list
+	 
+	*/
+}
 
 
 //void export_master()

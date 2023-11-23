@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 13:21:32 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:24:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// char *tmp3 = "_9a=huhu";
 	// char *tmp4 = "9_a=huhu";
 	// char *tmp5 = "9=huhu";
-	//char *tmp6 = "c";
+	char *tmp6 = "c";
 	char *tmp7 = "d=gg";
 
 
@@ -32,7 +32,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// printf("check >%s<  valid: %i \n", tmp3, check_var_name(tmp3));
 	// printf("check >%s<  valid: %i \n", tmp4, check_var_name(tmp4));
 	// printf("check >%s<  valid: %i \n", tmp5, check_var_name(tmp5));
-	//printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
+	printf("check >%s<  valid: %i \n", tmp6, check_var_name(tmp6));
 	printf("check >%s<  valid: %i \n", tmp7, check_var_name(tmp7));
 
 
@@ -41,7 +41,7 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 	// export_single_arg(NULL, NULL, tmp3);
 	// export_single_arg(NULL, NULL, tmp4);
 	// export_single_arg(NULL, NULL, tmp5);
-	//export_single_arg(&env_llst, &env_llst_sorted, tmp6);
+	export_single_arg(&env_llst, &env_llst_sorted, tmp6);
 	export_single_arg(&env_llst, &env_llst_sorted, tmp7);
 
 
