@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 15:22:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:12:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
+void	get_var_names(t_var_names *var, char *str);
 void	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str);
 void	update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_var_names *var);
 
@@ -90,6 +91,8 @@ void	sort_list(t_list *head);
 void	delete_node_from_llst(t_list **head, t_list *nodeToDelete);
 
 void	update_content_in_node(t_list *node, char *new_content);
+char	*get_val_of_var(t_list **llst, char *var_name);
+
 
 // util_string
 
