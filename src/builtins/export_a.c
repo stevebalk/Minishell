@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 13:43:03 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 16:47:44 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,14 @@ void get_var_names(t_var_names *var, char *str)
 	var->value_added_quotes = get_string_with_symbols_at_end_and_front(var->value_without_quotes, '"');
 
 	c_red(); printf("get_var_names() string >%s<\n", str); 
-
 }
-
 
 // gets a single arg like "a=huhu" and adds to export and/or env if valid
 void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	(void) env_llst;
 	(void) env_llst_sorted;
-	// char *tmp_str;
-	// tmp_str = NULL;
+
 	t_var_names var;
 	ini_var_names_to_null(&var);
 	
@@ -99,33 +96,18 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		return ;
 	}
 
-	
 	get_var_names(&var, str);
 	show_var_names(&var);
-
-
-    /*todo
-	Function that checks if variable is there (like in the old "export_arg()")   
-	if yes --> Update of not --> create list entry
-	*/
-	
 	
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
-	
 	dealloc_var_names(&var);
 	
 	c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
 }
 
-// xxx hier weitermachen
+// simple function to manage env and export list
 void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_var_names *var)
 {
-	/* Suchen ob variable existiert
-	wenn ja -> update
-	wenn nein -> add
-	unabhängig ob env oder export list
-	 
-	*/
 	c_yellow(); printf("update_or_create_llst_var  >%s<   \n", var->raw_value); c_reset();
 
 	char *env_var_with_value;
@@ -133,7 +115,6 @@ void update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_va
 
 	env_var_with_value = join_three_string(var->var_name, "=", var->value_without_quotes);
 	exp_var_with_value = join_three_string(var->var_name, "=", var->value_added_quotes);
-
 
 	// env list
 	if (find_var_in_llst(env_llst, var->var_name))
