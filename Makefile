@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/23 16:39:20 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/24 17:21:18 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_FILES	=	main \
 				expander/expander \
 				expander/expand_variable \
 				expander/checks \
-				expander/list_func \
+				expander/list_functions \
 				# parser/parser \
 				
 

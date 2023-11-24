@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 14:35:49 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/24 17:20:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	free_exp(t_expand *exp)
 	while (exp != NULL)
 	{
 		next = exp->next;
-		if (exp->chunk)
-			free(exp->chunk);
+		if (exp->str)
+			free(exp->str);
 		free(exp);
 		exp = next;
 	}

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_checks.c                                  :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:14:53 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/23 10:46:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/24 17:25:11 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /* Returns TRUE if ' or " */
-int	is_quote(char *str)
+size_t	is_quote(const char *str)
 {
 	if (ft_strchr(QUOTE, *str) == NULL)
 		return (0);
@@ -21,7 +21,7 @@ int	is_quote(char *str)
 }
 
 /* Returns TRUE if ' */
-int	is_single_quote(char *str)
+size_t	is_single_quote(const char *str)
 {
 	if (*str == '\'')
 		return (1);
@@ -29,7 +29,7 @@ int	is_single_quote(char *str)
 }
 
 /* Returns TRUE if " */
-int	is_double_quote(char *str)
+size_t	is_double_quote(const char *str)
 {
 	if (*str == '\"')
 		return (1);
@@ -37,7 +37,7 @@ int	is_double_quote(char *str)
 }
 
 /* Returns TRUE if "$" */
-int	is_variable(char *str)
+size_t	is_env_variable(const char *str)
 {
 	if (*str == '$')
 		return (1);
@@ -45,7 +45,7 @@ int	is_variable(char *str)
 }
 
 /* Checks if any quote has a closing quote */
-void	check_valid_quote_count(t_token *token, t_ms *ms)
+void	check_if_valid_quote_count(t_token *token, t_ms *ms)
 {
 	char	*str;
 	char	quote;
@@ -58,6 +58,7 @@ void	check_valid_quote_count(t_token *token, t_ms *ms)
 			quote = *str;
 		else if (*str == quote)
 			quote = 0;
+		str++;
 	}
 	if (quote != 0)
 		ms_error(ms, "Wrong number of quotes", 1, 0);

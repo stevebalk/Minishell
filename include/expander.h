@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:09:04 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/23 16:49:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/24 16:37:06 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ typedef struct	s_expand
 	struct s_expand	*next;
 }				t_expand;
 
-void		check_valid_quote_count(t_token *token, t_ms *ms);
-int			is_quote(char *str);
-int			is_single_quote(char *str);
-int			is_double_quote(char *str);
-int			is_variable(char *str);
-
-t_expand	*create_expand_node(t_ms *ms);
-t_expand	*append_chunk(t_ms *ms);
-
-void	expand_varible(char **str, t_ms *ms, char *quote);
-
+size_t		is_quote(const char *str);
+size_t		is_single_quote(const char *str);
+size_t		is_double_quote(const char *str);
+size_t		is_env_variable(const char *str);
+size_t		is_exit_code_variable(const char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 13:49:03 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/24 17:23:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ int	main(int argc, char **argv)
 	}
 	ms.tk = lexer(test_lines[0]);
 	print_lexer_struct(ms.tk);
+	expander(&ms);
 }
