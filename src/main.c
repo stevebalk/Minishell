@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 15:22:57 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 16:58:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 
 }
 
+void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted)
+{
+	char *arr[4] = {"huhu", "moin", "Steve", NULL};
+	export_arg_arr(&env_llst, &env_llst_sorted, arr);
+}
+
 
 int	main(int argc, char **argv, char **env)
 {
@@ -75,8 +81,8 @@ int	main(int argc, char **argv, char **env)
 	load_env_to_llst(&env_llst, env);
 	copy_llst(&env_llst, &env_llst_sorted);
 	
-	test_var_names(env_llst, env_llst_sorted );
-
+	//test_var_names(env_llst, env_llst_sorted );
+	test_export_arg_array(env_llst, env_llst_sorted);
 
 	show_env_llist(&env_llst);
 	sort_list(env_llst_sorted);

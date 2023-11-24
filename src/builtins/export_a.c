@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 16:47:44 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 16:52:33 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void get_var_names(t_var_names *var, char *str)
 {	
 	c_blue(); printf("get_var_names() string >%s<\n", str); 
 
-
 	var->has_equal = has_str_symbol(str, '=');
 	var->raw_copy = get_string_from_string(str);
 	var->var_name = get_string_till_first_symbol(str, '=');
@@ -78,6 +77,18 @@ void get_var_names(t_var_names *var, char *str)
 	var->value_added_quotes = get_string_with_symbols_at_end_and_front(var->value_without_quotes, '"');
 
 	c_red(); printf("get_var_names() string >%s<\n", str); 
+}
+
+// manage whole arg array
+void export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
+{
+	c_yellow(); printf("export_arg_arr  \n"); c_reset();
+	int	i;
+	i = -1;
+	while(i++, arr[i])
+		export_single_arg(env_llst, env_llst_sorted, arr[i]);
+
+	c_red(); printf("~export_arg_arr  \n"); c_reset();
 }
 
 // gets a single arg like "a=huhu" and adds to export and/or env if valid
