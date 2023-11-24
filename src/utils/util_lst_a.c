@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 13:48:21 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 15:24:46 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,39 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	return (NULL);
 }
 
-
+// this function is for get_val_of_var(); don´t call it alone!; its for finding the value of an var
+void get_val_of_var_value_allocation(char *var_name, void* content, char **tmp_value)
+{
+	char		*tmp_str;
+	t_var_names tmp_var;
+	int			len_var_name;
+	int			len_content;
+	
+	len_var_name = (int)ft_strlen(var_name);
+	len_content = (int)ft_strlen((char*)content);
+	tmp_str = (char *)malloc(sizeof(char) * (len_content + 1));
+	ft_strlcpy(tmp_str, (char*)content, len_content);
+	if ((ft_strncmp(var_name, (char*)content, len_var_name) == 0) && ((len_content == len_var_name) || is_symbol_in_pos_of_str(tmp_str, len_var_name, '=')))
+	{
+		get_var_names(&tmp_var, tmp_str);
+		if (tmp_var.value_without_quotes)
+		{
+			*tmp_value = (char *)malloc(sizeof(char) * (ft_strlen(tmp_var.value_without_quotes) + 1));
+			if (!*tmp_value)
+				return ;
+			ft_strlcpy(*tmp_value, tmp_var.value_without_quotes, ft_strlen(tmp_var.value_without_quotes) + 1);
+		}
+		dealloc_var_names(&tmp_var);
+	}
+	free(tmp_str);
+}
 
 // returns the value of a variable; you have to free the mem; var_name without "="
 char *get_val_of_var(t_list **llst, char *var_name)
 {
 	t_list	*tmp_lst;
-	t_var_names tmp_var;
-	char	*tmp_str;
+	//t_var_names tmp_var;
+	//char	*tmp_str;
 	char	*tmp_value;
 
 	tmp_value = NULL;
@@ -96,23 +121,26 @@ char *get_val_of_var(t_list **llst, char *var_name)
 	c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
 	while (tmp_lst)
 	{
-		tmp_str = (char *)malloc(sizeof(char) * (ft_strlen((char*)tmp_lst->content)+1));
-		ft_strlcpy(tmp_str, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
-		//if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || (tmp_str[ft_strlen(var_name)] == '=')))
-		if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || is_symbol_in_pos_of_str(tmp_str, ft_strlen(var_name), '=')))
-		{
-			get_var_names(&tmp_var, tmp_str);
-			if (tmp_var.value_without_quotes)
-			{
-				tmp_value = (char *)malloc(sizeof(char) * ft_strlen(tmp_var.value_without_quotes));
-				if (!tmp_value)
-					return (NULL);
-				ft_strlcpy(tmp_value, tmp_var.value_without_quotes, ft_strlen(tmp_var.value_without_quotes) +1);
-				dealloc_var_names(&tmp_var);
-			}
-		}
-		free(tmp_str);
+		get_val_of_var_util(var_name, tmp_lst->content, &tmp_value);
 		tmp_lst = tmp_lst->next;
+
+		// tmp_str = (char *)malloc(sizeof(char) * (ft_strlen((char*)tmp_lst->content)+1));
+		// ft_strlcpy(tmp_str, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+		// if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || is_symbol_in_pos_of_str(tmp_str, ft_strlen(var_name), '=')))
+		// {
+		// 	get_var_names(&tmp_var, tmp_str);
+		// 	if (tmp_var.value_without_quotes)
+		// 	{
+		// 		tmp_value = (char *)malloc(sizeof(char) * ft_strlen(tmp_var.value_without_quotes));
+		// 		if (!tmp_value)
+		// 			return (NULL);
+		// 		ft_strlcpy(tmp_value, tmp_var.value_without_quotes, ft_strlen(tmp_var.value_without_quotes) +1);
+		// 		dealloc_var_names(&tmp_var);
+		// 	}
+		// }
+		// free(tmp_str);
+		// tmp_lst = tmp_lst->next;
+
 	}
 	c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 	return (tmp_value);

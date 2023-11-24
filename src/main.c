@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 13:44:29 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 15:22:57 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int argc, char **argv, char **env)
 	sort_list(env_llst_sorted);
 	show_env_llist(&env_llst_sorted);
 
-	char *tmp_del = get_val_of_var(&env_llst_sorted, "c");
+	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
 	printf("tmp_del >%s<\n", tmp_del);
 	free(tmp_del);
 
