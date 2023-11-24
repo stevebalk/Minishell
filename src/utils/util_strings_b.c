@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:09:30 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/22 17:27:19 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/24 13:42:28 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,23 @@ int get_first_symbol_pos(char *str, char symbol)
 	return (-1);
 }
 
-int has_str_sympbol(char *str, char symbol)
+int has_str_symbol(char *str, char symbol)
 {
 	if (get_first_symbol_pos(str, symbol) > -1)
 		return (1);
 	else
 		return (0);
+}
+
+// return 1 if a specific symbol is on a specific position in a string
+int is_symbol_in_pos_of_str(char *str, int pos, char symbol)
+{
+	int i;
+	i = -1;
+	while (i++, str[i])
+	{
+		if (i == pos && str[i] == symbol)
+			return (1);
+	}
+	return (0);
 }

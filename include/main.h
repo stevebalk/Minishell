@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 16:12:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:42:39 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ char	*join_three_string(char *str1, char *str2, char *str3);
 int		get_first_symbol_pos(char *str, char symbol);
 int		find_newline(char *str);
 void	del_first_nl(char *str);
-int		has_str_sympbol(char *str, char symbol);
+int		has_str_symbol(char *str, char symbol);
+int		is_symbol_in_pos_of_str(char *str, int pos, char symbol);
 
 // Colors
 void	c_red(void);

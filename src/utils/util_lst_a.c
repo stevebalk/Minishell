@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_a.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 17:13:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:41:11 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	return (NULL);
 }
 
+
+
 // returns the value of a variable; you have to free the mem; var_name without "="
 char *get_val_of_var(t_list **llst, char *var_name)
 {
@@ -96,6 +98,7 @@ char *get_val_of_var(t_list **llst, char *var_name)
 	{
 		tmp_str = (char *)malloc(sizeof(char) * (ft_strlen((char*)tmp_lst->content)+1));
 		ft_strlcpy(tmp_str, (char*)tmp_lst->content, ft_strlen((char*)tmp_lst->content));
+		//if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || (tmp_str[ft_strlen(var_name)] == '=')))
 		if ((ft_strncmp(var_name, (char*)tmp_lst->content, ft_strlen(var_name)) == 0) && ((ft_strlen(tmp_str) == ft_strlen(var_name)) || (tmp_str[ft_strlen(var_name)] == '=')))
 		{
 			get_var_names(&tmp_var, tmp_str);

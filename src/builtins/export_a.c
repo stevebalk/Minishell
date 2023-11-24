@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/23 15:32:58 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:43:03 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void get_var_names(t_var_names *var, char *str)
 	c_blue(); printf("get_var_names() string >%s<\n", str); 
 
 
-	var->has_equal = has_str_sympbol(str, '=');
+	var->has_equal = has_str_symbol(str, '=');
 	var->raw_copy = get_string_from_string(str);
 	var->var_name = get_string_till_first_symbol(str, '=');
 	var->raw_value = get_string_from_first_symbol(str, '=');
@@ -87,8 +87,8 @@ void export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	(void) env_llst;
 	(void) env_llst_sorted;
-	char *tmp_str;
-	tmp_str = NULL;
+	// char *tmp_str;
+	// tmp_str = NULL;
 	t_var_names var;
 	ini_var_names_to_null(&var);
 	
