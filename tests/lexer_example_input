@@ -1,5 +1,6 @@
-<<$A cat>>outfile|cat>outfile|'$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
-<infile cat>"outfile">"outfile2"<../minishell/infile2 | cat
+    <<$A cat>>outfile|cat>outfile|'$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
+<infile cat>"outfile">'outfile2'<"../minishell/infile2" | cat
+'$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>
 <infile cat>"outfile">"outfile2"<'../minishell/infile2'

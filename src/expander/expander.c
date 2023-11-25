@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/24 18:26:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/25 18:49:29 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,7 +309,11 @@ void	expand_double_quote_content(char **str, t_ms *ms, char *prev_quote)
 		(*str)++;
 	}
 	append_and_fill_chunk_with_str(ms, str_start, len);
-	(*str)++;
+	if (is_double_quote(*str))
+	{
+		*prev_quote = 0;
+		(*str)++;
+	}
 }
 
 /* Expands all legit env variables based on there enclosing quotes
@@ -332,9 +336,11 @@ void	expand_word_token(t_token *tk, t_ms *ms)
 	}
 	// tk->content = join_chunks_to_final_word(ms);
 	t_expand	*DEBUG = ms->exp;
+	printf("New: ");
 	while (DEBUG != NULL)
 	{
-		printf("%s", DEBUG->str);
+		if (DEBUG->str)
+			printf("%s", DEBUG->str);
 		DEBUG = DEBUG->next;
 	}
 	printf("\n");
@@ -357,7 +363,7 @@ void	expander(t_ms *ms)
 			check_if_valid_quote_count(cur, ms);
 			old_string = cur->content;
 			expand_word_token(cur, ms);
-			printf("%s\n", old_string);
+			printf("Old: %s\n", old_string);
 			free(old_string);
 		}
 		cur = cur->next;

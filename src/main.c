@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/24 17:23:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:48:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	read_test_file(char **filename, char *test_lines[100])
 {
 	int		fd;
 	char	*line;
-	int		i;
+	// int		i;
 
 	line = NULL;
-	i = 0;
+	// i = 0;
 	fd = open(*filename, O_RDONLY, 0644);
 	if (fd == -1)
 	{
@@ -30,13 +30,15 @@ void	read_test_file(char **filename, char *test_lines[100])
 		exit(errno);
 	}
 	line = get_next_line(fd);
-	while (line != NULL && i < MAX_LINES)
-	{
-		test_lines[i] = line;
-		test_lines[i][ft_strlen(test_lines[i]) - 1] = '\0';
-		line = get_next_line(fd);
-		i++;
-	}
+	test_lines[0] = line;
+	test_lines[0][ft_strlen(test_lines[0]) - 1] = '\0';
+	// while (line != NULL && i < MAX_LINES)
+	// {
+	// 	test_lines[i] = line;
+	// 	test_lines[i][ft_strlen(test_lines[i]) - 1] = '\0';
+	// 	line = get_next_line(fd);
+	// 	i++;
+	// }
 	close(fd);
 }
 
@@ -72,7 +74,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		printf("Wrong input. Use: ./lexer <test_file>\n");
-		printf("Testfile should be filled with bash commands");
+		printf("Testfile should be filled with bash commands\n");
 		exit(EXIT_FAILURE);
 	}
 	ms.tk = lexer(test_lines[0]);

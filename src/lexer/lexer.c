@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 13:34:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:29:43 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,8 @@ t_token	*lexer(char *str)
 	cur_token = NULL;
 	while (*str != '\0')
 	{
-		if (ft_is_space(str))
-		{
+		while (ft_is_space(str))
 			str++;
-			continue ;
-		}
 		if (*str == '\0')
 			return (head);
 		cur_token = token_list_append(&head);
