@@ -6,7 +6,7 @@
 #    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/22 11:35:15 by jonas            ###   ########.fr        #
+#    Updated: 2023/11/26 17:46:02 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ WHITE = \033[0;97m
 				 
 
 SRC_FILES	=	main \
+				builtins/echo \
 				builtins/env_a \
 				builtins/exit_a \
 				builtins/export_a \

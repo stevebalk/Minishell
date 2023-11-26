@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 16:53:06 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/26 17:46:26 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	prompt_handler(t_list **history_lst, t_list **env_llst,
 // prompt/signal
 void	handle_sigint(int sig);
 
-// builtin env
+// builtin
+// echo
+void	builtin_echo(char **str_arr, int n_flag);
+
+// env
 void	show_env_arr(char **env);
 void	load_env_to_llst(t_list **env_lst, char **env);
 void	show_env_llist(t_list **lst);

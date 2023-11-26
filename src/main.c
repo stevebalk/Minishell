@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/24 16:58:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/26 17:51:53 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,27 @@ void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)
 
 void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted)
 {
+	c_yellow(); printf("test_export_arg_array()\n"); c_reset();
 	char *arr[4] = {"huhu", "moin", "Steve", NULL};
 	export_arg_arr(&env_llst, &env_llst_sorted, arr);
 }
 
+void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted)
+{
+	(void)env_llst;
+	c_yellow(); printf("test_get_val_of_var()\n"); c_reset();
+	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
+	printf("tmp_del >%s<\n", tmp_del);
+	free(tmp_del);
+}
+
+void test_echo(void)
+{
+	c_yellow(); printf("test_echo()\n"); c_purple();
+	char *arr[4] = {"huhu", "\t", "Steve", NULL};
+	builtin_echo(arr, 0);
+	c_reset();
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -82,15 +99,15 @@ int	main(int argc, char **argv, char **env)
 	copy_llst(&env_llst, &env_llst_sorted);
 	
 	//test_var_names(env_llst, env_llst_sorted );
-	test_export_arg_array(env_llst, env_llst_sorted);
+	//test_export_arg_array(env_llst, env_llst_sorted);
+	//test_get_val_of_var
+	test_echo();
+	
+	//show_env_llist(&env_llst);
+	//sort_list(env_llst_sorted);
+	//show_env_llist(&env_llst_sorted);
 
-	show_env_llist(&env_llst);
-	sort_list(env_llst_sorted);
-	show_env_llist(&env_llst_sorted);
 
-	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
-	printf("tmp_del >%s<\n", tmp_del);
-	free(tmp_del);
 
 	// history_master(&hist_llst);
 	// prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
