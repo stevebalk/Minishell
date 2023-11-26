@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/26 17:46:26 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/26 17:56:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,9 @@ void	dealloc_var_names(t_var_names *var);
 
 // Jonas Temp
 void	show_var_names(t_var_names *var);
+
+// Test Temp
+void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted);
+void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted);
+void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
+void test_echo(void);

@@ -6,7 +6,7 @@
 #    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/26 17:46:02 by jonas            ###   ########.fr        #
+#    Updated: 2023/11/26 17:56:59 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,8 @@ SRC_FILES	=	main \
 				utils/dealloc \
 				utils/j_temp \
 				prompt/prompt \
-				prompt/signal
+				prompt/signal \
+				test_tmp/tests
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -82,6 +83,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/utils
 			@mkdir -p $(OBJ_DIR)/builtins
 			@mkdir -p $(OBJ_DIR)/prompt
+			@mkdir -p $(OBJ_DIR)/test_tmp
 			
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
