@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:03:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:54:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		return ;
 	}
 	get_var_names(&var, str);
-	show_var_names(&var);
+	//show_var_names(&var);
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
 	dealloc_var_names(&var);
 	//c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();

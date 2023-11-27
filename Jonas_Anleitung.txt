@@ -1,0 +1,37 @@
+Kurze Übersicht über die Built Ins und Prompt in:
+
+prompt_handler
+	- mit Define CLR_SCREEN kann man festlegen ob man beim öffnen der Prompt das
+	das Terminal clearen will 
+	- legt automatisch history mit add_history an. 
+	- limit history
+
+	im ft_strlen(prompt_in) > 0
+	muss der Lexa, Expander und Parser rein 
+
+	TODO: Signal Handling für ctl + C ctl + D ctl + \
+
+
+
+
+void	show_env_llist(t_list **lst)
+		zeigt linked list an 
+		(entweder env oder export)
+
+
+void	test_parser_unset
+		forläufige funktion für unset zum löschen von nodes in env und export llst 
+
+void	load_env_to_llst
+		läd environment variable von arg 3 in llinked list 
+
+void	sort_list
+		sortiert linked list ... sollte nur für export verwendet werden 
+
+
+void	export_arg_arr
+		legt alle varibalen im char **arr an, oder updated sie in env oder export list 
+		--> führt export_single_arg() aus 
+			--> update_or_create_llst_var
+				--> update_util_env
+				--> update_util_export 
