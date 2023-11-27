@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:17:59 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:18:59 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	get_val_of_var_value_allocation(char *v_name, void *cont,
 	l_v_name = (int)ft_strlen(v_name);
 	l_cont = (int)ft_strlen((char *)cont);
 	tmp_str = (char *)malloc(sizeof(char) * (l_cont + 1));
+	if (!tmp_str)
+		return ;
 	ft_strlcpy(tmp_str, (char *)cont, l_cont);
 	if ((ft_strncmp(v_name, (char *)cont, l_v_name) == 0)
 		&& ((l_cont == l_v_name) || is_s_in_pos_of_str(tmp_str, l_v_name, '=')))

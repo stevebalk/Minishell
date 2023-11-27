@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 13:56:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:21:57 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 // adding a node with a string to a linked list i.a "A=hello"; no parsing involved!; creates a new llist if llist is null; mallocs for char *
 void	add_variable_to_llst(t_list **llst, char *var)
 {
-	//c_yellow(); printf("add_variable_to_llst() var >%s<\n", var); c_reset();
 	char	*str;
+	//c_yellow(); printf("add_variable_to_llst() var >%s<\n", var); c_reset();
+	
 	str = (char *)malloc(sizeof(char) * (ft_strlen(var) + 1));
 	ft_strlcpy(str, var, ft_strlen(var) + 1);
 	if (!llst)
@@ -29,8 +30,8 @@ void	add_variable_to_llst(t_list **llst, char *var)
 // shows all entries of the env array coming from outside by argument 3
 void	show_env_arr(char **env)
 {
-	//c_yellow(); printf("show_env_arr()\n"); c_reset();
 	int	i;
+	//c_yellow(); printf("show_env_arr()\n"); c_reset();
 
 	i = -1;
 	while (i++, env[i])
@@ -40,9 +41,9 @@ void	show_env_arr(char **env)
 // copy the env array to a new llist
 void	load_env_to_llst(t_list **env_lst, char **env)
 {
-	//c_yellow(); printf("load_env()\n"); c_reset();
 	char	*str;
 	int		i;
+	//c_yellow(); printf("load_env()\n"); c_reset();
 
 	i = -1;
 	while (i++, env[i])
