@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/27 14:18:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:13:35 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,22 +118,19 @@ void	expand_numerical_variable(char **str, t_ms *ms, char *prev_quote)
 void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 {
 	if (is_numerical_variable(*str)) // "$2"
-	{
 		expand_numerical_variable(str, ms, prev_quote);
-		return ;
-	}
-	if (is_exit_code_variable(*str)) // "$?"
-	{
+	else if (is_exit_code_variable(*str)) // "$?"
 		expand_to_prev_exit_code(str, ms);
-		return ;
-	}
-	if (is_metachar_variable(*str)) // "$///" or "$."
+	else if (is_metachar_variable(*str)) // "$///" or "$."
 	{
-		copy_until_blocker(str, ms);
-		return ;
+		if (!is_quote((*str) + 1))
+		{
+			copy_until_blocker(str, ms);
+			return ;
+		}
+		(*str)++;
 	}
 	else	// $adas or $dadas...
-	{
 		copy_env_variable(str, ms, prev_quote);
-	}
+	return ;
 }
