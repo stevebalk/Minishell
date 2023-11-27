@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/24 18:03:56 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/27 14:18:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	copy_env_variable(char **str, t_ms *ms, char *quote)
 	if (env_value == NULL)
 		return ;
 	append_and_fill_chunk_with_str(ms, env_value, ft_strlen(env_value));
+	free(env_value);
 	// ft_strlcpy(chunk->str, env_value, ft_strlen(env_value) + 1);
 }
 
@@ -121,17 +122,14 @@ void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 		expand_numerical_variable(str, ms, prev_quote);
 		return ;
 	}
-	// chunk = append_chunk(ms);
 	if (is_exit_code_variable(*str)) // "$?"
 	{
 		expand_to_prev_exit_code(str, ms);
-		// expand_to_prev_exit_code(str, chunk, ms);
 		return ;
 	}
 	if (is_metachar_variable(*str)) // "$///" or "$."
 	{
 		copy_until_blocker(str, ms);
-		// copy_until_blocker(str, chunk, ms);
 		return ;
 	}
 	else	// $adas or $dadas...
