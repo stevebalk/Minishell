@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 13:55:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:34:54 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,14 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 	(void)hist_llst;
-	// (void)env_llst;
-	// (void)env_llst_sorted;
-	
 
-	// signal(SIGINT, handle_sigint);
-	//show_env_arr(*env);
 	load_env_to_llst(&env_llst, env);
 	copy_llst(&env_llst, &env_llst_sorted);
 	
-	//test_var_names(env_llst, env_llst_sorted );
-	//test_export_arg_array(env_llst, env_llst_sorted);
-	//test_get_val_of_var
-	//test_echo();
+	history_master(&hist_llst);
+	prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
 	
-	show_env_llist(&env_llst);
-	sort_list(env_llst_sorted);
-	show_env_llist(&env_llst_sorted);
-
-
-
-	// history_master(&hist_llst);
-	// prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
-	// lst_dealloc(&hist_llst, 1);
+	lst_dealloc(&hist_llst, 1);
 	lst_dealloc(&env_llst, 1);
 	lst_dealloc(&env_llst_sorted, 1);
 	c_red();

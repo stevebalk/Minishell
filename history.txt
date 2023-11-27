@@ -1,5 +1,3 @@
-unset a
-env
 export
 export a=huhu
 export
@@ -8,3 +6,5 @@ export
 export
 export
 export a=huhu
+huhu
+export

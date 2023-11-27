@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/27 13:45:01 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/27 15:33:49 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRC_FILES	=	main \
 				builtins/unset_a \
 				utils/colors_a \
 				utils/colors_b \
-				utils/history \
+				utils/history_a \
+				utils/history_b \
 				utils/util_lst_a \
 				utils/util_lst_b \
 				utils/util_lst_c \
