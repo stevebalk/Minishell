@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/27 15:41:05 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/27 17:14:32 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ WHITE = \033[0;97m
 				 
 
 SRC_FILES	=	main \
+				builtins/cd \
 				builtins/echo \
 				builtins/env_a \
 				builtins/exit_a \

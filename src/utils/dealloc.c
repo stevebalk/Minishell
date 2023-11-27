@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:56:55 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/27 14:07:31 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:25:44 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ini_var_names_to_null(t_var_names *var)
 }
 void	dealloc_var_names(t_var_names *var)
 {
-	//c_yellow(); printf("dealloc_var_names()\n");c_red();
+	c_yellow(); printf("dealloc_var_names()\n");c_red();
 	if (var->raw_copy)
 	{
 		printf("   free raw copy\n");

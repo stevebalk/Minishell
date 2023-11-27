@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 17:00:03 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:19:42 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv, char **env)
 
 	load_env_to_llst(&env_llst, env);
 	copy_llst(&env_llst, &env_llst_sorted);
+	show_env_llist(&env_llst);
 	
 	//history_master(&hist_llst);
 	//prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
@@ -38,6 +39,10 @@ int	main(int argc, char **argv, char **env)
 	test_opendir();
 	test_is_dir_valid("libs");
 	builtin_pwd(&env_llst, &env_llst_sorted);
+	test_change_dir();
+
+	
+	//show_env_llist(&env_llst);
 	
 	lst_dealloc(&hist_llst, 1);
 	lst_dealloc(&env_llst, 1);

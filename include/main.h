@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 16:54:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:12:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
 #include <signal.h>
+#include <dirent.h>
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
@@ -147,6 +148,8 @@ void	test_echo(void);
 // pwd
 void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted);
 
+// CD
+void test_change_dir(void);
 void test_getcwd(void);
 void test_opendir(void);
 void test_is_dir_valid(char *dir);
