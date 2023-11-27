@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 13:32:43 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:11:26 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	copy_llst(t_list **src_llst, t_list **new_llst)
 {
 	t_list	*tmp_src;
 	char	*str;
-	c_yellow(); printf("copy_llst()\n"); c_reset();
+	//c_yellow(); printf("copy_llst()\n"); c_reset();
 	tmp_src = *src_llst;
 	if (tmp_src == NULL)
 		return ;
@@ -35,7 +35,7 @@ void	copy_llst(t_list **src_llst, t_list **new_llst)
 			ft_lstadd_back(new_llst, ft_lstnew((void *)str));
 		tmp_src = tmp_src->next;
 	}
-    c_yellow(); printf("~copy_llst()\n"); c_reset();
+    //c_yellow(); printf("~copy_llst()\n"); c_reset();
 }
 
 // to swap data of two nodes
