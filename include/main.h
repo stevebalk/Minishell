@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 13:52:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:03:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
-void	get_var_names(t_var_names *var, char *str);
 void	export_single_arg(t_list **env_llst,
 			t_list **env_llst_sorted, char *str);
 void	update_or_create_llst_var(t_list **env_llst,
@@ -70,6 +69,7 @@ void	update_util_export(t_list **env_llst_sorted, t_var_names *var, char *exp_va
 void	show_var_names(t_var_names *var);
 
 // export b
+void	get_var_names(t_var_names *var, char *str);
 int		check_var_name(char *str);
 int		check_first_c(char c);
 int		check_other_c(char c);

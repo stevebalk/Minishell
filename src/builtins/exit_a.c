@@ -6,23 +6,21 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/20 16:22:57 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:56:33 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
-int ms_exit(char *arg)
+int	ms_exit(char *arg)
 {
 	(void)arg;
 	/*
 	free everything
 	*/
 
-	
 	return (0);
 }
-
 
 /*
 BASH

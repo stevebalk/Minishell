@@ -6,14 +6,14 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:34 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/21 16:16:38 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:04:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
 
 // returns 1 if c is alpha or _
-int check_first_c(char c)
+int	check_first_c(char c)
 {
 	if (ft_isalpha(c))
 		return (1);
@@ -23,7 +23,7 @@ int check_first_c(char c)
 }
 
 // returns 1 if c is alpha, _ or digit
-int check_other_c(char c)
+int	check_other_c(char c)
 {
 	if (ft_isalpha(c))
 		return (1);
@@ -48,4 +48,18 @@ int	check_var_name(char *str)
 			return (0);
 	}
 	return (1);
+}
+
+// updated var with all var names and values
+void	get_var_names(t_var_names *var, char *str)
+{
+	//c_blue(); printf("get_var_names() string >%s<\n", str); 
+	var->has_equal = has_str_symbol(str, '=');
+	var->raw_copy = get_string_from_string(str);
+	var->var_name = get_string_till_first_symbol(str, '=');
+	var->raw_value = get_string_from_first_symbol(str, '=');
+	var->value_without_quotes = get_string_without_symbols(var->raw_value, '"');
+	var->value_added_quotes = get_string_with_symbols_at_end_and_front
+		(var->value_without_quotes, '"');
+	//c_red(); printf("get_var_names() string >%s<\n", str); 
 }
