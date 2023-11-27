@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/26 17:49:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/27 13:00:16 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
-
 
 /*
 	with option -n (no newline)
@@ -33,11 +32,12 @@
 	declare -x c="\\t"
 
 */
-void builtin_echo(char **str_arr, int n_flag)
+void	builtin_echo(char **str_arr, int n_flag)
 {
 	int	i;
+
 	i = -1;
-	while(i++, str_arr[i])
+	while (i++, str_arr[i])
 		printf("%s", str_arr[i]);
 	if (!n_flag)
 		printf("\n");

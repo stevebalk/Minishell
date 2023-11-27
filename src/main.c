@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/26 17:54:13 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/27 13:46:19 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	main(int argc, char **argv, char **env)
 	copy_llst(&env_llst, &env_llst_sorted);
 	
 	//test_var_names(env_llst, env_llst_sorted );
-	//test_export_arg_array(env_llst, env_llst_sorted);
+	test_export_arg_array(env_llst, env_llst_sorted);
 	//test_get_val_of_var
-	test_echo();
+	//test_echo();
 	
-	//show_env_llist(&env_llst);
-	//sort_list(env_llst_sorted);
-	//show_env_llist(&env_llst_sorted);
+	show_env_llist(&env_llst);
+	sort_list(env_llst_sorted);
+	show_env_llist(&env_llst_sorted);
 
 
 

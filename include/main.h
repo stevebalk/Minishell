@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/26 17:56:27 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/27 13:52:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
 
-// contains, the copy of a  export var like >a="huhu"<; the var_name >a<, the raw value >"huhu"< the value witout quotes >huhu< and the value with quotes >"huhu"< 
+// contains, the copy of a  export var like >a="huhu"<; the var_name >a<,
+//the raw value >"huhu"< the value witout quotes >huhu<
+//and the value with quotes >"huhu"<
 typedef struct s_var_names
 {
-	char *raw_copy;
-	char *var_name;
-	char *raw_value;
-	char *value_without_quotes;
-	char *value_added_quotes;
-	int	has_equal;
-} t_var_names;
+	char	*raw_copy;
+	char	*var_name;
+	char	*raw_value;
+	char	*value_without_quotes;
+	char	*value_added_quotes;
+	int		has_equal;
+}	t_var_names;
 
 int		main(int argc, char **argv, char **env);
 
@@ -53,23 +55,24 @@ void	show_env_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 
 // export
-void export_arg(t_list **env_llst, t_list **env_llst_sorted, char *str, int str_offset);
-void export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
+void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 void	get_var_names(t_var_names *var, char *str);
-void	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str);
-void	update_or_create_llst_var(t_list **env_llst, t_list **env_llst_sorted, t_var_names *var);
+void	export_single_arg(t_list **env_llst,
+			t_list **env_llst_sorted, char *str);
+void	update_or_create_llst_var(t_list **env_llst,
+			t_list **env_llst_sorted, t_var_names *var);
+void	update_util_env(t_list **env_llst, t_var_names *var, char *env_var_with_value);
+void	update_util_export(t_list **env_llst_sorted, t_var_names *var, char *exp_var_with_value);
 
-
-void show_var_names(t_var_names *var);
+void	show_var_names(t_var_names *var);
 
 // export b
 int		check_var_name(char *str);
 int		check_first_c(char c);
 int		check_other_c(char c);
-
 
 // unset
 void	test_parser_unset(t_list **env_llst, t_list **env_llst_sorted,
@@ -93,11 +96,14 @@ void	lst_dealloc(t_list **llist, int free_content);
 void	copy_llst(t_list **src_llst, t_list **new_llst);
 void	swap_nodes(t_list *a, t_list *b);
 void	sort_list(t_list *head);
-void	delete_node_from_llst(t_list **head, t_list *nodeToDelete);
+void	delete_node_from_llst(t_list **head, t_list *node_to_delete);
 
 void	update_content_in_node(t_list *node, char *new_content);
-char	*get_val_of_var(t_list **llst, char *var_name);
 
+// util lst c
+void	get_val_of_var_value_allocation(char *v_name, void *cont,
+			char **tmp_value);
+char	*get_val_of_var(t_list **llst, char *var_name);
 
 // util_string
 
@@ -113,7 +119,7 @@ int		get_first_symbol_pos(char *str, char symbol);
 int		find_newline(char *str);
 void	del_first_nl(char *str);
 int		has_str_symbol(char *str, char symbol);
-int		is_symbol_in_pos_of_str(char *str, int pos, char symbol);
+int		is_s_in_pos_of_str(char *str, int pos, char symbol);
 
 // Colors
 void	c_red(void);
@@ -129,12 +135,11 @@ void	c_reset(void);
 void	ini_var_names_to_null(t_var_names *var); // XXX muss woanders hin
 void	dealloc_var_names(t_var_names *var);
 
-
 // Jonas Temp
 void	show_var_names(t_var_names *var);
 
 // Test Temp
-void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted);
-void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted);
-void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
-void test_echo(void);
+void	test_var_names(t_list	*env_llst, t_list	*env_llst_sorted);
+void	test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted);
+void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
+void	test_echo(void);
