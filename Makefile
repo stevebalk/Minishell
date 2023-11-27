@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/27 15:33:49 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/27 15:41:05 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_FILES	=	main \
 				builtins/exit_a \
 				builtins/export_a \
 				builtins/export_b \
+				builtins/pwd \
 				builtins/unset_a \
 				utils/colors_a \
 				utils/colors_b \
