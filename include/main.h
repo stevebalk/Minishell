@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:03:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:54:09 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,3 +143,10 @@ void	test_var_names(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_echo(void);
+
+// pwd
+void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted);
+
+void test_getcwd(void);
+void test_opendir(void);
+void test_is_dir_valid(char *dir);
