@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 17:12:00 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:21:52 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ void	test_echo(void);
 void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted);
 
 // CD
+void	builtin_cd(char *in);
+	
 void test_change_dir(void);
 void test_getcwd(void);
 void test_opendir(void);
