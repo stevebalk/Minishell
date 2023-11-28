@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:41:31 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:47:29 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,18 @@ void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
 	{
 		// switching to last dir
 		// if !OLDWPD  --> "cd: OLDPWD not set"
+		tmp_str = get_val_of_var(env_llst, "OLDPWD");
+		c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
+		builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
+		free(tmp_str);
 	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to home dir
-		//tmp_str = get_val_of_var(XXX, "HOME");
-		// change
-		//free(tmp_str);
+		tmp_str = get_val_of_var(env_llst, "HOME");
+		c_purple(); printf("switching to home dir()   >%s< \n", tmp_str); c_reset();
+		builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
+		free(tmp_str);
 	}
 	else 
 	{

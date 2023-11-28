@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:31:15 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:47:45 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,17 +147,17 @@ char	*join_three_string(char *str1, char *str2, char *str3)
 {
 	char	*new_str;
 	int		len[3];
-	c_yellow(); printf("join_three_string() s1 >%s<   s2 >%s<   s3 >%s<\n", str1, str2, str3); 
+	//c_yellow(); printf("join_three_string() s1 >%s<   s2 >%s<   s3 >%s<\n", str1, str2, str3); 
 	len[0] = ft_strlen(str1);
 	len[1] = ft_strlen(str2);
 	len[2] = ft_strlen(str3);
-	printf("len 1: %i     2: %i   3: %i\n", (int)ft_strlen(str1), (int)ft_strlen(str2), (int)ft_strlen(str3));
+	//printf("len 1: %i     2: %i   3: %i\n", (int)ft_strlen(str1), (int)ft_strlen(str2), (int)ft_strlen(str3));
 	new_str = (char *)ft_calloc((len[0] + len[1] + len[2] + 1), sizeof(char));
 	if (!new_str)
 		return (NULL);
 	ft_strlcat(new_str, str1, len[0] + 1);
 	ft_strlcat(new_str, str2, ft_strlen(new_str) + len[1] + 1);
 	ft_strlcat(new_str, str3, ft_strlen(new_str) + len[2] + 1);
-	c_red(); printf("~join_three_string() s >%s<  \n", new_str); 
+	//c_red(); printf("~join_three_string() s >%s<  \n", new_str); 
 	return (new_str);
 }

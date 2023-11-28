@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:42:05 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:46:22 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ int	main(int argc, char **argv, char **env)
 	show_env_llist(&env_llst);
 
 	builtin_cd(&env_llst, &env_llst_sorted, "src");
-
 	builtin_cd(&env_llst, &env_llst_sorted, "builtins");
-
+	builtin_cd(&env_llst, &env_llst_sorted, "~");
 	
 	show_env_llist(&env_llst);
+	builtin_cd(&env_llst, &env_llst_sorted, "-");
+
+	show_env_llist(&env_llst);
+
 	
 	lst_dealloc(&hist_llst, 1);
 	lst_dealloc(&env_llst, 1);
