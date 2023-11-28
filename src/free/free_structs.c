@@ -6,11 +6,23 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 14:47:23 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:36:41 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_token(t_token *token)
+{
+	if (token)
+	{
+		if (token->content)
+			free(token->content);
+		if (token->next)
+			token->next->prev = NULL;
+		free(token);
+	}
+}
 
 /* Free linked token list. Starting at given node */
 void	free_lx(t_token *token)
@@ -24,9 +36,7 @@ void	free_lx(t_token *token)
 	while (cur != NULL)
 	{
 		next = cur->next;
-		if (cur->content != NULL)
-			free(cur->content);
-		free(cur);
+		free_token(cur);
 		cur = next;
 	}
 }
@@ -83,4 +93,14 @@ void	free_exp(t_expand *exp)
 		free(exp);
 		exp = next;
 	}
+}
+
+void	free_ms(t_ms *ms)
+{
+	free_lx(ms->tk);
+	free_exp(ms->exp);
+	free_cmd(ms->cmd);
+	if (ms->last_exit_code)
+		free(ms->last_exit_code);
+	ft_lstclear(ms->envp, ft_lstdelone);
 }

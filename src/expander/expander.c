@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:11:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:22:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	expand_word_token(t_token *tk, t_ms *ms)
 
 /* Checks all lexer tokens for TOKEN_WORD, expands env variables
 (if valid) and remove quotes */
-void	expander(t_ms *ms)
+void	expand(t_ms *ms)
 {
 	t_token	*cur;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:10:30 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/21 14:13:20 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:20:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef struct	s_cmd
 
 /* Parse struct, saves pointer to token list
 and command list */
-typedef struct	s_parse
-{
-	t_token	*tk;
-	t_cmd	*cmd;
-}				t_parse;
+// typedef struct	s_parse
+// {
+// 	t_token	*tk;
+// 	t_cmd	*cmd;
+// }				t_parse;
 
-#endif
+// #endif

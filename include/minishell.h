@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:44:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:36:57 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ typedef struct s_ms
 	t_list		*envp;
 	t_expand	*exp;
 	char		*last_exit_code;
+	char		*unexpected_token;
 }				t_ms;
 
-/* Expander */
+/* Init */
+void		init_ms(t_ms *ms);
 
-void		expander(t_ms *ms);
+/* EXPANDER */
+
+void		expand(t_ms *ms);
 void		check_if_valid_quote_count(t_token *token, t_ms *ms);
 t_expand	*create_expand_node(t_ms *ms);
 t_expand	*append_chunk(t_ms *ms);
@@ -68,16 +72,21 @@ void		expand_double_quote_content(char **str, t_ms *ms,
 char		*join_chunks_to_final_word(t_ms *ms);
 void		create_empty_string_chunk(t_ms *ms);
 
+/* PARSER */
+t_cmd		*create_cmd_node(t_ms *ms);
+t_cmd		*append_cmd_node(t_ms *ms);
+
 /* Error handling */
 
 void		check_if_malloc_failed(void *src, t_ms *ms);
 void		ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 void		lx_error(t_token *tk_head, char *msg, int shall_exit,
 				int use_errno);
-void		parse_error(t_parse *parse, char *msg, int shall_exit,
+// void		parse_error(t_parse *parse, char *msg, int shall_exit,
 				int use_errno);
 
 /* Freeing stuff */
+void		free_token(t_token *token);
 void		free_lx(t_token *token);
 void		free_redir(t_redir *redir);
 void		free_cmd(t_cmd *cmd);

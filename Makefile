@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/28 15:53:08 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/28 16:31:02 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILES	=	main \
+				init/init_structs \
 				error/error_handling \
 				error/error_checks \
 				free/free_structs \
@@ -48,7 +49,9 @@ SRC_FILES	=	main \
 				expander/join_chunks \
 				expander/create_chunks \
 				expander/env_checks \
-				# parser/parser 
+				# parser/parser \
+				# parser/list_functions \
+				
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -64,6 +67,7 @@ $(NAME):	$(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)/init
 			@mkdir -p $(OBJ_DIR)/lexer
 			@mkdir -p $(OBJ_DIR)/expander
 			# @mkdir -p $(OBJ_DIR)/parser

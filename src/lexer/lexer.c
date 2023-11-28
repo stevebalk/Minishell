@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 14:51:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:22:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	set_token(t_token *token, char *str, t_token *lx)
 
 /* Takes an input string and breaks it down into tokens.
 It creates and sets tokenparamters based on the given rules*/
-t_token	*lexer(char *str)
+t_token	*lex(char *str)
 {
 	t_token	*head;
 	t_token	*cur_token;

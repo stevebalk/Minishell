@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 14:46:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:23:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ typedef struct s_token
 t_token		*create_token(t_token *tk_head);
 int			set_special_token(char *str, t_token *token, t_token *tk_head);
 int			set_word_token(char *str, t_token *token, t_token *tk_head);
-int			set_word_quote_token(char *str, t_token *token, t_token *tk_head);
-t_token		*lexer(char *str);
+t_token		*lex(char *str);
 t_token		*get_last_token(t_token *lx);
 
 #endif

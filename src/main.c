@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/27 16:34:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 17:24:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	main(int argc, char **argv)
 	char	*test_lines[MAX_LINES];
 	t_ms	ms;
 
-	ms = (t_ms){NULL, NULL, NULL, NULL, "127"};
-
+	init_ms(&ms);
+	ms.last_exit_code = "127";
 	if (argc == 2)
 	{
 		if (access(argv[1], F_OK) == 0)
@@ -79,15 +79,16 @@ int	main(int argc, char **argv)
 		printf("Testfile should be filled with bash commands\n");
 		exit(EXIT_FAILURE);
 	}
-	ms.tk = lexer(test_lines[0]);
+	ms.tk = lex(test_lines[0]);
 	print_lexer_struct(ms.tk);
-	expander(&ms);
+	expand(&ms);
 	print_lexer_struct(ms.tk);
+	ms_error(&ms, NULL, 0, 0);
+	free(test_lines[0]);
+}
+
 	// char *args[] = {NULL, NULL, NULL};
 	// args[0] = ms.tk->content;
 	// args[1] = ms.tk->next->content;
 	// execv("/bin/ls", args);
 	// perror("execv");
-	ms_error(&ms, NULL, 0, 0);
-	free(test_lines[0]);
-}
