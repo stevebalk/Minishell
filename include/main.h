@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 16:21:52 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:41:53 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_echo(void);
 
 // pwd
-void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted);
+void	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
 void	builtin_cd(char *in);

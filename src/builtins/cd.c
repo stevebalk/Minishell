@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 16:21:35 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:57:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,33 @@
 The cd command in Bash (Bourne Again SHell) is used for changing the current working directory. Here are various ways you can use the cd command with different types of path specifications:
 
 Absolute Path: Specify the full path from the root directory.
-
 Example: cd /usr/local/bin
+
 Relative Path: Specify the path relative to the current directory.
-
 Example: cd Documents/Projects (Moves into the 'Projects' directory inside 'Documents' from the current directory)
+
 Home Directory (~): This represents the user's home directory.
-
 Example: cd ~ or simply cd (Moves to the user's home directory)
+
 Parent Directory (..): Moves up one directory level.
-
 Example: cd .. (Moves to the parent directory of the current directory)
+
 Current Directory (.): Represents the current directory.
-
 Example: cd . (Stays in the current directory)
+
 Dash (-): Moves to the last working directory.
-
 Example: cd - (Switches between the current and last directories)
+OLDPWD  in environment
+
 Environment Variables: Use environment variables in the path.
-
 Example: cd $HOME/Downloads (Moves to the 'Downloads' directory inside the user's home directory)
+
 Subshell Expansion: Navigate to directories using command substitution.
-
 Example: cd $(dirname $(which python)) (Moves to the directory where the Python executable is located)
-Brace Expansion: Useful for navigating to similarly named directories.
 
+Brace Expansion: Useful for navigating to similarly named directories.
 Example: cd /usr/{local,bin} (This will try to move to '/usr/local', and if it fails, it will try '/usr/bin')
+
 These are the common ways to use the cd command in Bash. The actual path you specify will depend on the directory structure of your system and where you want to navigate.
 */
 
@@ -50,20 +51,54 @@ Jonas:
 .. and . works fine ... nothing to do
 
 ~(home directory)		does not work 
+
+Fehlermeldung wenn Verzeichnis nicht vorhanden
+cd pipp
+bash: cd: pipp: No such file or directory
+
+Fehlermeldung wenn Rechte nicht passen
+mkdir TEST
+bash-3.2$ chmod 000 TEST
+bash-3.2$ cd TEST/
+bash: cd: TEST/: Permission denied
+
+export HOME=/Users/jonas/shelltests/nonexistingfolder			---> works, but 
+cd ~				---> does NOT work
+bash: cd: /Users/jonas/shelltests/nonexistingfolder: No such file or directory
+
+
+After starting a new Terminal
+cd -
+bash: cd: OLDPWD not set
 */
 
 // ######## TEST ########
 
 void	builtin_cd(char *in)
 {
+	char *tmp_str;
+	(void)tmp_str;
+	
+	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to last dir
+		// if !OLDWPD  --> "cd: OLDPWD not set"
 	}
-	if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
+	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to home dir
+		//tmp_str = get_val_of_var(XXX, "HOME");
+		// change
+		//free(tmp_str);
 	}
+	else 
+	{
+		
+	}
+
+	// if new change directory is valid --> copy pwd  to old pwd
+
 	
 }
 
@@ -88,7 +123,7 @@ void test_change_dir(void)
         exit(EXIT_FAILURE);
     }
 
-	builtin_pwd(NULL, NULL);
+	builtin_pwd(NULL, NULL, 1);
 	
 
 	c_red(); printf("~test_change_dir()\n"); c_reset();

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:40:32 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 17:22:31 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:41:35 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
-			
-void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted)
+
+void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd)
 {
 	c_yellow(); printf("builtin_pwd()\n"); c_reset();
 
@@ -35,8 +35,11 @@ void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted)
         exit(1);
 	}
 
-	c_green();
-	printf("%s\n", buffer);
+	if (print_pwd)
+	{
+		c_green();
+		printf("%s\n", buffer);
+	}
 	
 	pwd = join_three_string("PWD", "=", buffer);
 	if (env_llst && env_llst)
