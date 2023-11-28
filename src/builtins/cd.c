@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 16:57:49 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:35:12 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ bash: cd: OLDPWD not set
 
 // ######## TEST ########
 
-void	builtin_cd(char *in)
+void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
 	char *tmp_str;
 	(void)tmp_str;
-	
+	c_yellow(); printf("builtin_cd()  >%s\n", in); c_reset();
+
 	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
@@ -94,12 +95,44 @@ void	builtin_cd(char *in)
 	}
 	else 
 	{
-		
+		builtin_cd_change_dir(env_llst, env_llst_sorted, in);
 	}
 
 	// if new change directory is valid --> copy pwd  to old pwd
 
+	c_red(); printf("~builtin_cd()\n"); c_reset();
+
+}
+void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
+{
+	//const char *path = "./libs/libft"; 
+
+	c_purple(); printf("builtin_cd_change_dir()  >%s\n", path); 	c_reset();
+	char *last_pwd;
+	char *tmp_value;
 	
+	last_pwd = get_val_of_var(env_llst, "PWD");
+	c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
+    // Change the current working directory
+    if (chdir(path) != 0) 
+	{
+		c_blue(); printf("MIST\n"); c_reset();
+        perror("chdir failed");
+		free(last_pwd);
+        exit(EXIT_FAILURE);
+    }
+	else
+	{	
+		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
+		c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
+
+		export_single_arg(env_llst, env_llst_sorted, tmp_value);
+		builtin_pwd(NULL, NULL, 1);
+		free(tmp_value);
+	}
+
+	free(last_pwd);
+	c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
 }
 
 void test_change_dir(void) 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:18:59 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:36:58 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_val_of_var_value_allocation(char *v_name, void *cont,
 	tmp_str = (char *)malloc(sizeof(char) * (l_cont + 1));
 	if (!tmp_str)
 		return ;
-	ft_strlcpy(tmp_str, (char *)cont, l_cont);
+	ft_strlcpy(tmp_str, (char *)cont, l_cont + 1);
 	if ((ft_strncmp(v_name, (char *)cont, l_v_name) == 0)
 		&& ((l_cont == l_v_name) || is_s_in_pos_of_str(tmp_str, l_v_name, '=')))
 	{
@@ -55,12 +55,12 @@ char	*get_val_of_var(t_list **llst, char *var_name)
 
 	tmp_value = NULL;
 	tmp_lst = *llst;
-	//c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
+	c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
 	while (tmp_lst)
 	{
 		get_val_of_var_value_allocation(var_name, tmp_lst->content, &tmp_value);
 		tmp_lst = tmp_lst->next;
 	}
-	//c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
+	c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 	return (tmp_value);
 }

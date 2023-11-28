@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 17:19:42 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:25:25 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ int	main(int argc, char **argv, char **env)
 	test_getcwd();
 	test_opendir();
 	test_is_dir_valid("libs");
-	builtin_pwd(&env_llst, &env_llst_sorted);
-	test_change_dir();
-
+	builtin_pwd(&env_llst, &env_llst_sorted, 1);
 	
-	//show_env_llist(&env_llst);
+	builtin_cd(&env_llst, &env_llst_sorted, "src");
+	
+	show_env_llist(&env_llst);
 	
 	lst_dealloc(&hist_llst, 1);
 	lst_dealloc(&env_llst, 1);

@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 16:41:53 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:23:58 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_var_names
 	char	*value_added_quotes;
 	int		has_equal;
 }	t_var_names;
+
 
 int		main(int argc, char **argv, char **env);
 
@@ -149,7 +150,8 @@ void	test_echo(void);
 void	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
-void	builtin_cd(char *in);
+void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
+void	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
 	
 void test_change_dir(void);
 void test_getcwd(void);
