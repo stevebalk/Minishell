@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:01:28 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 14:31:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:46:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ INFILE			= <
 HERE_DOC		= <<
 TOKEN_EOF		= NULL
 */
-typedef	enum
+typedef enum e_token_type
 {
 	TOKEN_WORD				= 0,
 	TOKEN_PIPE				= 1,
@@ -33,7 +33,7 @@ typedef	enum
 	TOKEN_HERE_DOC			= 5,
 	TOKEN_VARIABLE			= 6,
 	TOKEN_EOF				= 7
-}		e_token_type;
+}		t_token_type;
 
 # define TOKEN_TYPES	"|<>"
 
@@ -45,9 +45,9 @@ type		= Which token type (WORD, PIPE, REDIRECT ...)
 content		= String for the specific token
 join		= Should the content joined with the next token?
 */
-typedef struct	s_token
+typedef struct s_token
 {
-	e_token_type	type;
+	t_token_type	type;
 	char			*content;
 	struct s_token	*next;
 	struct s_token	*prev;

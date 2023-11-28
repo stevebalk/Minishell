@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/24 17:20:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:47:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_cmd(t_cmd *cmd)
 	{
 		next = cur->next;
 		if (cur->argv != NULL)
-			ft_free_array((void**)cur->argv);
+			ft_free_array((void **)cur->argv);
 		if (cur->redirs != NULL)
 			free_redir(cur->redirs);
 		free(cur);

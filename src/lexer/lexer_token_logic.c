@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:14:36 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/25 14:28:12 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:52:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	set_special_token(char *str, t_token *token, t_token *tk_head)
 		token->type = TOKEN_REDIRECT_APPEND;
 		ret++;
 	}
-	else if(ft_strncmp(str, ">", 1) == 0)
+	else if (ft_strncmp(str, ">", 1) == 0)
 		token->type = TOKEN_REDIRECT;
 	else if (ft_strncmp(str, "|", 1) == 0)
 		token->type = TOKEN_PIPE;
@@ -68,28 +68,12 @@ int	set_special_token(char *str, t_token *token, t_token *tk_head)
 	return (ret);
 }
 
-// /* Set a word token until the matching quote, including quotes */
-// int	set_word_quote_token(char *str, t_token *token, t_token *tk_head)
-// {
-// 	int		length;
-
-// 	length = 0;
-// 	length = get_quote_length(str, tk_head);
-// 	token->content = malloc((length + 1) * sizeof(char));
-// 	if (token->content == NULL)
-// 		lx_error(tk_head, "Malloc failed", 1, 1);
-// 	ft_strlcpy(token->content, str, length + 1);
-// 	token->type = TOKEN_WORD;
-// 	set_join_flag(str + length, token);
-// 	return (length);
-// }
-
 /* Set a word token until it hits a whitespace, quote
 metacharacter or a newline */
 int	set_word_token(char *str, t_token *token, t_token *tk_head)
 {
-	int length;
-	char quote;
+	int		length;
+	char	quote;
 
 	quote = 0;
 	length = 0;
@@ -100,7 +84,7 @@ int	set_word_token(char *str, t_token *token, t_token *tk_head)
 		else if (str[length] == quote)
 			quote = 0;
 		if (quote == 0 && str[length] == ' ')
-			break;
+			break ;
 		length++;
 	}
 	token->content = malloc((length + 1) * sizeof(char));

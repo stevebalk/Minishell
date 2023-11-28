@@ -5,21 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 10:47:25 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:42:50 by sbalk            ###   ########.fr       */
+/*   Created: 2023/11/28 15:47:50 by sbalk             #+#    #+#             */
+/*   Updated: 2023/11/28 15:52:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /* Create an expand node and initalize it */
-t_expand	*create_expand_node(t_ms *ms)
+t_cmd	*create_expand_node(t_ms *ms)
 {
-	t_expand	*node;
+	t_cmd	*node;
 
-	node = malloc(1 * sizeof(t_expand));
+	node = malloc(1 * sizeof(t_cmd));
 	check_if_malloc_failed((void *)node, ms);
 	node->next = NULL;
+	node->
 	node->str = NULL;
 	return (node);
 }

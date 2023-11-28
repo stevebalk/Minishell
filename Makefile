@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/24 17:21:18 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/28 15:53:08 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,11 @@ SRC_FILES	=	main \
 				expander/expand_variable \
 				expander/checks \
 				expander/list_functions \
-				# parser/parser \
+				expander/expand_word_chunks \
+				expander/join_chunks \
+				expander/create_chunks \
+				expander/env_checks \
+				# parser/parser 
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

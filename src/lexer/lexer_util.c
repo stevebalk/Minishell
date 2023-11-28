@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:02:12 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/22 13:46:07 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/28 14:52:45 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_token *get_last_token(t_token *token)
+t_token	*get_last_token(t_token *token)
 {
 	while (token->next != NULL)
 		token = token->next;
