@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:25:25 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:42:05 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ int	main(int argc, char **argv, char **env)
 	test_opendir();
 	test_is_dir_valid("libs");
 	builtin_pwd(&env_llst, &env_llst_sorted, 1);
-	
+	show_env_llist(&env_llst);
+
 	builtin_cd(&env_llst, &env_llst_sorted, "src");
+
+	builtin_cd(&env_llst, &env_llst_sorted, "builtins");
+
 	
 	show_env_llist(&env_llst);
 	

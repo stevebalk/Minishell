@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:35:12 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/28 19:41:31 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 		c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
 
 		export_single_arg(env_llst, env_llst_sorted, tmp_value);
-		builtin_pwd(NULL, NULL, 1);
+		builtin_pwd(env_llst, env_llst_sorted, 1);
 		free(tmp_value);
 	}
 
