@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:42:50 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:39:38 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/main.h"
+#include "../../include/minishell.h"
+
+/* DEBUG DELETE LATER */
+void	print_lexer_struct(t_token *tk)
+{
+	while (tk != NULL)
+	{
+		printf("Type: %i\n", tk->type);
+		printf("String: %s\n", tk->content);
+		printf("\n");
+		tk = tk->next;
+	}
+}
+
+// copy from steves main after first merge
+void quick_lexer(char *prompt_in)	
+{
+	t_ms	ms;
+
+	init_ms(&ms);
+	ms.last_exit_code = "127";
+	ms.tk = lex(prompt_in); // Hier den String angeben der getestet werden soll
+	print_lexer_struct(ms.tk); // DEBUG before expand
+	expand(&ms);
+	print_lexer_struct(ms.tk); // DEBUG after expand
+	//free_ms(&ms);
+}
+
 
 void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted)
 {
@@ -41,8 +69,10 @@ void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
 					free(prompt_in);
 					break ;
 				}
-				test_parser_unset(env_llst, env_llst_sorted, prompt_in);
-				test_parser_export(env_llst, env_llst_sorted, prompt_in);
+				// test_parser_unset(env_llst, env_llst_sorted, prompt_in);
+				// test_parser_export(env_llst, env_llst_sorted, prompt_in);
+				quick_lexer(prompt_in);		// copy from steves main after first merge
+				c_green(); printf("after quick lexer\n");
 				limit_history_llst(history_lst);
 				write_history_llst(FILE_HISTORY, history_lst);
 				add_history(prompt_in);

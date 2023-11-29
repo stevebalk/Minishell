@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 11:43:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 12:41:16 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
 #include "minishell.h"
 
-/* DEBUG DELETE LATER */
-void	print_lexer_struct(t_token *tk)
-{
-	while (tk != NULL)
-	{
-		printf("Type: %i\n", tk->type);
-		printf("String: %s\n", tk->content);
-		printf("\n");
-		tk = tk->next;
-	}
-}
+// /* DEBUG DELETE LATER */
+// void	print_lexer_struct(t_token *tk)
+// {
+// 	while (tk != NULL)
+// 	{
+// 		printf("Type: %i\n", tk->type);
+// 		printf("String: %s\n", tk->content);
+// 		printf("\n");
+// 		tk = tk->next;
+// 	}
+// }
 
 int	main(int argc, char **argv, char **env)
 {
@@ -44,7 +44,6 @@ int	main(int argc, char **argv, char **env)
 	
 	history_master(&hist_llst);
 	prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
-	
 	lst_dealloc(&hist_llst, 1);
 	lst_dealloc(&env_llst, 1);
 	lst_dealloc(&env_llst_sorted, 1);
@@ -55,19 +54,20 @@ int	main(int argc, char **argv, char **env)
 }
 
 
-// int	main(int argc, char **argv)
-// {
-// 	t_ms	ms;
+/*
+int	main(int argc, char **argv)
+{
+	t_ms	ms;
 
-// 	init_ms(&ms);
-// 	ms.last_exit_code = "127";
-// 	ms.tk = lex(*SOME_STRING); // Hier den String angeben der getestet werden soll
-// 	print_lexer_struct(ms.tk); // DEBUG before expand
-// 	expand(&ms);
-// 	print_lexer_struct(ms.tk); // DEBUG after expand
-// 	free_ms(&ms);
-// }
-
+	init_ms(&ms);
+	ms.last_exit_code = "127";
+	ms.tk = lex(*SOME_STRING); // Hier den String angeben der getestet werden soll
+	print_lexer_struct(ms.tk); // DEBUG before expand
+	expand(&ms);
+	print_lexer_struct(ms.tk); // DEBUG after expand
+	free_ms(&ms);
+}
+*/
 	// char *args[] = {NULL, NULL, NULL};
 	// args[0] = ms.tk->content;
 	// args[1] = ms.tk->next->content;
