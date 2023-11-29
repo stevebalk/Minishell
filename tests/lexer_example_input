@@ -1,5 +1,5 @@
-echo hola <<<< bonjour
     <<$A cat>>outfile|cat>outfile|'$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
+echo hola <<<< bonjour
 << $"hol"a'l  ol' > lol
 <infile cat>"outfile">'outfile2'<"../minishell/infile2" | cat
 '$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'

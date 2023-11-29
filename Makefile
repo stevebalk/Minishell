@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/28 16:31:02 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/29 11:08:34 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/init
 			@mkdir -p $(OBJ_DIR)/lexer
 			@mkdir -p $(OBJ_DIR)/expander
-			# @mkdir -p $(OBJ_DIR)/parser
+			@mkdir -p $(OBJ_DIR)/parser
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"

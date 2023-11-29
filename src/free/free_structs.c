@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 17:36:41 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 11:20:58 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ void	free_ms(t_ms *ms)
 	free_cmd(ms->cmd);
 	if (ms->last_exit_code)
 		free(ms->last_exit_code);
-	ft_lstclear(ms->envp, ft_lstdelone);
+	// ft_lstclear(&(ms->envp), ft_lstdelone);
 }

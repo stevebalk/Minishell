@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 17:36:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 11:10:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		check_if_malloc_failed(void *src, t_ms *ms);
 void		ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 void		lx_error(t_token *tk_head, char *msg, int shall_exit,
 				int use_errno);
-// void		parse_error(t_parse *parse, char *msg, int shall_exit,
+void		parse_error(t_parse *parse, char *msg, int shall_exit,
 				int use_errno);
 
 /* Freeing stuff */
