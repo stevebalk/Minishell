@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_b.c                                         :+:      :+:    :+:   */
+/*   error_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 11:33:35 by sbalk            ###   ########.fr       */
+/*   Created: 2023/11/23 11:31:29 by sbalk             #+#    #+#             */
+/*   Updated: 2023/11/29 11:34:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "minishell.h"
 
-void	c_cyan(void)
+void	check_if_malloc_failed(void *src, t_ms *ms)
 {
-	printf("\033[0;36m");
+	if (src == NULL)
+		ms_error(ms, NULL, 1, 1);
 }
-
-void	clear_screen(void)
-{
-	printf("\e[1;1H\e[2J");
-}
-
-void	c_reset(void)
-{
-	printf("\033[0m");
-}
-

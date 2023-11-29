@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_b.c                                         :+:      :+:    :+:   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 11:33:35 by sbalk            ###   ########.fr       */
+/*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
+/*   Updated: 2023/11/28 16:27:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "minishell.h"
 
-void	c_cyan(void)
+void	init_ms(t_ms *ms)
 {
-	printf("\033[0;36m");
+	ms->cmd = NULL;
+	ms->envp = NULL;
+	ms->exp = NULL;
+	ms->last_exit_code = NULL;
+	ms->tk = NULL;
+	ms->unexpected_token = NULL;
 }
-
-void	clear_screen(void)
-{
-	printf("\e[1;1H\e[2J");
-}
-
-void	c_reset(void)
-{
-	printf("\033[0m");
-}
-

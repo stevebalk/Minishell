@@ -4,3 +4,4 @@ obj/
 a.out
 minishell
 history.txt
+.vscode/

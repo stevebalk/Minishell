@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/27 15:33:49 by jopeters         ###   ########.fr        #
+#    Updated: 2023/11/29 11:45:56 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minishell
+NAME		= lexer
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
 CC			= cc
@@ -57,7 +57,26 @@ SRC_FILES	=	main \
 				utils/j_temp \
 				prompt/prompt \
 				prompt/signal \
-				test_tmp/tests
+				test_tmp/tests \
+				init/init_structs \
+				error/error_handling \
+				error/error_checks \
+				free/free_structs \
+				lexer/lexer \
+				lexer/lexer_util \
+				lexer/lexer_token_logic \
+				expander/expander \
+				expander/expand_variable \
+				expander/checks \
+				expander/list_functions \
+				expander/expand_word_chunks \
+				expander/join_chunks \
+				expander/create_chunks \
+				expander/env_checks \
+				# parser/parser \
+				# parser/list_functions \
+				
+				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -86,7 +105,12 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/builtins
 			@mkdir -p $(OBJ_DIR)/prompt
 			@mkdir -p $(OBJ_DIR)/test_tmp
-			
+			@mkdir -p $(OBJ_DIR)/init
+			@mkdir -p $(OBJ_DIR)/lexer
+			@mkdir -p $(OBJ_DIR)/expander
+			@mkdir -p $(OBJ_DIR)/parser
+			@mkdir -p $(OBJ_DIR)/error
+			@mkdir -p $(OBJ_DIR)/free
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
@@ -98,7 +122,7 @@ clean:
 fclean:		clean
 			@make fclean -C $(LIB_DIR)
 			@$(RM) -f $(NAME)
-#			@echo "$(CYAN)$(NAME) executable files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)$(NAME) executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
 			@echo "$(GREEN)Cleaned and rebuilt everything for $(NAME)!$(DEF_COLOR)"
