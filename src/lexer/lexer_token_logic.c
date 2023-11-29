@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_token_logic.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:14:36 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 14:52:31 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 20:53:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,6 @@ static void	create_token_content(t_token *token, char *str,
 		lx_error(tk_head, "Malloc failed", 1, 1);
 	ft_strlcpy(token->content, str, size + 1);
 }
-
-// /* Search for matching quote. If it doesn't find one it
-// throws an error and exits the shell */
-// static int	get_quote_length(char *str, t_token *tk_head)
-// {
-// 	int		ret;
-// 	char	quote;
-
-// 	ret = 1;
-// 	quote = *str;
-// 	while (str[ret] != '\0')
-// 	{
-// 		if (str[ret] == quote)
-// 			return (ret + 1);
-// 		ret++;
-// 	}
-// 	lx_error(tk_head, "No matching quote", 1, 0);
-// 	return (ret);
-// }
 
 /* Checks which metacharacter it is and sets the 
 token type accordingly. Returns token string length */
