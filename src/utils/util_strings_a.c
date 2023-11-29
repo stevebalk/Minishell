@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:16:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:47:45 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_string_till_first_symbol(char *str_in, char symbol)
 	new_str = str_in;
 	while (str_in[i] != symbol)
 		i++;
-	printf("i: %i \n", i);
+	//printf("i: %i \n", i);
 	new_str = (char *)malloc(sizeof(char) * (i + 1));
 	if (!new_str)
 		return (NULL);
@@ -147,7 +147,7 @@ char	*join_three_string(char *str1, char *str2, char *str3)
 {
 	char	*new_str;
 	int		len[3];
-		//c_yellow(); printf("join_three_string() s1 >%s<   s2 >%s<   s3 >%s<\n", str1, str2, str3); 
+	//c_yellow(); printf("join_three_string() s1 >%s<   s2 >%s<   s3 >%s<\n", str1, str2, str3); 
 	len[0] = ft_strlen(str1);
 	len[1] = ft_strlen(str2);
 	len[2] = ft_strlen(str3);
@@ -158,6 +158,6 @@ char	*join_three_string(char *str1, char *str2, char *str3)
 	ft_strlcat(new_str, str1, len[0] + 1);
 	ft_strlcat(new_str, str2, ft_strlen(new_str) + len[1] + 1);
 	ft_strlcat(new_str, str3, ft_strlen(new_str) + len[2] + 1);
-	c_red(); printf("~join_three_string() s >%s<  \n", new_str); 
+	//c_red(); printf("~join_three_string() s >%s<  \n", new_str); 
 	return (new_str);
 }

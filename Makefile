@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/29 11:45:56 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/29 12:54:35 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		= lexer
 LIB_DIR		= libs/libft/
@@ -38,11 +39,13 @@ WHITE = \033[0;97m
 				 
 
 SRC_FILES	=	main \
+				builtins/cd \
 				builtins/echo \
 				builtins/env_a \
 				builtins/exit_a \
 				builtins/export_a \
 				builtins/export_b \
+				builtins/pwd \
 				builtins/unset_a \
 				utils/colors_a \
 				utils/colors_b \

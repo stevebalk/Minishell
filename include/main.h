@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:03:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:23:58 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../libs/libft/include/libft.h"
 #include <fcntl.h>
 #include <signal.h>
+#include <dirent.h>
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
@@ -34,6 +35,7 @@ typedef struct s_var_names
 	char	*value_added_quotes;
 	int		has_equal;
 }	t_var_names;
+
 
 int		main(int argc, char **argv, char **env);
 
@@ -143,3 +145,15 @@ void	test_var_names(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_echo(void);
+
+// pwd
+void	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
+
+// CD
+void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
+void	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
+	
+void test_change_dir(void);
+void test_getcwd(void);
+void test_opendir(void);
+void test_is_dir_valid(char *dir);
