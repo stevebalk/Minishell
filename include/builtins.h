@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:23:58 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:36:40 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include "../libs/libft/include/libft.h"
-#include <fcntl.h>
-#include <signal.h>
-#include <dirent.h>
+#ifndef BUILTINS_H
+# define BUILTINS_H
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "../libs/libft/include/libft.h"
+# include <fcntl.h>
+# include <signal.h>
+# include <dirent.h>
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
@@ -40,8 +42,7 @@ typedef struct s_var_names
 int		main(int argc, char **argv, char **env);
 
 // Prompt
-void	prompt_handler(t_list **history_lst, t_list **env_llst,
-			t_list **env_llst_sorted);
+void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted);
 
 // prompt/signal
 void	handle_sigint(int sig);
@@ -157,3 +158,5 @@ void test_change_dir(void);
 void test_getcwd(void);
 void test_opendir(void);
 void test_is_dir_valid(char *dir);
+
+#endif

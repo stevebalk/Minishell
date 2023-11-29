@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 13:56:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:32:50 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 int	ms_exit(char *arg)
 {

@@ -6,11 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 12:53:21 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:27:03 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+//#include "../include/minishell.h"
 #include "minishell.h"
 
 // /* DEBUG DELETE LATER */
@@ -27,27 +27,26 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_list	*hist_llst;
-	t_list	*env_llst;
-	t_list	*env_llst_sorted;
+	// t_list	*hist_llst;
+	// t_list	*env_llst;
+	// t_list	*env_llst_sorted;
+	t_ms	ms;
 
-	hist_llst = NULL;
-	env_llst = NULL;
-	env_llst_sorted = NULL;
+	init_ms(&ms);
+	
 	(void)argc;
 	(void)argv;
 	(void)env;
-	(void)hist_llst;
 
-	load_env_to_llst(&env_llst, env);
-	copy_llst(&env_llst, &env_llst_sorted);
+	load_env_to_llst(&ms.env_llst, env);
+	copy_llst(&ms.env_llst, &ms.env_llst_sorted);
 	
-	history_master(&hist_llst);
-	prompt_handler(&hist_llst, &env_llst, &env_llst_sorted);
+	history_master(&ms.hist_llst);
+	prompt_handler(&ms.hist_llst, &ms.env_llst, &ms.env_llst_sorted);
 	
-	lst_dealloc(&hist_llst, 1);
-	lst_dealloc(&env_llst, 1);
-	lst_dealloc(&env_llst_sorted, 1);
+	lst_dealloc(&ms.hist_llst, 1);
+	lst_dealloc(&ms.env_llst, 1);
+	lst_dealloc(&ms.env_llst_sorted, 1);
 	c_red();
 	printf("~main ()\n");
 	c_reset();

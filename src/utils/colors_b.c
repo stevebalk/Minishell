@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   colors_b.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 11:33:35 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:44 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 void	c_cyan(void)
 {

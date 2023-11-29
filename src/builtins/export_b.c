@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_b.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:34 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:04:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:33:04 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 // returns 1 if c is alpha or _
 int	check_first_c(char c)

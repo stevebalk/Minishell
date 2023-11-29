@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_b.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:09:30 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:17:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:31 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 // returns the position of \n otherwise -1
 int	find_newline(char *str)

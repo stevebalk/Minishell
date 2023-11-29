@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_a.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 14:11:15 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:19 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 // delete fir node of a linked list
 void	lst_delete_first(t_list **llist)

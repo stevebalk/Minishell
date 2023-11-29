@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   j_temp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:50:37 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/27 14:10:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:32:14 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 /*
 Temporäre Funktionen von Jonas ... sollte in vor dem Release gelöscht, 
@@ -23,7 +23,6 @@ void	show_var_names(t_var_names *var)
 	c_purple();
 	printf("show_var_names() \n");
 	c_blue();
-	fflush(stdout);
 	printf("   raw_copy >%s<\n", var->raw_copy);
 	printf("   var_name >%s<\n", var->var_name);
 	printf("   raw_value >%s<\n", var->raw_value);

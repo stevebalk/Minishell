@@ -6,11 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:36:58 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:25 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 // this function is for get_val_of_var();
 // don´t call it alone!; its for finding the value of an var

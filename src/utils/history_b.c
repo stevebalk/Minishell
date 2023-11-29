@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   history_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:20 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/27 17:26:49 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:12 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 void	show_history_llist(t_list **lst)
 {

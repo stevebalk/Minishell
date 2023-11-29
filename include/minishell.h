@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 12:29:23 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:39:32 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@
 # include "lexer.h"
 # include "expander.h"
 # include "parser.h"
+# include "builtins.h"
+
+# include <readline/readline.h>
+# include <readline/history.h>
+
+# include <signal.h>
+# include <dirent.h>
+
+# define FILE_HISTORY "history.txt"
+# define MAX_HISTORY 10
+# define CLR_SCREEN 0
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣤⡀⠀⠀
@@ -47,9 +58,16 @@ typedef struct s_ms
 	t_cmd		*cmd;
 	t_list		*envp;
 	t_expand	*exp;
+
+	t_list		*hist_llst;
+	t_list		*env_llst;
+	t_list		*env_llst_sorted;
+
+	
 	char		*last_exit_code;
 	char		*unexpected_token;
 }				t_ms;
+
 
 /* Init */
 void		init_ms(t_ms *ms);

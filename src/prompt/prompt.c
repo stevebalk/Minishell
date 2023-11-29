@@ -6,12 +6,13 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:00:10 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:38:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+//#include "../../include/main.h"
 #include "../../include/minishell.h"
+#include "../include/builtins.h"
 
 /* DEBUG DELETE LATER */
 void	print_lexer_struct(t_token *tk)

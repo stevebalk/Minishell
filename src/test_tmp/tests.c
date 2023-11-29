@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/27 13:50:31 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:30:24 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/main.h"
+#include "../include/builtins.h"
 
 // shows sorted env list when typing "export", 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)

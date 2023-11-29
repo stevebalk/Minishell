@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 16:27:26 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:23:50 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,8 @@ void	init_ms(t_ms *ms)
 	ms->last_exit_code = NULL;
 	ms->tk = NULL;
 	ms->unexpected_token = NULL;
+
+	ms->env_llst = NULL;
+	ms->env_llst_sorted = NULL;
+	ms->hist_llst = NULL;;
 }

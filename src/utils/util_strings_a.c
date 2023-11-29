@@ -6,11 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/28 19:47:45 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:28 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 // returns a string till the first occurence of the given symbol
 char	*get_string_till_first_symbol(char *str_in, char symbol)

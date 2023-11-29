@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dealloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:56:55 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/27 17:25:44 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:31:03 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/main.h"
+#include "../../include/builtins.h"
 
 void	ini_var_names_to_null(t_var_names *var)
 {
