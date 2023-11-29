@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 14:08:56 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:12:53 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv, char **env)
 	lst_dealloc(&ms.hist_llst, 1);
 	lst_dealloc(&ms.env_llst, 1);
 	lst_dealloc(&ms.env_llst_sorted, 1);
-	free_ms(&ms);
+	//free_ms(&ms);
 	
 	c_red(); printf("~main ()\n"); c_reset();
 	return (0);

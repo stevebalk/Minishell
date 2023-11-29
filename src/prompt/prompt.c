@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 14:04:49 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:11:14 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ void	print_lexer_struct(t_token *tk)
 }
 
 // copy from steves main after first merge
-void quick_lexer(char *prompt_in)	
+void quick_lexer(t_ms *ms, char *prompt_in)	
 {
-	t_ms	ms;
+	//t_ms	ms;
 	c_yellow(); printf("quick_lexer() >"); 
 	c_green(); printf("%s", prompt_in);
 	c_yellow(); printf("<\n"); c_reset();
 
-	init_ms(&ms);
-	ms.last_exit_code = "127";
-	ms.tk = lex(prompt_in); // Hier den String angeben der getestet werden soll
+	//init_ms(ms);
+	ms->last_exit_code = "127";
+	ms->tk = lex(prompt_in); // Hier den String angeben der getestet werden soll
 	c_yellow(); printf("DEBUG before expand\n"); c_blue();
 	
-	print_lexer_struct(ms.tk); // DEBUG before expand
-	expand(&ms);
+	print_lexer_struct(ms->tk); // DEBUG before expand
+	expand(ms);
 	
 	c_yellow(); printf("DEBUG after expand\n"); c_blue();
 	
-	print_lexer_struct(ms.tk); // DEBUG after expand
+	print_lexer_struct(ms->tk); // DEBUG after expand
 	
 	c_reset();
 	//free_ms(&ms);
@@ -81,7 +81,7 @@ void	prompt_handler(t_ms *ms)
 				}
 				// test_parser_unset(env_llst, env_llst_sorted, prompt_in);
 				// test_parser_export(env_llst, env_llst_sorted, prompt_in);
-				quick_lexer(prompt_in);		// copy from steves main after first merge
+				quick_lexer(ms, prompt_in);		// copy from steves main after first merge
 				c_green(); printf("after quick lexer\n");
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(FILE_HISTORY, &ms->hist_llst);
