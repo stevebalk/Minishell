@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:16 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:17:21 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ unset a="huhu"    // bash: unset: `a=huhu': not a valid identifier
 unset a 		  // deleted a and value in export and env
 unset			  // does nothing
 unset .			  // bash: unset: `.': not a valid identifier
-unset cc		  // macht nicht wenn cc vorher nicht angelegt worden ist
+unset cc		  // macht nichts wenn cc vorher nicht angelegt worden ist
+unset a=		  // bash: unset: `a=': not a valid identifier
 */
