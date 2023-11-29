@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 14:00:48 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:02:39 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ void	prompt_handler(t_ms *ms)
 	int		hit_sig;
 
 	(void)count;
-	// (void)history_lst;
-	// (void)env_llst;
-	// (void)env_llst_sorted;
+
 	count = 0;
 	prompt_in = NULL;
 	hit_sig = 0;
