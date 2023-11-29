@@ -6,13 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:59 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:24:29 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
-
-
 
 // manage whole arg array; adds or update to env and export llst
 void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
