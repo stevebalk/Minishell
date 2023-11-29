@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:45 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:43:01 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 	while (i++, env[i])
 	{
 		str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
+		if (!str)
+			return ;
 		ft_strlcpy(str, env[i], ft_strlen(env[i]) + 1);
 		if (!env_lst)
 			*env_lst = ft_lstnew((void *)str);

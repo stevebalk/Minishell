@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:38:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 14:00:48 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ void quick_lexer(char *prompt_in)
 }
 
 
-void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted)
+void	prompt_handler(t_ms *ms)
+//void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted)
 {
 	char	*prompt_in;
 	int		count;
 	int		hit_sig;
 
 	(void)count;
-	(void)history_lst;
-	(void)env_llst;
-	(void)env_llst_sorted;
+	// (void)history_lst;
+	// (void)env_llst;
+	// (void)env_llst_sorted;
 	count = 0;
 	prompt_in = NULL;
 	hit_sig = 0;
@@ -72,7 +73,7 @@ void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
 			hit_sig = 1;
 			if (ft_strlen(prompt_in) > 0)
 			{
-				add_variable_to_llst(history_lst, prompt_in);
+				add_variable_to_llst(&ms->hist_llst, prompt_in);
 				if (ft_strncmp(prompt_in, "exit", 4) == 0)
 				{
 					free(prompt_in);
@@ -82,8 +83,8 @@ void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_s
 				// test_parser_export(env_llst, env_llst_sorted, prompt_in);
 				quick_lexer(prompt_in);		// copy from steves main after first merge
 				c_green(); printf("after quick lexer\n");
-				limit_history_llst(history_lst);
-				write_history_llst(FILE_HISTORY, history_lst);
+				limit_history_llst(&ms->hist_llst);
+				write_history_llst(FILE_HISTORY, &ms->hist_llst);
 				add_history(prompt_in);
 				free(prompt_in);
 			}

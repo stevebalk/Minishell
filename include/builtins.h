@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:36:40 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:56:18 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <dirent.h>
+# include "struct.h"
 
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
@@ -42,7 +43,7 @@ typedef struct s_var_names
 int		main(int argc, char **argv, char **env);
 
 // Prompt
-void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted);
+//void	prompt_handler(t_ms *ms);
 
 // prompt/signal
 void	handle_sigint(int sig);

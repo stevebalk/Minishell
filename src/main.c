@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:27:03 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:56:52 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv, char **env)
 	copy_llst(&ms.env_llst, &ms.env_llst_sorted);
 	
 	history_master(&ms.hist_llst);
-	prompt_handler(&ms.hist_llst, &ms.env_llst, &ms.env_llst_sorted);
+	prompt_handler(&ms);
 	
 	lst_dealloc(&ms.hist_llst, 1);
 	lst_dealloc(&ms.env_llst, 1);

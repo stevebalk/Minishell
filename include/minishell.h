@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 13:39:32 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:56:35 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,9 @@ void		free_cmd(t_cmd *cmd);
 void		free_exp(t_expand *exp);
 void		free_ms(t_ms *ms);
 
+
+
+// Jonas
+// Prompt
+void	prompt_handler(t_ms *ms);
 #endif

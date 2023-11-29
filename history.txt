@@ -1,10 +1,10 @@
 cd ..
 cd ..
-cd ..
 << huhu.txt || cd ..
 << huhu.txt | cd ..
 MAKE
 EXIT
+huhu
 huhu
 huhu
 huhu
