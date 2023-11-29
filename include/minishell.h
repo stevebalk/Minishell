@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 11:10:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 17:00:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		create_empty_string_chunk(t_ms *ms);
 /* PARSER */
 t_cmd		*create_cmd_node(t_ms *ms);
 t_cmd		*append_cmd_node(t_ms *ms);
+int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* Error handling */
 
@@ -87,9 +88,12 @@ void		parse_error(t_parse *parse, char *msg, int shall_exit,
 
 /* Freeing stuff */
 void		free_token(t_token *token);
+void		free_token_without_content(t_token *token);
 void		free_lx(t_token *token);
-void		free_redir(t_redir *redir);
+void		free_redir(t_redir **redir);
+t_redir		*free_redir_node(t_redir *node);
 void		free_cmd(t_cmd *cmd);
 void		free_exp(t_expand *exp);
+void		free_ms(t_ms *ms);
 
 #endif

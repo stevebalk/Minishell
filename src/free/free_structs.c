@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 11:20:58 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 16:55:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	free_token(t_token *token)
 	{
 		if (token->content)
 			free(token->content);
+		if (token->next)
+			token->next->prev = NULL;
+		free(token);
+	}
+}
+
+void	free_token_without_content(t_token *token)
+{
+	if (token)
+	{
 		if (token->next)
 			token->next->prev = NULL;
 		free(token);
@@ -41,23 +51,34 @@ void	free_lx(t_token *token)
 	}
 }
 
-void	free_redir(t_redir *redir)
+t_redir	*free_redir_node(t_redir *node)
+{
+	if (node)
+	{
+		if (node->target);
+			free(node->target);
+		free(node);
+	}
+	return (NULL);
+}
+
+void	free_redir_list(t_redir **list)
 {
 	t_redir	*cur;
-	t_redir	*next;
+	t_redir *next;
 
-	if (redir == NULL)
+	if (list == NULL)
 		return ;
-	cur = redir;
+	cur = *list;
 	while (cur != NULL)
 	{
 		next = cur->next;
-		if (cur->param != NULL)
-			free(cur->param);
-		free(cur);
+		free_redir_node(cur);
 		cur = next;
 	}
+	*list = NULL;
 }
+
 
 void	free_cmd(t_cmd *cmd)
 {

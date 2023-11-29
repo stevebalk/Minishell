@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/29 11:08:34 by sbalk            ###   ########.fr        #
+#    Updated: 2023/11/29 12:32:03 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,9 @@ SRC_FILES	=	main \
 				expander/join_chunks \
 				expander/create_chunks \
 				expander/env_checks \
-				# parser/parser \
-				# parser/list_functions \
+				parser/parser \
+				parser/list_functions \
+				parser/error \
 				
 				
 

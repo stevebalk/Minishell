@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:10:30 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 11:11:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 16:52:07 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ redirections in a linked list*/
 typedef struct	s_redir
 {
 	unsigned int	type;
-	char			*param;
+	char			*target;
 	struct s_redir	*next;
 }				t_redir;
 
@@ -34,7 +34,7 @@ typedef struct	s_redir
 and commands */
 typedef struct	s_cmd
 {
-	char			*argv;
+	char			**argv;
 	t_redir			*redirs;
 	struct s_cmd	*next;
 }				t_cmd;

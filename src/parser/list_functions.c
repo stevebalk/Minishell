@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:47:50 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 17:18:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/11/29 17:12:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,29 @@ t_cmd	*append_cmd_node(t_ms *ms)
 		cur = cur->next;
 	cur->next = create_cmd_node(ms);
 	return (cur->next);
+}
+
+void	free_cmd_list_exept_here_doc(t_cmd *cmd)
+{
+	t_cmd	*cmd_next;
+	t_redir	*redir_next;
+	t_redir	*new_list;
+
+	new_list = NULL;
+	while (cmd)
+	{
+		cmd_next = cmd->next;
+		ft_free_array((void **) cmd->argv);
+		while (cmd->redirs)
+		{
+			redir_next = cmd->redirs;
+			if (cmd->redirs->type != TOKEN_HERE_DOC)
+			{
+				free_redir_node(cmd->redirs);
+				cmd->redirs = redir_next;
+			}
+			else
+			{}
+		}
+	}
 }
