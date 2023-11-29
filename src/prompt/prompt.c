@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 12:39:38 by jonas            ###   ########.fr       */
+/*   Updated: 2023/11/29 13:00:10 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,21 @@ void	print_lexer_struct(t_token *tk)
 void quick_lexer(char *prompt_in)	
 {
 	t_ms	ms;
+	c_yellow(); printf("quick_lexer() >"); 
+	c_green(); printf("%s", prompt_in);
+	c_yellow(); printf("<\n"); c_reset();
 
 	init_ms(&ms);
 	ms.last_exit_code = "127";
 	ms.tk = lex(prompt_in); // Hier den String angeben der getestet werden soll
+	c_yellow(); printf("DEBUG before expand\n"); 
+	c_blue();
 	print_lexer_struct(ms.tk); // DEBUG before expand
 	expand(&ms);
+	c_yellow(); printf("DEBUG after expand\n"); 
+	c_blue();
 	print_lexer_struct(ms.tk); // DEBUG after expand
+	c_reset();
 	//free_ms(&ms);
 }
 

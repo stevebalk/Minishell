@@ -1,10 +1,10 @@
-export a="huhu"
-export
-export
-export
-export a=huhu
 huhu
 export
 cd ..
 cd ..
 cd ..
+<< huhu.txt || cd ..
+<< huhu.txt | cd ..
+MAKE
+EXIT
+huhu
