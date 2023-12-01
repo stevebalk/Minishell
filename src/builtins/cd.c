@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 16:40:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:25:59 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,12 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
 	char *tmp_str;
 	(void)tmp_str;
-	c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
+	(void)env_llst;
+	(void)env_llst_sorted;
+	tmp_str = NULL;
+	
 
+	c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
 	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
@@ -121,19 +125,22 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 
 	else 
 	{
+		printf("go to dir --> \n");
 		builtin_cd_change_dir(env_llst, env_llst_sorted, in);
 	}
 
 	// if new change directory is valid --> copy pwd  to old pwd
-
+	//if (tmp_str)
+	free(tmp_str);
+		
 	c_red(); printf("~builtin_cd()\n"); c_reset();
-
 }
+
 void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
 {
 	//const char *path = "./libs/libft"; 
 
-	c_yellow(); printf("builtin_cd_change_dir()  >%s\n", path); 	c_reset();
+	c_yellow(); printf("builtin_cd_change_dir()  >%s<\n", path); 	c_reset();
 	char *last_pwd;
 	char *tmp_value;
 	

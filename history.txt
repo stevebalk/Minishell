@@ -1,10 +1,10 @@
-cd libs
-cd
+export
+export HOME=/etc
+env
 pwd
-cd -
-cd ~
+env
+export
+env
+env
+export
 pwd
-cd -
-unset HOME
-cd
-cd ..

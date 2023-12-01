@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 16:35:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:54:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	print_lexer_struct(t_token *tk)
 // copy from steves main after first merge
 void quick_lexer(t_ms *ms, char *prompt_in)	
 {
+	// ACHTUNG Hier sind noch memory leaks!!! 
 	//t_ms	ms;
 	c_yellow(); printf("quick_lexer() >"); 
 	c_green(); printf("%s", prompt_in);
