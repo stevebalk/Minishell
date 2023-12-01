@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 16:55:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/01 16:51:04 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_token(t_token *token)
 	}
 }
 
-void	free_token_without_content(t_token *token)
+void	free_token_but_not_content(t_token *token)
 {
 	if (token)
 	{
@@ -55,7 +55,7 @@ t_redir	*free_redir_node(t_redir *node)
 {
 	if (node)
 	{
-		if (node->target);
+		if (node->target)
 			free(node->target);
 		free(node);
 	}
@@ -94,7 +94,7 @@ void	free_cmd(t_cmd *cmd)
 		if (cur->argv != NULL)
 			ft_free_array((void **)cur->argv);
 		if (cur->redirs != NULL)
-			free_redir(cur->redirs);
+			free_redir_list(&(cur->redirs));
 		free(cur);
 		cur = next;
 	}

@@ -3,25 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   list_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:47:50 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 17:12:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/01 16:49:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_redir	*append_redir_node(t_ms *ms, t_cmd *cmd)
+{
+	t_redir	*new_node;
+	t_redir *cur;
+	
+	new_node = ft_calloc(1, sizeof(t_redir));
+	check_if_malloc_failed((void *) new_node, ms);
+	if (cmd->redirs == NULL)
+	{
+		cmd->redirs = new_node;
+		return (new_node);
+	}
+	cur = cmd->redirs;
+	while (cur->next != NULL)
+		cur = cur->next;
+	cur->next = new_node;
+	return(new_node);
+}
 
 /* Create a cmd node and initalize it */
 t_cmd	*create_cmd_node(t_ms *ms)
 {
 	t_cmd	*node;
 
-	node = malloc(1 * sizeof(t_cmd));
+	node = ft_calloc(1,  sizeof(t_cmd));
 	check_if_malloc_failed((void *)node, ms);
-	node->next = NULL;
-	node->argv = NULL;
-	node->redirs = NULL;
+	// node->next = NULL;
+	// node->argv = NULL;
+	// node->redirs = NULL;
 	return (node);
 }
 
@@ -43,27 +62,59 @@ t_cmd	*append_cmd_node(t_ms *ms)
 	return (cur->next);
 }
 
-void	free_cmd_list_exept_here_doc(t_cmd *cmd)
+static t_redir	*create_heredoc_only_redir(t_redir *list)
 {
-	t_cmd	*cmd_next;
-	t_redir	*redir_next;
 	t_redir	*new_list;
+	t_redir	*last_new_node;
+	t_redir	*old_next;
 
 	new_list = NULL;
-	while (cmd)
+	while (list)
 	{
-		cmd_next = cmd->next;
-		ft_free_array((void **) cmd->argv);
-		while (cmd->redirs)
+		old_next = list->next;
+		if (list->type == TOKEN_HERE_DOC)
 		{
-			redir_next = cmd->redirs;
-			if (cmd->redirs->type != TOKEN_HERE_DOC)
-			{
-				free_redir_node(cmd->redirs);
-				cmd->redirs = redir_next;
-			}
+			if (new_list == NULL)
+				new_list = list;
 			else
-			{}
+				last_new_node->next = list;
+			last_new_node = list;
+			last_new_node->next = NULL;
 		}
+		else
+			free_redir_node(list);
+		list = old_next;
 	}
+	return (new_list);
+}
+
+t_cmd	*free_cmd_list_exept_here_doc(t_cmd **cmd)
+{
+	t_cmd	*cmd_next;
+	t_cmd	*new_list;
+	t_cmd	*last_new_node;
+
+	if (!cmd)
+		return (NULL);
+	new_list = NULL;
+	while (*cmd)
+	{
+		cmd_next = (*cmd)->next;
+		ft_free_array((void **) (*cmd)->argv);
+		(*cmd)->argv = NULL;
+		(*cmd)->redirs = create_heredoc_only_redir((*cmd)->redirs);
+		if ((*cmd)->redirs != NULL)
+		{
+			if (new_list == NULL)
+				new_list = *cmd;
+			else
+				last_new_node->next = *cmd;
+			last_new_node = *cmd;
+			last_new_node->next = NULL;
+		}
+		else
+			free(*cmd);
+		*cmd = cmd_next;
+	}
+	return (new_list);
 }

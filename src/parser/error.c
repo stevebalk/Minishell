@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:29:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 15:37:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/01 16:49:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	unexpected_token(t_ms *ms, char *token_name, int shall_free)
 	{
 		free_lx(ms->tk);
 		ms->tk = NULL;
-		free_cmd_exept_here_doc(ms->cmd);
-		ms->cmd = NULL;
+		ms->cmd = free_cmd_list_exept_here_doc(&(ms->cmd));
 	}
 	return (-1);
 }

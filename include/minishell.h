@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 17:00:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/01 16:46:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,10 @@ char		*join_chunks_to_final_word(t_ms *ms);
 void		create_empty_string_chunk(t_ms *ms);
 
 /* PARSER */
+int			parse(t_ms *ms);
 t_cmd		*create_cmd_node(t_ms *ms);
 t_cmd		*append_cmd_node(t_ms *ms);
+t_redir		*append_redir_node(t_ms *ms, t_cmd *cmd);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* Error handling */
@@ -88,9 +90,10 @@ void		parse_error(t_parse *parse, char *msg, int shall_exit,
 
 /* Freeing stuff */
 void		free_token(t_token *token);
-void		free_token_without_content(t_token *token);
+void		free_token_but_not_content(t_token *token);
+t_cmd		*free_cmd_list_exept_here_doc(t_cmd **cmd);
 void		free_lx(t_token *token);
-void		free_redir(t_redir **redir);
+void		free_redir_list(t_redir **list);
 t_redir		*free_redir_node(t_redir *node);
 void		free_cmd(t_cmd *cmd);
 void		free_exp(t_expand *exp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 17:24:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/01 16:53:34 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,10 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	ms.tk = lex(test_lines[0]);
-	print_lexer_struct(ms.tk);
+	// print_lexer_struct(ms.tk);
 	expand(&ms);
 	print_lexer_struct(ms.tk);
+	parse(&ms);
 	ms_error(&ms, NULL, 0, 0);
 	free(test_lines[0]);
 }
