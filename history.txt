@@ -1,10 +1,10 @@
-EXIT
-huhu
-huhu
-huhu
-huhu
-jiji
 huhu
 huhu
 << infile.txt cat -e
 << infile.txt cat -e
+pwd
+pwd
+exi
+pwd
+cd ~
+cd -

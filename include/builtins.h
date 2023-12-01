@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:56:18 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/01 13:54:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
+
+//debug
+//#define PRINT_DEALLOC
 
 // contains, the copy of a  export var like >a="huhu"<; the var_name >a<,
 //the raw value >"huhu"< the value witout quotes >huhu<
@@ -60,6 +63,8 @@ void	add_variable_to_llst(t_list **llst, char *var);
 
 // export
 void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
+
+void	test_parser_cd_pwd_home(t_list **env_llst, t_list **env_llst_sorted, char *str);
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);

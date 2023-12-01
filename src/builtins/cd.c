@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:35 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/01 13:49:49 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,10 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 	c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
 }
 
+
+
+
+// #############   OLD Test Stuff   ###############
 void test_change_dir(void) 
 {
     //const char *path = "../"; // 

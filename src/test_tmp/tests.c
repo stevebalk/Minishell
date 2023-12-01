@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/29 13:30:24 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/01 13:49:42 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtins.h"
+
+
+// test parse for cd ~ and cd -
+void	test_parser_cd_pwd_home(t_list **env_llst, t_list **env_llst_sorted, char *str)
+{
+
+	if (ft_strncmp("cd", str, 2) == 0 && ft_strlen(str) > 3) // change dir 
+	{
+		builtin_cd(env_llst, env_llst_sorted, str + 3);
+	}
+	if (ft_strncmp("pwd", str, 3) == 0 && ft_strlen(str) == 3) // print pwd
+	{
+		builtin_pwd(env_llst, env_llst, 1);
+	}
+}
+
 
 // shows sorted env list when typing "export", 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
