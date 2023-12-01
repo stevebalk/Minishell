@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/01 13:58:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:02:09 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	test_parser_cd_pwd_home(t_list **env_llst, t_list **env_llst_sorted, char *
 	
 	if (ft_strncmp("pwd", str, 3) == 0 && ft_strlen(str) == 3) // print pwd
 		builtin_pwd(env_llst, env_llst, 1);
-	if (ft_strncmp("clear", str, 5) == 0 && ft_strlen(str) == 5) // print pwd
+	if (ft_strncmp("clear", str, 5) == 0) // print pwd
 		clear_screen();
 }
 

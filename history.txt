@@ -1,10 +1,10 @@
-huhu
-<< infile.txt cat -e
-<< infile.txt cat -e
-pwd
-pwd
-exi
-pwd
-cd ~
+ls -la
+env
+make
+unset OLDPWD
+env
 cd -
-clear
+unset OLDPWD
+unset OLDPWD
+unset OLDPWD
+cd -

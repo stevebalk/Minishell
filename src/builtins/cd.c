@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 13:49:49 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:42:14 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ cd -
 bash: cd: OLDPWD not set
 */
 
-// ######## TEST ########
+
 
 void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
@@ -87,8 +87,17 @@ void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
 		// if !OLDWPD  --> "cd: OLDPWD not set"
 		tmp_str = get_val_of_var(env_llst, "OLDPWD");
 		c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
-		builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
-		free(tmp_str);
+		if (!tmp_str)
+		{
+			c_red();
+			printf("cd: OLDPWD not set\n");
+			c_reset();
+		}
+		else
+		{
+			builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
+			free(tmp_str);
+		}
 	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
 	{
@@ -112,11 +121,12 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 {
 	//const char *path = "./libs/libft"; 
 
-	c_purple(); printf("builtin_cd_change_dir()  >%s\n", path); 	c_reset();
+	c_yellow(); printf("builtin_cd_change_dir()  >%s\n", path); 	c_reset();
 	char *last_pwd;
 	char *tmp_value;
 	
 	last_pwd = get_val_of_var(env_llst, "PWD");
+
 	c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
     // Change the current working directory
     if (chdir(path) != 0) 
@@ -142,7 +152,7 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 
 
 
-
+// ######## TEST ########
 // #############   OLD Test Stuff   ###############
 void test_change_dir(void) 
 {

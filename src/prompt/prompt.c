@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 13:51:37 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:28:41 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ void	prompt_handler(t_ms *ms)
 					free(prompt_in);
 					break ;
 				}
-				// test_parser_unset(env_llst, env_llst_sorted, prompt_in);
-				// test_parser_export(env_llst, env_llst_sorted, prompt_in);
+				
 				quick_lexer(ms, prompt_in);		// copy from steves main after first merge
 				c_green(); printf("after quick lexer\n");
+
+				test_parser_unset(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
+				test_parser_export(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_cd_pwd_home(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				
 				limit_history_llst(&ms->hist_llst);
