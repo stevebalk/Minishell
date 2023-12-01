@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 13:54:10 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:18:55 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ void	c_yellow(void);
 void	c_cyan(void);
 void	clear_screen(void);
 void	c_reset(void);
+void	intro(void);
+void	intro2(void);
+void	intro3(void);
 
 // utils dealloc
 void	ini_var_names_to_null(t_var_names *var); // XXX muss woanders hin

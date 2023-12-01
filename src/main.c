@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 14:29:54 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:19:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char **env)
 	show_env_arr(env);
 	
 	history_master(&ms.hist_llst);
+	intro3();
 	prompt_handler(&ms);
 	
 	lst_dealloc(&ms.hist_llst, 1);
