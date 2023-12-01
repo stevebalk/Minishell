@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 15:19:00 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:26:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	main(int argc, char **argv, char **env)
 
 	load_env_to_llst(&ms.env_llst, env);
 	copy_llst(&ms.env_llst, &ms.env_llst_sorted);
-	show_env_arr(env);
 	
 	history_master(&ms.hist_llst);
-	intro3();
+	
 	prompt_handler(&ms);
 	
 	lst_dealloc(&ms.hist_llst, 1);

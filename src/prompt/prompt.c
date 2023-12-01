@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 14:28:41 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:24:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	prompt_handler(t_ms *ms)
 		clear_screen();
 	while (1)
 	{
+		intro3();
 		prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002");
 		if (prompt_in != NULL || hit_sig == 0)
 		{
