@@ -6,20 +6,20 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/01 14:02:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:36:57 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtins.h"
+#include "../../include/minishell.h"
 
 
 // test parse for cd ~ and cd -
-void	test_parser_cd_pwd_home(t_list **env_llst, t_list **env_llst_sorted, char *str)
+void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
+	if (ft_strncmp("cd", str, 2) == 0 && ft_strlen(str) >= 2) // change dir 
+		builtin_cd(ms, env_llst, env_llst_sorted, str + 3);
 
-	if (ft_strncmp("cd", str, 2) == 0 && ft_strlen(str) > 3) // change dir 
-		builtin_cd(env_llst, env_llst_sorted, str + 3);
-	
 	if (ft_strncmp("pwd", str, 3) == 0 && ft_strlen(str) == 3) // print pwd
 		builtin_pwd(env_llst, env_llst, 1);
 	if (ft_strncmp("clear", str, 5) == 0) // print pwd

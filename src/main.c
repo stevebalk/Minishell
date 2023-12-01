@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 15:26:00 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:29:16 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@
 // 	}
 // }
 
+void	copy_env_home_to_ms_struct(t_ms *ms)
+{
+	char	*home_dir;
+	c_yellow(); printf("copy_env_home_to_ms_struct()\n"); c_reset();
+	home_dir = get_val_of_var(&ms->env_llst, "HOME");
+	c_green();printf("home dir >%s<\n", home_dir); c_reset();
+	ms->home_dir = join_three_string(home_dir, "", "");
+	if (!home_dir)
+		free(home_dir);
+	c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
+
+}
+
+
+void ini_env_history_etc(t_ms *ms, char **env)
+{
+	load_env_to_llst(&ms->env_llst, env);
+	copy_env_home_to_ms_struct(ms);
+	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
+	history_master(&ms->hist_llst);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	// t_list	*hist_llst;
@@ -38,11 +60,8 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 
-	load_env_to_llst(&ms.env_llst, env);
-	copy_llst(&ms.env_llst, &ms.env_llst_sorted);
-	
-	history_master(&ms.hist_llst);
-	
+	ini_env_history_etc(&ms, env);
+	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 	prompt_handler(&ms);
 	
 	lst_dealloc(&ms.hist_llst, 1);

@@ -1,10 +1,10 @@
-ls -la
-env
-make
-unset OLDPWD
-env
+cd libs
+cd
+pwd
 cd -
-unset OLDPWD
-unset OLDPWD
-unset OLDPWD
+cd ~
+pwd
 cd -
+unset HOME
+cd
+cd ..

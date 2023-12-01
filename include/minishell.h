@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/01 14:44:48 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:34:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,6 @@ void		free_ms(t_ms *ms);
 // Jonas
 // Prompt
 void	prompt_handler(t_ms *ms);
+void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in);
+void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
 #endif

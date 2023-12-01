@@ -29,6 +29,7 @@
 		"system_error": "c",
 		"type_traits": "c",
 		"stdio.h": "c",
-		"dirent.h": "c"
+		"dirent.h": "c",
+		"minishell.h": "c"
 	}
 }

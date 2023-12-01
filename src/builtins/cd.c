@@ -6,12 +6,12 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 14:42:14 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:40:13 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
-
+#include "../../include/minishell.h"
 /*
 The cd command in Bash (Bourne Again SHell) is used for changing the current working directory. Here are various ways you can use the cd command with different types of path specifications:
 
@@ -74,18 +74,18 @@ bash: cd: OLDPWD not set
 
 
 
-void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
+void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
 	char *tmp_str;
 	(void)tmp_str;
-	c_yellow(); printf("builtin_cd()  >%s\n", in); c_reset();
+	c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
 
 	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to last dir
 		// if !OLDWPD  --> "cd: OLDPWD not set"
-		tmp_str = get_val_of_var(env_llst, "OLDPWD");
+		tmp_str = get_val_of_var(&ms->env_llst, "OLDPWD");
 		c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
 		if (!tmp_str)
 		{
@@ -95,18 +95,30 @@ void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted, char *in)
 		}
 		else
 		{
-			builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
+			builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
 			free(tmp_str);
 		}
 	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
 	{
-		// switching to home dir
-		tmp_str = get_val_of_var(env_llst, "HOME");
-		c_purple(); printf("switching to home dir()   >%s< \n", tmp_str); c_reset();
-		builtin_cd_change_dir(env_llst, env_llst_sorted, tmp_str);
+		// switching to home dir from 
+		c_purple(); printf("switching to home dir()   >%s< \n", ms->home_dir); c_reset();
+		builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
+	}
+	else if (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0)
+	{
+		// switching to env home dir  
+		tmp_str = get_val_of_var(&ms->env_llst, "HOME");
+		c_purple(); printf("switching to env HOME  dir()   >%s< \n", tmp_str); c_reset();
+		if (tmp_str)
+			builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+		else
+		{
+			printf("cd: HOME not set\n");
+		}
 		free(tmp_str);
 	}
+
 	else 
 	{
 		builtin_cd_change_dir(env_llst, env_llst_sorted, in);
