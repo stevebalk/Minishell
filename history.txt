@@ -1,5 +1,4 @@
 huhu
-huhu
 << infile.txt cat -e
 << infile.txt cat -e
 pwd
@@ -8,3 +7,4 @@ exi
 pwd
 cd ~
 cd -
+clear
