@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 16:29:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:43:56 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	copy_env_home_to_ms_struct(t_ms *ms)
 	home_dir = get_val_of_var(&ms->env_llst, "HOME");
 	c_green();printf("home dir >%s<\n", home_dir); c_reset();
 	ms->home_dir = join_three_string(home_dir, "", "");
-	if (!home_dir)
+	if (home_dir)
 		free(home_dir);
 	c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv, char **env)
 	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 	prompt_handler(&ms);
 	
+	free(ms.home_dir);
 	lst_dealloc(&ms.hist_llst, 1);
 	lst_dealloc(&ms.env_llst, 1);
 	lst_dealloc(&ms.env_llst_sorted, 1);
