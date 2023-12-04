@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 14:10:39 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:42:08 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	prompt_handler(t_ms *ms)
 					break ;
 				}
 				
-				//quick_lexer(ms, prompt_in);		// copy from steves main after first merge
+				quick_lexer(ms, prompt_in);		// copy from steves main after first merge
 				c_green(); printf("after quick lexer\n");
 
 				test_parser_unset(&ms->env_llst, &ms->env_llst_sorted, prompt_in);

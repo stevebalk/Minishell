@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 15:11:02 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:14:08 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,8 @@ void test_opendir(void)
             printf("%s\n", dir->d_name); // Print the name of the entry
         }
         closedir(d); // Close the directory
-    } else 
+    }
+	else 
 	{
         perror("Unable to open directory");
         exit(EXIT_FAILURE);
