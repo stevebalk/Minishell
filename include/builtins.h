@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 16:34:10 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 08:52:46 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,6 @@ void test_change_dir(void);
 void test_getcwd(void);
 void test_opendir(void);
 void test_is_dir_valid(char *dir);
+void get_enviroment_test(void);
 
 #endif

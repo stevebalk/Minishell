@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:43:01 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/04 08:52:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,18 @@ void	show_env_llist(t_list **lst)
 		tmp_lst = tmp_lst->next;
 		i++;
 	}
+}
+
+// uses getenv; if there is no environment from outside
+void get_enviroment_test(void)
+{
+	c_yellow(); printf("get_enviroment_test()\n"); c_reset();
+
+	char *tmp;
+	tmp = getenv("PATH");
+
+	c_green(); printf(">%s<\n"); c_reset();
+	c_red(); printf("get_enviroment_test()\n"); c_reset();
 }
 
 /*
