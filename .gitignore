@@ -3,6 +3,9 @@ infile*
 obj/
 a.out
 minishell
+lexer
 history.txt
 .vscode/
 *.o
+*.dSYM
+*.plist

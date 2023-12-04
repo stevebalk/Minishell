@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 15:53:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:38:12 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char **argv, char **env)
 	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 
 	prompt_handler(&ms);
+	
 	
 	free_ms(&ms);
 	

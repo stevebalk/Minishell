@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 16:36:46 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:37:45 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,5 @@ void	free_ms(t_ms *ms)
 	lst_dealloc(&ms->env_llst, 1);
 	lst_dealloc(&ms->env_llst_sorted, 1);
 	
-	// todo free
-	// 
-	// 
 }
 
