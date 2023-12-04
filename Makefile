@@ -6,12 +6,12 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/04 13:17:23 by jopeters         ###   ########.fr        #
+#    Updated: 2023/12/04 17:01:40 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		= lexer
+NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
 CC			= cc

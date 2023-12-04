@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:31:25 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/04 17:05:07 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ char	*get_val_of_var(t_list **llst, char *var_name)
 
 	tmp_value = NULL;
 	tmp_lst = *llst;
-	c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
+	//c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
 	while (tmp_lst)
 	{
 		get_val_of_var_value_allocation(var_name, tmp_lst->content, &tmp_value);
 		tmp_lst = tmp_lst->next;
 	}
-	c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
+	//c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 	return (tmp_value);
 }

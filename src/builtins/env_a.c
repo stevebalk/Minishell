@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 10:03:13 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:06:24 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 	5. updating ENV/Export              
 	
 	*/
-	c_yellow(); printf("add_shell_level()\n"); c_reset();
+	//c_yellow(); printf("add_shell_level()\n"); c_reset();
 
 	char		*tmp_var_with_value;
 	char		*tmp_value;
@@ -107,12 +107,12 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 	get_var_names(&var, tmp_var_with_value);
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
 
-	free(new_value);
-	free(tmp_var_with_value);
-	free(tmp_value);
+	free_n_null((void **)&new_value);
+	free_n_null((void **)&tmp_var_with_value);
+	free_n_null((void **)&tmp_value);
 	dealloc_var_names(&var);
 
-	c_red(); printf("~add_shell_level()\n"); c_reset();
+	//c_red(); printf("~add_shell_level()\n"); c_reset();
 }
 	
 

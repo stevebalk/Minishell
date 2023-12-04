@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/01 16:36:57 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:05:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted)
 void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted)
 {
 	(void)env_llst;
-	c_yellow(); printf("test_get_val_of_var()\n"); c_reset();
+	//c_yellow(); printf("test_get_val_of_var()\n"); c_reset();
 	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
-	printf("tmp_del >%s<\n", tmp_del);
+	//printf("tmp_del >%s<\n", tmp_del);
 	free(tmp_del);
 }
 
