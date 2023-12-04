@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:56:55 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/01 13:55:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:09:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,12 @@ void	dealloc_var_names(t_var_names *var)
 		#endif
 		free(var->var_name);
 	}
+}
+
+// emptys the pointer and set it to NULL
+void	free_n_null(void **ptr)
+{
+	if (*ptr)
+		free(*ptr);
+	*ptr = NULL;
 }

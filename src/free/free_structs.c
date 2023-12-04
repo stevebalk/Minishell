@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:23:07 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 10:51:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:13:47 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,25 @@ void	free_exp(t_expand *exp)
 
 void	free_ms(t_ms *ms)
 {
-	//free_lx(ms->tk);
+	free_lx(ms->tk);
 	free_exp(ms->exp);
 	free_cmd(ms->cmd);
 	if (ms->last_exit_code)
 		free(ms->last_exit_code);
-	// ft_lstclear(&(ms->envp), ft_lstdelone);
+	//ft_lstclear(&(ms->envp), ft_lstdelone);
 
-	ft_free_array((void **)ms->path_arr);
-	free(ms->home_dir);
+	if (ms->path_arr)
+		ft_free_array((void **)ms->path_arr);
+	if (ms->home_dir)
+		free(ms->home_dir);
+	
+
+	lst_dealloc(&ms->hist_llst, 1);
+	lst_dealloc(&ms->env_llst, 1);
+	lst_dealloc(&ms->env_llst_sorted, 1);
 	
 	// todo free
 	// 
 	// 
 }
+

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 09:55:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:09:21 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	intro3(void);
 // utils dealloc
 void	ini_var_names_to_null(t_var_names *var); // XXX muss woanders hin
 void	dealloc_var_names(t_var_names *var);
+void	free_n_null(void **ptr);
 
 // Jonas Temp
 void	show_var_names(t_var_names *var);

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 17:25:59 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:11:02 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		else
 		{
 			builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
-			free(tmp_str);
+			free_n_null((void **)&tmp_str);
 		}
 	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
@@ -120,7 +120,9 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		{
 			printf("cd: HOME not set\n");
 		}
-		free(tmp_str);
+		// free(tmp_str);
+		// tmp_str = NULL;
+		free_n_null((void **)&tmp_str);
 	}
 
 	else 
@@ -131,7 +133,8 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 
 	// if new change directory is valid --> copy pwd  to old pwd
 	//if (tmp_str)
-	free(tmp_str);
+	//	free(tmp_str);
+	free_n_null((void **)&tmp_str);
 		
 	c_red(); printf("~builtin_cd()\n"); c_reset();
 }
@@ -152,7 +155,7 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 	{
 		c_blue(); printf("MIST\n"); c_reset();
         perror("chdir failed");
-		free(last_pwd);
+		free_n_null((void **)&last_pwd);
         exit(EXIT_FAILURE);
     }
 	else
@@ -165,7 +168,7 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 		free(tmp_value);
 	}
 
-	free(last_pwd);
+	free_n_null((void **)&last_pwd);
 	c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
 }
 

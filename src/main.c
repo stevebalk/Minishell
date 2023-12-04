@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 13:11:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:08:34 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void test(t_ms *ms)
 //    printf("ROOT : %s\n", getenv("ROOT"));
 //    printf("PWD  : %s\n", getenv("PWD"));
 
+	char *tmp = check_program_with_path(ms, "ls");
+	printf("checked prog: %s \n", tmp);
+	free(tmp);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -61,18 +64,13 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	//show_env_arr(env);
 	
-
-
-   
 	ini_env_history_etc(&ms, env);
 	test(&ms);
 
 	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
+
 	prompt_handler(&ms);
 	
-	lst_dealloc(&ms.hist_llst, 1);
-	lst_dealloc(&ms.env_llst, 1);
-	lst_dealloc(&ms.env_llst_sorted, 1);
 	free_ms(&ms);
 	
 	c_red(); printf("~main ()\n"); c_reset();

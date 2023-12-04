@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 13:12:48 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:39:01 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,7 @@ void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sort
 void	copy_path_to_ms_ms_struct(t_ms *ms);
 void	copy_env_home_to_ms_struct(t_ms *ms);
 
-
+// executer
+// check_command
+char	*check_program_with_path(t_ms *ms, char *prog_name);
 #endif
