@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
+#    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/29 12:54:35 by jonas            ###   ########.fr        #
+#    Updated: 2023/12/04 13:17:23 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_FILES	=	main \
 				builtins/cd \
 				builtins/echo \
 				builtins/env_a \
+				builtins/env_b \
 				builtins/exit_a \
 				builtins/export_a \
 				builtins/export_b \
@@ -76,6 +77,7 @@ SRC_FILES	=	main \
 				expander/join_chunks \
 				expander/create_chunks \
 				expander/env_checks \
+				executer/check_command \
 				# parser/parser \
 				# parser/list_functions \
 				
@@ -114,6 +116,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/parser
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
+			@mkdir -p $(OBJ_DIR)/executer
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 

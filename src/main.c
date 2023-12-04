@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 10:51:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:11:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,13 @@
 // 	}
 // }
 
-void	copy_env_home_to_ms_struct(t_ms *ms)
-{
-	char	*home_dir;
-	char *path_value;
-	c_yellow(); printf("copy_env_home_to_ms_struct()\n"); c_reset();
-	home_dir = get_val_of_var(&ms->env_llst, "HOME");
-	c_green();printf("home dir >%s<\n", home_dir); c_reset();
-	ms->home_dir = join_three_string(home_dir, "", "");
-	if (home_dir)
-		free(home_dir);
-	c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
-
-	path_value = get_val_of_var(&ms->env_llst, "PATH");
-	ms->path_arr = ft_split(path_value, ':');
-
-	if (path_value)
-		free(path_value);
-
-}
 
 
 void ini_env_history_etc(t_ms *ms, char **env)
 {
 	load_env_to_llst(&ms->env_llst, env);
 	copy_env_home_to_ms_struct(ms);
+	copy_path_to_ms_ms_struct(ms);
 	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
 	history_master(&ms->hist_llst);
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
