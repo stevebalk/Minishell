@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 16:32:21 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:58:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	prompt_handler(t_ms *ms)
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
 				if (ft_strncmp(prompt_in, "exit", 4) == 0)
 				{
-					free(prompt_in);
+					free_n_null((void **)&prompt_in);
 					//free_ms(ms);
 					break ;
 				}
 				
-				quick_lexer(ms, prompt_in);		// copy from steves main after first merge
-				c_green(); printf("after quick lexer\n");
+				//quick_lexer(ms, prompt_in);		// copy from steves main after first merge
+				//c_green(); printf("after quick lexer\n");
 
 				test_parser_unset(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_export(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
@@ -93,17 +93,17 @@ void	prompt_handler(t_ms *ms)
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(FILE_HISTORY, &ms->hist_llst);
 				add_history(prompt_in);
-				free(prompt_in);
+				free_n_null((void **)&prompt_in);
 			}
 			else
-				free(prompt_in);
+				free_n_null((void **)&prompt_in);
 		}
 		else
 		{
 			printf("\nprompt_in == NULL\n");
 			hit_sig = 1;
 			printf("sig == 2 \n");c_red(); 
-			free(prompt_in);
+			free_n_null((void **)&prompt_in);
 			printf("exit\n");
 			break ;
 		}

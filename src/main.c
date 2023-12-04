@@ -6,35 +6,24 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 16:38:12 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:56:46 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "../include/minishell.h"
 #include "minishell.h"
 
-// /* DEBUG DELETE LATER */
-// void	print_lexer_struct(t_token *tk)
-// {
-// 	while (tk != NULL)
-// 	{
-// 		printf("Type: %i\n", tk->type);
-// 		printf("String: %s\n", tk->content);
-// 		printf("\n");
-// 		tk = tk->next;
-// 	}
-// }
-
-
-
-void ini_env_history_etc(t_ms *ms, char **env)
+/* DEBUG DELETE LATER */
+/*
+void	print_lexer_struct(t_token *tk)
 {
-	load_env_to_llst(&ms->env_llst, env);
-	copy_env_home_to_ms_struct(ms);
-	copy_path_to_ms_ms_struct(ms);
-	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
-	history_master(&ms->hist_llst);
-	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
+	while (tk != NULL)
+	{
+		printf("Type: %i\n", tk->type);
+		printf("String: %s\n", tk->content);
+		printf("\n");
+		tk = tk->next;
+	}
 }
 
 void test(t_ms *ms)
@@ -49,32 +38,40 @@ void test(t_ms *ms)
 	printf("checked prog: %s \n", tmp);
 	free(tmp);
 }
+*/
+
+
+void ini_env_history_etc(t_ms *ms, char **env)
+{
+	load_env_to_llst(&ms->env_llst, env);
+	copy_env_home_to_ms_struct(ms);
+	copy_path_to_ms_ms_struct(ms);
+	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
+	history_master(&ms->hist_llst);
+	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
+}
+
+
 
 int	main(int argc, char **argv, char **env)
 {
-	// t_list	*hist_llst;
-	// t_list	*env_llst;
-	// t_list	*env_llst_sorted;
 	t_ms	ms;
 
 	init_ms(&ms);
-	
 	(void)argc;
 	(void)argv;
 	(void)env;
-	//show_env_arr(env);
+
 	
 	ini_env_history_etc(&ms, env);
-	test(&ms);
-
-	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 
 	prompt_handler(&ms);
 	
 	
 	free_ms(&ms);
 	
-	c_red(); printf("~main ()\n"); c_reset();
+	c_red();
+	printf("~main ()\n"); c_reset();
 	return (EXIT_SUCCESS);
 }
 
