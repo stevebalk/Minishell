@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_expander.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 12:29:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 17:19:45 by sbalk            ###   ########.fr       */
+/*   Created: 2023/12/04 17:04:15 by sbalk             #+#    #+#             */
+/*   Updated: 2023/12/04 17:09:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	unexpected_token(t_ms *ms, char *token_name, int shall_free)
+void	free_expander_list(t_expand **list)
 {
-	ft_putnstr_fd("minishell: ", 2, 11);
-	ft_putnstr_fd("syntax error near unexpected token `", 2, 36);
-	ft_putnstr_fd(token_name, 2, ft_strlen(token_name));
-	ft_putnstr_fd("'", 2, 1);
-	ms->last_exit_code = "127";
-	if (shall_free)
+	t_expand	*cur;
+	t_expand	*next;
+
+	if (list == NULL || *list == NULL)
+		return ;
+	cur = *list;
+	while (cur != NULL)
 	{
-		free_token_list(&(ms->tk));
-		ms->cmd = free_cmd_list_exept_here_doc(&(ms->cmd));
+		next = cur->next;
+		if (cur->str)
+			free(cur->str);
+		free(cur);
+		cur = next;
 	}
-	return (-1);
+	*list = NULL;
 }

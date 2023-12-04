@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/01 16:53:34 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/04 17:31:36 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,43 @@ void	print_lexer_struct(t_token *tk)
 	}
 }
 
+const char *tokenTypeNames[] = {
+	"WORD",
+	"PIPE",
+	"REDIRECT",
+	"REDIRECT_APPEND",
+	"INFILE",
+	"HERE_DOC",
+	"VARIABLE",
+	"EOF"
+};
+
+void prettyPrintCmd(t_cmd *cmd) {
+	while (cmd != NULL) {
+		printf("Command:\n");
+		if (cmd->argv != NULL) {
+			printf("  Arguments:\n");
+			char **arg = cmd->argv;
+			while (*arg != NULL) {
+				printf("    %s\n", *arg);
+				arg++;
+			}
+		}
+
+		if (cmd->redirs != NULL) {
+			printf("  Redirections:\n");
+			t_redir *redir = cmd->redirs;
+			while (redir != NULL) {
+				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
+				redir = redir->next;
+			}
+		}
+
+		printf("\n");
+		cmd = cmd->next;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	char	*test_lines[MAX_LINES];
@@ -82,14 +119,9 @@ int	main(int argc, char **argv)
 	ms.tk = lex(test_lines[0]);
 	// print_lexer_struct(ms.tk);
 	expand(&ms);
-	print_lexer_struct(ms.tk);
+	// print_lexer_struct(ms.tk);
 	parse(&ms);
+	prettyPrintCmd(ms.cmd);
 	ms_error(&ms, NULL, 0, 0);
 	free(test_lines[0]);
 }
-
-	// char *args[] = {NULL, NULL, NULL};
-	// args[0] = ms.tk->content;
-	// args[1] = ms.tk->next->content;
-	// execv("/bin/ls", args);
-	// perror("execv");

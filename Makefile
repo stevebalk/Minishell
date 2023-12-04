@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/11/29 12:32:03 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/04 17:07:40 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ SRC_FILES	=	main \
 				init/init_structs \
 				error/error_handling \
 				error/error_checks \
-				free/free_structs \
+				free/free_ms \
+				free/free_token \
+				free/free_expander \
+				free/free_parser \
 				lexer/lexer \
 				lexer/lexer_util \
 				lexer/lexer_token_logic \

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:47:50 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 13:48:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/04 17:18:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_redir	*create_heredoc_only_redir(t_redir *list)
 			last_new_node->next = NULL;
 		}
 		else
-			free_redir_node(list);
+			free_redir_node(&list);
 		list = old_next;
 	}
 	return (new_list);

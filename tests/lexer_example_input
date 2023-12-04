@@ -1,9 +1,10 @@
+> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf
+<infile cat>"outfile">'outfile2'<"../minishell/infile2" | cat
 <infile cat -e -a -l>outfile<infile cat -e >outfile | <infile ls >outfile
     <<$A cat>>outfile|cat>outfile|'$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
 < infile cat > outfile < infile -e > outfile
 echo hola <<<< bonjour
 << $"hol"a'l  ol' > lol
-<infile cat>"outfile">'outfile2'<"../minishell/infile2" | cat
 '$A$A'"fd$Asfsdfsdkl kl"'"dfskfjkl"'
 <infile grep "Hello World" >          outfile
 <$Ainfile cat>>

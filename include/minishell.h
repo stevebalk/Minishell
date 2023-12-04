@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/01 16:46:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/04 17:11:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,16 @@ void		parse_error(t_parse *parse, char *msg, int shall_exit,
 				int use_errno);
 
 /* Freeing stuff */
+void		free_ms(t_ms *ms);
 void		free_token(t_token *token);
 void		free_token_but_not_content(t_token *token);
+void		free_token_list(t_token **token);
+
+void		free_expander_list(t_expand **list);
+
+void		free_cmd_list(t_cmd **cmd);
 t_cmd		*free_cmd_list_exept_here_doc(t_cmd **cmd);
-void		free_lx(t_token *token);
+void		free_redir_node(t_redir **node);
 void		free_redir_list(t_redir **list);
-t_redir		*free_redir_node(t_redir *node);
-void		free_cmd(t_cmd *cmd);
-void		free_exp(t_expand *exp);
-void		free_ms(t_ms *ms);
 
 #endif
