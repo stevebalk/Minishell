@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 09:26:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:51:17 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 void	copy_env_home_to_ms_struct(t_ms *ms)
 {
 	char	*home_dir;
+	char *path_value;
 	c_yellow(); printf("copy_env_home_to_ms_struct()\n"); c_reset();
 	home_dir = get_val_of_var(&ms->env_llst, "HOME");
 	c_green();printf("home dir >%s<\n", home_dir); c_reset();
@@ -35,6 +36,12 @@ void	copy_env_home_to_ms_struct(t_ms *ms)
 	if (home_dir)
 		free(home_dir);
 	c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
+
+	path_value = get_val_of_var(&ms->env_llst, "PATH");
+	ms->path_arr = ft_split(path_value, ':');
+
+	if (path_value)
+		free(path_value);
 
 }
 
@@ -45,6 +52,17 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	copy_env_home_to_ms_struct(ms);
 	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
 	history_master(&ms->hist_llst);
+	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
+}
+
+void test(t_ms *ms)
+{
+	(void)ms;
+//    printf("PATH : %s\n", getenv("PATH"));
+//    printf("HOME : %s\n", getenv("HOME"));
+//    printf("ROOT : %s\n", getenv("ROOT"));
+//    printf("PWD  : %s\n", getenv("PWD"));
+
 }
 
 int	main(int argc, char **argv, char **env)
@@ -61,24 +79,19 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	//show_env_arr(env);
 	
-   printf("PATH : %s\n", getenv("PATH"));
-   printf("HOME : %s\n", getenv("HOME"));
-   printf("ROOT : %s\n", getenv("ROOT"));
-   printf("PWD  : %s\n", getenv("PWD"));
 
 
    
 	ini_env_history_etc(&ms, env);
-	add_shell_level(&ms.env_llst, &ms.env_llst_sorted);
+	test(&ms);
 
 	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 	prompt_handler(&ms);
 	
-	free(ms.home_dir);
 	lst_dealloc(&ms.hist_llst, 1);
 	lst_dealloc(&ms.env_llst, 1);
 	lst_dealloc(&ms.env_llst_sorted, 1);
-	//free_ms(&ms);
+	free_ms(&ms);
 	
 	c_red(); printf("~main ()\n"); c_reset();
 	return (EXIT_SUCCESS);

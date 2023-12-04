@@ -1,10 +1,10 @@
-export
-env
-env
-export
-pwd
 pwd
 env
 export
 env
 make
+env
+./lexer 
+./lexer
+env
+exoz

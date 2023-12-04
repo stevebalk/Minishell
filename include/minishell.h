@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/01 16:34:25 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:43:25 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_ms
 	t_list		*env_llst_sorted;
 
 	char		*home_dir;
+	char		**path_arr;
 	
 	char		*last_exit_code;
 	char		*unexpected_token;
