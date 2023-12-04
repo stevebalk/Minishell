@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 08:52:46 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:55:55 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@
 //#define PRINT_DEALLOC
 
 // contains, the copy of a  export var like >a="huhu"<; the var_name >a<,
-//the raw value >"huhu"< the value witout quotes >huhu<
-//and the value with quotes >"huhu"<
+// the raw value >"huhu"< the value witout quotes >huhu<
+// and the value with quotes >"huhu"<
+// self value, can and have to be used manually
 typedef struct s_var_names
 {
 	char	*raw_copy;
@@ -40,6 +41,7 @@ typedef struct s_var_names
 	char	*value_without_quotes;
 	char	*value_added_quotes;
 	int		has_equal;
+	int		self_value;
 }	t_var_names;
 
 
@@ -60,6 +62,7 @@ void	show_env_arr(char **env);
 void	load_env_to_llst(t_list **env_lst, char **env);
 void	show_env_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
+void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
 
 // export
 void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
@@ -166,6 +169,6 @@ void test_change_dir(void);
 void test_getcwd(void);
 void test_opendir(void);
 void test_is_dir_valid(char *dir);
-void get_enviroment_test(void);
+
 
 #endif

@@ -1,10 +1,10 @@
 export
-export HOME=/etc
-env
-pwd
-env
-export
 env
 env
 export
 pwd
+pwd
+env
+export
+env
+make

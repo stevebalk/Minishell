@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/01 17:44:35 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:26:09 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,18 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	(void)env;
-	show_env_arr(env);
+	//show_env_arr(env);
 	
    printf("PATH : %s\n", getenv("PATH"));
    printf("HOME : %s\n", getenv("HOME"));
    printf("ROOT : %s\n", getenv("ROOT"));
    printf("PWD  : %s\n", getenv("PWD"));
 
+
    
 	ini_env_history_etc(&ms, env);
+	add_shell_level(&ms.env_llst, &ms.env_llst_sorted);
+
 	printf("HOME DIR in MS Struct >%s<\n", ms.home_dir);
 	prompt_handler(&ms);
 	
