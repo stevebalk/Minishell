@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 17:17:12 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:29:24 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	prompt_handler(t_ms *ms)
 				if (ft_strncmp(prompt_in, "exit", 4) == 0)
 				{
 					free_n_null((void **)&prompt_in);
-					//free_ms(ms);
 					break ;
 				}
 				
