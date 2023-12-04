@@ -5,3 +5,4 @@ a.out
 minishell
 history.txt
 .vscode/
+*.o
