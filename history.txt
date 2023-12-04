@@ -1,10 +1,10 @@
 pwd
-exot
-env
-pwd
 pwd
 123
 234
 pwd
 345
 dfg
+pwd
+cd
+cd -
