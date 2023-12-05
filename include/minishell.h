@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 14:55:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 18:37:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "lexer.h"
 # include "expander.h"
 # include "parser.h"
+# include "executer.h"
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣤⡀⠀⠀
@@ -87,6 +88,10 @@ t_cmd		*append_cmd_node(t_ms *ms);
 t_redir		*append_redir_node(t_ms *ms, t_cmd *cmd);
 t_redir		*create_heredoc_only_redir(t_redir *list);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
+
+/* EXECUTER */
+int			is_builtin_command(char *str);
+void		heredoc(char *delimiter);
 
 /* Error handling */
 

@@ -6,11 +6,11 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/05 14:47:26 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/05 17:31:03 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= lexer
+NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
 CC			= cc
@@ -56,7 +56,9 @@ SRC_FILES	=	main \
 				parser/error \
 				parser/cmd_list_functions \
 				parser/redir_list_functions \
-				
+				executer/checks \
+				executer/executer \
+				executer/heredoc \
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -76,6 +78,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/lexer
 			@mkdir -p $(OBJ_DIR)/expander
 			@mkdir -p $(OBJ_DIR)/parser
+			@mkdir -p $(OBJ_DIR)/executer
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
