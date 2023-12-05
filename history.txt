@@ -1,10 +1,10 @@
-e
-Huhu
-Huhu
-Huhu
-123
-3456
 Huhu
 3456
 Huhu
 pwd
+Huhu
+export J=HUHU
+export
+export A=huh
+export
+env

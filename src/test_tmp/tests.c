@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/04 17:05:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:48:11 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	}
 	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
 	{
-		//export_arg(env_llst, env_llst_sorted, str, 7); // old not existing anymore
+		export_single_arg(env_llst, env_llst_sorted, str+7);
 	}
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)	// shows env list
 		show_env_llist(env_llst);
