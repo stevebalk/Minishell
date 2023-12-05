@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:12:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 17:06:48 by jopeters         ###   ########.fr       */
+/*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
+/*   Updated: 2023/12/05 15:16:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void test(t_ms *ms)
 }
 */
 
-
 void ini_env_history_etc(t_ms *ms, char **env)
 {
 	load_env_to_llst(&ms->env_llst, env);
@@ -51,8 +50,6 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	history_master(&ms->hist_llst);
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
 }
-
-
 
 int	main(int argc, char **argv, char **env)
 {
@@ -76,23 +73,52 @@ int	main(int argc, char **argv, char **env)
 	return (EXIT_SUCCESS);
 }
 
+/* ---------- INPUT TEST MAIN ------------- */
 
-/*
-int	main(int argc, char **argv)
-{
-	t_ms	ms;
+// const char *tokenTypeNames[] = {
+// 	"WORD",
+// 	"PIPE",
+// 	"REDIRECT",
+// 	"REDIRECT_APPEND",
+// 	"INFILE",
+// 	"HERE_DOC",
+// 	"VARIABLE",
+// 	"EOF"
+// };
 
-	init_ms(&ms);
-	ms.last_exit_code = "127";
-	ms.tk = lex(*SOME_STRING); // Hier den String angeben der getestet werden soll
-	print_lexer_struct(ms.tk); // DEBUG before expand
-	expand(&ms);
-	print_lexer_struct(ms.tk); // DEBUG after expand
-	free_ms(&ms);
-}
-*/
-	// char *args[] = {NULL, NULL, NULL};
-	// args[0] = ms.tk->content;
-	// args[1] = ms.tk->next->content;
-	// execv("/bin/ls", args);
-	// perror("execv");
+// void prettyPrintCmd(t_cmd *cmd) {
+// 	while (cmd != NULL) {
+// 		printf("Command:\n");
+// 		if (cmd->argv != NULL) {
+// 			printf("  Arguments:\n");
+// 			char **arg = cmd->argv;
+// 			while (*arg != NULL) {
+// 				printf("    %s\n", *arg);
+// 				arg++;
+// 			}
+// 		}
+
+// 		if (cmd->redirs != NULL) {
+// 			printf("  Redirections:\n");
+// 			t_redir *redir = cmd->redirs;
+// 			while (redir != NULL) {
+// 				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
+// 				redir = redir->next;
+// 			}
+// 		}
+
+// 		printf("\n");
+// 		cmd = cmd->next;
+// 	}
+// }
+
+// int	main(void)
+// {
+// 	t_ms	ms;
+// 	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+// 	lex(teststring, &ms);
+// 	expand(&ms);
+// 	parse(&ms);
+// 	prettyPrintCmd(ms.cmd);
+// 	free_ms(&ms);
+// }

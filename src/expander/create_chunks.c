@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_chunk.c                                     :+:      :+:    :+:   */
+/*   create_chunks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:42:35 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:42:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 14:11:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 /* Create and fill chunk with given str */
 void	append_and_fill_chunk_with_str(t_ms *ms, const char *src, size_t len)

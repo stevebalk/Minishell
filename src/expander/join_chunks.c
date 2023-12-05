@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:10:48 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:28:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 14:12:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*join_chunks_to_final_word(t_ms *ms)
 
 	legit_str = 0;
 	final_str_len = 0;
-	final_str_len  = get_final_str_len(ms, &legit_str);
+	final_str_len = get_final_str_len(ms, &legit_str);
 	if (legit_str && final_str_len == 0)
 		return (ft_strdup(""));
 	else if (legit_str == 0 && final_str_len == 0)

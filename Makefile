@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/04 17:01:40 by jopeters         ###   ########.fr        #
+#    Updated: 2023/12/05 15:22:01 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,21 +65,26 @@ SRC_FILES	=	main \
 				init/init_structs \
 				error/error_handling \
 				error/error_checks \
-				free/free_structs \
+				free/free_ms \
+				free/free_token \
+				free/free_expander \
+				free/free_parser \
 				lexer/lexer \
-				lexer/lexer_util \
 				lexer/lexer_token_logic \
-				expander/expander \
-				expander/expand_variable \
+				lexer/lexer_list_functions \
 				expander/checks \
-				expander/list_functions \
-				expander/expand_word_chunks \
-				expander/join_chunks \
 				expander/create_chunks \
 				expander/env_checks \
+				expander/expand_variable \
+				expander/expand_word_chunks \
+				expander/expander \
+				expander/join_chunks \
+				expander/list_functions \
+				parser/parser \
+				parser/error \
+				parser/cmd_list_functions \
+				parser/redir_list_functions \
 				executer/check_command \
-				# parser/parser \
-				# parser/list_functions \
 				
 				
 
