@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 17:29:24 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:25:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void quick_lexer(t_ms *ms, char *prompt_in)
 
 	//init_ms(ms);
 	ms->last_exit_code = "127";
-	ms->tk = lex(prompt_in); // Hier den String angeben der getestet werden soll
+	lex(prompt_in, ms); // Hier den String angeben der getestet werden soll
 	c_yellow(); printf("DEBUG before expand\n"); c_blue();
 	
 	print_lexer_struct(ms->tk); // DEBUG before expand
