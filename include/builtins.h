@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/05 15:24:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 16:39:56 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define BUILTINS_H
 # include <stdio.h>
 # include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+// # include <readline/readline.h>
+// # include <readline/history.h>
+# include "../libs/readline2/include/readline/readline.h"
+# include "../libs/readline2/include/readline/history.h"
+
 # include "../libs/libft/include/libft.h"
 # include <fcntl.h>
 # include <signal.h>
@@ -25,7 +28,7 @@
 #define FILE_HISTORY "history.txt"
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
-
+#define LOGO_ABOVE_PROMPT 0
 //debug
 //#define PRINT_DEALLOC
 

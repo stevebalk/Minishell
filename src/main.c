@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 15:16:20 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 16:40:39 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 
+	if (!LOGO_ABOVE_PROMPT)
+		intro3();
 	
 	ini_env_history_etc(&ms, env);
 

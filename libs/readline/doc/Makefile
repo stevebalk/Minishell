@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /usr/local
+prefix = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline2
 
 datarootdir = ${prefix}/share
 
@@ -46,10 +46,10 @@ DESTDIR =
 SHELL = /bin/sh
 RM = rm -f
 
-INSTALL = /usr/bin/install -c
+INSTALL = /opt/homebrew/bin/ginstall -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/jopeters/Jonas/minishell/libs/readline
+BUILD_DIR = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo
