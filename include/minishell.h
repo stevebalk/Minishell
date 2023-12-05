@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 17:11:23 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 14:55:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ typedef struct s_ms
 /* Init */
 void		init_ms(t_ms *ms);
 
+/* lexer */
+void		lex(char *str, t_ms *ms);
+t_token		*create_token(t_ms *ms);
+t_token		*get_last_token(t_token *lx);
+t_token		*token_list_append(t_ms *ms);
+int			set_word_token(char *str, t_token *token, t_ms *ms);
+int			set_special_token(char *str, t_token *token, t_ms *ms);
+
 /* EXPANDER */
 
 void		expand(t_ms *ms);
@@ -77,27 +85,24 @@ int			parse(t_ms *ms);
 t_cmd		*create_cmd_node(t_ms *ms);
 t_cmd		*append_cmd_node(t_ms *ms);
 t_redir		*append_redir_node(t_ms *ms, t_cmd *cmd);
+t_redir		*create_heredoc_only_redir(t_redir *list);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* Error handling */
 
 void		check_if_malloc_failed(void *src, t_ms *ms);
 void		ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
-void		lx_error(t_token *tk_head, char *msg, int shall_exit,
-				int use_errno);
-void		parse_error(t_parse *parse, char *msg, int shall_exit,
-				int use_errno);
 
 /* Freeing stuff */
 void		free_ms(t_ms *ms);
-void		free_token(t_token *token);
-void		free_token_but_not_content(t_token *token);
+void		free_token(t_token **token);
+void		free_token_but_not_content(t_token **token);
 void		free_token_list(t_token **token);
 
 void		free_expander_list(t_expand **list);
 
 void		free_cmd_list(t_cmd **cmd);
-t_cmd		*free_cmd_list_exept_here_doc(t_cmd **cmd);
+void		free_cmd_list_exept_here_doc(t_cmd **cmd);
 void		free_redir_node(t_redir **node);
 void		free_redir_list(t_redir **list);
 

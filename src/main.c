@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 17:31:36 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 14:09:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void prettyPrintCmd(t_cmd *cmd) {
 
 int	main(int argc, char **argv)
 {
-	char	*test_lines[MAX_LINES];
+	// char	*test_lines[MAX_LINES];
 	t_ms	ms;
 
 	init_ms(&ms);
@@ -103,7 +103,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (access(argv[1], F_OK) == 0)
-			read_test_file(argv + 1, test_lines);
+			// read_test_file(argv + 1, test_lines);
+			printf("OK\n");
 		else
 		{
 			perror("File doesn't exist");
@@ -116,12 +117,11 @@ int	main(int argc, char **argv)
 		printf("Testfile should be filled with bash commands\n");
 		exit(EXIT_FAILURE);
 	}
-	ms.tk = lex(test_lines[0]);
-	// print_lexer_struct(ms.tk);
+	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+	lex(teststring, &ms);
 	expand(&ms);
-	// print_lexer_struct(ms.tk);
 	parse(&ms);
 	prettyPrintCmd(ms.cmd);
 	ms_error(&ms, NULL, 0, 0);
-	free(test_lines[0]);
+	// free(test_lines[0]);
 }

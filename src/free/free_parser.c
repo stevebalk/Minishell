@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:04:10 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 17:26:05 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 14:10:38 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Free one redir node and NULLs it */
 void	free_redir_node(t_redir **node)
 {
 	if (node && *node)
@@ -23,10 +24,11 @@ void	free_redir_node(t_redir **node)
 	*node = NULL;
 }
 
+/* Free redir list and NULLs it */
 void	free_redir_list(t_redir **list)
 {
 	t_redir	*cur;
-	t_redir *next;
+	t_redir	*next;
 
 	if (list == NULL || *list == NULL)
 		return ;
@@ -40,7 +42,7 @@ void	free_redir_list(t_redir **list)
 	*list = NULL;
 }
 
-
+/* Free one cmd list and NULLs it */
 void	free_cmd_list(t_cmd **list)
 {
 	t_cmd	*cur;

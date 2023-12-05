@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:19:56 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/04 14:08:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/05 13:57:28 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	parse_word_token(t_ms *ms, t_cmd *cmd_node)
 	next = ms->tk->next;
 	dst = append_cmd_argv(ms, cmd_node);
 	*dst = ms->tk->content;
-	free_token_but_not_content(ms->tk);
+	free_token_but_not_content(&(ms->tk));
 	ms->tk = next;
 }
 
+/* Parse special token, return -1 if next token is not a TOKEN_WORD */
 int	parse_special_token(t_ms *ms, t_cmd *cmd_node)
 {
 	t_redir	*cur;
@@ -65,17 +66,17 @@ int	parse_special_token(t_ms *ms, t_cmd *cmd_node)
 	cur->type = ms->tk->type;
 	cur->target = ms->tk->next->content;
 	new_target = ms->tk->next->next;
-	free_token_but_not_content(ms->tk->next);
-	free_token(ms->tk);
+	free_token_but_not_content(&(ms->tk->next));
+	free_token(&(ms->tk));
 	ms->tk = new_target;
 	return (0);
 }
 
+/* Fills a cmd node, return -1 if parse special token failed */
 int	fill_cmd_node(t_ms *ms, t_cmd *cmd_node)
 {
 	t_token	*next;
 
-	// next = ms->tk->next;
 	while (ms->tk != NULL && ms->tk->type != TOKEN_PIPE)
 	{
 		if (ms->tk->type == TOKEN_WORD)
@@ -86,13 +87,18 @@ int	fill_cmd_node(t_ms *ms, t_cmd *cmd_node)
 	}
 	if (ms->tk && ms->tk->type == TOKEN_PIPE)
 	{
+		if (ms->tk->next && ms->tk->next->type == TOKEN_PIPE)
+			return (unexpected_token(ms, ms->tk->next->content, 1));
+		else if (ms->tk->next == NULL)
+			return (unexpected_token(ms, "newline", 1));
 		next = ms->tk->next;
-		free_token(ms->tk);
+		free_token(&(ms->tk));
 		ms->tk = next;
 	}
 	return (0);
 }
 
+/* Parse token list, returns -1 if an error occured */
 int	parse(t_ms *ms)
 {
 	t_cmd	*cur;

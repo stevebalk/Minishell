@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/04 17:07:40 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/05 14:47:26 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ SRC_FILES	=	main \
 				free/free_expander \
 				free/free_parser \
 				lexer/lexer \
-				lexer/lexer_util \
 				lexer/lexer_token_logic \
+				lexer/lexer_list_functions \
 				expander/expander \
 				expander/expand_variable \
 				expander/checks \
@@ -53,8 +53,9 @@ SRC_FILES	=	main \
 				expander/create_chunks \
 				expander/env_checks \
 				parser/parser \
-				parser/list_functions \
 				parser/error \
+				parser/cmd_list_functions \
+				parser/redir_list_functions \
 				
 				
 
