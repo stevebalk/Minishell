@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:41 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/06 13:20:09 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 	declare -x a="huhu"
 	declare -x b="t"
 	declare -x c="\\t"
+
+*/
+
+/*
+echo $$			--> PPID of the shell
+
 
 */
 void	builtin_echo(char **str_arr, int n_flag)
