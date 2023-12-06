@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/06 13:36:06 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/06 13:48:09 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@
 
 /*
 echo $$			--> PID of the shell
-echo $1			--> last exit code?
+echo $?			--> last exit code
+echo $#			--> number of positional parameters		--> return 0; only makes sense in a script or when set arguments before
+echo $*, $@		--> All positional parameters	--> only makes sense in a script or when set arguments before
+echo $!			--> Process ID of the last background command.
+
 
 */
 void	builtin_echo(char **str_arr, int n_flag)
