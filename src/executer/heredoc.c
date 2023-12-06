@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 19:22:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/06 18:22:50 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,13 @@ void	heredoc(char *delimiter)
 {
 	int		should_expand_env_var;
 	char	*expanded_delim;
+	
+	expanded_delim = NULL;
 
 	should_expand_env_var = has_quotes(delimiter);
 	if (should_expand_env_var)
 		expanded_delim = expand_delimiter(delimiter);
+		
 	printf("Old: %s\n", delimiter);
 	printf("New: %s\n", expanded_delim);
 }
