@@ -1,10 +1,10 @@
-Huhu
-3456
-Huhu
-pwd
-Huhu
-export J=HUHU
 export
 export A=huh
 export
 env
+echo $$
+echo $$
+echo "huhu"
+echo "huu"
+exjt
+echo "huu"

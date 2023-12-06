@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/05 16:39:56 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/06 17:59:55 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	handle_sigint(int sig);
 // builtin
 // echo
 void	builtin_echo(char **str_arr, int n_flag);
+void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
+			char *str);
 
 // env
 void	show_env_arr(char **env);
@@ -77,6 +79,8 @@ void	export_single_arg(t_list **env_llst,
 			t_list **env_llst_sorted, char *str);
 void	update_or_create_llst_var(t_list **env_llst,
 			t_list **env_llst_sorted, t_var_names *var);
+
+			
 void	update_util_env(t_list **env_llst, t_var_names *var, char *env_var_with_value);
 void	update_util_export(t_list **env_llst_sorted, t_var_names *var, char *exp_var_with_value);
 
