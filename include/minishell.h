@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 18:37:37 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/07 13:40:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <signal.h>
+# include <readline/readline.h>
 # include "libft.h"
 # include "lexer.h"
 # include "expander.h"

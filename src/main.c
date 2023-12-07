@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 19:37:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/07 12:52:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,28 @@ void prettyPrintCmd(t_cmd *cmd) {
 // 	// free(test_lines[0]);
 // }
 
-int main(void)
+int	main(void)
 {
-    // Example usage
-    printf("%d\n", is_builtin_command("pwd"));  // Should print 1 (true)
-    printf("%d\n", is_builtin_command("ls"));   // Should print 0 (false)
-	heredoc("ho$la$\"$a\"$$\"b\"");
+	t_ms	ms;
 
-    return 0;
+	init_ms(&ms);
+	ms.last_exit_code = ft_strdup("127");
+	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+	lex(teststring, &ms);
+	expand(&ms);
+	parse(&ms);
+	heredoc("ff");
+	// prettyPrintCmd(ms.cmd);
+	free_ms(&ms);
 }
+
+// int main(void)
+// {
+//     // Example usage
+//     printf("%d\n", is_builtin_command("pwd"));  // Should print 1 (true)
+//     printf("%d\n", is_builtin_command("ls"));   // Should print 0 (false)
+// 	heredoc("ho$la$\"$a\"$$\"b\"");
+
+//     return 0;
+// }
+

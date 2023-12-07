@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/06 18:22:50 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/07 13:40:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,48 @@ char	*expand_delimiter(char *str)
 	return (new_delimiter);
 }
 
+char *read_multiline_input(const char *prompt, char *delimiter)
+{
+	char	*line;
+	char	*multiline_input;
+	char	*temp;
+
+	multiline_input = NULL;
+	line = readline(prompt);
+	while (ft_strncmp(line, delimiter, ft_strlen(delimiter)) != 0 ||
+			ft_strncmp(line, delimiter, ft_strlen(line)) != 0)
+	{
+		temp = multiline_input;
+		multiline_input = malloc(ft_strlen(temp) + ft_strlen(line) + 2);
+		if (temp != NULL)
+		{
+			ft_strlcpy(multiline_input, temp, ft_strlen(temp) + 1);
+			ft_strlcat(multiline_input, "\n", ft_strlen(multiline_input) + 2);
+			ft_strlcat(multiline_input, line,
+						ft_strlen(multiline_input) + ft_strlen(line) + 1);
+			free(temp);
+		}
+		else
+			ft_strlcpy(multiline_input, line, ft_strlen(line) + 1);
+		free(line);
+		line = readline(prompt);
+	}
+	return (multiline_input);
+}
+
 void	heredoc(char *delimiter)
 {
 	int		should_expand_env_var;
 	char	*expanded_delim;
+	char	*heredoc_string;
 	
 	expanded_delim = NULL;
 
 	should_expand_env_var = has_quotes(delimiter);
 	if (should_expand_env_var)
 		expanded_delim = expand_delimiter(delimiter);
-		
-	printf("Old: %s\n", delimiter);
-	printf("New: %s\n", expanded_delim);
+	heredoc_string = read_multiline_input("> ", delimiter);
+	printf("%s", heredoc_string);
+	free(expanded_delim);
+	free(heredoc_string);
 }

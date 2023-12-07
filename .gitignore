@@ -3,3 +3,5 @@ infile*
 obj/
 a.out
 .vscode/
+minishell
+libs/libft/libft.a
