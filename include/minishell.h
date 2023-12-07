@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 13:40:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/07 16:53:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* EXECUTER */
 int			is_builtin_command(char *str);
-void		heredoc(char *delimiter);
+void		heredoc(char *delimiter, t_ms *ms);
 
 /* Error handling */
 

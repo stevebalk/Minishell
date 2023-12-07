@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 12:52:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/07 18:05:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	main(void)
 	lex(teststring, &ms);
 	expand(&ms);
 	parse(&ms);
-	heredoc("ff");
+	heredoc("'ff'", &ms);
 	// prettyPrintCmd(ms.cmd);
 	free_ms(&ms);
 }

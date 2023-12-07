@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 13:40:23 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/07 18:04:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int	has_quotes(const char *str)
 {
-	while (!is_quote(str) && *str != '\0')
+	while (*str)
+	{
+		if (is_quote(str))
+			return (1);
 		str++;
-	if (is_quote(str))
-		return (1);
+	}
 	return (0);
 }
 
@@ -114,10 +116,61 @@ char *read_multiline_input(const char *prompt, char *delimiter)
 		free(line);
 		line = readline(prompt);
 	}
+	if (line)
+		free(line);
 	return (multiline_input);
 }
 
-void	heredoc(char *delimiter)
+size_t	get_env_var_name_len(char *str)
+{
+	char	*cur;
+
+	cur = str;
+	cur++;
+	while (*cur && (ft_isalnum(*cur) || *cur == '_'))
+		cur++;
+	return (cur - str);
+}
+
+void	write_env_var(char **str)
+{
+	char	*env_variable;
+
+	(*str) += get_env_var_name_len(*str) - 1;
+	env_variable = "bla=NEW_VAR";
+
+	if (env_variable == NULL)
+		return ;
+	while (*env_variable != '=')
+	{
+		if (*env_variable == '\0')
+			return ;
+		env_variable++;
+	}
+	env_variable++;
+	write(STDOUT_FILENO, env_variable, ft_strlen(env_variable));
+}
+
+void	print_expanded_heredoc_string(char *str, t_ms *ms)
+{
+	while (*str)
+	{
+		if (is_numerical_variable(str))
+			str++;
+		else if(is_exit_code_variable(str))
+		{
+			write(STDOUT_FILENO, ms->last_exit_code, ft_strlen(ms->last_exit_code));
+			(*str)++;
+		}
+		else if (*str == '$' && !is_metachar_variable(str))
+			write_env_var(&str);
+		else
+			write(STDOUT_FILENO, str, 1);
+		str++;
+	}
+}
+
+void	heredoc(char *delimiter, t_ms *ms)
 {
 	int		should_expand_env_var;
 	char	*expanded_delim;
@@ -125,11 +178,19 @@ void	heredoc(char *delimiter)
 	
 	expanded_delim = NULL;
 
-	should_expand_env_var = has_quotes(delimiter);
-	if (should_expand_env_var)
+	should_expand_env_var = !has_quotes(delimiter);
+	if (!should_expand_env_var)
+	{
 		expanded_delim = expand_delimiter(delimiter);
-	heredoc_string = read_multiline_input("> ", delimiter);
-	printf("%s", heredoc_string);
-	free(expanded_delim);
+		heredoc_string = read_multiline_input("> ", expanded_delim);
+	}
+	else
+		heredoc_string = read_multiline_input("> ", delimiter);
+	if (should_expand_env_var)
+		print_expanded_heredoc_string(heredoc_string, ms);
+	else
+		write(STDOUT_FILENO, heredoc_string, ft_strlen(heredoc_string));
+	if (expanded_delim)
+		free(expanded_delim);
 	free(heredoc_string);
 }
