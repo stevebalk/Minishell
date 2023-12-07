@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/06 17:56:48 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/07 01:18:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,59 @@ void test(t_ms *ms)
 	free(tmp);
 }
 */
+void show_redir(t_cmd *cmd)
+{
+	int i;
+	i = -1;
+	while(i++, cmd->redirs)
+	{
+		c_green(); printf("\tRedir: %i  >%s<  Type: %i  \n ", i, cmd->redirs->target, cmd->redirs->type);	
+		cmd->redirs = cmd->redirs->next;
+	}
+}
+
+void show_command_llst(t_ms *ms)
+{
+	c_yellow(); printf("show_command_llst ()\n"); c_reset();
+
+	t_cmd	*tmp_cmd;
+	int		i;
+	int		i2;
+
+	i = 0;
+	
+	tmp_cmd = ms->cmd;
+	c_purple();
+	while(tmp_cmd)
+	{
+		i2 = -1;
+		while(tmp_cmd->argv[++i2])
+			printf("\tCommand Nr: %i   argv[%i] >%s< \n", i, i2, tmp_cmd->argv[i2]);
+		show_redir(tmp_cmd);
+
+		
+		
+		tmp_cmd = tmp_cmd->next;
+	}
+	c_red(); printf("~show_command_llst ()\n"); c_reset();
+
+}
+
+void test_command(t_ms *ms)
+{
+	c_yellow(); printf("test command ()\n"); c_reset();
+
+	ms->cmd = create_cmd_node(ms);
+	ms->cmd->argv = ft_split("ls -la", ' ');
+	ms->cmd->redirs = append_redir_node(ms, ms->cmd);
+	ms->cmd->redirs->target = join_three_string("input1.txt", "", "");
+	ms->cmd->redirs->type = 1; // ??? kein Plan was da rein muss
+
+	show_command_llst(ms);
+	
+	c_red(); printf("~test command ()\n"); c_reset();
+
+}
 
 void ini_env_history_etc(t_ms *ms, char **env)
 {
@@ -65,7 +118,10 @@ int	main(int argc, char **argv, char **env)
 	
 	ini_env_history_etc(&ms, env);
 
-	prompt_handler(&ms);
+
+	test_command(&ms);
+
+//	prompt_handler(&ms);
 	
 	
 	free_ms(&ms);
