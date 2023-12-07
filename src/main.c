@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 01:18:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/07 01:26:09 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void show_command_llst(t_ms *ms)
 			printf("\tCommand Nr: %i   argv[%i] >%s< \n", i, i2, tmp_cmd->argv[i2]);
 		show_redir(tmp_cmd);
 
-		
-		
 		tmp_cmd = tmp_cmd->next;
 	}
 	c_red(); printf("~show_command_llst ()\n"); c_reset();
@@ -86,7 +84,15 @@ void test_command(t_ms *ms)
 	ms->cmd->redirs = append_redir_node(ms, ms->cmd);
 	ms->cmd->redirs->target = join_three_string("input1.txt", "", "");
 	ms->cmd->redirs->type = 1; // ??? kein Plan was da rein muss
+	
+	// ms->cmd = ms->cmd->next;
+	// ms->cmd = append_cmd_node(ms);
+	// ms->cmd->argv = ft_split("grep \"huhu\"", ' ');
+	// ms->cmd->redirs = append_redir_node(ms, ms->cmd);
+	// ms->cmd->redirs->target = join_three_string("input2.txt", "", "");
+	// ms->cmd->redirs->type = 1; // ??? kein Plan was da rein muss
 
+	
 	show_command_llst(ms);
 	
 	c_red(); printf("~test command ()\n"); c_reset();
