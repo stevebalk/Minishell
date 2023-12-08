@@ -1,10 +1,10 @@
-export
-export A=huh
-export
-env
-echo $$
-echo $$
-echo "huhu"
 echo "huu"
 exjt
 echo "huu"
+getvar HOME
+make
+getvar HOME
+eixt
+getvar HOME
+sdjksdjfksdf
+dfm,mvcx

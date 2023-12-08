@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/05 16:48:11 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:38:13 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	}
 	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)	// shows env list
 		show_env_llist(env_llst);
+}
+
+void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str)
+{
+	char *val;
+	(void) env_llst_sorted;
+	if (ft_strncmp("getvar", str, 6) == 0 && ft_strlen(str) > 6) // show vari value
+	{
+		val = get_val_of_var(env_llst, str + 7);
+		c_green(); printf("Varname >%s<   Val >%s<\n", str + 7, val); c_reset();
+		free(val);
+	}
 }
 
 void test_var_names(t_list	*env_llst, t_list	*env_llst_sorted)

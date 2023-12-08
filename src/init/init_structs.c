@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:44:05 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:31:48 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	init_ms(t_ms *ms)
 	ms->last_exit_code = NULL;
 	ms->tk = NULL;
 	ms->unexpected_token = NULL;
+
+	ms->home_dir = NULL;
+	ms->path_arr = NULL;
 
 	ms->env_llst = NULL;
 	ms->env_llst_sorted = NULL;

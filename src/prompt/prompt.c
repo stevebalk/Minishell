@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/06 18:03:59 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:36:40 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	prompt_handler(t_ms *ms)
 				test_parser_export(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_cd_pwd_home(ms, &ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_echo(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
+				test_parser_get_var(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(FILE_HISTORY, &ms->hist_llst);
