@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:30:12 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:49:16 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void	check_infile(t_ms *ms, t_redir *redir)
 {
+	char *tokenTypeNames[] = {
+		"WORD",
+		"PIPE",
+		"REDIRECT",
+		"REDIRECT_APPEND",
+		"INFILE",
+		"HERE_DOC",
+		"VARIABLE",
+		"EOF"
+	};
 	c_yellow(); printf("check_infile() \n");
 	t_redir *tmp_redir;
 	int		fd;
@@ -77,6 +87,16 @@ char	*get_last_redir(t_redir *redir, unsigned int type)
 	int		count;
 	char	*last_redir;
 	int		last_type;
+	char *tokenTypeNames[] = {
+		"WORD",
+		"PIPE",
+		"REDIRECT",
+		"REDIRECT_APPEND",
+		"INFILE",
+		"HERE_DOC",
+		"VARIABLE",
+		"EOF"
+	};
 	
 	last_type = -1;
 	last_redir = NULL;

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 17:21:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:45:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ Minishell
 */
 
 // XXX DEBUG^
-static char *tokenTypeNames[] = {
-	"WORD",
-	"PIPE",
-	"REDIRECT",
-	"REDIRECT_APPEND",
-	"INFILE",
-	"HERE_DOC",
-	"VARIABLE",
-	"EOF"
-};
+// char *tokenTypeNames[] = {
+// 	"WORD",
+// 	"PIPE",
+// 	"REDIRECT",
+// 	"REDIRECT_APPEND",
+// 	"INFILE",
+// 	"HERE_DOC",
+// 	"VARIABLE",
+// 	"EOF"
+// };
 
-
+// (void)tokenTypeNames;
 
 /* Main Minishell struct */
 typedef struct s_ms

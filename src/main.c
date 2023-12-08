@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 17:20:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:46:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,16 @@ int	main(int argc, char **argv, char **env)
 
 void prettyPrintCmd(t_cmd *cmd) 
 {
+	char *tokenTypeNames[] = {
+		"WORD",
+		"PIPE",
+		"REDIRECT",
+		"REDIRECT_APPEND",
+		"INFILE",
+		"HERE_DOC",
+		"VARIABLE",
+		"EOF"
+	};
 	int count = 0;
 	while (cmd != NULL) {
 		c_green(); printf("Command");

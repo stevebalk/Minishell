@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 17:20:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:24:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,43 +49,6 @@ void quick_lexer(t_ms *ms, char *prompt_in)
 	
 	c_reset();
 	//free_ms(&ms);
-}
-
-const char *tokenTypeNames[] = {
-	"WORD",
-	"PIPE",
-	"REDIRECT",
-	"REDIRECT_APPEND",
-	"INFILE",
-	"HERE_DOC",
-	"VARIABLE",
-	"EOF"
-};
-
-void prettyPrintCmd(t_cmd *cmd) {
-	while (cmd != NULL) {
-		printf("Command:\n");
-		if (cmd->argv != NULL) {
-			printf("  Arguments:\n");
-			char **arg = cmd->argv;
-			while (*arg != NULL) {
-				printf("    %s\n", *arg);
-				arg++;
-			}
-		}
-
-		if (cmd->redirs != NULL) {
-			printf("  Redirections:\n");
-			t_redir *redir = cmd->redirs;
-			while (redir != NULL) {
-				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
-				redir = redir->next;
-			}
-		}
-
-		printf("\n");
-		cmd = cmd->next;
-	}
 }
 
 void	prompt_handler(t_ms *ms)
