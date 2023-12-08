@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:04:29 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:12:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@
 ⠰⠿⠿⠿⠿⠿⠇⠀⠠⠿⠿⠏
 Minishell
 */
+
+// XXX Debug
+const char *tokenTypeNames[] = {
+	"WORD",
+	"PIPE",
+	"REDIRECT",
+	"REDIRECT_APPEND",
+	"INFILE",
+	"HERE_DOC",
+	"VARIABLE",
+	"EOF"
+};
+
 
 /* Main Minishell struct */
 typedef struct s_ms

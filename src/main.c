@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:12:20 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,65 +39,9 @@ void test(t_ms *ms)
 	free(tmp);
 }
 */
-void show_redir(t_cmd *cmd)
-{
-	int i;
-	i = -1;
-	while(i++, cmd->redirs)
-	{
-		c_green(); printf("\tRedir: %i  >%s<  Type: %i  \n ", i, cmd->redirs->target, cmd->redirs->type);	
-		cmd->redirs = cmd->redirs->next;
-	}
-}
 
-void show_command_llst(t_ms *ms)
-{
-	c_yellow(); printf("show_command_llst ()\n"); c_reset();
 
-	t_cmd	*tmp_cmd;
-	int		i;
-	int		i2;
 
-	i = 0;
-	
-	tmp_cmd = ms->cmd;
-	c_purple();
-	while(tmp_cmd)
-	{
-		i2 = -1;
-		while(tmp_cmd->argv[++i2])
-			printf("\tCommand Nr: %i   argv[%i] >%s< \n", i, i2, tmp_cmd->argv[i2]);
-		show_redir(tmp_cmd);
-
-		tmp_cmd = tmp_cmd->next;
-	}
-	c_red(); printf("~show_command_llst ()\n"); c_reset();
-
-}
-
-void test_command(t_ms *ms)
-{
-	c_yellow(); printf("test command ()\n"); c_reset();
-
-	ms->cmd = create_cmd_node(ms);
-	ms->cmd->argv = ft_split("ls -la", ' ');
-	ms->cmd->redirs = append_redir_node(ms, ms->cmd);
-	ms->cmd->redirs->target = join_three_string("input1.txt", "", "");
-	ms->cmd->redirs->type = 1; // ??? kein Plan was da rein muss
-	
-	// ms->cmd = ms->cmd->next;
-	// ms->cmd = append_cmd_node(ms);
-	// ms->cmd->argv = ft_split("grep \"huhu\"", ' ');
-	// ms->cmd->redirs = append_redir_node(ms, ms->cmd);
-	// ms->cmd->redirs->target = join_three_string("input2.txt", "", "");
-	// ms->cmd->redirs->type = 1; // ??? kein Plan was da rein muss
-
-	
-	show_command_llst(ms);
-	
-	c_red(); printf("~test command ()\n"); c_reset();
-
-}
 
 void ini_env_history_etc(t_ms *ms, char **env)
 {
@@ -150,31 +94,49 @@ int	main(int argc, char **argv, char **env)
 // 	"EOF"
 // };
 
-// void prettyPrintCmd(t_cmd *cmd) {
-// 	while (cmd != NULL) {
-// 		printf("Command:\n");
-// 		if (cmd->argv != NULL) {
-// 			printf("  Arguments:\n");
-// 			char **arg = cmd->argv;
-// 			while (*arg != NULL) {
-// 				printf("    %s\n", *arg);
-// 				arg++;
-// 			}
-// 		}
+void prettyPrintCmd(t_cmd *cmd) 
+{
+	int count = 0;
+	while (cmd != NULL) {
+		c_green(); printf("Command");
+		c_red(); printf("  >");
+		c_green(); printf(" %i ", count);
+		
+		c_red(); printf("< \n");
+		
+		if (cmd->argv != NULL) {
+			c_cyan();
+			printf("  Arguments:\n");
+			char **arg = cmd->argv;
+			while (*arg != NULL) {
+				c_purple();
+				printf("    %s\n", *arg);
+				arg++;
+			}
+		}
 
-// 		if (cmd->redirs != NULL) {
-// 			printf("  Redirections:\n");
-// 			t_redir *redir = cmd->redirs;
-// 			while (redir != NULL) {
-// 				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
-// 				redir = redir->next;
-// 			}
-// 		}
-
-// 		printf("\n");
-// 		cmd = cmd->next;
-// 	}
-// }
+		if (cmd->redirs != NULL) {
+			c_cyan();
+			printf("  Redirections:\n");
+			t_redir *redir = cmd->redirs;
+			while (redir != NULL) {
+				c_blue();
+				printf("    Type:");
+				c_purple();
+				printf(" %s", tokenTypeNames[redir->type]);
+				c_blue();
+				printf(" Filename: ");
+				c_purple();
+				printf("%s\n", redir->target);
+				c_reset();
+				redir = redir->next;
+			}
+		}
+		count++;
+		printf("\n");
+		cmd = cmd->next;
+	}
+}
 
 // int	main(void)
 // {
@@ -186,42 +148,8 @@ int	main(int argc, char **argv, char **env)
 // 	prettyPrintCmd(ms.cmd);
 // 	free_ms(&ms);
 // }
-const char *tokenTypeNames[] = {
-	"WORD",
-	"PIPE",
-	"REDIRECT",
-	"REDIRECT_APPEND",
-	"INFILE",
-	"HERE_DOC",
-	"VARIABLE",
-	"EOF"
-};
 
-void prettyPrintCmd(t_cmd *cmd) {
-	while (cmd != NULL) {
-		printf("Command:\n");
-		if (cmd->argv != NULL) {
-			printf("  Arguments:\n");
-			char **arg = cmd->argv;
-			while (*arg != NULL) {
-				printf("    %s\n", *arg);
-				arg++;
-			}
-		}
 
-		if (cmd->redirs != NULL) {
-			printf("  Redirections:\n");
-			t_redir *redir = cmd->redirs;
-			while (redir != NULL) {
-				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
-				redir = redir->next;
-			}
-		}
-
-		printf("\n");
-		cmd = cmd->next;
-	}
-}
 
 // int	main(int argc, char **argv)
 // {
