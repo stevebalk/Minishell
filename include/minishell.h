@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:12:15 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:15:33 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ typedef struct s_ms
 	char		**path_arr;
 	
 	char		*last_exit_code;
+	int			last_exit_code_int;
 	char		*unexpected_token;
+
 }				t_ms;
 
 
