@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 18:04:10 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 12:19:36 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,29 +90,38 @@ char	*expand_delimiter(char *str)
 	return (new_delimiter);
 }
 
+void	concatinate_line_input_to_str(char **dst, char *src)
+{
+	char	*temp;
+
+	temp = *dst;
+	*dst = malloc(ft_strlen(temp) + ft_strlen(src) + 2);
+	if (temp != NULL)
+	{
+		ft_strlcpy(*dst, temp, ft_strlen(temp) + 1);
+		ft_strlcat(*dst, src,
+					ft_strlen(*dst) + ft_strlen(src) + 1);
+		ft_strlcat(*dst, "\n", ft_strlen(*dst) + 2);
+		free(temp);
+	}
+	else
+	{
+		ft_strlcpy(*dst, src, ft_strlen(src) + 1);
+		ft_strlcat(*dst, "\n", ft_strlen(*dst) + 2);
+	}
+}
+
 char *read_multiline_input(const char *prompt, char *delimiter)
 {
 	char	*line;
 	char	*multiline_input;
-	char	*temp;
 
 	multiline_input = NULL;
 	line = readline(prompt);
 	while (ft_strncmp(line, delimiter, ft_strlen(delimiter)) != 0 ||
 			ft_strncmp(line, delimiter, ft_strlen(line)) != 0)
 	{
-		temp = multiline_input;
-		multiline_input = malloc(ft_strlen(temp) + ft_strlen(line) + 2);
-		if (temp != NULL)
-		{
-			ft_strlcpy(multiline_input, temp, ft_strlen(temp) + 1);
-			ft_strlcat(multiline_input, "\n", ft_strlen(multiline_input) + 2);
-			ft_strlcat(multiline_input, line,
-						ft_strlen(multiline_input) + ft_strlen(line) + 1);
-			free(temp);
-		}
-		else
-			ft_strlcpy(multiline_input, line, ft_strlen(line) + 1);
+		concatinate_line_input_to_str(&multiline_input, line);
 		free(line);
 		line = readline(prompt);
 	}
