@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:12:20 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:44:24 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ int	main(int argc, char **argv, char **env)
 	
 	ini_env_history_etc(&ms, env);
 
-
-	test_command(&ms);
-
 //	prompt_handler(&ms);
 	
 	
@@ -83,16 +80,6 @@ int	main(int argc, char **argv, char **env)
 
 /* ---------- INPUT TEST MAIN ------------- */
 
-// const char *tokenTypeNames[] = {
-// 	"WORD",
-// 	"PIPE",
-// 	"REDIRECT",
-// 	"REDIRECT_APPEND",
-// 	"INFILE",
-// 	"HERE_DOC",
-// 	"VARIABLE",
-// 	"EOF"
-// };
 
 void prettyPrintCmd(t_cmd *cmd) 
 {

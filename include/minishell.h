@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 15:15:33 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:44:00 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 Minishell
 */
 
-// XXX Debug
-const char *tokenTypeNames[] = {
+// XXX DEBUG^
+static char *tokenTypeNames[] = {
 	"WORD",
 	"PIPE",
 	"REDIRECT",
@@ -63,6 +63,7 @@ const char *tokenTypeNames[] = {
 	"VARIABLE",
 	"EOF"
 };
+
 
 
 /* Main Minishell struct */

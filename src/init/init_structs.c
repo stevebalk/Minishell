@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/29 13:23:50 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:44:05 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	init_ms(t_ms *ms)
 
 	ms->env_llst = NULL;
 	ms->env_llst_sorted = NULL;
-	ms->hist_llst = NULL;;
+	ms->hist_llst = NULL;
 }

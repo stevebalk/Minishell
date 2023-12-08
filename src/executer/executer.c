@@ -6,22 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 20:20:07 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:30:12 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-const char *tokenTypeNames2[] = {
-	"WORD",
-	"PIPE",
-	"REDIRECT",
-	"REDIRECT_APPEND",
-	"INFILE",
-	"HERE_DOC",
-	"VARIABLE",
-	"EOF"
-};
 
 void	check_infile(t_ms *ms, t_redir *redir)
 {
@@ -37,7 +26,7 @@ void	check_infile(t_ms *ms, t_redir *redir)
 	// open every file and printf error if needed
 	while (tmp_redir)
 	{
-		c_blue();printf("    Type:");c_purple();			printf(" %s", tokenTypeNames2[tmp_redir->type]);
+		c_blue();printf("    Type:");c_purple();			printf(" %s", tokenTypeNames[tmp_redir->type]);
 		c_blue();printf(" Filename: ");c_purple();printf("%s\n", tmp_redir->target);c_reset();
 
 		// Check
@@ -113,7 +102,7 @@ char	*get_last_redir(t_redir *redir, unsigned int type)
 	fflush(stdout);
 				
 	c_blue(); printf("type: ");
-	c_purple(); printf("%s ", tokenTypeNames2[last_type]);
+	c_purple(); printf("%s ", tokenTypeNames[last_type]);
 	c_blue(); printf("redir: ");
 	fflush(stdout);
 
