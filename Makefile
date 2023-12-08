@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/08 17:15:59 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/08 19:56:45 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CFLAGS		= -Werror -Wall -Wextra -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
-INCLUDE		= -I include -I /libs/libft/include -I /libs/readline2/include
-READLINE_DIR = /libs/readline2/lib/
-READLINE_NAME = libreadline.a
+INCLUDE		= -I include -I /libs/libft/include #-I libs/readline/include
+#READLINE_DIR = libs/readline
+#READLINE_NAME = libreadline.a
 
 
 # Colors
@@ -106,7 +106,8 @@ read:
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
-			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
+#			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c

@@ -52,7 +52,7 @@ SHELL = /bin/sh
 host_os = darwin22.5.0
 host_vendor = apple
 
-prefix = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline2
+prefix = /usr/local
 exec_prefix = ${prefix}
 includedir = ${prefix}/include
 bindir = ${exec_prefix}/bin

@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline2
+prefix = /usr/local
 
 datarootdir = ${prefix}/share
 
