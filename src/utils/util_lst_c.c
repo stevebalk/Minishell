@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 17:05:07 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:58:31 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,4 @@ char	*get_val_of_var(t_list **llst, char *var_name)
 	//c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 	return (tmp_value);
 }
+

@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 14:30:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:04:29 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#define READLINE_LIBRARY	// JJJ
+
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <errno.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+# include "../libs/readline2/include/readline/history.h"
+# include "../libs/readline2/include/readline/readline.h"
 # include "../libs/libft/include/libft.h"
 # include <signal.h>
 # include <dirent.h>
