@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 15:43:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,7 @@ int	main(int argc, char **argv, char **env)
 		intro3();
 	
 	ini_env_history_etc(&ms, env);
-
-
-	test_command(&ms);
-
-//	prompt_handler(&ms);
+	prompt_handler(&ms);
 	
 	
 	free_ms(&ms);
@@ -186,42 +182,6 @@ int	main(int argc, char **argv, char **env)
 // 	prettyPrintCmd(ms.cmd);
 // 	free_ms(&ms);
 // }
-const char *tokenTypeNames[] = {
-	"WORD",
-	"PIPE",
-	"REDIRECT",
-	"REDIRECT_APPEND",
-	"INFILE",
-	"HERE_DOC",
-	"VARIABLE",
-	"EOF"
-};
-
-void prettyPrintCmd(t_cmd *cmd) {
-	while (cmd != NULL) {
-		printf("Command:\n");
-		if (cmd->argv != NULL) {
-			printf("  Arguments:\n");
-			char **arg = cmd->argv;
-			while (*arg != NULL) {
-				printf("    %s\n", *arg);
-				arg++;
-			}
-		}
-
-		if (cmd->redirs != NULL) {
-			printf("  Redirections:\n");
-			t_redir *redir = cmd->redirs;
-			while (redir != NULL) {
-				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
-				redir = redir->next;
-			}
-		}
-
-		printf("\n");
-		cmd = cmd->next;
-	}
-}
 
 // int	main(int argc, char **argv)
 // {
