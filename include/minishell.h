@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/07 01:01:10 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 14:16:11 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <errno.h>
-# include "../libs/libft/include/libft.h"
+# include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <dirent.h>
+# include "libft.h"
 # include "lexer.h"
 # include "expander.h"
 # include "parser.h"
+# include "executer.h"
 # include "builtins.h"
-
-# include <readline/readline.h>
-# include <readline/history.h>
-
-# include <signal.h>
-# include <dirent.h>
 
 # define FILE_HISTORY "history.txt"
 # define MAX_HISTORY 10
@@ -107,6 +106,10 @@ t_cmd		*append_cmd_node(t_ms *ms);
 t_redir		*append_redir_node(t_ms *ms, t_cmd *cmd);
 t_redir		*create_heredoc_only_redir(t_redir *list);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
+
+/* EXECUTER */
+int			is_builtin_command(char *str);
+void		heredoc(char *delimiter, t_ms *ms);
 
 /* Error handling */
 

@@ -6,10 +6,9 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/05 15:22:01 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/08 14:13:02 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME		= minishell
 LIB_DIR		= libs/libft/
@@ -84,8 +83,14 @@ SRC_FILES	=	main \
 				parser/error \
 				parser/cmd_list_functions \
 				parser/redir_list_functions \
+<<<<<<< HEAD
 				executer/check_command \
 				
+=======
+				executer/checks \
+				executer/executer \
+				executer/heredoc \
+>>>>>>> executer
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
@@ -105,8 +110,7 @@ read:
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
-#			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -o $(NAME)
-			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -o $(NAME) -lreadline
+			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -119,6 +123,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/lexer
 			@mkdir -p $(OBJ_DIR)/expander
 			@mkdir -p $(OBJ_DIR)/parser
+			@mkdir -p $(OBJ_DIR)/executer
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
 			@mkdir -p $(OBJ_DIR)/executer

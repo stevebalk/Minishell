@@ -6,7 +6,11 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/07 01:26:09 by jonas            ###   ########.fr       */
+=======
+/*   Updated: 2023/12/07 18:05:51 by sbalk            ###   ########.fr       */
+>>>>>>> executer
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +30,7 @@ void	print_lexer_struct(t_token *tk)
 	}
 }
 
+<<<<<<< HEAD
 void test(t_ms *ms)
 {
 	(void)ms;
@@ -186,3 +191,100 @@ int	main(int argc, char **argv, char **env)
 // 	prettyPrintCmd(ms.cmd);
 // 	free_ms(&ms);
 // }
+=======
+const char *tokenTypeNames[] = {
+	"WORD",
+	"PIPE",
+	"REDIRECT",
+	"REDIRECT_APPEND",
+	"INFILE",
+	"HERE_DOC",
+	"VARIABLE",
+	"EOF"
+};
+
+void prettyPrintCmd(t_cmd *cmd) {
+	while (cmd != NULL) {
+		printf("Command:\n");
+		if (cmd->argv != NULL) {
+			printf("  Arguments:\n");
+			char **arg = cmd->argv;
+			while (*arg != NULL) {
+				printf("    %s\n", *arg);
+				arg++;
+			}
+		}
+
+		if (cmd->redirs != NULL) {
+			printf("  Redirections:\n");
+			t_redir *redir = cmd->redirs;
+			while (redir != NULL) {
+				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
+				redir = redir->next;
+			}
+		}
+
+		printf("\n");
+		cmd = cmd->next;
+	}
+}
+
+// int	main(int argc, char **argv)
+// {
+// 	// char	*test_lines[MAX_LINES];
+// 	t_ms	ms;
+
+// 	init_ms(&ms);
+// 	ms.last_exit_code = "127";
+// 	if (argc == 2)
+// 	{
+// 		if (access(argv[1], F_OK) == 0)
+// 			// read_test_file(argv + 1, test_lines);
+// 			printf("OK\n");
+// 		else
+// 		{
+// 			perror("File doesn't exist");
+// 			exit(EXIT_FAILURE);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		printf("Wrong input. Use: ./lexer <test_file>\n");
+// 		printf("Testfile should be filled with bash commands\n");
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+// 	lex(teststring, &ms);
+// 	expand(&ms);
+// 	parse(&ms);
+// 	prettyPrintCmd(ms.cmd);
+// 	ms_error(&ms, NULL, 0, 0);
+// 	// free(test_lines[0]);
+// }
+
+int	main(void)
+{
+	t_ms	ms;
+
+	init_ms(&ms);
+	ms.last_exit_code = ft_strdup("127");
+	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+	lex(teststring, &ms);
+	expand(&ms);
+	parse(&ms);
+	heredoc("'ff'", &ms);
+	// prettyPrintCmd(ms.cmd);
+	free_ms(&ms);
+}
+
+// int main(void)
+// {
+//     // Example usage
+//     printf("%d\n", is_builtin_command("pwd"));  // Should print 1 (true)
+//     printf("%d\n", is_builtin_command("ls"));   // Should print 0 (false)
+// 	heredoc("ho$la$\"$a\"$$\"b\"");
+
+//     return 0;
+// }
+
+>>>>>>> executer
