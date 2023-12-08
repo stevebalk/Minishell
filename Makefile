@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/08 20:29:43 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/08 20:40:47 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,6 @@ BLUE = \033[0;94m
 MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
-
-				 
 
 SRC_FILES	=	main \
 				builtins/cd \
@@ -102,7 +100,7 @@ read:
 #			cd $(READLINE_DIR) && ./configure
 #			./configure
 #			@make -C $(READLINE_DIR)
-			
+
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
@@ -150,3 +148,7 @@ git:		fclean
 			@git status
 
 .PHONY:		all clean fclean re norm git
+
+# configure --prefix=$HOME/libreadline && make && make install-static
+# export C_INCLUDE_PATH=$HOME/libreadline/include
+# gcc -o myprogram myprogram.c $HOME/libreadline/lib/libreadline.a $HOME/libreadline/libhistory.a -lncurses -ltermcap
