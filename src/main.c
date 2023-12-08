@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/12/07 01:26:09 by jonas            ###   ########.fr       */
-=======
-/*   Updated: 2023/12/07 18:05:51 by sbalk            ###   ########.fr       */
->>>>>>> executer
+/*   Updated: 2023/12/08 14:24:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +26,6 @@ void	print_lexer_struct(t_token *tk)
 	}
 }
 
-<<<<<<< HEAD
 void test(t_ms *ms)
 {
 	(void)ms;
@@ -191,7 +186,6 @@ int	main(int argc, char **argv, char **env)
 // 	prettyPrintCmd(ms.cmd);
 // 	free_ms(&ms);
 // }
-=======
 const char *tokenTypeNames[] = {
 	"WORD",
 	"PIPE",
@@ -262,20 +256,20 @@ void prettyPrintCmd(t_cmd *cmd) {
 // 	// free(test_lines[0]);
 // }
 
-int	main(void)
-{
-	t_ms	ms;
+// int	main(void)
+// {
+// 	t_ms	ms;
 
-	init_ms(&ms);
-	ms.last_exit_code = ft_strdup("127");
-	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
-	lex(teststring, &ms);
-	expand(&ms);
-	parse(&ms);
-	heredoc("'ff'", &ms);
-	// prettyPrintCmd(ms.cmd);
-	free_ms(&ms);
-}
+// 	init_ms(&ms);
+// 	ms.last_exit_code = ft_strdup("127");
+// 	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+// 	lex(teststring, &ms);
+// 	expand(&ms);
+// 	parse(&ms);
+// 	heredoc("'ff'", &ms);
+// 	// prettyPrintCmd(ms.cmd);
+// 	free_ms(&ms);
+// }
 
 // int main(void)
 // {
@@ -287,4 +281,3 @@ int	main(void)
 //     return 0;
 // }
 
->>>>>>> executer
