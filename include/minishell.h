@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 16:55:29 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:21:29 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <errno.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-//# include "../libs/readline2/include/readline/history.h"
-//# include "../libs/readline2/include/readline/readline.h"
+// # include <readline/history.h>
+// # include <readline/readline.h>
+# include "../libs/readline2/include/readline/history.h"
+# include "../libs/readline2/include/readline/readline.h"
 # include "../libs/libft/include/libft.h"
 # include <signal.h>
 # include <dirent.h>

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 15:44:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:21:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	copy_env_variable(char **str, t_ms *ms, char *quote)
 		(*str)++;
 	env_var_name = malloc((*str - str_start + 1) * sizeof(char));
 	check_if_malloc_failed((void *)env_var_name, ms);
-	ft_strlcpy(env_var_name, str_start, *str - str_start + 1);
-	env_value = get_env_variable_value(env_var_name); /// NEEEEEEED FUNCTION
+	ft_strlcpy(env_var_name, str_start + 1, *str - str_start);
+	env_value = get_val_of_var(&(ms->env_llst), env_var_name);
 	free(env_var_name);
 	if (*quote == '\"' && env_value == NULL)
 		append_and_fill_chunk_with_str(ms, "", 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 16:36:40 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 17:20:45 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,42 @@ void quick_lexer(t_ms *ms, char *prompt_in)
 	//free_ms(&ms);
 }
 
+const char *tokenTypeNames[] = {
+	"WORD",
+	"PIPE",
+	"REDIRECT",
+	"REDIRECT_APPEND",
+	"INFILE",
+	"HERE_DOC",
+	"VARIABLE",
+	"EOF"
+};
+
+void prettyPrintCmd(t_cmd *cmd) {
+	while (cmd != NULL) {
+		printf("Command:\n");
+		if (cmd->argv != NULL) {
+			printf("  Arguments:\n");
+			char **arg = cmd->argv;
+			while (*arg != NULL) {
+				printf("    %s\n", *arg);
+				arg++;
+			}
+		}
+
+		if (cmd->redirs != NULL) {
+			printf("  Redirections:\n");
+			t_redir *redir = cmd->redirs;
+			while (redir != NULL) {
+				printf("    Type: %s, Filename: %s\n", tokenTypeNames[redir->type], redir->target);
+				redir = redir->next;
+			}
+		}
+
+		printf("\n");
+		cmd = cmd->next;
+	}
+}
 
 void	prompt_handler(t_ms *ms)
 //void	prompt_handler(t_list **history_lst, t_list **env_llst, t_list **env_llst_sorted)
@@ -79,12 +115,17 @@ void	prompt_handler(t_ms *ms)
 			if (ft_strlen(prompt_in) > 0)
 			{
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
+				// lex(prompt_in, ms);
+				// expand(ms);
+				// parse(ms);
+				// prettyPrintCmd(ms->cmd);
+				// heredoc(ms->cmd->redirs->target, ms);
+				// free_cmd_list(&(ms->cmd));
 				if (ft_strncmp(prompt_in, "exit", 4) == 0)
 				{
 					free_n_null((void **)&prompt_in);
 					break ;
 				}
-				
 				//quick_lexer(ms, prompt_in);		// copy from steves main after first merge
 				//c_green(); printf("after quick lexer\n");
 

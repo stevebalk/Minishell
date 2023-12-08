@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 12:19:36 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/08 16:39:04 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,23 +141,24 @@ size_t	get_env_var_name_len(char *str)
 	return (cur - str);
 }
 
-void	write_env_var(char **str)
+void	write_env_var(char **str, t_ms *ms)
 {
 	char	*env_variable;
+	char	*var_name;
+	size_t	var_name_len;
 
-	(*str) += get_env_var_name_len(*str) - 1;
-	env_variable = "bla=NEW_VAR";
-
+	var_name_len = get_env_var_name_len(*str) - 1;
+	var_name = malloc((var_name_len + 1) * sizeof(char));
+	check_if_malloc_failed((void *) var_name, ms);
+	ft_strlcpy(var_name, (*str) + 1, var_name_len + 1);
+	(*str) += var_name_len;
+	env_variable = get_val_of_var(&(ms->env_llst), var_name);
+	free(var_name);
 	if (env_variable == NULL)
 		return ;
-	while (*env_variable != '=')
-	{
-		if (*env_variable == '\0')
-			return ;
-		env_variable++;
-	}
-	env_variable++;
 	write(STDOUT_FILENO, env_variable, ft_strlen(env_variable));
+	if (env_variable)
+		free(env_variable);
 }
 
 void	print_expanded_heredoc_string(char *str, t_ms *ms)
@@ -172,7 +173,7 @@ void	print_expanded_heredoc_string(char *str, t_ms *ms)
 			(*str)++;
 		}
 		else if (*str == '$' && !is_metachar_variable(str))
-			write_env_var(&str);
+			write_env_var(&str, ms);
 		else
 			write(STDOUT_FILENO, str, 1);
 		str++;
