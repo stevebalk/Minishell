@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 20:04:22 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 20:28:28 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	prompt_handler(t_ms *ms)
 	int		hit_sig;
 
 	(void)count;
-
 	count = 0;
 	prompt_in = NULL;
 	hit_sig = 0;
@@ -67,9 +66,10 @@ void	prompt_handler(t_ms *ms)
 		clear_screen();
 	while (1)
 	{
+		rl_clear_history();
 		if (LOGO_ABOVE_PROMPT == 1)
 			intro3();
-		//prompt_in = readline("\001\e[0m\002minihell\001\e[0m\002>>\001\e[0m\002");
+		// prompt_in = readline("\001\e[00;31m\002minihell\001\e[0m\002>>\001\e[0m\002");
 		// prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002");
 		 prompt_in = readline("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36m");
 

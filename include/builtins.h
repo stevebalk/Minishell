@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 19:55:34 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/08 20:27:34 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define BUILTINS_H
 # include <stdio.h>
 # include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-//# include "../libs/readline2/include/readline/readline.h"
-//# include "../libs/readline2/include/readline/history.h"
+// # include <readline/readline.h>
+// # include <readline/history.h>
+# include "../libs/readline/readline/readline.h"
+# include "../libs/readline/readline/history.h"
 
 # include "../libs/libft/include/libft.h"
 # include <fcntl.h>
