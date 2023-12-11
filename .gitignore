@@ -12,3 +12,4 @@ history.txt
 .vscode/
 minishell
 libs/libft/libft.a
+settings.json
