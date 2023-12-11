@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 20:28:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/11 13:10:46 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	prompt_handler(t_ms *ms)
 		clear_screen();
 	while (1)
 	{
-		rl_clear_history();
+		// rl_clear_history();
 		if (LOGO_ABOVE_PROMPT == 1)
 			intro3();
 		// prompt_in = readline("\001\e[00;31m\002minihell\001\e[0m\002>>\001\e[0m\002");
@@ -98,11 +98,11 @@ void	prompt_handler(t_ms *ms)
 				test_parser_cd_pwd_home(ms, &ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_echo(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				test_parser_get_var(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				rl_clear_history();
+				// rl_clear_history();
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(FILE_HISTORY, &ms->hist_llst);
-				add_history_llst_to_prompt(&ms->hist_llst);
-				//add_history(prompt_in);
+				// add_history_llst_to_prompt(&ms->hist_llst);
+				add_history(prompt_in);
 				free_n_null((void **)&prompt_in);
 			}
 			else

@@ -6,13 +6,16 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/08 20:40:47 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/11 13:50:41 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
+READLINE_DIR = libs/readline/
+READLINE_NAME = libreadline.a
+READLINE_INSTALL_DIR = libs/readline-install/
 CC			= cc
 CFLAGS		= -Werror -Wall -Wextra -g
 #CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
@@ -20,8 +23,6 @@ RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 INCLUDE		= -I include -I libs/libft/include -I libs/readline/include
-READLINE_DIR = libs/readline/lib/
-READLINE_NAME = libreadline.a
 
 
 # Colors
@@ -91,18 +92,10 @@ SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 
-all:		$(NAME)
-
-read:
-			@echo $(shell pwd) 
-			cd $(shell pwd)/libs/readline && @echo $(shell pwd) 			
-#			./configure
-#			cd $(READLINE_DIR) && ./configure
-#			./configure
-#			@make -C $(READLINE_DIR)
+all:		readline_install $(NAME) 
 
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) 
 			@make -C $(LIB_DIR)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
@@ -129,12 +122,16 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 			@$(RM) -rf $(OBJ_DIR)
 			@make clean -C $(LIB_DIR)
-			@echo "$(BLUE)$(NAME) object files cleaned!$(DEF_COLOR)"
+			@make clean -C $(READLINE_INSTALL_DIR)
+			@echo "$(BLUE)$(NAME) Object files cleaned!$(DEF_COLOR)"
+			@echo "$(BLUE)$(NAME) Readline install files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
 			@make fclean -C $(LIB_DIR)
+			@$(RM) -rf $(READLINE_DIR)
 			@$(RM) -f $(NAME)
-			@echo "$(CYAN)$(NAME) executable files cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)$(NAME) Readline lib cleaned!$(DEF_COLOR)"
+			@echo "$(CYAN)$(NAME) Executable files cleaned!$(DEF_COLOR)"
 
 re:			fclean all
 			@echo "$(GREEN)Cleaned and rebuilt everything for $(NAME)!$(DEF_COLOR)"
@@ -147,7 +144,15 @@ git:		fclean
 			@git add *
 			@git status
 
-.PHONY:		all clean fclean re norm git
+readline_install:
+			export CURRENT_DIRECTORY="$(shell pwd)" && \
+			mkdir -p $(READLINE_DIR) && \
+			cd $(READLINE_INSTALL_DIR) && \
+			./configure --prefix=$$CURRENT_DIRECTORY/$(READLINE_DIR) && \
+			make && \
+			make install-static
+
+.PHONY:		all clean fclean re norm git readline_install
 
 # configure --prefix=$HOME/libreadline && make && make install-static
 # export C_INCLUDE_PATH=$HOME/libreadline/include
