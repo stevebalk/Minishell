@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/11 13:11:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 13:27:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,28 @@
 Minishell
 */
 
+// Enum for token types
+/*
+WORD			= "ALNUM STRING" or "/" or "."
+PIPE			= |
+REDIRECT		= >
+REDIRECT_APPEND	= >>
+INFILE			= <
+HERE_DOC		= <<
+TOKEN_EOF		= NULL
+*/
+typedef enum e_token_type
+{
+	TOKEN_WORD				= 0,
+	TOKEN_PIPE				= 1,
+	TOKEN_REDIRECT			= 2,
+	TOKEN_REDIRECT_APPEND	= 3,
+	TOKEN_INFILE			= 4,
+	TOKEN_HERE_DOC			= 5,
+	TOKEN_VARIABLE			= 6,
+	TOKEN_EOF				= 7
+}		t_token_type;
+
 /* Main Minishell struct */
 typedef struct s_ms
 {
@@ -74,6 +96,16 @@ typedef struct s_ms
 	char		*unexpected_token;
 
 }				t_ms;
+
+typedef struct s_cmd_io
+{
+	char			*input;
+	t_token_type	intype;
+	int				in_fd;
+	char			*output;
+	t_token_type	outtype;
+	int				out_fd;
+}				t_cmd_io;
 
 
 /* Init */
