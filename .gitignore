@@ -9,7 +9,6 @@ history.txt
 *.o
 *.dSYM
 *.plist
-.vscode/
+.vscode/settings.json
 minishell
 libs/libft/libft.a
-settings.json
