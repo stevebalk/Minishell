@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 13:27:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 14:59:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,19 @@ typedef enum e_token_type
 	TOKEN_EOF				= 7
 }		t_token_type;
 
+typedef struct s_cmd_io
+{
+	char			*input;
+	t_token_type	intype;
+	int				in_fd;
+	char			*output;
+	t_token_type	outtype;
+	int				out_fd;
+	char			**command_arr;
+	int				is_valid;
+	s_cmd_io		*next;
+}				t_cmd_io;
+
 /* Main Minishell struct */
 typedef struct s_ms
 {
@@ -83,6 +96,7 @@ typedef struct s_ms
 	t_cmd		*cmd;
 	t_list		*envp;
 	t_expand	*exp;
+	t_cmd_io	*cmd_io;
 
 	t_list		*hist_llst;
 	t_list		*env_llst;
@@ -96,17 +110,6 @@ typedef struct s_ms
 	char		*unexpected_token;
 
 }				t_ms;
-
-typedef struct s_cmd_io
-{
-	char			*input;
-	t_token_type	intype;
-	int				in_fd;
-	char			*output;
-	t_token_type	outtype;
-	int				out_fd;
-}				t_cmd_io;
-
 
 /* Init */
 void		init_ms(t_ms *ms);

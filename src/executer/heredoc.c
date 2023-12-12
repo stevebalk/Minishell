@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 16:39:04 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 16:01:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void	print_expanded_heredoc_string(char *str, t_ms *ms)
 	}
 }
 
-void	heredoc(char *delimiter, t_ms *ms)
+char	*heredoc(char *delimiter, t_ms *ms)
 {
 	int		should_expand_env_var;
 	char	*expanded_delim;
@@ -202,5 +202,5 @@ void	heredoc(char *delimiter, t_ms *ms)
 		write(STDOUT_FILENO, heredoc_string, ft_strlen(heredoc_string));
 	if (expanded_delim)
 		free(expanded_delim);
-	free(heredoc_string);
+	return (heredoc_string);
 }
