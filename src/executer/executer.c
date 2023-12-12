@@ -6,92 +6,50 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 14:07:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 18:25:36 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	check_file(t_ms *ms, t_redir *redir)
-{
-	char *tokenTypeNames[] = {
-		"WORD",
-		"PIPE",
-		"REDIRECT",
-		"REDIRECT_APPEND",
-		"INFILE",
-		"HERE_DOC",
-		"VARIABLE",
-		"EOF"
-	};
-	c_yellow(); printf("check_file() \n");
-	t_redir *tmp_redir;
-	int		fd;
+void print_cmd_io_list(const t_cmd_io *head) {
+	const t_cmd_io *current = head;
 
-	if (!redir)
+	while (current != NULL)
+	{
+		printf("Input: %s\n", current->input ? current->input : "NULL");
+		printf("Input Type: %d\n", current->intype);
+		printf("Input File Descriptor: %d\n", current->in_fd);
+		printf("Output: %s\n", current->output ? current->output : "NULL");
+		printf("Output Type: %d\n", current->outtype);
+		printf("Output File Descriptor: %d\n", current->out_fd);
+		printf("Command Array:\n");
+
+		if (current->command_arr != NULL)
+		{
+			for (int i = 0; current->command_arr[i] != NULL; ++i)
+			{
+				printf("  %s\n", current->command_arr[i]);
+			}
+		}
+		else
+		{
+			printf("  NULL\n");
+		}
+
+		printf("Is Valid: %d\n", current->is_valid);
+		printf("Next: %p\n", (void *)current->next);
+
+		current = current->next;
+	}
+}
+
+void	executer(t_ms *ms)
+{
+	if (ms->cmd == NULL)
 		return ;
-
-	tmp_redir = redir;	
-	
-	// open every file and printf error if needed
-	while (tmp_redir)
-	{
-		c_blue();printf("    Type:");c_purple();			printf(" %s", tokenTypeNames[tmp_redir->type]);
-		c_blue();printf(" Filename: ");c_purple();printf("%s\n", tmp_redir->target);c_reset();
-
-		// Check Infile
-		if (tmp_redir->type == TOKEN_INFILE)
-		{
-			fd = open(tmp_redir->target, O_RDONLY, 0644);
-			printf("\t  open IN file >%s< \n", tmp_redir->target);
-			if (fd == -1)
-			{
-				c_red(); printf("\t\tError 1 --> TODO Error Handling Open in file in check_file \nCancel EXECUTION"); c_reset();
-				ms->last_exit_code_int = 1; 			// richtiger Code?
-			}
-			else
-			{
-				c_green(); printf("\t\tFD: %i   --> TODO Error Handling Open in file in check_file \n", fd); c_reset();
-				ms->last_exit_code_int = 0; 
-			}
-				
-			close(fd);
-		}
-		// Check Outfile
-		if (tmp_redir->type == TOKEN_REDIRECT)
-		{
-			fd = open(tmp_redir->target, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-			printf("\t  open OUT file >%s< \n", tmp_redir->target);
-			if (fd == -1)
-			{
-				c_red(); printf("\t\tError 1 --> TODO Error Handling Open OUT file in check_file \nCancel EXECUTION"); c_reset();
-				ms->last_exit_code_int = 1; 			// richtiger Code?
-			}
-			else
-			{
-				c_green(); printf("\t\tFD: %i   --> TODO Error Handling Open file in check_file \n", fd); c_reset();
-				ms->last_exit_code_int = 0; 
-			}
-				
-			close(fd);
-		}
-		tmp_redir = tmp_redir->next;
-	}
-	
-int		get_len_cmd(t_cmd *cmd)
-{
-	t_cmd	*tmp_cmd;
-	int		count;
-
-	tmp_cmd = cmd;
-	count = 0;
-	while (tmp_cmd)
-	{
-		tmp_cmd = tmp_cmd->next;
-		count++;
-	}
-	
-	return (count);
+	create_cmd_io_list(ms);
+	print_cmd_io_list(ms->cmd_io);
 }
 
 

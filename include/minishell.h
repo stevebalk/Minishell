@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 14:59:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 18:28:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,54 @@ typedef enum e_token_type
 	TOKEN_EOF				= 7
 }		t_token_type;
 
+# define TOKEN_TYPES	"|<>"
+
+/* Token struct, created by the lexer to
+store the tokens used by the parser.
+
+Doubly linked list
+type		= Which token type (WORD, PIPE, REDIRECT ...)
+content		= String for the specific token
+join		= Should the content joined with the next token?
+*/
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*content;
+	struct s_token	*next;
+	struct s_token	*prev;
+}				t_token;
+
 typedef struct s_cmd_io
 {
-	char			*input;
-	t_token_type	intype;
-	int				in_fd;
-	char			*output;
-	t_token_type	outtype;
-	int				out_fd;
-	char			**command_arr;
-	int				is_valid;
-	s_cmd_io		*next;
+	char				*input;
+	t_token_type		intype;
+	int					in_fd;
+	char				*output;
+	t_token_type		outtype;
+	int					out_fd;
+	char				**command_arr;
+	int					is_valid;
+	struct s_cmd_io		*next;
 }				t_cmd_io;
+
+/* Redirection struct, used by t_cmd to save
+redirections in a linked list*/
+typedef struct s_redir
+{
+	t_token_type	type;
+	char			*target;
+	struct s_redir	*next;
+}				t_redir;
+
+/* Parser struct, saves all redirections
+and commands */
+typedef struct s_cmd
+{
+	char			**argv;
+	t_redir			*redirs;
+	struct s_cmd	*next;
+}				t_cmd;
 
 /* Main Minishell struct */
 typedef struct s_ms
@@ -149,8 +185,14 @@ t_redir		*create_heredoc_only_redir(t_redir *list);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* EXECUTER */
+void		executer(t_ms *ms);
+t_cmd_io	*create_cmd_io_node(t_ms *ms);
+t_cmd_io	*cmd_io_append_node(t_ms *ms);
+void		create_cmd_io_list(t_ms *ms);
+void		print_file_error(char *msg);
+int			redir_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io);
 int			is_builtin_command(char *str);
-void		heredoc(char *delimiter, t_ms *ms);
+char		*heredoc(char *delimiter, t_ms *ms);
 
 /* Error handling */
 

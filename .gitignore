@@ -12,3 +12,5 @@ history.txt
 .vscode/settings.json
 minishell
 libs/libft/libft.a
+libs/readline
+outX

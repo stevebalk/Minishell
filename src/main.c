@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 17:46:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 17:13:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,29 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
 }
 
-int	main(int argc, char **argv, char **env)
-{
-	t_ms	ms;
-	c_yellow(); printf("*** main () ***\n"); c_reset();
-	init_ms(&ms);
-	(void)argc;
-	(void)argv;
-	(void)env;
+// int	main(int argc, char **argv, char **env)
+// {
+// 	t_ms	ms;
+// 	c_yellow(); printf("*** main () ***\n"); c_reset();
+// 	init_ms(&ms);
+// 	(void)argc;
+// 	(void)argv;
+// 	(void)env;
 
-	if (!LOGO_ABOVE_PROMPT)
-		intro3();
+// 	if (!LOGO_ABOVE_PROMPT)
+// 		intro3();
 	
-	ini_env_history_etc(&ms, env);
+// 	ini_env_history_etc(&ms, env);
 
-	prompt_handler(&ms);
+// 	prompt_handler(&ms);
 	
 	
-	free_ms(&ms);
+// 	free_ms(&ms);
 	
-	c_red();
-	printf("*** ~main () ***\n"); c_reset();
-	return (EXIT_SUCCESS);
-}
+// 	c_red();
+// 	printf("*** ~main () ***\n"); c_reset();
+// 	return (EXIT_SUCCESS);
+// }
 
 /* ---------- INPUT TEST MAIN ------------- */
 
@@ -135,17 +135,22 @@ void prettyPrintCmd(t_cmd *cmd)
 	}
 }
 
-// int	main(void)
-// {
-// 	t_ms	ms;
-// 	char teststring[] = "> dsads << infile | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
-// 	lex(teststring, &ms);
-// 	expand(&ms);
-// 	parse(&ms);
-// 	prettyPrintCmd(ms.cmd);
-// 	free_ms(&ms);
-// }
-
+int	main(int argc, char **argv, char **env)
+{
+	(void)argc;
+	(void)argv;
+	(void)env;
+	t_ms	ms;
+	//char teststring[] = "> outfile.txt << infile.txt  | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+	char teststring[] = "> outfile.txt > outX << ff < infile.txtwc -l | < infile > outfile" ;
+	init_ms(&ms);
+	lex(teststring, &ms);
+	expand(&ms);
+	parse(&ms);
+	prettyPrintCmd(ms.cmd);
+	executer(&ms);
+	//free_ms(&ms);
+}
 
 
 // int	main(int argc, char **argv)

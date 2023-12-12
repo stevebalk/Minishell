@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/12 12:42:05 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/12 18:26:56 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,11 +82,15 @@ SRC_FILES	=	main \
 				parser/error \
 				parser/cmd_list_functions \
 				parser/redir_list_functions \
+				executer/executer \
+				executer/error \
+				executer/list_functions \
 				executer/check_command \
 				executer/checks \
-				executer/executer \
 				executer/heredoc \
-				executer/exec \
+				executer/create_cmd_io \
+				executer/redir_to_io \
+
 				
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
