@@ -6,12 +6,44 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 12:36:30 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 16:07:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/12 16:17:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "executer.h"
+
+void print_cmd_io_list(const t_cmd_io *head) {
+	const t_cmd_io *current = head;
+
+	while (current != NULL)
+	{
+		printf("Input: %s\n", current->input ? current->input : "NULL");
+		printf("Input Type: %d\n", current->intype);
+		printf("Input File Descriptor: %d\n", current->in_fd);
+		printf("Output: %s\n", current->output ? current->output : "NULL");
+		printf("Output Type: %d\n", current->outtype);
+		printf("Output File Descriptor: %d\n", current->out_fd);
+		printf("Command Array:\n");
+
+		if (current->command_arr != NULL)
+		{
+			for (int i = 0; current->command_arr[i] != NULL; ++i)
+			{
+				printf("  %s\n", current->command_arr[i]);
+			}
+		}
+		else
+		{
+			printf("  NULL\n");
+		}
+
+		printf("Is Valid: %d\n", current->is_valid);
+		printf("Next: %p\n", (void *)current->next);
+
+		current = current->next;
+	}
+}
 
 /* Creates initilized cmd_io if successful */
 t_cmd_io	*create_cmd_io_node(t_ms *ms)
@@ -57,7 +89,7 @@ void	print_file_error(t_ms *ms, char *msg)
 }
 
 
-static int	redir_to_io(t_redir *redir, t_cmd_io *io)
+static int	redir_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io)
 {
 	if (redir->type == TOKEN_INFILE)
 	{
@@ -99,7 +131,7 @@ static int	redir_to_io(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-int	fill_cmd_io_node(t_redir *redir, t_cmd_io *io)
+void	fill_cmd_io_node(t_ms *ms, t_redir *redir, t_cmd_io *io)
 {
 	t_redir	*cur;
 
@@ -108,7 +140,7 @@ int	fill_cmd_io_node(t_redir *redir, t_cmd_io *io)
 	cur = redir;
 	while (cur)
 	{
-		io->is_valid = redir_to_io(cur, io)
+		io->is_valid = redir_to_io(ms, cur, io)
 		if (io->is_valid)
 			cur = cur->next;
 		else
@@ -126,7 +158,7 @@ void	create_cmd_io(t_ms *ms)
 	{
 		cmd_io_cur = cmd_io_append_node(ms);
 		cmd_io_cur->command_arr = cmd_cur->argv;
-			cmd_io_cur->is_valid = fill_cmd_io_node(cmd_cur->redirs, cmd_io_cur);
+		fill_cmd_io_node(cmd_cur->redirs, cmd_io_cur);
 		cmd_cur = cmd_cur->next;
 	}
 }
@@ -136,7 +168,5 @@ void	executer(t_ms *ms)
 	if (ms->cmd == NULL)
 		return ;
 	create_cmd_io(ms);
-	while (ms->cmd)
-		execute_cmd_block(ms);
-
+	print_cmd_io_list(ms->cmd_io);
 }
