@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 16:41:27 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:01:11 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 void	builtin_master(t_ms *ms, char **cmd_arr)
 {
 	(void) ms;
-	
+
 	if (!cmd_arr)
 		return ;
 		
 	if ((ft_strncmp(cmd_arr[0], "cd", 2) == 0) && (ft_strlen(cmd_arr[0]) == 2))
 	{
 		printf("CD\n");
+		builtin_cd(ms, NULL, NULL, cmd_arr[1]);
 	}
 	if ((ft_strncmp(cmd_arr[0], "echo", 4) == 0) && (ft_strlen(cmd_arr[0]) == 4))
 	{
@@ -39,6 +40,7 @@ void	builtin_master(t_ms *ms, char **cmd_arr)
 	if ((ft_strncmp(cmd_arr[0], "pwd", 3) == 0) && (ft_strlen(cmd_arr[0]) == 3))
 	{
 		printf("pwd\n");
+		builtin_pwd(&ms->env_llst, &ms->env_llst_sorted, 1);
 	}
 	if ((ft_strncmp(cmd_arr[0], "unset", 5) == 0) && (ft_strlen(cmd_arr[0]) == 5))
 	{
