@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/17 14:57:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 13:44:08 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,6 @@ void	executer(t_ms *ms)
 	if (ms->cmd == NULL)
 		return ;
 	create_cmd_io_list(ms);
-	print_cmd_io_list(ms->cmd_io);
+	// print_cmd_io_list(ms->cmd_io);
 	execute_cmd_io(ms, ms->cmd_io);
 }

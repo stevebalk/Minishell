@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/17 14:57:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 14:06:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,29 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
 }
 
-// int	main(int argc, char **argv, char **env)
-// {
-// 	t_ms	ms;
-// 	c_yellow(); printf("*** main () ***\n"); c_reset();
-// 	init_ms(&ms);
-// 	(void)argc;
-// 	(void)argv;
-// 	(void)env;
+int	main(int argc, char **argv, char **env)
+{
+	t_ms	ms;
+	c_yellow(); printf("*** main () ***\n"); c_reset();
+	init_ms(&ms);
+	(void)argc;
+	(void)argv;
+	(void)env;
 
-// 	if (!LOGO_ABOVE_PROMPT)
-// 		intro3();
+	if (!LOGO_ABOVE_PROMPT)
+		intro3();
 	
-// 	ini_env_history_etc(&ms, env);
+	ini_env_history_etc(&ms, env);
 
-// 	prompt_handler(&ms);
+	prompt_handler(&ms);
 	
 	
-// 	free_ms(&ms);
+	free_ms(&ms);
 	
-// 	c_red();
-// 	printf("*** ~main () ***\n"); c_reset();
-// 	return (EXIT_SUCCESS);
-// }
+	c_red();
+	printf("*** ~main () ***\n"); c_reset();
+	return (EXIT_SUCCESS);
+}
 
 /* ---------- INPUT TEST MAIN ------------- */
 
@@ -135,25 +135,25 @@ void prettyPrintCmd(t_cmd *cmd)
 	}
 }
 
-int	main(int argc, char **argv, char **env)
-{
-	(void)argc;
-	(void)argv;
-	(void)env;
-	t_ms	ms;
-	//char teststring[] = "> outfile.txt << infile.txt  | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
-	// char teststring[] = "> outfile.txt > outX << ff < infile.txt wc -l | < infile > outfile" ;
-	char teststring[] = "sleep 3 | ls | cat" ;
-	printf("%s\n", teststring);
-	init_ms(&ms);
-	lex(teststring, &ms);
-	expand(&ms);
-	parse(&ms);
-	prettyPrintCmd(ms.cmd);
-	executer(&ms);
-	printf("~Main\n");
-	//free_ms(&ms);
-}
+// int	main(int argc, char **argv, char **env)
+// {
+// 	(void)argc;
+// 	(void)argv;
+// 	(void)env;
+// 	t_ms	ms;
+// 	//char teststring[] = "> outfile.txt << infile.txt  | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
+// 	// char teststring[] = "> outfile.txt > outX << ff < infile.txt wc -l | < infile > outfile" ;
+// 	char teststring[] = " < infile cat >outfile | << ff cat | < ifnifdfsd cat > outfile2 | ls > outfile3" ;
+// 	printf("%s\n", teststring);
+// 	init_ms(&ms);
+// 	lex(teststring, &ms);
+// 	expand(&ms);
+// 	parse(&ms);
+// 	// prettyPrintCmd(ms.cmd);
+// 	executer(&ms);
+// 	// printf("~Main\n");
+// 	//free_ms(&ms);
+// }
 
 
 // int	main(int argc, char **argv)

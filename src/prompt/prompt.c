@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/11 13:10:46 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 14:09:16 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	prompt_handler(t_ms *ms)
 			if (ft_strlen(prompt_in) > 0)
 			{
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
-				// lex(prompt_in, ms);
-				// expand(ms);
-				// parse(ms);
+				lex(prompt_in, ms);
+				expand(ms);
+				parse(ms);
+				executer(ms);
 				// prettyPrintCmd(ms->cmd);
 				// heredoc(ms->cmd->redirs->target, ms);
 				// free_cmd_list(&(ms->cmd));

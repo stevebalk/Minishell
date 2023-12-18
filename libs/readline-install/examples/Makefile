@@ -21,7 +21,7 @@ RL_LIBRARY_VERSION = 8.2
 SHELL = /bin/sh
 RM = rm -f
 
-prefix = /home/steve/programming/42/own_projects/minishell/libs/readline
+prefix = /Users/sbalk/projects/owngithub/minishell/libs/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
@@ -32,7 +32,7 @@ datadir = ${datarootdir}
 
 top_srcdir = ..
 #BUILD_DIR = .
-BUILD_DIR = /home/steve/programming/42/own_projects/minishell/libs/readline-install
+BUILD_DIR = /Users/sbalk/projects/owngithub/minishell/libs/readline-install
 installdir = $(datadir)/readline
 
 INSTALL = /usr/bin/install -c

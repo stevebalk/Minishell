@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/13 13:26:57 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/18 13:38:04 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
-READLINE_DIR = libs/readline/
+READLINE_DIR = libs/readline/lib/
 READLINE_NAME = libreadline.a
 READLINE_INSTALL_DIR = libs/readline-install/
 CC			= cc
