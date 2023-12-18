@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 18:28:03 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/16 16:46:08 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <sys/wait.h>
 // # include <readline/history.h>
 // # include <readline/readline.h>
 # include "../libs/readline/include/readline/history.h"
@@ -133,6 +134,8 @@ typedef struct s_ms
 	t_list		*envp;
 	t_expand	*exp;
 	t_cmd_io	*cmd_io;
+	int			fd_stdin;
+	int			fd_stdout;
 
 	t_list		*hist_llst;
 	t_list		*env_llst;

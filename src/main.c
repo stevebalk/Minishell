@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 17:13:26 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/17 14:57:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,16 @@ int	main(int argc, char **argv, char **env)
 	(void)env;
 	t_ms	ms;
 	//char teststring[] = "> outfile.txt << infile.txt  | < dsd | fdfs>fdsf | fdsf < fdf fggre >f fd | fdsf" ;
-	char teststring[] = "> outfile.txt > outX << ff < infile.txtwc -l | < infile > outfile" ;
+	// char teststring[] = "> outfile.txt > outX << ff < infile.txt wc -l | < infile > outfile" ;
+	char teststring[] = "sleep 3 | ls | cat" ;
+	printf("%s\n", teststring);
 	init_ms(&ms);
 	lex(teststring, &ms);
 	expand(&ms);
 	parse(&ms);
 	prettyPrintCmd(ms.cmd);
 	executer(&ms);
+	printf("~Main\n");
 	//free_ms(&ms);
 }
 

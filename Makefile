@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/12 18:26:56 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/13 13:26:57 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,8 @@ SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 
-all:		readline_install $(NAME) 
+# all:		readline_install $(NAME)
+all:		$(NAME)
 
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ) 
@@ -127,13 +128,13 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 			@$(RM) -rf $(OBJ_DIR)
 			@make clean -C $(LIB_DIR)
-			@make clean -C $(READLINE_INSTALL_DIR)
+#			@make clean -C $(READLINE_INSTALL_DIR)
 			@echo "$(BLUE)$(NAME) Object files cleaned!$(DEF_COLOR)"
 			@echo "$(BLUE)$(NAME) Readline install files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
 			@make fclean -C $(LIB_DIR)
-			@$(RM) -rf $(READLINE_DIR)
+#			@$(RM) -rf $(READLINE_DIR)
 			@$(RM) -f $(NAME)
 			@echo "$(CYAN)$(NAME) Readline lib cleaned!$(DEF_COLOR)"
 			@echo "$(CYAN)$(NAME) Executable files cleaned!$(DEF_COLOR)"
