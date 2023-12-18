@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/sbalk/projects/owngithub/minishell/libs/readline-install
+BUILD_DIR = /Users/jopeters/Jonas/minishell/libs/readline-install
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/sbalk/projects/owngithub/minishell/libs/readline
+prefix = /Users/jopeters/Jonas/minishell/libs/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share

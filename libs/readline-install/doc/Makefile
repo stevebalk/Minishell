@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/sbalk/projects/owngithub/minishell/libs/readline
+prefix = /Users/jopeters/Jonas/minishell/libs/readline
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/sbalk/projects/owngithub/minishell/libs/readline-install
+BUILD_DIR = /Users/jopeters/Jonas/minishell/libs/readline-install
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

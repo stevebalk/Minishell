@@ -1,4 +1,4 @@
-prefix=/Users/sbalk/projects/owngithub/minishell/libs/readline
+prefix=/Users/jopeters/Jonas/minishell/libs/readline
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
