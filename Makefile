@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/18 13:38:04 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/18 14:35:12 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRC_FILES	=	main \
 				free/free_token \
 				free/free_expander \
 				free/free_parser \
+				free/free_cmd_io \
 				lexer/lexer \
 				lexer/lexer_token_logic \
 				lexer/lexer_list_functions \

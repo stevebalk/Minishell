@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:17:21 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 18:18:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 14:42:34 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ t_cmd_io	*create_cmd_io_node(t_ms *ms)
 
 	io = ft_calloc(1, sizeof(t_cmd_io));
 	check_if_malloc_failed((void *)io, ms);
+	io->command_arr = NULL;
+	io->input = NULL;
+	io->output = NULL;
+	io->next = NULL;
 	io->intype = -1;
 	io->outtype = -1;
 	io->in_fd = -1;

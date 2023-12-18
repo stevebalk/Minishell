@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 13:44:08 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 15:09:27 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 			else if (cur_cmd_io->next == NULL && input_fd != STDIN_FILENO)
 				close(input_fd);
 		}
-		wait(NULL);
+		waitpid(pid, NULL, 0);
 		cur_cmd_io = cur_cmd_io->next;
 	}
 	// for (int i = 0; i < 3; i++)
@@ -218,4 +218,6 @@ void	executer(t_ms *ms)
 	create_cmd_io_list(ms);
 	// print_cmd_io_list(ms->cmd_io);
 	execute_cmd_io(ms, ms->cmd_io);
+	free_cmd_io_list(&(ms->cmd_io));
+	free_cmd_list(&(ms->cmd));
 }

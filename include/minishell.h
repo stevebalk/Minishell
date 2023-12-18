@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/16 16:46:08 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 14:37:58 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void		free_cmd_list(t_cmd **cmd);
 void		free_cmd_list_exept_here_doc(t_cmd **cmd);
 void		free_redir_node(t_redir **node);
 void		free_redir_list(t_redir **list);
+void		free_cmd_io_list(t_cmd_io **list);
 
 
 
