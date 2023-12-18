@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 15:09:27 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:39:46 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,12 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 	close(fds[1]);
 }
 
-void	execute_io(t_cmd_io *cmd_io)
+void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 {
-	execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
+	if (is_builtin_command(cmd_io->command_arr[0]))
+		builtin_master(ms, cmd_io->command_arr);
+	else
+		execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
 	perror("command does not exist");
 	exit(errno);
 }
@@ -176,7 +179,7 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 		{
 			set_input_io(ms, input_fd, cur_cmd_io);
 			set_output_io(ms, fds, cur_cmd_io);
-			execute_io(cur_cmd_io);
+			execute_io(ms, cur_cmd_io);
 		}
 		else
 		{
