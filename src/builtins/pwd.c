@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:40:32 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 16:57:47 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:15:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd)
 {
-	//c_yellow(); printf("builtin_pwd()\n"); c_reset();
+	c_yellow(); printf("builtin_pwd()\n"); c_reset();
 
 	char *buffer;
 	char *pwd;

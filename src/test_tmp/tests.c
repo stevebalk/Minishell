@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/08 16:38:13 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/18 17:23:52 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	//char	*clean_var_no_equal;
 	//char	*tmp_string_no_quotes;
-	if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6) // Export  || sort and show list
+	//if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) == 6) // Export  || sort and show list
+	if (str == NULL) // Export  || sort and show list
 	{
 		sort_list(*env_llst_sorted);
 		show_env_llist(env_llst_sorted);
 	}
-	else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
+	//else if (ft_strncmp("export", str, 6) == 0 && ft_strlen(str) > 6) // Export A="huhu" || adds variable to list
+	else if (ft_strlen(str) > 0) // Export A="huhu" || adds variable to list
 	{
-		export_single_arg(env_llst, env_llst_sorted, str+7);
+		export_single_arg(env_llst, env_llst_sorted, str);
 	}
-	else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)	// shows env list
-		show_env_llist(env_llst);
+	//else if (ft_strncmp("env", str, 3) == 0 && ft_strlen(str) == 3)	// shows env list
+	//	show_env_llist(env_llst);
 }
 
 void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str)
