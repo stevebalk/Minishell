@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 17:16:34 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:43:43 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,13 +149,13 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 	
 	last_pwd = get_val_of_var(env_llst, "PWD");
 
-	c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
+	//c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
     // Change the current working directory
 	// char *tmp_path;
 	// tmp_path = join_three_string(last_pwd, path, "");
     if (chdir(path) != 0) 
 	{
-		c_blue(); printf("MIST\n"); c_reset();
+		//c_blue(); printf("MIST\n"); c_reset();
         perror("chdir failed");
 		free_n_null((void **)&last_pwd);
         exit(EXIT_FAILURE);
@@ -166,9 +166,9 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 		int size = 1024;
 		
 		getcwd(buffer, size);
-		printf(" buffer >%s<\n", buffer);
+		//printf(" buffer >%s<\n", buffer);
 		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
-		c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
+		//c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
 
 		export_single_arg(env_llst, env_llst_sorted, tmp_value);
 		builtin_pwd(env_llst, env_llst_sorted, 1);
@@ -176,7 +176,7 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
 	}
 	//free_n_null((void **)&tmp_path);
 	free_n_null((void **)&last_pwd);
-	c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
+	//c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
 }
 
 

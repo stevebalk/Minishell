@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 16:49:40 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:48:02 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 		exit(0);
 	}
 	else
-		execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
+		execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!! XXX
 	perror("command does not exist");
 	exit(errno);
 }
@@ -168,6 +168,16 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 		return ;
 	input_fd = ms->fd_stdin;
 	cur_cmd_io = cmd_io;
+	if (!cur_cmd_io->next)
+	{ 
+		if (is_builtin_command(cur_cmd_io->command_arr[0]))
+		{
+			builtin_master(ms, cmd_io->command_arr);
+			cur_cmd_io = cur_cmd_io->next;
+		}
+			
+		
+	}
 	while (cur_cmd_io)
 	{
 		if (cur_cmd_io->next)
