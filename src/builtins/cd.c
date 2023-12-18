@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 17:43:43 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:53:52 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,10 @@ void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pa
     }
 	else
 	{	
-		char buffer[1024];
-		int size = 1024;
+		//char buffer[1024];
+		//int size = 1024;
 		
-		getcwd(buffer, size);
+		//getcwd(buffer, size);
 		//printf(" buffer >%s<\n", buffer);
 		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
 		//c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();

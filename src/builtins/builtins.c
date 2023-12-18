@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 17:44:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:58:04 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	builtin_master(t_ms *ms, char **cmd_arr)
 	}
 	if ((ft_strncmp(cmd_arr[0], "exit", 4) == 0) && (ft_strlen(cmd_arr[0]) == 4))
 	{
-		printf("exit\n");
+		c_red();printf("exit\n");c_cyan(); printf("todo: free and exit minishell \n"); 
+		c_reset();
 	}
 	if ((ft_strncmp(cmd_arr[0], "pwd", 3) == 0) && (ft_strlen(cmd_arr[0]) == 3))
 	{
