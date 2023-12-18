@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 14:37:58 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:19:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,7 @@ typedef struct s_ms
 	char		*home_dir;
 	char		**path_arr;
 	
-	char		*last_exit_code;
-	int			last_exit_code_int;
+	int			last_exit_code;
 	char		*unexpected_token;
 
 }				t_ms;

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 14:09:16 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:19:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void quick_lexer(t_ms *ms, char *prompt_in)
 	c_yellow(); printf("<\n"); c_reset();
 
 	//init_ms(ms);
-	ms->last_exit_code = "127";
+	ms->last_exit_code = 127;
 	lex(prompt_in, ms); // Hier den String angeben der getestet werden soll
 	c_yellow(); printf("DEBUG before expand\n"); c_blue();
 	

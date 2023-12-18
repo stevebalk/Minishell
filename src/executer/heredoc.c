@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 16:01:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:28:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,18 @@ void	write_env_var(char **str, t_ms *ms)
 
 void	print_expanded_heredoc_string(char *str, t_ms *ms)
 {
+	char	*exit_code;
+
 	while (*str)
 	{
 		if (is_numerical_variable(str))
 			str++;
 		else if(is_exit_code_variable(str))
 		{
-			write(STDOUT_FILENO, ms->last_exit_code, ft_strlen(ms->last_exit_code));
+			exit_code = ft_itoa(ms->last_exit_code);
+			write(STDOUT_FILENO, exit_code, ft_strlen(exit_code));
 			(*str)++;
+			free(exit_code);
 		}
 		else if (*str == '$' && !is_metachar_variable(str))
 			write_env_var(&str, ms);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/16 16:59:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:20:11 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_ms(t_ms *ms)
 	ms->cmd_io = NULL;
 	ms->fd_stdin = STDIN_FILENO;
 	ms->fd_stdout = STDOUT_FILENO;
-	ms->last_exit_code = NULL;
+	ms->last_exit_code = 0;
 	ms->unexpected_token = NULL;
 
 	ms->envp = NULL;

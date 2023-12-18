@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/08 16:21:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 16:25:22 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ char	*get_env_variable_value(char *var_name)
 // static void expand_to_prev_exit_code(char **str, t_expand *chunk, t_ms *ms)
 static void	expand_to_prev_exit_code(char **str, t_ms *ms)
 {
+	char	*exit_code;
 	size_t	exit_code_len;
 
-	exit_code_len = ft_strlen(ms->last_exit_code);
+	exit_code = ft_itoa(ms->last_exit_code);
+	exit_code_len = ft_strlen(exit_code);
 	*str += 2;
-	append_and_fill_chunk_with_str(ms, ms->last_exit_code, exit_code_len);
+	append_and_fill_chunk_with_str(ms, exit_code, exit_code_len);
+	free(exit_code);
 }
 
 // void	copy_until_blocker(char **str, t_expand *chunk, t_ms *ms)

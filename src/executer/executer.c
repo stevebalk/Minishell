@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 15:09:27 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/18 17:59:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,56 +45,10 @@ void print_cmd_io_list(const t_cmd_io *head) {
 	}
 }
 
-// void	child1(t_ms *ms, t_cmd_io *cmd_io, int fd[2])
-// {
-// 	close(fd[0]);
-// }
-
-// void	child2(t_ms *ms)
-// {
-	
-// 	exit(0);
-// }
-
-// void	execution(t_ms *ms)
-// {
-// 	int			fd[2];
-// 	pid_t		pid;
-// 	int			stat_loc;
-// 	t_cmd_io	*cur_cmd_io;
-
-// 	stat_loc = 0;
-// 	cur_cmd_io = ms->cmd_io;
-// 	if (cur_cmd_io == NULL)
-// 		return ;
-// 	while (cur_cmd_io->next)
-// 	{
-// 		if (pipe(&fd) == -1);
-// 			ERROR_HANDLING;
-// 		pid = fork();
-// 		if (pid == -1)
-// 			ERROR_HANDLING;
-// 		if (pid == 0)
-// 		{
-// 			child1(ms, cur_cmd_io);
-// 		}
-// 		else if (pid > 0)
-// 		{
-// 			wait(NULL);
-// 			pid = fork();
-// 		}
-// 		if (pid == 0)
-// 		{
-// 			child2(ms, cur_cmd_io->next);
-// 			wait(NULL);
-// 		}
-// 		cur_cmd_io = cur_cmd_io->next;
-// 	}
-// 	waitpid(pid, &stat_loc, NULL);
-// }
-
 void	set_input_io(t_ms *ms, int input_fd, t_cmd_io *cmd_io)
 {
+	int	here_doc_fd[2];
+
 	if (cmd_io->intype == TOKEN_INFILE)
 	{
 		if (dup2(cmd_io->in_fd, STDIN_FILENO) == -1)
@@ -103,8 +57,15 @@ void	set_input_io(t_ms *ms, int input_fd, t_cmd_io *cmd_io)
 	}
 	else if (cmd_io->intype == TOKEN_HERE_DOC)
 	{
-		if (dup2(ms->fd_stdin, STDIN_FILENO) == -1)
+		if (pipe(here_doc_fd) == -1)
+			perror("pipe");
+		if (dup2(here_doc_fd[1], STDOUT_FILENO) == -1)
 			perror("dup2");
+		if (dup2(here_doc_fd[0], STDIN_FILENO) == -1)
+			perror("dup2");
+		write(STDOUT_FILENO, cmd_io->input, ft_strlen(cmd_io->input));
+		close(here_doc_fd[0]);
+		close(here_doc_fd[1]);
 	}
 	else
 	{
@@ -112,14 +73,6 @@ void	set_input_io(t_ms *ms, int input_fd, t_cmd_io *cmd_io)
 			perror("dup2");
 		close(input_fd);
 	}
-	// else if (cmd_io->next)
-	// {
-	// 	if (dup2(input_fd, STDIN_FILENO) == -1)
-	// 		perror("dup2");
-	// }
-	// else
-	// 	if (dup2(ms->fd_stdin, STDIN_FILENO) == -1)
-	// 		perror("dup2");
 }
 
 void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
@@ -148,7 +101,7 @@ void	execute_io(t_cmd_io *cmd_io)
 {
 	execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
 	perror("command does not exist");
-	exit(errno);
+	exit(127);
 }
 
 void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
@@ -157,9 +110,12 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 	int			fds[2];
 	int			input_fd;
 	t_cmd_io	*cur_cmd_io;
+	int			i;
+	int			number_of_commands;
 
 	if (cmd_io == NULL)
 		return ;
+	number_of_commands = 0;
 	input_fd = ms->fd_stdin;
 	cur_cmd_io = cmd_io;
 	while (cur_cmd_io)
@@ -190,26 +146,15 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 			else if (cur_cmd_io->next == NULL && input_fd != STDIN_FILENO)
 				close(input_fd);
 		}
-		waitpid(pid, NULL, 0);
 		cur_cmd_io = cur_cmd_io->next;
+		number_of_commands++;
 	}
-	// for (int i = 0; i < 3; i++)
-	// {
-	// }
+	waitpid(pid, &ms->last_exit_code, 0);
+	i = 0;
+	while (i++ < number_of_commands - 1)
+		waitpid(-1, NULL, 0);
+	printf("Exit code: %s\n", ft_itoa(ms->last_exit_code >> 8));
 }
-
-// void	execution(t_ms *ms)
-// {
-// 	t_cmd_io	*cur_cmd_io;
-
-// 	cur_cmd_io = ms->cmd_io;
-// 	if (ms->cmd_io == NULL)
-// 		return ;
-// 	while (cur_cmd_io)
-// 	{
-		
-// 	}
-// }
 
 void	executer(t_ms *ms)
 {
