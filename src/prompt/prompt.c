@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 13:38:05 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:02:43 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	prompt_handler(t_ms *ms)
 				// test_parser_get_var(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
 				// rl_clear_history();
 				limit_history_llst(&ms->hist_llst);
-				write_history_llst(FILE_HISTORY, &ms->hist_llst);
+				write_history_llst(ms->tmp_history_folder_file, &ms->hist_llst);
 				// add_history_llst_to_prompt(&ms->hist_llst);
 				add_history(prompt_in);
 				free_n_null((void **)&prompt_in);

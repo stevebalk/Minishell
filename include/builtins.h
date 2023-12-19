@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 14:19:30 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:25:39 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_list	*find_var_in_llst(t_list **llst, char *var);
 
 // Utils
 // history
-void	history_master(t_list **history_lst);
+
 void	load_history_llst(char *hist_file_name, t_list **history_lst);
 void	write_history_llst(char *hist_file_name, t_list **history_lst);
 void	show_history_llist(t_list **lst);
