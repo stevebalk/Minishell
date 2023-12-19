@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/11 13:11:35 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 12:08:33 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	handle_sigint(int sig);
 
 // builtin
 // echo
-void	builtin_echo(char **str_arr, int n_flag);
+void	builtin_echo(char **str_arr);
 void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 

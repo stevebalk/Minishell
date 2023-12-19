@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:36:38 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:56:16 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	delete_node_from_llst(t_list **head, t_list *node_to_delete)
 {
 	t_list	*temp;
 	t_list	*prev;
-	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)node_to_delete->content); c_reset();
+	//c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)node_to_delete->content); c_reset();
 	if (*head == NULL || node_to_delete == NULL)
 		return ;
 	if (*head == node_to_delete)

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:54:06 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:15:24 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	builtin_master(t_ms *ms, char **cmd_arr)
 	if ((ft_strncmp(cmd_arr[0], "echo", 4) == 0) && (ft_strlen(cmd_arr[0]) == 4))
 	{
 		printf("echo\n");
+		builtin_echo(cmd_arr);
 	}
 	if ((ft_strncmp(cmd_arr[0], "env", 3) == 0) && (ft_strlen(cmd_arr[0]) == 3))
 	{
@@ -52,7 +53,7 @@ void	builtin_master(t_ms *ms, char **cmd_arr)
 	}
 	if ((ft_strncmp(cmd_arr[0], "unset", 5) == 0) && (ft_strlen(cmd_arr[0]) == 5))
 	{
-		printf("unset\n");
+		//printf("unset\n");
 		builtin_unset(ms, cmd_arr);
 	}
 	
