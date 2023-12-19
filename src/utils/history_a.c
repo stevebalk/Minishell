@@ -6,10 +6,9 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 16:02:24 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:55:45 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../include/minishell.h"
 #include "../../include/builtins.h"

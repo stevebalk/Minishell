@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 16:02:43 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:56:57 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,30 +80,11 @@ void	prompt_handler(t_ms *ms)
 			{
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
 				lex(prompt_in, ms);
-				//print_lexer_struct(ms->tk);
 				expand(ms);
 				parse(ms);
 				executer(ms);
-				// prettyPrintCmd(ms->cmd);
-				// heredoc(ms->cmd->redirs->target, ms);
-				// free_cmd_list(&(ms->cmd));
-				// if (ft_strncmp(prompt_in, "exit", 4) == 0)
-				// {
-				// 	free_n_null((void **)&prompt_in);
-				// 	break ;
-				// }
-				//quick_lexer(ms, prompt_in);		// copy from steves main after first merge
-				//c_green(); printf("after quick lexer\n");
-
-				//test_parser_unset(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				// test_parser_export(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				// test_parser_cd_pwd_home(ms, &ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				// test_parser_echo(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				// test_parser_get_var(&ms->env_llst, &ms->env_llst_sorted, prompt_in);
-				// rl_clear_history();
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(ms->tmp_history_folder_file, &ms->hist_llst);
-				// add_history_llst_to_prompt(&ms->hist_llst);
 				add_history(prompt_in);
 				free_n_null((void **)&prompt_in);
 			}
