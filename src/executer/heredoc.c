@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:29:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 16:42:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 17:29:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,13 +275,13 @@ char	*heredoc(char *delimiter, t_ms *ms)
 	}
 	else
 		heredoc_string = read_multiline_input("> ", delimiter);
-	printf("Heredoc: %s\n", heredoc_string);
+	// printf("Heredoc: %s\n", heredoc_string);
 	if (should_expand_env_var)
 		heredoc_string = expand_heredoc_string(heredoc_string, ms);
 	if (expanded_delim)
 		free(expanded_delim);
-	// if (heredoc_string == NULL)
-	// 	heredoc_string = ft_strdup("");
-	printf("Heredoc: %s\n", heredoc_string);
+	if (heredoc_string == NULL)
+		heredoc_string = ft_strdup("");
+	// printf("Heredoc: %s\n", heredoc_string);
 	return (heredoc_string);
 }
