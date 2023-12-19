@@ -6,12 +6,29 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:32:29 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:52:01 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 #include "../../include/builtins.h"
+
+// Checks the unset argument for not allowed characters
+int		is_unset_var_valid(char *var)
+{
+	int	i;
+	
+	i = -1;
+	while(i++, var[i])
+	{
+		if (i == 0 && !check_first_c(var[i]))
+			return (0);
+		if (i > 0 && !check_other_c(var[i]))
+			return (0);
+	}
+	
+	return (1);
+}
 
 int		builtin_unset(t_ms *ms, char **arr)
 {
@@ -26,9 +43,19 @@ int		builtin_unset(t_ms *ms, char **arr)
 		
 	while(i++, arr[i])
 	{
-		delete_node_from_llst(&ms->env_llst_sorted,
-			find_var_in_llst(&ms->env_llst_sorted, arr[i]));
-		delete_node_from_llst(&ms->env_llst, find_var_in_llst(&ms->env_llst, arr[i]));
+		if (is_unset_var_valid(arr[i]))
+		{
+			delete_node_from_llst(&ms->env_llst_sorted,
+				find_var_in_llst(&ms->env_llst_sorted, arr[i]));
+			delete_node_from_llst(&ms->env_llst, find_var_in_llst(&ms->env_llst, arr[i]));
+		}
+		else
+		{
+			c_red();
+			printf("minishell: unset: `%s': not a valid identifier\n", arr[i]); 
+			c_reset();
+			ms->last_exit_code_int = 1;
+		}
 	}
 
 	return (ret_code);
