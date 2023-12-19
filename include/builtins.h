@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 12:08:33 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:51:58 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	handle_sigint(int sig);
 
 // builtin
 // echo
-void	builtin_echo(char **str_arr);
+int		builtin_echo(char **str_arr);
 void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 
 // env
 void	show_env_arr(char **env);
 void	load_env_to_llst(t_list **env_lst, char **env);
-void	show_env_llist(t_list **lst);
+int		show_env_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
 
@@ -167,7 +167,7 @@ void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_echo(void);
 
 // pwd
-void	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
+int		builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
 //void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);

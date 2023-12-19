@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 11:25:41 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:41:40 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,11 +221,11 @@ void		free_cmd_io_list(t_cmd_io **list);
 // Jonas
 // Prompt
 void	prompt_handler(t_ms *ms);
-void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in);
+int		builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in);
 void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
 void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str);
 
-void	builtin_master(t_ms *ms, char **cmd_arr);
+int		builtin_master(t_ms *ms, char **cmd_arr);
 int		builtin_unset(t_ms *ms, char **arr);
 
 // env b

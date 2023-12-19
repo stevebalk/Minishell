@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:57:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:38:05 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	prompt_handler(t_ms *ms)
 			{
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
 				lex(prompt_in, ms);
+				//print_lexer_struct(ms->tk);
 				expand(ms);
 				parse(ms);
 				executer(ms);

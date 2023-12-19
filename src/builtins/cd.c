@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 17:53:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:52:58 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,17 @@ bash: cd: OLDPWD not set
 
 
 
-void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
+int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
+	int exit_code;
 	char *tmp_str;
 	(void)tmp_str;
 	(void)env_llst;
 	(void)env_llst_sorted;
 	tmp_str = NULL;
 	
-
-	c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
+	exit_code = 0;
+	//c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
 	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
@@ -135,8 +136,8 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	//if (tmp_str)
 	//	free(tmp_str);
 	free_n_null((void **)&tmp_str);
-		
 	//c_red(); printf("~builtin_cd()\n"); c_reset();
+	return (exit_code);
 }
 
 void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)

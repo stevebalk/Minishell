@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 17:06:24 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:55:07 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 }
 
 // showing all list entrys seperated by a newline
-void	show_env_llist(t_list **lst)
+int	show_env_llist(t_list **lst)
 {
+	int		exit_code;
 	int		i;
 	t_list	*tmp_lst;
 
+	exit_code = 0;
 	tmp_lst = *lst;
 	i = 0;
 	//c_yellow(); printf("show_env_llist()\n"); c_reset();
@@ -79,6 +81,8 @@ void	show_env_llist(t_list **lst)
 		tmp_lst = tmp_lst->next;
 		i++;
 	}
+
+	return (exit_code);
 }
 
 // adds +1 to the SHLVL env/export variable

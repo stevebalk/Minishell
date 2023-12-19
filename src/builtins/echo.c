@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/19 12:35:21 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:54:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 	free(arr);
 }
 
-void	builtin_echo(char **str_arr)
+int	builtin_echo(char **str_arr)
 {
+	int	exit_code;
 	int	i;
 	int	n_flag;
 	
+	exit_code = 0;
 	i = 0;		// skip first entry for a quick test; has to be reworked in combination with executer stuff
 	n_flag = 0;
 
 	//c_yellow(); printf("builtin_echo   >%s<  >%s< ... \n", str_arr[0], str_arr[1]); c_reset();
 	if (!str_arr)
-		return ;
+		return (0);
 	
 	if (str_arr[1] && ft_strncmp(str_arr[1], "-n", 2) == 0 && ft_strlen(str_arr[1]) == 2)
 	{
@@ -89,4 +91,5 @@ void	builtin_echo(char **str_arr)
 		printf("\n");
 
 	//c_red(); printf("~builtin_echo \n");
+	return (exit_code);
 }

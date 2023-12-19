@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 14:54:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 13:49:57 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	lex(char *str, t_ms *ms)
 		while (ft_is_space(str))
 			str++;
 		if (*str == '\0')
-			ms->tk = NULL;
+			break ;
+			//ms->tk = NULL;
 		cur_token = token_list_append(ms);
 		str += set_token(cur_token, str, ms);
 	}
