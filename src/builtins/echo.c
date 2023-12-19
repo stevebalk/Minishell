@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/19 12:17:17 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:35:21 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,34 +72,21 @@ void	builtin_echo(char **str_arr)
 	i = 0;		// skip first entry for a quick test; has to be reworked in combination with executer stuff
 	n_flag = 0;
 
-	c_yellow(); printf("builtin_echo   >%s<  >%s< ... \n", str_arr[0], str_arr[1]); c_reset();
+	//c_yellow(); printf("builtin_echo   >%s<  >%s< ... \n", str_arr[0], str_arr[1]); c_reset();
 	if (!str_arr)
 		return ;
 	
-	if (ft_strncmp(str_arr[1], "-n", 2) == 0 && ft_strlen(str_arr[1]) == 2)
+	if (str_arr[1] && ft_strncmp(str_arr[1], "-n", 2) == 0 && ft_strlen(str_arr[1]) == 2)
 	{
 		n_flag = 1;
 		i++;
 	}
 	
 	while (i++, str_arr[i])
-	{
-		if (ft_strncmp(str_arr[i], "$$", 2) == 0)
-		{
-			// PID print
-			/* Todo: Finding a way to get the pid of our minishell */
-			int pid = getpid();
-			printf("PID: %i     >> XXX use another command, because getPid is not allowed\n", pid);
-		}
-		// else if (ft_strncmp(str_arr[i], "$", 2) == 0)
-		// {
-			
-		// }
-		else
-			printf("%s", str_arr[i]);
-	}
+		printf("%s", str_arr[i]);
+
 	if (!n_flag)
 		printf("\n");
 
-	c_red(); printf("~builtin_echo \n");
+	//c_red(); printf("~builtin_echo \n");
 }
