@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:31:22 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/19 11:36:38 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ void	sort_list(t_list *head)
 	}
 }
 
-void	delete_node_from_llst(t_list **head, t_list *nodeToDelete)
+void	delete_node_from_llst(t_list **head, t_list *node_to_delete)
 {
 	t_list	*temp;
 	t_list	*prev;
-	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)nodeToDelete->content); c_reset();
-	if (*head == NULL || nodeToDelete == NULL)
+	c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)node_to_delete->content); c_reset();
+	if (*head == NULL || node_to_delete == NULL)
 		return ;
-	if (*head == nodeToDelete)
+	if (*head == node_to_delete)
 	{
 		temp = *head;
 		free(temp->content);
@@ -94,7 +94,7 @@ void	delete_node_from_llst(t_list **head, t_list *nodeToDelete)
 		return ;
 	}
 	prev = *head;
-	while (prev->next != NULL && prev->next != nodeToDelete)
+	while (prev->next != NULL && prev->next != node_to_delete)
 		prev = prev->next;
 	if (prev->next == NULL)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:29:03 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:32:29 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		builtin_unset(t_ms *ms, char **arr)
 
 	if (!arr)
 		return (0);
+		
 	while(i++, arr[i])
 	{
 		delete_node_from_llst(&ms->env_llst_sorted,
