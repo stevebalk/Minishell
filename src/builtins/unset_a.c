@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   unset_a.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 14:17:21 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/19 11:29:03 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/minishell.h"
 #include "../../include/builtins.h"
+
+int		builtin_unset(t_ms *ms, char **arr)
+{
+	int	i;
+	int ret_code;
+	
+	ret_code = 0;
+	i = 0;
+
+	if (!arr)
+		return (0);
+	while(i++, arr[i])
+	{
+		delete_node_from_llst(&ms->env_llst_sorted,
+			find_var_in_llst(&ms->env_llst_sorted, arr[i]));
+		delete_node_from_llst(&ms->env_llst, find_var_in_llst(&ms->env_llst, arr[i]));
+	}
+
+	return (ret_code);
+}
 
 void	test_parser_unset(t_list **env_llst,
 			t_list **env_llst_sorted, char *str)

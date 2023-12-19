@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/18 17:58:04 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:27:26 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	builtin_master(t_ms *ms, char **cmd_arr)
 	if ((ft_strncmp(cmd_arr[0], "unset", 5) == 0) && (ft_strlen(cmd_arr[0]) == 5))
 	{
 		printf("unset\n");
+		builtin_unset(ms, cmd_arr);
 	}
 	
 	
