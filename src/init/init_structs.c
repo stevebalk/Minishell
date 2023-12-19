@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/16 16:59:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 17:43:33 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_ms(t_ms *ms)
 	ms->envp = NULL;
 	ms->home_dir = NULL;
 	ms->path_arr = NULL;
+	ms->tmp_history_folder_file = NULL;
 
 	ms->env_llst = NULL;
 	ms->env_llst_sorted = NULL;

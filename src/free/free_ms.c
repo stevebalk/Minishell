@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_ms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:29 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 15:06:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 17:24:08 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	free_ms(t_ms *ms)
 		ft_free_array((void **)ms->path_arr);
 	if (ms->home_dir)
 		free_n_null((void **)&ms->home_dir);
+	if (ms->tmp_history_folder_file)
+		free_n_null((void **)&ms->tmp_history_folder_file);
 	
 
 	lst_dealloc(&ms->hist_llst, 1);

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 17:17:34 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:44:09 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void ini_env_history_etc(t_ms *ms, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	t_ms	ms;
+	int		exit_code;
 	c_yellow(); printf("*** main () ***\n"); c_reset();
 	init_ms(&ms);
 	(void)argc;
@@ -74,6 +75,7 @@ int	main(int argc, char **argv, char **env)
 	//printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
 	prompt_handler(&ms);
 	
+	exit_code = ms.last_exit_code_int;
 	free_ms(&ms);
 	
 	c_red();
