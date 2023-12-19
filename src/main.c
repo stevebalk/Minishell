@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 17:44:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:15:35 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv, char **env)
 	if (!LOGO_ABOVE_PROMPT)
 		intro3();
 
-
+	signal(SIGINT, handle_sigint);
 	ini_env_history_etc(&ms, env);
 	
 	//printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );

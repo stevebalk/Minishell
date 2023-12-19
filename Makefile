@@ -6,7 +6,7 @@
 #    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/18 16:40:57 by jopeters         ###   ########.fr        #
+#    Updated: 2023/12/19 18:11:53 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,12 @@ SRC_FILES	=	main \
 				executer/create_cmd_io \
 				executer/redir_to_io \
 
-				
+H_FILES		=	include\builtins.h \
+				include\executer.h \
+				include\exepander.h \
+				include\lexer.h \
+				include\minishell.h \
+				include\parser.h 
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -104,7 +109,7 @@ OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all:		$(NAME)
 
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
-$(NAME):	$(OBJ) 
+$(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)

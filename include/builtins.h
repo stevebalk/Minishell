@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 16:16:11 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:06:55 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
 #define LOGO_ABOVE_PROMPT 0
+
 //debug
 //#define PRINT_DEALLOC
 
