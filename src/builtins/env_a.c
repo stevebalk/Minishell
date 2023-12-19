@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 14:09:22 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:17:09 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,27 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 	char	*str;
 	int		i;
 	//c_yellow(); printf("load_env()\n"); c_reset();
-
+	//show_env_arr(env);
 	i = -1;
-	while (i++, env[i])
+	if (!env[0])
 	{
-		str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
-		if (!str)
-			return ;
-		ft_strlcpy(str, env[i], ft_strlen(env[i]) + 1);
-		if (!env_lst)
-			*env_lst = ft_lstnew((void *)str);
-		else
-			ft_lstadd_back(env_lst, ft_lstnew((void *)str));
+		//printf("!env[0]\n");
+		ft_lstadd_back(env_lst, ft_lstnew((void *)""));
+	}
+	else
+	{
+		while (i++, env[i])
+		{
+			
+			str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
+			if (!str)
+				return ;
+			ft_strlcpy(str, env[i], ft_strlen(env[i]) + 1);
+			if (!env_lst)
+				*env_lst = ft_lstnew((void *)str);
+			else
+				ft_lstadd_back(env_lst, ft_lstnew((void *)str));
+		}
 	}
 	//c_yellow(); printf("~load_env()\n"); c_reset();
 }
@@ -104,14 +113,25 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 	char		*new_value;
 	t_var_names	var;
 	
+	//show_env_llist(env_llst);
+
 	tmp_value = get_val_of_var(env_llst, "SHLVL");
-	var.self_value = ft_atoi(tmp_value) + 1;
-	new_value =  ft_itoa(var.self_value);
-	tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
 	
+	if (tmp_value)
+	{
+		var.self_value = ft_atoi(tmp_value) + 1;
+		new_value =  ft_itoa(var.self_value);
+		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
+	}
+	else
+	{
+		new_value =  ft_itoa(0);
+		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
+	}
+
 	get_var_names(&var, tmp_var_with_value);
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
-
+	
 	free_n_null((void **)&new_value);
 	free_n_null((void **)&tmp_var_with_value);
 	free_n_null((void **)&tmp_value);

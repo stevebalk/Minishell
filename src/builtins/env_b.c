@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 16:39:56 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:16:32 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	copy_path_to_ms_ms_struct(t_ms *ms)
 	//c_yellow(); printf("copy_path_to_ms_ms_struct()\n"); c_reset();
 
 	path_value = get_val_of_var(&ms->env_llst, "PATH");
-	printf("path value: >%s<\n", path_value);
+	//printf("path value: >%s<\n", path_value);
 	if (path_value)
 		ms->path_arr = ft_split(path_value, ':');
 	else

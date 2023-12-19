@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:20 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 16:44:22 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:16:46 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void set_history_path(t_ms *ms)
 	path = NULL;
 	pwd = NULL;
 	
-	c_yellow(); printf("set_history_path\n");
-	c_reset();
+	//c_yellow(); printf("set_history_path\n");
+	//c_reset();
 	
 	pwd = (char *)malloc(sizeof(char) * size);
+	if (!pwd)
+		return ;
 	path = get_val_of_var(&ms->env_llst, "TMPDIR");
 	if (path)
-	{
 		ms->tmp_history_folder_file = join_three_string(path, "/", FILE_HISTORY);
-	}
 	else
 	{
 		if (getcwd(pwd, size) == NULL) 
