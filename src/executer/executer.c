@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 17:28:20 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 18:19:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 		if (dup2(ms->fd_stdout, STDOUT_FILENO) == -1)
 			perror("dup2");
 	}
-	close(fds[1]);
+	close(fds[1]); /// <<<< MUST FIX
 }
 
 void	execute_io(t_cmd_io *cmd_io)
 {
-	ft_putendl_fd(ft_itoa(STDIN_FILENO), 2);
-	ft_putendl_fd(ft_itoa(STDOUT_FILENO), 2);
-	printf("In: %i, Out: %i\n", STDIN_FILENO, STDOUT_FILENO);
+	// ft_putendl_fd(ft_itoa(STDIN_FILENO), 2);
+	// ft_putendl_fd(ft_itoa(STDOUT_FILENO), 2);
+	// printf("In: %i, Out: %i\n", STDIN_FILENO, STDOUT_FILENO);
 	execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
 	perror(cmd_io->command_arr[0]);
 	perror("command does not exist");
@@ -152,7 +152,6 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 		cur_cmd_io = cur_cmd_io->next;
 		number_of_commands++;
 	}
-	printf("PID: %i\n", pid);
 	waitpid(pid, &ms->last_exit_code, 0);
 	i = 0;
 	while (i++ < number_of_commands - 1)
