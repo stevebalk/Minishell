@@ -3,51 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 14:24:29 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/19 14:09:59 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
-
+	
 // manage whole arg array; adds or update to env and export llst
-void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
+int	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
 {
 	//c_yellow(); printf("export_arg_arr  \n"); c_reset();
 	int	i;
+	int arr_len;
+	int	exit_code;
+	exit_code = 0;
 	// if (!arr[0])
 	// {
 	// 	c_cyan(); printf("export_arg_arr  arr[0] == NULL 	  \n"); c_reset();
 	// }
+	arr_len = 0;
+	while (arr[arr_len])
+		arr_len++;
 	
-	i = -1;
-	while (i++, arr[i])
-		export_single_arg(env_llst, env_llst_sorted, arr[i]);
+	//c_cyan(); printf("export_arg_arr   arr_len: %i  \n", arr_len); c_reset();
+	if (arr_len == 1)
+	{
+		sort_list(*env_llst_sorted);
+		show_env_llist(env_llst_sorted);
+	}
+	
+	i = 0;
+	while (i++, arr_len > 1 && arr[i])
+		exit_code = export_single_arg(env_llst, env_llst_sorted, arr[i]);
 	//c_red(); printf("~export_arg_arr  \n"); c_reset();
+	return (exit_code);
 }
 
 // gets a single arg like "a=huhu" and adds to export and/or env if valid
-void	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
+int	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 {
 	t_var_names	var;
+	//int	exit_code;
 	
 	(void) env_llst;
 	(void) env_llst_sorted;
+
+	//exit_code = 0;
 
 	ini_var_names_to_null(&var);
 	//c_yellow(); printf("export_single_arg  >%s<   \n", str); c_reset();
 	if (!check_var_name(str))
 	{
 		//printf("export: ‘%s': not a valid identifier\n", str);	// XXX should be proper error handling; if the value is in "" there is no "" in the error message, maybe the lexar, parser solves this
-		return ;
+		printf("minishell: export: ‘%s': not a valid identifier\n", str);
+		return (1);
 	}
 	get_var_names(&var, str);
 	//show_var_names(&var);
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
 	dealloc_var_names(&var);
 	//c_red(); printf("~export_single_arg  >%s<   \n", str); c_reset();
+	return (0);
 }
 
 // belongs to update_util_export

@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/18 17:23:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:19:52 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,4 @@ void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted)
 	char *tmp_del = get_val_of_var(&env_llst_sorted, "d");
 	//printf("tmp_del >%s<\n", tmp_del);
 	free(tmp_del);
-}
-
-void test_echo(void)
-{
-	c_yellow(); printf("test_echo()\n"); c_purple();
-	char *arr[4] = {"huhu", "\t", "Steve", NULL};
-	builtin_echo(arr, 0);
-	c_reset();
 }

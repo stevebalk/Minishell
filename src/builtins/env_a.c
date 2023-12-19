@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 13:55:07 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:09:22 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	show_env_llist(t_list **lst)
 	//c_yellow(); printf("show_env_llist()\n"); c_reset();
 	while (tmp_lst)
 	{
+		c_reset();
 		printf("i: %i  >", i);
 		c_green();
 		printf("%s", (char *)tmp_lst->content);

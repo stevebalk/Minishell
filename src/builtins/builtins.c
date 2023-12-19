@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 13:45:19 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:03:40 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 	if ((ft_strncmp(cmd_arr[0], "export", 6) == 0) && (ft_strlen(cmd_arr[0]) == 6))
 	{
 		//printf("export\n");
-		// exit_code = 
-		test_parser_export(&ms->env_llst, &ms->env_llst_sorted,cmd_arr[1]);
+		exit_code = export_arg_arr(&ms->env_llst, &ms->env_llst_sorted, cmd_arr);
+		//test_parser_export(&ms->env_llst, &ms->env_llst_sorted,cmd_arr[1]);
 	}
 	if ((ft_strncmp(cmd_arr[0], "exit", 4) == 0) && (ft_strlen(cmd_arr[0]) == 4))
 	{

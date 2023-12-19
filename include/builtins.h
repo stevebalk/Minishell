@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 13:51:58 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:19:30 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	add_variable_to_llst(t_list **llst, char *var);
 void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
 
 // export
-void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
+int		export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
 
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
-void	export_single_arg(t_list **env_llst,
+int		export_single_arg(t_list **env_llst,
 			t_list **env_llst_sorted, char *str);
 void	update_or_create_llst_var(t_list **env_llst,
 			t_list **env_llst_sorted, t_var_names *var);
@@ -171,7 +171,7 @@ int		builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
 //void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
-void	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
+int		builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
 	
 void test_change_dir(void);
 void test_getcwd(void);
