@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 17:59:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 16:52:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,11 @@ void print_cmd_io_list(const t_cmd_io *head) {
 void	set_input_io(t_ms *ms, int input_fd, t_cmd_io *cmd_io)
 {
 	int	here_doc_fd[2];
-
+	(void)ms;
 	if (cmd_io->intype == TOKEN_INFILE)
 	{
 		if (dup2(cmd_io->in_fd, STDIN_FILENO) == -1)
 			perror("dup2");
-		
 	}
 	else if (cmd_io->intype == TOKEN_HERE_DOC)
 	{
@@ -100,6 +99,7 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 void	execute_io(t_cmd_io *cmd_io)
 {
 	execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
+	perror(cmd_io->command_arr[0]);
 	perror("command does not exist");
 	exit(127);
 }
