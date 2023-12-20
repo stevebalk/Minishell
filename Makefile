@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
+#    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/18 14:35:12 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/19 18:11:53 by jopeters         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 LIB_DIR		= libs/libft/
 LIB_NAME	= libft.a
-READLINE_DIR = libs/readline/lib/
+READLINE_DIR = libs/readline/
+READLINE_DIR_SUB = libs/readline/lib/
 READLINE_NAME = libreadline.a
 READLINE_INSTALL_DIR = libs/readline-install/
 CC			= cc
@@ -37,6 +38,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILES	=	main \
+				builtins/builtins \
 				builtins/cd \
 				builtins/echo \
 				builtins/env_a \
@@ -92,7 +94,12 @@ SRC_FILES	=	main \
 				executer/create_cmd_io \
 				executer/redir_to_io \
 
-				
+H_FILES		=	include\builtins.h \
+				include\executer.h \
+				include\exepander.h \
+				include\lexer.h \
+				include\minishell.h \
+				include\parser.h 
 
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -102,11 +109,11 @@ OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 all:		$(NAME)
 
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
-$(NAME):	$(OBJ) 
+$(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
-			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -lhistory -lncurses -ltermcap
+			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L $(LIB_DIR) -lft -L $(READLINE_DIR_SUB) -lreadline -lhistory -lncurses -ltermcap
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c

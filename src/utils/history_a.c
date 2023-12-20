@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   history_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:10:02 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:31:09 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/19 17:55:45 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/minishell.h"
 #include "../../include/builtins.h"
 
-void	history_master(t_list **history_lst)
+void	history_master(t_ms *ms)
 {
-	load_history_llst(FILE_HISTORY, history_lst);
-	limit_history_llst(history_lst);
-	add_history_llst_to_prompt(history_lst);
-	write_history_llst(FILE_HISTORY, history_lst);
+	load_history_llst(ms->tmp_history_folder_file, &ms->hist_llst);
+	limit_history_llst(&ms->hist_llst);
+	add_history_llst_to_prompt(&ms->hist_llst);
+	write_history_llst(ms->tmp_history_folder_file, &ms->hist_llst);
 }
 
 void	add_history_llst_to_prompt(t_list **history_lst)

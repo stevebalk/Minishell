@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 15:00:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 15:28:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,12 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 	// close(fds[1]); /// <<<< MUST FIX
 }
 
-void	execute_io(t_cmd_io *cmd_io)
+void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 {
-	// ft_putendl_fd(ft_itoa(STDIN_FILENO), 2);
-	// ft_putendl_fd(ft_itoa(STDOUT_FILENO), 2);
-	// printf("In: %i, Out: %i\n", STDIN_FILENO, STDOUT_FILENO);
-	execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!!
-	perror(cmd_io->command_arr[0]);
+	if (is_builtin_command(cmd_io->command_arr[0]))
+		exit(builtin_master(ms, cmd_io->command_arr));
+	else
+		execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!! XXX
 	perror("command does not exist");
 	exit(127);
 }
@@ -121,6 +120,16 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 	number_of_commands = 0;
 	input_fd = STDIN_FILENO;
 	cur_cmd_io = cmd_io;
+	if (!cur_cmd_io->next)
+	{ 
+		if (is_builtin_command(cur_cmd_io->command_arr[0]))
+		{
+			builtin_master(ms, cmd_io->command_arr);
+			cur_cmd_io = cur_cmd_io->next;
+		}
+			
+		
+	}
 	while (cur_cmd_io)
 	{
 		if (cur_cmd_io->next)
@@ -135,7 +144,7 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 		{
 			set_input_io(ms, input_fd, cur_cmd_io);
 			set_output_io(ms, fds, cur_cmd_io);
-			execute_io(cur_cmd_io);
+			execute_io(ms, cur_cmd_io);
 		}
 		else
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/11 13:11:35 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/19 18:06:55 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define MAX_HISTORY 10
 #define CLR_SCREEN 0
 #define LOGO_ABOVE_PROMPT 0
+
 //debug
 //#define PRINT_DEALLOC
 
@@ -58,24 +59,24 @@ void	handle_sigint(int sig);
 
 // builtin
 // echo
-void	builtin_echo(char **str_arr, int n_flag);
+int		builtin_echo(char **str_arr);
 void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 
 // env
 void	show_env_arr(char **env);
 void	load_env_to_llst(t_list **env_lst, char **env);
-void	show_env_llist(t_list **lst);
+int		show_env_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
 
 // export
-void	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
+int		export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
 
 
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
-void	export_single_arg(t_list **env_llst,
+int		export_single_arg(t_list **env_llst,
 			t_list **env_llst_sorted, char *str);
 void	update_or_create_llst_var(t_list **env_llst,
 			t_list **env_llst_sorted, t_var_names *var);
@@ -99,7 +100,7 @@ t_list	*find_var_in_llst(t_list **llst, char *var);
 
 // Utils
 // history
-void	history_master(t_list **history_lst);
+
 void	load_history_llst(char *hist_file_name, t_list **history_lst);
 void	write_history_llst(char *hist_file_name, t_list **history_lst);
 void	show_history_llist(t_list **lst);
@@ -167,11 +168,11 @@ void	test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted);
 void	test_echo(void);
 
 // pwd
-void	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
+int		builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
 //void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
-void	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
+int		builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
 	
 void test_change_dir(void);
 void test_getcwd(void);

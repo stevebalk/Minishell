@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:47 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 14:29:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 15:30:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_ms(t_ms *ms)
 	ms->envp = NULL;
 	ms->home_dir = NULL;
 	ms->path_arr = NULL;
+	ms->tmp_history_folder_file = NULL;
 
 	ms->env_llst = NULL;
 	ms->env_llst_sorted = NULL;

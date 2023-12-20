@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/06 18:18:53 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/19 13:54:10 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,38 @@ void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 	}
 	else if (ft_strncmp("echo", str, 4) == 0 && ft_strlen(str) > 5) 
 	{
-		builtin_echo(arr, 0);			// very rough implementation
+		builtin_echo(arr);			// very rough implementation
 	}
 
 	free(arr);
 }
 
-void	builtin_echo(char **str_arr, int n_flag)
+int	builtin_echo(char **str_arr)
 {
+	int	exit_code;
 	int	i;
-	c_yellow(); printf("builtin_echo   >%s<  >%s<\n", str_arr[0], str_arr[1]); c_reset();
+	int	n_flag;
 	
+	exit_code = 0;
 	i = 0;		// skip first entry for a quick test; has to be reworked in combination with executer stuff
-	while (i++, str_arr[i])
+	n_flag = 0;
+
+	//c_yellow(); printf("builtin_echo   >%s<  >%s< ... \n", str_arr[0], str_arr[1]); c_reset();
+	if (!str_arr)
+		return (0);
+	
+	if (str_arr[1] && ft_strncmp(str_arr[1], "-n", 2) == 0 && ft_strlen(str_arr[1]) == 2)
 	{
-		if (ft_strncmp(str_arr[i], "$$", 2) == 0)
-		{
-			// PID print
-			/* Todo: Finding a way to get the pid of our minishell */
-			int pid = getpid();
-			printf("PID: %i     >> XXX use another command, because getPid is not allowed\n", pid);
-		}
-		else
-			printf("%s", str_arr[i]);
+		n_flag = 1;
+		i++;
 	}
+	
+	while (i++, str_arr[i])
+		printf("%s", str_arr[i]);
+
 	if (!n_flag)
 		printf("\n");
 
-	c_red(); printf("~builtin_echo \n");
+	//c_red(); printf("~builtin_echo \n");
+	return (exit_code);
 }

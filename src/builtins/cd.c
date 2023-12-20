@@ -6,7 +6,7 @@
 /*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/04 15:14:08 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:40:00 by jopeters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,24 @@ bash: cd: OLDPWD not set
 
 
 
-void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
+int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
+	int exit_code;
 	char *tmp_str;
 	(void)tmp_str;
 	(void)env_llst;
 	(void)env_llst_sorted;
 	tmp_str = NULL;
 	
-
-	c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
+	exit_code = 0;
+	//c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
 	
 	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to last dir
 		// if !OLDWPD  --> "cd: OLDPWD not set"
 		tmp_str = get_val_of_var(&ms->env_llst, "OLDPWD");
-		c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
+		//c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
 		if (!tmp_str)
 		{
 			c_red();
@@ -99,7 +100,7 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		}
 		else
 		{
-			builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
 			free_n_null((void **)&tmp_str);
 		}
 	}
@@ -107,7 +108,7 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	{
 		// switching to home dir from 
 		c_purple(); printf("switching to home dir()   >%s< \n", ms->home_dir); c_reset();
-		builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
+		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
 	}
 	else if (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0)
 	{
@@ -115,7 +116,7 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		tmp_str = get_val_of_var(&ms->env_llst, "HOME");
 		c_purple(); printf("switching to env HOME  dir()   >%s< \n", tmp_str); c_reset();
 		if (tmp_str)
-			builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
 		else
 		{
 			printf("cd: HOME not set\n");
@@ -127,152 +128,165 @@ void	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 
 	else 
 	{
-		printf("go to dir --> \n");
-		builtin_cd_change_dir(env_llst, env_llst_sorted, in);
+		//printf("go to dir --> \n");
+		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, in);
 	}
 
 	// if new change directory is valid --> copy pwd  to old pwd
 	//if (tmp_str)
 	//	free(tmp_str);
 	free_n_null((void **)&tmp_str);
-		
-	c_red(); printf("~builtin_cd()\n"); c_reset();
+	//c_red(); printf("~builtin_cd()\n"); c_reset();
+	return (exit_code);
 }
 
-void builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
+int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
 {
+	int	exit_code;
+
+	exit_code = 0;
 	//const char *path = "./libs/libft"; 
 
-	c_yellow(); printf("builtin_cd_change_dir()  >%s<\n", path); 	c_reset();
+	//c_yellow(); printf("builtin_cd_change_dir()  >%s<\n", path); 	c_reset();
 	char *last_pwd;
 	char *tmp_value;
 	
 	last_pwd = get_val_of_var(env_llst, "PWD");
 
-	c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
+	//c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
     // Change the current working directory
+	// char *tmp_path;
+	// tmp_path = join_three_string(last_pwd, path, "");
     if (chdir(path) != 0) 
 	{
-		c_blue(); printf("MIST\n"); c_reset();
-        perror("chdir failed");
+		//c_blue(); printf("MIST\n"); c_reset();
+		c_red();
+		fflush(stdout);
+		ft_putstr_fd("minishell", 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd(": ", 2);
+		perror("");
+		c_reset();
 		free_n_null((void **)&last_pwd);
-        exit(EXIT_FAILURE);
+        return (1);
     }
 	else
 	{	
 		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
-		c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
+		//c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
 
 		export_single_arg(env_llst, env_llst_sorted, tmp_value);
 		builtin_pwd(env_llst, env_llst_sorted, 1);
 		free(tmp_value);
 	}
-
+	//free_n_null((void **)&tmp_path);
 	free_n_null((void **)&last_pwd);
-	c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
+	//c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
+	return (exit_code);
 }
 
 
 
 // ######## TEST ########
 // #############   OLD Test Stuff   ###############
-void test_change_dir(void) 
-{
-    //const char *path = "../"; // 
-	//const char *path = ".."; 			// works
-	//const char *path = "."; 			// works
+// void test_change_dir(void) 
+// {
+//     //const char *path = "../"; // 
+// 	//const char *path = ".."; 			// works
+// 	//const char *path = "."; 			// works
 
 	
-	//const char *path = "~"; 			// not work			--> go to home dir
-	//const char *path = "-"; 			// not work			--> go to last working! dir
+// 	//const char *path = "~"; 			// not work			--> go to home dir
+// 	//const char *path = "-"; 			// not work			--> go to last working! dir
 
-	const char *path = "./libs/libft"; 
+// 	const char *path = "./libs/libft"; 
 
-	c_yellow(); printf("test_change_dir()\n"); c_reset();
+// 	c_yellow(); printf("test_change_dir()\n"); c_reset();
 	
-    // Change the current working directory
-    if (chdir(path) != 0) 
-	{
-        perror("chdir failed");
-        exit(EXIT_FAILURE);
-    }
+//     // Change the current working directory
+//     if (chdir(path) != 0) 
+// 	{
+//         c_red(); perror("chdir failed");c_reset();
+//         exit(EXIT_FAILURE);
+//     }
 
-	builtin_pwd(NULL, NULL, 1);
+// 	builtin_pwd(NULL, NULL, 1);
 	
 
-	c_red(); printf("~test_change_dir()\n"); c_reset();
-}
+// 	c_red(); printf("~test_change_dir()\n"); c_reset();
+// }
 
-void test_getcwd(void)
-{
-	c_yellow(); printf("test_get_cwd()\n"); c_reset();
+// void test_getcwd(void)
+// {
+// 	c_yellow(); printf("test_get_cwd()\n"); c_reset();
 
-	char *buffer;
-    size_t size = 1024;
+// 	char *buffer;
+//     size_t size = 1024;
 
-    // Allocate memory for the buffer
-    buffer = (char *)malloc(size * sizeof(char));
-    if (buffer == NULL) 
-	{
-        perror("Unable to allocate buffer");
-        exit(1);
-    }
+//     // Allocate memory for the buffer
+//     buffer = (char *)malloc(size * sizeof(char));
+//     if (buffer == NULL) 
+// 	{
+//         perror("Unable to allocate buffer");
+//         exit(1);
+//     }
 
-    // Get the current working directory
-	if (getcwd(buffer, size) == NULL) 
-	{
-        perror("Error getting current directory");
-        exit(1);
-	}
+//     // Get the current working directory
+// 	if (getcwd(buffer, size) == NULL) 
+// 	{
+//         perror("Error getting current directory");
+//         exit(1);
+// 	}
 
-    // Print the current working directory
-    printf("Current working directory: %s\n", buffer);
+//     // Print the current working directory
+//     printf("Current working directory: %s\n", buffer);
 
-    // Free the allocated memory
-    free(buffer);
+//     // Free the allocated memory
+//     free(buffer);
 
-    //return 0;
-}
+//     //return 0;
+// }
 
 
-void test_opendir(void)
-{
-	DIR *d;
-    struct dirent *dir;
-	c_yellow(); printf("test_opendir()\n"); c_reset();
+// void test_opendir(void)
+// {
+// 	DIR *d;
+//     struct dirent *dir;
+// 	c_yellow(); printf("test_opendir()\n"); c_reset();
 
-    d = opendir("."); // Open the current directory
-    if (d) 
-	{
-        while ((dir = readdir(d)) != NULL) 
-		{
-            printf("%s\n", dir->d_name); // Print the name of the entry
-        }
-        closedir(d); // Close the directory
-    }
-	else 
-	{
-        perror("Unable to open directory");
-        exit(EXIT_FAILURE);
-    }
+//     d = opendir("."); // Open the current directory
+//     if (d) 
+// 	{
+//         while ((dir = readdir(d)) != NULL) 
+// 		{
+//             printf("%s\n", dir->d_name); // Print the name of the entry
+//         }
+//         closedir(d); // Close the directory
+//     }
+// 	else 
+// 	{
+//         perror("Unable to open directory");
+//         exit(EXIT_FAILURE);
+//     }
 
-}
+// }
 
-void test_is_dir_valid(char *dir)
-{
-	c_yellow(); printf("test_is_dir_valid()  dir >%s<\n", dir); c_reset();
+// void test_is_dir_valid(char *dir)
+// {
+// 	c_yellow(); printf("test_is_dir_valid()  dir >%s<\n", dir); c_reset();
 
-	DIR *d;
-	d = opendir(dir);	
+// 	DIR *d;
+// 	d = opendir(dir);	
 	
-	if (d)
-	{
-		c_green();printf("dir >%s< exists()\n", dir); c_reset();
-	}	
-	else
-	{
-		c_red();printf("dir >%s< NOT exists()\n", dir); c_reset();
-	}
-	closedir(d);
+// 	if (d)
+// 	{
+// 		c_green();printf("dir >%s< exists()\n", dir); c_reset();
+// 	}	
+// 	else
+// 	{
+// 		c_red();printf("dir >%s< NOT exists()\n", dir); c_reset();
+// 	}
+// 	closedir(d);
 		
-}
+// }

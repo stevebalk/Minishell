@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 14:06:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 15:32:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	copy_path_to_ms_ms_struct(ms);
 	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
 	sort_list(ms->env_llst_sorted);
-	history_master(&ms->hist_llst);
+	set_history_path(ms);
+	history_master(ms);
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
+
 }
 
 int	main(int argc, char **argv, char **env)
@@ -65,11 +67,12 @@ int	main(int argc, char **argv, char **env)
 
 	if (!LOGO_ABOVE_PROMPT)
 		intro3();
-	
-	ini_env_history_etc(&ms, env);
 
-	prompt_handler(&ms);
+	signal(SIGINT, handle_sigint);
+	ini_env_history_etc(&ms, env);
 	
+	//printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
+	prompt_handler(&ms);
 	
 	free_ms(&ms);
 	
