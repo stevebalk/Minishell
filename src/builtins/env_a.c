@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 17:17:09 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:24:22 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,41 @@ int	show_env_llist(t_list **lst)
 	}
 
 	return (exit_code);
+}
+
+int	show_export_llist(t_list **lst)
+{
+	int		ichar;
+	t_list	*tmp_lst;
+	char	*line;
+
+	tmp_lst = *lst;
+	while (tmp_lst)
+	{
+		c_reset();
+		//printf("i: %i  >", i);
+		printf("declare -x ");
+		c_green();
+		line = (char *)tmp_lst->content;
+		ichar = -1;
+		while(ichar++,  line[ichar])	
+		{
+			if (line[ichar] != '=')
+				printf("%c", line[ichar]);
+			else	
+			{
+				printf("%c", line[ichar]);
+				printf("\"");
+				ichar++;
+			}
+		}
+		printf("\"");
+		c_reset();
+		printf("\n");
+		tmp_lst = tmp_lst->next;
+	}
+
+	return (0);
 }
 
 // adds +1 to the SHLVL env/export variable

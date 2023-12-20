@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 18:06:55 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:15:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	test_parser_echo(t_list **env_llst, t_list **env_llst_sorted,
 void	show_env_arr(char **env);
 void	load_env_to_llst(t_list **env_lst, char **env);
 int		show_env_llist(t_list **lst);
+int		show_export_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 14:09:59 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:24:38 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
 	if (arr_len == 1)
 	{
 		sort_list(*env_llst_sorted);
-		show_env_llist(env_llst_sorted);
+		show_export_llist(env_llst_sorted);
 	}
 	
 	i = 0;
