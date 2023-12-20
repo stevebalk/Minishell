@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 15:31:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:28:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	prompt_handler(t_ms *ms)
 {
 	char	*prompt_in;
 	int		count;
-	int		hit_sig;
+	// int		hit_sig;
 
 	(void)count;
 	count = 0;
 	prompt_in = NULL;
-	hit_sig = 0;
+	// hit_sig = 0;
 	if (CLR_SCREEN == 1)
 		clear_screen();
 	while (1)
@@ -73,9 +73,10 @@ void	prompt_handler(t_ms *ms)
 		// prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002");
 		 prompt_in = readline("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36m");
 
-		if (prompt_in != NULL || hit_sig == 0)
+		// if (prompt_in != NULL || hit_sig == 0)
+		if (prompt_in != NULL)
 		{
-			hit_sig = 1;
+			// hit_sig = 1;
 			if (ft_strlen(prompt_in) > 0)
 			{
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
@@ -94,10 +95,10 @@ void	prompt_handler(t_ms *ms)
 		else
 		{
 			printf("\nprompt_in == NULL\n");
-			hit_sig = 1;
-			printf("sig == 2 \n");c_red(); 
+			// hit_sig = 1;
+			// printf("sig == 2 \n");c_red(); 
 			free_n_null((void **)&prompt_in);
-			printf("exit\n");
+			// printf("exit\n");
 			break ;
 		}
 		count++;

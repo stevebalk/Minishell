@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/19 18:11:53 by jopeters         ###   ########.fr        #
+#    Updated: 2023/12/20 15:40:12 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,7 @@ $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
 #			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
-			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L $(LIB_DIR) -lft -L $(READLINE_DIR_SUB) -lreadline -lhistory -lncurses -ltermcap
+			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L $(LIB_DIR) -lft  -lreadline -lhistory -lncurses -ltermcap
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c

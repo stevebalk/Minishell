@@ -71,15 +71,5 @@ void execute_pipeline(char ***commands, int num_commands) {
 }
 
 int main() {
-    char *command1[] = {"cat", "-e", NULL};
-    char *command2[] = {"grep", "file", NULL};
-    char *command3[] = {"wc", "-l", NULL};
-
-    char **commands[] = {command1, command2, command3};
-    int num_commands = sizeof(commands) / sizeof(commands[0]);
-
-    execute_pipeline(commands, num_commands);
-    execute_pipeline(commands, num_commands);
-
-    return 0;
+    ((printf("HEllo "), printf("World\n")), printf(" Lol"));
 }
