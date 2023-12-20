@@ -32,9 +32,9 @@ datarootdir = ${prefix}/share
 srcdir = .
 VPATH = ..
 topdir = ..
-BUILD_DIR = /Users/jopeters/Jonas/minishell/libs/readline-install
+BUILD_DIR = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline-install
 
-INSTALL = /usr/bin/install -c
+INSTALL = /opt/homebrew/bin/ginstall -c
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA = ${INSTALL} -m 644
 
@@ -49,10 +49,10 @@ LN = ln
 
 SHELL = /bin/sh
 
-host_os = darwin19.6.0
+host_os = darwin22.5.0
 host_vendor = apple
 
-prefix = /Users/jopeters/Jonas/minishell/libs/readline
+prefix = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline
 exec_prefix = ${prefix}
 includedir = ${prefix}/include
 bindir = ${exec_prefix}/bin

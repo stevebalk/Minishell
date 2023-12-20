@@ -31,9 +31,9 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/jopeters/Jonas/minishell/libs/readline-install
+BUILD_DIR = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline-install
 
-INSTALL = /usr/bin/install -c
+INSTALL = /opt/homebrew/bin/ginstall -c
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_DATA = ${INSTALL} -m 644
 
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/jopeters/Jonas/minishell/libs/readline
+prefix = /Users/jonas/Cprogs/minishell_master/minishell/libs/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
