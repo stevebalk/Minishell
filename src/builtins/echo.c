@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:43:21 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/19 13:54:10 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:27:53 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,11 @@ int	builtin_echo(char **str_arr)
 	}
 	
 	while (i++, str_arr[i])
+	{
+		if (i > 1)
+			printf(" ");
 		printf("%s", str_arr[i]);
+	}
 
 	if (!n_flag)
 		printf("\n");
