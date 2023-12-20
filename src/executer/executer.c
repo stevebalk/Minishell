@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/19 18:19:49 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 14:32:24 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 		if (dup2(ms->fd_stdout, STDOUT_FILENO) == -1)
 			perror("dup2");
 	}
-	close(fds[1]); /// <<<< MUST FIX
+	// close(fds[1]); /// <<<< MUST FIX
 }
 
 void	execute_io(t_cmd_io *cmd_io)

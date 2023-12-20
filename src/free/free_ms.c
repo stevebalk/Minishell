@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:29 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 15:06:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 14:30:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	free_ms(t_ms *ms)
 		ft_free_array((void **)ms->path_arr);
 	if (ms->home_dir)
 		free_n_null((void **)&ms->home_dir);
-	
+	close(ms->fd_stdin);
+	close(ms->fd_stdout);
 
 	lst_dealloc(&ms->hist_llst, 1);
 	lst_dealloc(&ms->env_llst, 1);
