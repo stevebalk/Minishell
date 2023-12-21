@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 14:20:31 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:40:03 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,22 @@ int	show_export_llist(t_list **lst)
 		printf("declare -x ");
 		c_green();
 		line = (char *)tmp_lst->content;
-		ichar = -1;
-		while(ichar++,  line[ichar])	
+		ichar = 0;
+		while(  line[ichar])	
 		{
-			if (line[ichar] != '=')
-				printf("%c", line[ichar]);
-			else	
+			//if (line[ichar] != '=')
+			//	printf("%c", line[ichar]);
+			printf("%c", line[ichar]);
+			if (line[ichar] == '=')	
 			{
-				printf("%c", line[ichar]);
-				printf("\"");
-				ichar++;
+				if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
+					printf("\"");
+				//ichar++;
 			}
+			ichar++;
 		}
-		printf("\"");
+		if (line[ichar-1] != '\"')
+			printf("\"");
 		c_reset();
 		printf("\n");
 		tmp_lst = tmp_lst->next;
