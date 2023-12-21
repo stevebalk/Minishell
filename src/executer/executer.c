@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 16:35:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 13:57:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,19 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 
 void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 {
+	char **new_env;
+	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
+	//show_env_arr(new_env);
+	
 	if (is_builtin_command(cmd_io->command_arr[0]))
 		exit(builtin_master(ms, cmd_io->command_arr));
 	else
-		execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!! XXX
+		//execvp(cmd_io->command_arr[0], cmd_io->command_arr); // CHANGE TO THE RIGHT COMMAND!!!! XXX
+	{
+		if (execve(cmd_io->command_arr[0], cmd_io->command_arr, new_env) == -1)
+			perror("exeve error");
+	}	
+		
 	perror("command does not exist");
 	exit(127);
 }

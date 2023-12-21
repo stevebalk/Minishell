@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 17:16:32 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/21 13:48:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,30 @@ void	copy_env_home_to_ms_struct(t_ms *ms)
 	ms->home_dir = join_three_string(tmp_home_dir, "", "");
 	free_n_null((void **)&tmp_home_dir);
 	//c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
+}
+
+// exports a llst to char ** array; mallocs --> you have to free it!
+char **copy_llst_to_char_arr(t_list **llst, t_ms *ms)
+{
+	int	i;
+	int	len;
+	char **arr;
+	
+	t_list *tmp_llst;
+	tmp_llst = *llst;
+	len = ft_lstsize(*llst);
+	arr = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!arr)
+		check_if_malloc_failed((void *)arr, ms);
+	i = 0;
+	
+	while(tmp_llst)
+	{
+		//arr[i] = (char *)malloc(sizeof(char) * ft_strlen((char *)tmp_llst->content));
+		arr[i] = ft_strdup((char *)tmp_llst->content);
+		i++;
+		tmp_llst = tmp_llst->next;
+	}
+
+	return (arr);	
 }

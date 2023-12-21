@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 15:29:11 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 13:48:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,8 @@ void	set_history_path(t_ms *ms);
 // env b
 void	copy_path_to_ms_ms_struct(t_ms *ms);
 void	copy_env_home_to_ms_struct(t_ms *ms);
+char 	**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
+
 
 // executer
 // check_command
