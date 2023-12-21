@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 16:05:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:59:57 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 		if (execve(path_program, cmd_io->command_arr, new_env) == -1)
 			perror("exeve error");
 	}	
-		
+	ft_free_array((void **)new_env);
+	free(path_program);
 	perror("command does not exist");
 	exit_with_code(ms, 127);
 }
