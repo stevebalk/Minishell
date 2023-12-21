@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 14:40:00 by jopeters         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:21:07 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,23 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	exit_code = 0;
 	//c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
 	
-	if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
+	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
+	{
+		// switching to env home dir  
+		tmp_str = get_val_of_var(&ms->env_llst, "HOME");
+		//c_purple(); printf("switching to env HOME  dir()   >%s< \n", tmp_str); c_reset();
+		if (tmp_str)
+			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+		else
+		{
+			perror("cd: HOME not set\n");
+			exit_code = 1;
+		}
+		// free(tmp_str);
+		// tmp_str = NULL;
+		free_n_null((void **)&tmp_str);
+	}
+	else if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to last dir
 		// if !OLDWPD  --> "cd: OLDPWD not set"
@@ -107,25 +123,9 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
 	{
 		// switching to home dir from 
-		c_purple(); printf("switching to home dir()   >%s< \n", ms->home_dir); c_reset();
+		//c_purple(); printf("switching to home dir()   >%s< \n", ms->home_dir); c_reset();
 		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
 	}
-	else if (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0)
-	{
-		// switching to env home dir  
-		tmp_str = get_val_of_var(&ms->env_llst, "HOME");
-		c_purple(); printf("switching to env HOME  dir()   >%s< \n", tmp_str); c_reset();
-		if (tmp_str)
-			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
-		else
-		{
-			printf("cd: HOME not set\n");
-		}
-		// free(tmp_str);
-		// tmp_str = NULL;
-		free_n_null((void **)&tmp_str);
-	}
-
 	else 
 	{
 		//printf("go to dir --> \n");
@@ -143,13 +143,14 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
 {
 	int	exit_code;
-
+	char *last_pwd;
+	char *tmp_value;
+	
 	exit_code = 0;
 	//const char *path = "./libs/libft"; 
 
 	//c_yellow(); printf("builtin_cd_change_dir()  >%s<\n", path); 	c_reset();
-	char *last_pwd;
-	char *tmp_value;
+	fflush(stdout);
 	
 	last_pwd = get_val_of_var(env_llst, "PWD");
 
@@ -157,7 +158,11 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
     // Change the current working directory
 	// char *tmp_path;
 	// tmp_path = join_three_string(last_pwd, path, "");
-    if (chdir(path) != 0) 
+	if (!path)
+		return (exit_code = 1, exit_code);
+		
+	exit_code = chdir(path);
+    if (exit_code != 0) 
 	{
 		//c_blue(); printf("MIST\n"); c_reset();
 		c_red();
@@ -169,7 +174,7 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 		perror("");
 		c_reset();
 		free_n_null((void **)&last_pwd);
-        return (1);
+        return (exit_code);
     }
 	else
 	{	
@@ -177,7 +182,7 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 		//c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
 
 		export_single_arg(env_llst, env_llst_sorted, tmp_value);
-		builtin_pwd(env_llst, env_llst_sorted, 1);
+		builtin_pwd(env_llst, env_llst_sorted, 0);
 		free(tmp_value);
 	}
 	//free_n_null((void **)&tmp_path);
