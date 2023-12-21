@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 15:34:14 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 18:00:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		builtin_unset(t_ms *ms, char **arr)
 			c_red();
 			printf("minishell: unset: `%s': not a valid identifier\n", arr[i]); 
 			c_reset();
-			ms->last_exit_code = 1;
+			ret_code = 1;
 		}
 	}
 
