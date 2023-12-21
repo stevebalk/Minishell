@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 13:48:36 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 15:22:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ t_cmd_io	*create_cmd_io_node(t_ms *ms);
 t_cmd_io	*cmd_io_append_node(t_ms *ms);
 void		create_cmd_io_list(t_ms *ms);
 void		print_file_error(char *msg);
-int			redir_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io);
+int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
 char		*heredoc(char *delimiter, t_ms *ms);
 
@@ -205,6 +205,7 @@ void		ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 
 /* Freeing stuff */
 void		free_ms(t_ms *ms);
+
 void		free_token(t_token **token);
 void		free_token_but_not_content(t_token **token);
 void		free_token_list(t_token **token);
@@ -216,6 +217,8 @@ void		free_cmd_list_exept_here_doc(t_cmd **cmd);
 void		free_redir_node(t_redir **node);
 void		free_redir_list(t_redir **list);
 void		free_cmd_io_list(t_cmd_io **list);
+
+void		exit_with_code(t_ms *ms, int exit_code);
 
 
 

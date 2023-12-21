@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/20 18:51:02 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/21 15:14:52 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_FILES	=	main \
 				builtins/unset_a \
 				utils/colors_a \
 				utils/colors_b \
+				utils/exit_with_code \
 				utils/history_a \
 				utils/history_b \
 				utils/util_lst_a \

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:19:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 18:28:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 13:54:08 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,17 @@ static int	redir_outfile_to_io(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static void	redir_heredoc_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io)
+static void	redir_heredoc_to_io(t_redir *redir, t_cmd_io *io, char *hd_str)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
-	if (io->intype && io->intype == TOKEN_HERE_DOC)
-		free(io->input);
-	io->input = heredoc(redir->target, ms);
+	io->input = hd_str;
 	io->intype = redir->type;
 	io->in_fd = -1;
 }
 
 
-int	redir_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io)
+int	redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str)
 {
 	int	ret;
 
@@ -69,6 +67,6 @@ int	redir_to_io(t_ms *ms, t_redir *redir, t_cmd_io *io)
 	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
 		ret = redir_outfile_to_io(redir, io);
 	if (redir->type == TOKEN_HERE_DOC)
-		redir_heredoc_to_io(ms, redir, io);
+		redir_heredoc_to_io(redir, io, heredoc_str);
 	return (ret);
 }
