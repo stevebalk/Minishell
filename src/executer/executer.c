@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 14:49:51 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:52:34 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
 	path_program = check_program_with_path(ms, cmd_io->command_arr[0]);
 	//show_env_arr(new_env);
-	//printf("path_program: >%s< \n", path_program);
+	printf("path_program: >%s< \n", path_program);
 	
 	if (is_builtin_command(cmd_io->command_arr[0]))
 		exit(builtin_master(ms, cmd_io->command_arr));

@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 14:50:15 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:54:21 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ char *check_program_with_path(t_ms *ms, char *prog_name)
 	
 	//c_yellow(); printf("check_program_with_path()  >"); c_green(); printf("%s", prog_name); 
 	//c_yellow(); printf("<\n"); c_reset();
-
+	if (!access(prog_name, F_OK))
+		return (prog_name);
+			
 	i = -1;
 	while (ms->path_arr[++i])
 	{
