@@ -6,11 +6,33 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 18:23:24 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/12 18:25:26 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 13:45:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// static	get_heredoc_string(t_ms *ms, t_redir *redir)
+// {
+// 	t_redir *cur;
+// 	char	*ret;
+
+// 	if (redir == NULL)
+// 		return ;
+// 	ret = NULL;
+// 	cur = redir;
+// 	while (cur)
+// 	{
+// 		if (cur->type == TOKEN_HERE_DOC)
+// 		{
+// 			if (ret)
+// 				free(ret);
+// 			ret = heredoc;
+// 		}
+// 		cur = cur->next;
+// 	}
+// 	return (ret);
+// }
 
 static void	fill_cmd_io_node(t_ms *ms, t_redir *redir, t_cmd_io *io)
 {

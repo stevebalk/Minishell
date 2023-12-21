@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 17:23:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/20 18:43:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(int argc, char **argv, char **env)
 	t_ms	ms;
 	c_yellow(); printf("*** main () ***\n"); c_reset();
 	init_ms(&ms);
+	show_env_arr(env);
 	(void)argc;
 	(void)argv;
 	(void)env;
