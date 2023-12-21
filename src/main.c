@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 14:11:07 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:50:33 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv, char **env)
 	t_ms	ms;
 	c_yellow(); printf("*** main () ***\n"); c_reset();
 	init_ms(&ms);
-	show_env_arr(env);
+	//show_env_arr(env);
 	(void)argc;
 	(void)argv;
 	(void)env;
