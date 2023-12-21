@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 18:15:27 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:10:14 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		show_env_llist(t_list **lst);
 int		show_export_llist(t_list **lst);
 void	add_variable_to_llst(t_list **llst, char *var);
 void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted);
+void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted);
 
 // export
 int		export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);

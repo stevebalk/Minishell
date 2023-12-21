@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 18:43:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:11:07 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	set_history_path(ms);
 	history_master(ms);
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
+	set_shell_var_to_pwd(&ms->env_llst, &ms->env_llst_sorted);
+
 
 }
 

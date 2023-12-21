@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 18:24:22 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:20:31 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,21 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 
 	//c_red(); printf("~add_shell_level()\n"); c_reset();
 }
+
+// update the "SHELL" variable with PWD
+void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
+{
+	char	*pwd;
+	char	*shell;
+	
+	//printf("set_shell_var_to_pwd  file: %s   line: %d\n", __FILE__, __LINE__);
+	pwd = get_val_of_var(env_llst, "PWD");
+	shell = join_three_string("SHELL=", pwd, "");
+	//printf("shell: >%s<\n", shell);
+	export_single_arg(env_llst, env_llst_sorted, shell);
+	free(shell);
+}
+
 	
 
 /*
