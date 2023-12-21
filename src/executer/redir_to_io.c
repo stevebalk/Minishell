@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:19:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 13:54:08 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:36:06 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ static int	redir_outfile_to_io(t_redir *redir, t_cmd_io *io)
 {
 	if (io->out_fd != -1)
 		close(io->out_fd);
-	io->out_fd = open(redir->target, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (redir->type == TOKEN_REDIRECT)
+		io->out_fd = open(redir->target, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else
+		io->out_fd = open(redir->target, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (io->out_fd == -1)
 	{
 		print_file_error(redir->target);

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:14:36 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 14:42:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/21 16:53:29 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	set_word_token(char *str, t_token *token, t_ms *ms)
 
 	quote = 0;
 	length = 0;
-	while (str[length] != '\0' && !ft_strchr(TOKEN_TYPES, str[length]))
+	while (str[length] != '\0')
 	{
 		if ((str[length] == '\'' || str[length] == '\"') && !quote)
 			quote = str[length];
 		else if (str[length] == quote)
 			quote = 0;
-		if (quote == 0 && str[length] == ' ')
+		if (quote == 0 && (str[length] == ' ' || ft_strchr(TOKEN_TYPES, str[length])))
 			break ;
 		length++;
 	}
