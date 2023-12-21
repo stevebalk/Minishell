@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 13:48:27 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 18:30:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char **copy_llst_to_char_arr(t_list **llst, t_ms *ms)
 	t_list *tmp_llst;
 	tmp_llst = *llst;
 	len = ft_lstsize(*llst);
-	arr = (char **)malloc(sizeof(char *) * (len + 1));
-	if (!arr)
-		check_if_malloc_failed((void *)arr, ms);
+	arr = ft_calloc(len + 1, sizeof(char *));
+	// arr = (char **)malloc(sizeof(char *) * (len + 1));
+	check_if_malloc_failed((void **)arr, ms);
 	i = 0;
 	
 	while(tmp_llst)
