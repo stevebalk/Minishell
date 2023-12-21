@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 17:40:03 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:41:32 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,20 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 int	show_env_llist(t_list **lst)
 {
 	int		exit_code;
-	int		i;
 	t_list	*tmp_lst;
 
 	exit_code = 0;
 	tmp_lst = *lst;
-	i = 0;
 	//c_yellow(); printf("show_env_llist()\n"); c_reset();
 	while (tmp_lst)
 	{
 		c_reset();
-		printf("i: %i  >", i);
+		//printf("i: %i  >", i);
 		c_green();
-		printf("%s", (char *)tmp_lst->content);
+		printf("%s\n", (char *)tmp_lst->content);
 		c_reset();
-		printf("<\n");
+		//printf("<\n");
 		tmp_lst = tmp_lst->next;
-		i++;
 	}
 
 	return (exit_code);
