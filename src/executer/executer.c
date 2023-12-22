@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 17:59:57 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/21 18:56:25 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 	else
 	{
 		if (execve(path_program, cmd_io->command_arr, new_env) == -1)
-			perror("exeve error");
+			// perror("exeve error");
+			perror(join_three_string(__FILE__, "   LINE: ", ft_itoa(__LINE__) ));
 	}	
 	ft_free_array((void **)new_env);
 	free(path_program);

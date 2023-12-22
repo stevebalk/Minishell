@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2023/12/21 15:14:52 by sbalk            ###   ########.fr        #
+#    Updated: 2023/12/22 13:39:13 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ SRC_FILES	=	main \
 				executer/heredoc \
 				executer/create_cmd_io \
 				executer/redir_to_io \
+				signals/signals
 
 H_FILES		=	include\builtins.h \
 				include\executer.h \
@@ -130,7 +131,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/executer
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
-			@mkdir -p $(OBJ_DIR)/executer
+			@mkdir -p $(OBJ_DIR)/signals
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 

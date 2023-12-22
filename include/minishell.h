@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 15:22:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 13:41:21 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "../libs/readline/include/readline/readline.h"
 # include "../libs/libft/include/libft.h"
 # include <signal.h>
+# include <termios.h>
 # include <dirent.h>
 # include "lexer.h"
 # include "expander.h"
@@ -37,6 +38,10 @@
 # define FILE_HISTORY "history.txt"
 # define MAX_HISTORY 10
 # define CLR_SCREEN 0
+
+# define TTY_IS_CHILD 0
+# define TTY_HEREDOC 1
+# define TTY_OMIT_LF 2
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣤⡀⠀⠀
@@ -245,4 +250,13 @@ char 	**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
 // executer
 // check_command
 char	*check_program_with_path(t_ms *ms, char *prog_name);
+
+
+// signals
+static void	signal_handler(int number);
+void		tty_setup(void);
+void		tty_enter(int is_child);
+int			tty_get_flag(unsigned int index);
+void		tty_set_flag(unsigned int index, int enable);
+
 #endif
