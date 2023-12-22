@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 15:33:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:43:59 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 		//printf("unset\n");
 		exit_code = builtin_unset(ms, cmd_arr);
 	}
+	printf("exit code builtin master: %i\n", exit_code);
 	
 	return (exit_code);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_ms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:29 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 15:55:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:03:31 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,19 @@ void	free_ms(t_ms *ms)
 		free_n_null((void **)&ms->home_dir);
 	close(ms->fd_stdin);
 	close(ms->fd_stdout);
+
 	if (ms->tmp_history_folder_file)
 		free_n_null((void **)&ms->tmp_history_folder_file);
-	
+
 	rl_clear_history();
+
 	lst_dealloc(&ms->hist_llst, 1);
+	printf("file: %s   line: %i \n", __FILE__, __LINE__);
+
 	lst_dealloc(&ms->env_llst, 1);
+	printf("file: %s   line: %i \n", __FILE__, __LINE__);
+
 	lst_dealloc(&ms->env_llst_sorted, 1);
+	printf("file: %s   line: %i \n", __FILE__, __LINE__);
+
 }

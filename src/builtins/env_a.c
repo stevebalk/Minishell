@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 17:41:32 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:18:37 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 	if (!env[0])
 	{
 		//printf("!env[0]\n");
-		ft_lstadd_back(env_lst, ft_lstnew((void *)""));
+		str = (char*)ft_calloc(1, sizeof(char));
+		ft_lstadd_back(env_lst, ft_lstnew((void *)str));
+		printf("file: %s   line: %i    env[0]\n", __FILE__, __LINE__);
 	}
 	else
 	{
-		while (i++, env[i])
+		while (i++, env[i] && ft_strlen(env[i])> 0)
 		{
-			
 			str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 			if (!str)
 				return ;
@@ -180,13 +181,32 @@ void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
 {
 	char	*pwd;
 	char	*shell;
-	
+	char	*buffer;
+	size_t	size;
+
+	size = 1024;
+	buffer = (char *)ft_calloc(size, sizeof(char));
+	 
 	//printf("set_shell_var_to_pwd  file: %s   line: %d\n", __FILE__, __LINE__);
 	pwd = get_val_of_var(env_llst, "PWD");
-	shell = join_three_string("SHELL=", pwd, "");
+	//printf("xxx pwd: %s\n", pwd);
+	if (!pwd)
+	{
+		getcwd(buffer, size);
+		shell = join_three_string("SHELL=", buffer, "");
+
+	}
+	else
+		shell = join_three_string("SHELL=", pwd, "");
+
+	//printf("xxx pwd: %s\n", pwd);
+
+	//shell = join_three_string("SHELL=", pwd, "");
 	//printf("shell: >%s<\n", shell);
 	export_single_arg(env_llst, env_llst_sorted, shell);
 	free(shell);
+	free(buffer);
+	free(pwd);
 }
 
 	

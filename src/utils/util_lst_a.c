@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:31:19 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:11:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,21 @@ void	lst_dealloc(t_list **llist, int free_content)
 	t_list	*cur;
 	t_list	*aux;
 
+	if (!llist)
+		return ;
+	else
+		printf("llst is TRUE \n");
+
 	cur = *llist;
 	while (cur != NULL)
 	{
 		aux = cur;
 		cur = cur->next;
 		if (aux->content && free_content)
+		{
+			printf("free content: >%s<\n", (char*)aux->content);
 			free(aux->content);
+		}
 		free(aux);
 	}
 	*llist = NULL;
