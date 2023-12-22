@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:59:59 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 14:03:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 12:23:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,20 @@ void	free_cmd_list_exept_here_doc(t_cmd **cmd)
 		*cmd = cmd_next;
 	}
 	*cmd = new_list;
+}
+
+t_cmd	*free_cmd_head(t_cmd **list)
+{
+	t_cmd	*cur;
+	t_cmd	*next;
+
+	if (list == NULL || *list == NULL)
+		return (NULL);
+	cur = *list;
+	next = (*list)->next;
+	free_redir_list(&(cur)->redirs);
+	ft_free_array((void **)cur->argv);
+	free(cur);
+	*list = next;
+	return (*list);
 }

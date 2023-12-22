@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 15:22:39 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 13:13:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ void		free_expander_list(t_expand **list);
 
 void		free_cmd_list(t_cmd **cmd);
 void		free_cmd_list_exept_here_doc(t_cmd **cmd);
+t_cmd		*free_cmd_head(t_cmd **list);
 void		free_redir_node(t_redir **node);
 void		free_redir_list(t_redir **list);
 void		free_cmd_io_list(t_cmd_io **list);
