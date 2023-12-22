@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 15:17:14 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:20:32 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,11 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 	free(path_program);
 	//perror("command does not exist");
 
-	write(STDERR_FILENO, "minishell: ", 11);
-	write(STDERR_FILENO, cmd_io->command_arr[0], ft_strlen(cmd_io->command_arr[0]));
-	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, "command not found\n", 18);
+	// write(STDERR_FILENO, "minishell: ", 11);
+	// write(STDERR_FILENO, cmd_io->command_arr[0], ft_strlen(cmd_io->command_arr[0]));
+	// write(STDERR_FILENO, ": ", 2);
+	// write(STDERR_FILENO, "command not found\n", 18);
+	printf("minishell: %s: command not found\n", cmd_io->command_arr[0]);
 	
 	exit_with_code(ms, 127);
 }
