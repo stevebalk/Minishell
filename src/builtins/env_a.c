@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/22 16:18:37 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:35:36 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 		//printf("!env[0]\n");
 		str = (char*)ft_calloc(1, sizeof(char));
 		ft_lstadd_back(env_lst, ft_lstnew((void *)str));
-		printf("file: %s   line: %i    env[0]\n", __FILE__, __LINE__);
 	}
 	else
 	{
@@ -81,12 +80,10 @@ int	show_env_llist(t_list **lst)
 	//c_yellow(); printf("show_env_llist()\n"); c_reset();
 	while (tmp_lst)
 	{
-		c_reset();
-		//printf("i: %i  >", i);
 		c_green();
-		printf("%s\n", (char *)tmp_lst->content);
+		if (ft_strlen((char *)tmp_lst->content) > 0)
+			printf("%s\n", (char *)tmp_lst->content);
 		c_reset();
-		//printf("<\n");
 		tmp_lst = tmp_lst->next;
 	}
 
@@ -102,32 +99,30 @@ int	show_export_llist(t_list **lst)
 	tmp_lst = *lst;
 	while (tmp_lst)
 	{
-		c_reset();
-		//printf("i: %i  >", i);
-		printf("declare -x ");
-		c_green();
 		line = (char *)tmp_lst->content;
-		ichar = 0;
-		while(  line[ichar])	
+		if (ft_strlen(line) > 0)
 		{
-			//if (line[ichar] != '=')
-			//	printf("%c", line[ichar]);
-			printf("%c", line[ichar]);
-			if (line[ichar] == '=')	
+			c_reset();
+			printf("declare -x ");
+			c_green();
+			ichar = 0;
+			while( line[ichar])	
 			{
-				if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
-					printf("\"");
-				//ichar++;
+				printf("%c", line[ichar]);
+				if (line[ichar] == '=')	
+				{
+					if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
+						printf("\"");
+				}
+				ichar++;
 			}
-			ichar++;
+			if (line[ichar-1] != '\"')
+				printf("\"");
+			c_reset();
+			printf("\n");
 		}
-		if (line[ichar-1] != '\"')
-			printf("\"");
-		c_reset();
-		printf("\n");
 		tmp_lst = tmp_lst->next;
 	}
-
 	return (0);
 }
 

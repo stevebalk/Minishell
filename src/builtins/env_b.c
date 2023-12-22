@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/22 16:07:32 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 16:36:01 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	copy_env_home_to_ms_struct(t_ms *ms)
 	//c_green();printf("home dir >%s<\n", tmp_home_dir); c_reset();
 	if (tmp_home_dir)
 		ms->home_dir = join_three_string(tmp_home_dir, "", "");
-	else
-		printf("HOME does not exist\n");
+	//else
+	//	printf("HOME does not exist\n");
 	free_n_null((void **)&tmp_home_dir);
 	//c_red(); printf("~copy_env_home_to_ms_struct()\n"); c_reset();
 }
