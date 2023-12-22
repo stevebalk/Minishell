@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 13:41:21 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 14:19:05 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ char	*check_program_with_path(t_ms *ms, char *prog_name);
 
 
 // signals
-static void	signal_handler(int number);
+//static void	signal_handler(int number);
 void		tty_setup(void);
 void		tty_enter(int is_child);
 int			tty_get_flag(unsigned int index);

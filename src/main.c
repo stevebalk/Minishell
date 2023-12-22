@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 14:50:33 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 14:55:45 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ int	main(int argc, char **argv, char **env)
 	if (!LOGO_ABOVE_PROMPT)
 		intro3();
 
-	signal(SIGINT, handle_sigint);
+	tty_setup();
+
+	//signal(SIGINT, handle_sigint);
 	ini_env_history_etc(&ms, env);
 	
 	//printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
@@ -80,6 +82,7 @@ int	main(int argc, char **argv, char **env)
 	free_ms(&ms);
 	
 	c_red();
+
 	printf("*** ~main () ***\n"); c_reset();
 	return (EXIT_SUCCESS);
 }

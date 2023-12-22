@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 18:56:25 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:17:14 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,19 @@ void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
 	else
 	{
 		if (execve(path_program, cmd_io->command_arr, new_env) == -1)
+		{}
 			// perror("exeve error");
-			perror(join_three_string(__FILE__, "   LINE: ", ft_itoa(__LINE__) ));
+			//perror(join_three_string(__FILE__, "   LINE: ", ft_itoa(__LINE__) ));
 	}	
 	ft_free_array((void **)new_env);
 	free(path_program);
-	perror("command does not exist");
+	//perror("command does not exist");
+
+	write(STDERR_FILENO, "minishell: ", 11);
+	write(STDERR_FILENO, cmd_io->command_arr[0], ft_strlen(cmd_io->command_arr[0]));
+	write(STDERR_FILENO, ": ", 2);
+	write(STDERR_FILENO, "command not found\n", 18);
+	
 	exit_with_code(ms, 127);
 }
 
@@ -146,6 +153,7 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 			cur_cmd_io = cur_cmd_io->next;
 		}
 	}
+	tty_enter(1);	
 	while (cur_cmd_io)
 	{
 		if (cur_cmd_io->next)
@@ -183,6 +191,7 @@ void	execute_cmd_io(t_ms *ms, t_cmd_io *cmd_io)
 	dup2(ms->fd_stdin, STDIN_FILENO);
 	// dup2(ms->fd_stdout, STDOUT_FILENO);
 	// printf("Exit code: %s\n", ft_itoa(ms->last_exit_code >> 8));
+	tty_enter(0);
 }
 
 void	executer(t_ms *ms)

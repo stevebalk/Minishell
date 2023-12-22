@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:48:42 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/22 13:37:24 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 14:25:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	signal_handler(int number)
 			write(STDERR_FILENO, "\n", 1);
 		return ;
 	}
-	if (number == SIGINT || number == SIGQUIT)
+	if (number == SIGINT || number == SIGQUIT)		// sigint can be CTLR+C    sigquit CTRL + backslash
 	{
 		if (number == SIGINT)
 		{
@@ -39,6 +39,7 @@ static void	signal_handler(int number)
 				write(STDOUT_FILENO, "\n", 1);
 			(rl_replace_line("", 1), rl_on_new_line());
 		}
+		
 		rl_redisplay();
 	}
 }
@@ -53,11 +54,13 @@ void	tty_setup(void)
 	action.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &action, NULL);
 	sigaction(SIGQUIT, &action, NULL);
-
 	// kann evtl auch mit sigaddset udn sigemptyset gelöst werden
+
+	
 	tty_enter(0);
 }
 
+// set the terminal behaviour
 void	tty_enter(int is_child)
 {
 	struct termios	ios;
