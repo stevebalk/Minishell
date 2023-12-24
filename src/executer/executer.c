@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 13:25:12 by sbalk            ###   ########.fr       */
+/*   Updated: 2023/12/22 18:15:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,25 +96,25 @@ void print_cmd_io_list(const t_cmd_io *head) {
 // 	// close(fds[1]); /// <<<< MUST FIX
 // }
 
-void	execute_io(t_ms *ms, t_cmd_io *cmd_io)
+void	execute_io(t_ms *ms, t_cmd_io *io)
 {
 	char **new_env;
 	char *path_program;
 	
-	if (!cmd_io->is_valid)
+	if (!io->is_valid)
 		exit_with_code(ms, 1);
-	if (cmd_io->command_arr == NULL)
+	if (io->command_arr == NULL)
 		exit_with_code(ms, 0);
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
-	path_program = check_program_with_path(ms, cmd_io->command_arr[0]);
+	path_program = check_program_with_path(ms, io->command_arr[0]);
 	//show_env_arr(new_env);
 	//printf("path_program: >%s< \n", path_program);
 	
-	if (is_builtin_command(cmd_io->command_arr[0]))
-		exit(builtin_master(ms, cmd_io->command_arr));
+	if (is_builtin_command(io->command_arr[0]))
+		exit(builtin_master(ms, io->command_arr));
 	else
 	{
-		if (execve(path_program, cmd_io->command_arr, new_env) == -1)
+		if (execve(path_program, io->command_arr, new_env) == -1)
 			perror("exeve error");
 	}	
 	ft_free_array((void **)new_env);
@@ -197,37 +197,37 @@ void	init_cmd_io(t_cmd_io *io)
 	io->is_valid = 1;
 }
 
-static char	*get_heredoc_string(t_ms *ms, t_redir *redir)
-{
-	t_redir *cur;
-	char	*ret;
+// static char	*get_heredoc_string(t_ms *ms, t_redir *redir)
+// {
+// 	t_redir *cur;
+// 	char	*ret;
 
-	if (redir == NULL)
-		return (NULL);
-	ret = NULL;
-	cur = redir;
-	while (cur)
-	{
-		if (cur->type == TOKEN_HERE_DOC)
-		{
-			if (ret)
-				free(ret);
-			ret = heredoc(cur->target, ms);
-		}
-		cur = cur->next;
-	}
-	return (ret);
-}
+// 	if (redir == NULL)
+// 		return (NULL);
+// 	ret = NULL;
+// 	cur = redir;
+// 	while (cur)
+// 	{
+// 		if (cur->type == TOKEN_HERE_DOC)
+// 		{
+// 			if (ret)
+// 				free(ret);
+// 			ret = heredoc(cur->target, ms);
+// 		}
+// 		cur = cur->next;
+// 	}
+// 	return (ret);
+// }
 
 static int	redir_infile(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
-	if (io->intype && io->intype == TOKEN_HERE_DOC)
-	{
-		free(io->input);
-		io->input = NULL;
-	}
+	// if (io->intype && io->intype == TOKEN_HERE_DOC)
+	// {
+	// 	free(io->input);
+	// 	io->input = NULL;
+	// }
 	io->in_fd = open(redir->target, O_RDONLY, 0644);
 	if (io->in_fd == -1)
 	{
@@ -257,41 +257,54 @@ static int	redir_outfile(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static int	redir_heredoc(t_redir *redir, t_cmd_io *io, char *hd_str)
+static int	redir_heredoc(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
-	io->input = hd_str;
+	io->input = redir->target;
 	io->intype = redir->type;
 	io->in_fd = -1;
 	return (1);
 }
 
-int	check_redirection(t_redir *redir, t_cmd_io *io, char *heredoc_string)
+int	check_redirection(t_redir *redir, t_cmd_io *io)
 {
 	if (redir->type == TOKEN_HERE_DOC)
-		return(redir_heredoc(redir, io, heredoc_string));
+		return(redir_heredoc(redir, io));
 	if (redir->type == TOKEN_INFILE)
 		return(redir_infile(redir, io));
 	if (redir->type == TOKEN_REDIRECT || TOKEN_REDIRECT_APPEND)
 		return(redir_outfile(redir, io));
 }
 
-void	set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io)
+void	set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
 {
-	char	*heredoc_string;
 	t_redir	*cur;
-	// int		redir_fd[2];
+	(void)fd;
+	(void)ms;
 
-	heredoc_string = get_heredoc_string(ms, cmd->redirs);
+	if (cmd == NULL)
+		return ;
+	io->command_arr = cmd->argv;
+	if (cmd->redirs == NULL)
+		return ;
 	cur = cmd->redirs;
 	while (cur)
 	{
-		io->is_valid = check_redirection(cur, io, heredoc_string);
+		io->is_valid = check_redirection(cur, io);
 		if (!io->is_valid)
 			break ;
 		cur = cur->next;
 	}
+	// if (io->is_valid)
+	// {
+		// if (cmd->next)
+		// {
+		// 	if (io->out_fd != -1)
+		// 		close(io->out_fd);
+		// 	io->out_fd = fd[1];
+		// }
+	// }
 }
 
 void	reset_redirections(t_ms *ms)
@@ -321,19 +334,23 @@ void	close_io_fds(t_cmd_io *io)
 void	set_input_io(int input_fd, t_cmd_io *cmd_io)
 {
 	int	here_doc_fd[2];
+
 	if (cmd_io->intype == TOKEN_INFILE)
 	{
 		if (dup2(cmd_io->in_fd, STDIN_FILENO) == -1)
+		{
 			perror("Dup2: Error set_input_io: TOKEN_INFILE");
+			close(cmd_io->in_fd);
+		}
 	}
 	else if (cmd_io->intype == TOKEN_HERE_DOC)
 	{
 		if (pipe(here_doc_fd) == -1)
-			perror("pipe");
+			perror("Pipe: Error: set_input_io: TOKEN_HEREDOC");
 		if (dup2(here_doc_fd[1], STDOUT_FILENO) == -1)
-			perror("Dup2: Error set_input_io: TOKEN_HEREDOC: stdout");
+			perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdout");
 		if (dup2(here_doc_fd[0], STDIN_FILENO) == -1)
-			perror("Dup2: Error set_input_io: TOKEN_HEREDOC: stdin");
+			perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdin");
 		write(STDOUT_FILENO, cmd_io->input, ft_strlen(cmd_io->input));
 		close(here_doc_fd[0]);
 		close(here_doc_fd[1]);
@@ -342,11 +359,10 @@ void	set_input_io(int input_fd, t_cmd_io *cmd_io)
 	{
 		if (dup2(input_fd, STDIN_FILENO) == -1)
 			perror("Dup2: Error set_input_io: input_fd to STDIN");
-		// close(input_fd);
 	}
 }
 
-void	set_output_io(t_ms *ms, int *fds[2], t_cmd_io *cmd_io)
+void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 {
 	if (cmd_io->outtype == TOKEN_REDIRECT ||
 		cmd_io->outtype == TOKEN_REDIRECT_APPEND)
@@ -355,20 +371,22 @@ void	set_output_io(t_ms *ms, int *fds[2], t_cmd_io *cmd_io)
 			perror("Dup2: Error set_output_io: TOKEN_REDIRECT");
 		close(cmd_io->out_fd);
 	}
-	else if (fds)
+	else if (ms->cmd->next)
 	{
-		if (dup2(*fds[1], STDOUT_FILENO) == -1)
+		if (dup2(fds[1], STDOUT_FILENO) == -1)
+		{
 			perror("Dup2: Error set_output_io: TOKEN_PIPE");
+			close(fds[1]);
+		}
 	}
 	else
 	{
 		if (dup2(ms->fd_stdout, STDOUT_FILENO) == -1)
 			perror("Dup2: Error set_output_io: fd_stdout to STDOUT");
 	}
-	// close(fds[1]); /// <<<< MUST FIX
 }
 
-void	redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int *fd[2])
+void	redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fd[2])
 {
 	set_input_io(input_fd, io);
 	set_output_io(ms, fd, io);
@@ -379,39 +397,108 @@ void	run_builtin_in_parent(t_ms *ms, int input_fd)
 	t_cmd_io	io;
 
 	init_cmd_io(&io);
-	set_io_redirections(ms, ms->cmd, &io);
+	set_io_redirections(ms, ms->cmd, &io, NULL);
 	if (io.is_valid)
 	{
 		redirect_fds(ms, &io, input_fd, NULL);
 		builtin_master(ms, ms->cmd->argv);
 	}
 	close_io_fds(&io);
+	free_cmd_head(&ms->cmd);
 	reset_redirections(ms);
 }
 
-void	parent(t_ms *ms, size_t number_of_commads)
+void	child(t_ms *ms, int input_fd, int fds[2])
+{
+	t_cmd_io	io;
+
+	init_cmd_io(&io);
+	set_io_redirections(ms, ms->cmd, &io, fds);
+	redirect_fds(ms, &io, input_fd, fds);
+	execute_io(ms, &io);
+}
+
+void	parent(t_ms *ms, size_t number_of_commands)
 {
 	int		input_fd;
-	// int		fds[2];
-	// size_t	i;
+	int		fds[2];
+	int		pid;
+	size_t	i;
 
-	if (ms->cmd == NULL || number_of_commads <= 0)
+	if (ms->cmd == NULL || number_of_commands <= 0)
 		return ;
 	input_fd = STDIN_FILENO;
 	if (!ms->cmd->next && ms->cmd->argv && is_builtin_command(ms->cmd->argv[0]))
+	{
 		run_builtin_in_parent(ms, input_fd);
-	
-	// i = 0;
+		return ;
+	}
+	i = 0;
+	while (i++ < number_of_commands)
+	{
+		if (ms->cmd->next)
+		{
+			if (pipe(fds) == -1)
+				perror("Pipe: Error parent");
+		}
+		pid = fork();
+		if (pid == -1)
+			perror("Fork: Error parent");
+		if (pid == 0)
+			child(ms, input_fd, fds);
+		else
+		{
+			close(input_fd);
+			if (ms->cmd->next)
+			{
+				input_fd = fds[0];
+				close(fds[1]);
+			}
+			free_cmd_head(&ms->cmd);
+		}
+	}
+	reset_redirections(ms);
+	waitpid(pid, &ms->last_exit_code, 0);
+	i = 0;
+	while (i++ < number_of_commands - 1)
+		waitpid(-1, NULL, 0);
+}
 
-	// while (ms->cmd)
-	// {
-	// 	if (is_builtin_command(ms->cmd->argv[0]))
-	// 	{
-	// 		builtin_master(ms, ms->cmd->argv); // Change to run parent redir builtin function
-	// 		cur_cmd_io = cur_cmd_io->next;
-	// 	}
-	// }
+size_t	get_number_of_commands(t_cmd *cmd)
+{
+	size_t	i;
 
+	i = 0;
+	while (cmd)
+	{
+		i++;
+		cmd = cmd->next;
+	}
+	return (i);
+}
+
+void	execute_heredocs(t_ms *ms)
+{
+	t_cmd	*cur_cmd;
+	t_redir	*cur_redir;
+	char	*tmp;
+
+	cur_cmd = ms->cmd;
+	while (cur_cmd)
+	{
+		cur_redir = cur_cmd->redirs;
+		while (cur_redir)
+		{
+			if (cur_redir->type == TOKEN_HERE_DOC)
+			{
+				tmp = cur_redir->target;
+				cur_redir->target = heredoc(cur_redir->target, ms);
+				free(tmp);
+			}
+			cur_redir = cur_redir->next;
+		}
+		cur_cmd = cur_cmd->next;
+	}
 }
 
 void	executer(t_ms *ms)
@@ -421,7 +508,8 @@ void	executer(t_ms *ms)
 	// create_cmd_io_list(ms);
 	// print_cmd_io_list(ms->cmd_io);
 	// execute_cmd_io(ms, ms->cmd_io);
-	parent(ms, 1);
+	execute_heredocs(ms);
+	parent(ms, get_number_of_commands(ms->cmd));
 	free_cmd_io_list(&(ms->cmd_io));
 	free_cmd_list(&(ms->cmd));
 }
