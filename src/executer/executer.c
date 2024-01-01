@@ -6,13 +6,14 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 18:15:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/01 12:45:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void print_cmd_io_list(const t_cmd_io *head) {
+void print_cmd_io_list(const t_cmd_io *head)
+{
 	const t_cmd_io *current = head;
 
 	while (current != NULL)
@@ -96,27 +97,27 @@ void print_cmd_io_list(const t_cmd_io *head) {
 // 	// close(fds[1]); /// <<<< MUST FIX
 // }
 
-void	execute_io(t_ms *ms, t_cmd_io *io)
+void execute_io(t_ms *ms, t_cmd_io *io)
 {
 	char **new_env;
 	char *path_program;
-	
+
 	if (!io->is_valid)
 		exit_with_code(ms, 1);
 	if (io->command_arr == NULL)
 		exit_with_code(ms, 0);
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
 	path_program = check_program_with_path(ms, io->command_arr[0]);
-	//show_env_arr(new_env);
-	//printf("path_program: >%s< \n", path_program);
-	
+	// show_env_arr(new_env);
+	// printf("path_program: >%s< \n", path_program);
+
 	if (is_builtin_command(io->command_arr[0]))
 		exit(builtin_master(ms, io->command_arr));
 	else
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 			perror("exeve error");
-	}	
+	}
 	ft_free_array((void **)new_env);
 	free(path_program);
 	perror("command does not exist");
@@ -138,7 +139,7 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 // 	input_fd = STDIN_FILENO;
 // 	cur_cmd_io = cmd_io;
 // 	if (!cur_cmd_io->next && cur_cmd_io->command_arr)
-// 	{ 
+// 	{
 // 		if (is_builtin_command(cur_cmd_io->command_arr[0]))
 // 		{
 // 			builtin_master(ms, cmd_io->command_arr);
@@ -184,7 +185,7 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 // 	// printf("Exit code: %s\n", ft_itoa(ms->last_exit_code >> 8));
 // }
 
-void	init_cmd_io(t_cmd_io *io)
+void init_cmd_io(t_cmd_io *io)
 {
 	io->command_arr = NULL;
 	io->input = NULL;
@@ -219,7 +220,7 @@ void	init_cmd_io(t_cmd_io *io)
 // 	return (ret);
 // }
 
-static int	redir_infile(t_redir *redir, t_cmd_io *io)
+static int redir_infile(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
@@ -239,7 +240,7 @@ static int	redir_infile(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static int	redir_outfile(t_redir *redir, t_cmd_io *io)
+static int redir_outfile(t_redir *redir, t_cmd_io *io)
 {
 	if (io->out_fd != -1)
 		close(io->out_fd);
@@ -257,7 +258,7 @@ static int	redir_outfile(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static int	redir_heredoc(t_redir *redir, t_cmd_io *io)
+static int redir_heredoc(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
@@ -267,47 +268,47 @@ static int	redir_heredoc(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-int	check_redirection(t_redir *redir, t_cmd_io *io)
+int check_redirection(t_redir *redir, t_cmd_io *io)
 {
 	if (redir->type == TOKEN_HERE_DOC)
-		return(redir_heredoc(redir, io));
+		return (redir_heredoc(redir, io));
 	if (redir->type == TOKEN_INFILE)
-		return(redir_infile(redir, io));
+		return (redir_infile(redir, io));
 	if (redir->type == TOKEN_REDIRECT || TOKEN_REDIRECT_APPEND)
-		return(redir_outfile(redir, io));
+		return (redir_outfile(redir, io));
 }
 
-void	set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
+void set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
 {
-	t_redir	*cur;
+	t_redir *cur;
 	(void)fd;
 	(void)ms;
 
 	if (cmd == NULL)
-		return ;
+		return;
 	io->command_arr = cmd->argv;
 	if (cmd->redirs == NULL)
-		return ;
+		return;
 	cur = cmd->redirs;
 	while (cur)
 	{
 		io->is_valid = check_redirection(cur, io);
 		if (!io->is_valid)
-			break ;
+			break;
 		cur = cur->next;
 	}
 	// if (io->is_valid)
 	// {
-		// if (cmd->next)
-		// {
-		// 	if (io->out_fd != -1)
-		// 		close(io->out_fd);
-		// 	io->out_fd = fd[1];
-		// }
+	// if (cmd->next)
+	// {
+	// 	if (io->out_fd != -1)
+	// 		close(io->out_fd);
+	// 	io->out_fd = fd[1];
+	// }
 	// }
 }
 
-void	reset_redirections(t_ms *ms)
+void reset_redirections(t_ms *ms)
 {
 	if (dup2(ms->fd_stdin, STDIN_FILENO) == -1)
 		perror("Dup2: Error reset_redirection: stdout");
@@ -315,10 +316,10 @@ void	reset_redirections(t_ms *ms)
 		perror("Dup2: Error reset_redirection: stdout");
 }
 
-void	close_io_fds(t_cmd_io *io)
+void close_io_fds(t_cmd_io *io)
 {
 	if (io == NULL)
-		return ;
+		return;
 	if (io->in_fd != -1)
 	{
 		close(io->in_fd);
@@ -331,9 +332,9 @@ void	close_io_fds(t_cmd_io *io)
 	}
 }
 
-void	set_input_io(int input_fd, t_cmd_io *cmd_io)
+void set_input_io(int input_fd, t_cmd_io *cmd_io)
 {
-	int	here_doc_fd[2];
+	int here_doc_fd[2];
 
 	if (cmd_io->intype == TOKEN_INFILE)
 	{
@@ -347,11 +348,11 @@ void	set_input_io(int input_fd, t_cmd_io *cmd_io)
 	{
 		if (pipe(here_doc_fd) == -1)
 			perror("Pipe: Error: set_input_io: TOKEN_HEREDOC");
-		if (dup2(here_doc_fd[1], STDOUT_FILENO) == -1)
-			perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdout");
+		// if (dup2(here_doc_fd[1], STDOUT_FILENO) == -1)
+		// 	perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdout");
 		if (dup2(here_doc_fd[0], STDIN_FILENO) == -1)
 			perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdin");
-		write(STDOUT_FILENO, cmd_io->input, ft_strlen(cmd_io->input));
+		write(here_doc_fd[1], cmd_io->input, ft_strlen(cmd_io->input));
 		close(here_doc_fd[0]);
 		close(here_doc_fd[1]);
 	}
@@ -362,7 +363,7 @@ void	set_input_io(int input_fd, t_cmd_io *cmd_io)
 	}
 }
 
-void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
+void set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 {
 	if (cmd_io->outtype == TOKEN_REDIRECT ||
 		cmd_io->outtype == TOKEN_REDIRECT_APPEND)
@@ -386,15 +387,15 @@ void	set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 	}
 }
 
-void	redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fd[2])
+void redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fd[2])
 {
 	set_input_io(input_fd, io);
 	set_output_io(ms, fd, io);
 }
 
-void	run_builtin_in_parent(t_ms *ms, int input_fd)
+void run_builtin_in_parent(t_ms *ms, int input_fd)
 {
-	t_cmd_io	io;
+	t_cmd_io io;
 
 	init_cmd_io(&io);
 	set_io_redirections(ms, ms->cmd, &io, NULL);
@@ -408,9 +409,9 @@ void	run_builtin_in_parent(t_ms *ms, int input_fd)
 	reset_redirections(ms);
 }
 
-void	child(t_ms *ms, int input_fd, int fds[2])
+void child(t_ms *ms, int input_fd, int fds[2])
 {
-	t_cmd_io	io;
+	t_cmd_io io;
 
 	init_cmd_io(&io);
 	set_io_redirections(ms, ms->cmd, &io, fds);
@@ -418,20 +419,20 @@ void	child(t_ms *ms, int input_fd, int fds[2])
 	execute_io(ms, &io);
 }
 
-void	parent(t_ms *ms, size_t number_of_commands)
+void parent(t_ms *ms, size_t number_of_commands)
 {
-	int		input_fd;
-	int		fds[2];
-	int		pid;
-	size_t	i;
+	int input_fd;
+	int fds[2];
+	int pid;
+	size_t i;
 
 	if (ms->cmd == NULL || number_of_commands <= 0)
-		return ;
+		return;
 	input_fd = STDIN_FILENO;
 	if (!ms->cmd->next && ms->cmd->argv && is_builtin_command(ms->cmd->argv[0]))
 	{
 		run_builtin_in_parent(ms, input_fd);
-		return ;
+		return;
 	}
 	i = 0;
 	while (i++ < number_of_commands)
@@ -448,7 +449,8 @@ void	parent(t_ms *ms, size_t number_of_commands)
 			child(ms, input_fd, fds);
 		else
 		{
-			close(input_fd);
+			if (input_fd != STDIN_FILENO)
+				close(input_fd);
 			if (ms->cmd->next)
 			{
 				input_fd = fds[0];
@@ -464,9 +466,9 @@ void	parent(t_ms *ms, size_t number_of_commands)
 		waitpid(-1, NULL, 0);
 }
 
-size_t	get_number_of_commands(t_cmd *cmd)
+size_t get_number_of_commands(t_cmd *cmd)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	while (cmd)
@@ -477,11 +479,11 @@ size_t	get_number_of_commands(t_cmd *cmd)
 	return (i);
 }
 
-void	execute_heredocs(t_ms *ms)
+void execute_heredocs(t_ms *ms)
 {
-	t_cmd	*cur_cmd;
-	t_redir	*cur_redir;
-	char	*tmp;
+	t_cmd *cur_cmd;
+	t_redir *cur_redir;
+	char *tmp;
 
 	cur_cmd = ms->cmd;
 	while (cur_cmd)
@@ -501,10 +503,10 @@ void	execute_heredocs(t_ms *ms)
 	}
 }
 
-void	executer(t_ms *ms)
+void executer(t_ms *ms)
 {
 	if (ms->cmd == NULL)
-		return ;
+		return;
 	// create_cmd_io_list(ms);
 	// print_cmd_io_list(ms->cmd_io);
 	// execute_cmd_io(ms, ms->cmd_io);

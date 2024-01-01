@@ -16,4 +16,5 @@ libs/readline
 outX
 libs/readline-install
 child.txt
+child_cleaned.txt
 outMaxtest
