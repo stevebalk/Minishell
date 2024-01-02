@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 11:49:20 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 15:03:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/02 16:14:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,64 @@
 
 static int	g_flags;
 
-static void	signal_handler(int number)
+// static void	signal_handler(int sig)
+// {
+// 	if (sig == SIGINT && tty_get_flag(TTY_HEREDOC))
+// 	{
+// 		tty_set_flag(TTY_HEREDOC, 0);
+// 		write(STDERR_FILENO, "\n", 1);
+// 		close(STDIN_FILENO);
+// 		return ;
+// 	}
+// 	if (tty_get_flag(TTY_IS_CHILD))
+// 	{
+// 		if (sig == SIGQUIT)
+// 			write(STDERR_FILENO, "Quit\n", 5);
+// 		else
+// 			write(STDERR_FILENO, "\n", 1);
+// 		return ;
+// 	}
+// 	if (sig == SIGINT || sig == SIGQUIT)
+// 	{
+// 		if (sig == SIGINT)
+// 		{
+// 			if (!tty_get_flag(TTY_OMIT_LF))
+// 				write(STDOUT_FILENO, "\n", 1);
+// 			(rl_replace_line("", 1), rl_on_new_line());
+// 		}
+// 		rl_redisplay();
+// 	}
+// }
+
+void	set_signal_flag(int sig)
 {
-	if (number == SIGINT && tty_get_flag(TTY_HEREDOC))
+	if (sig == SIGINT)
+		tty_set_flag(TTY_SIGNAL_INT, 1);
+	else if (sig == SIGQUIT)
+		tty_set_flag(TTY_SIGNAL_QUIT, 1);
+}
+
+static void	signal_handler(int sig)
+{
+	set_signal_flag(sig);
+	if (sig == SIGINT && tty_get_flag(TTY_HEREDOC))
 	{
 		tty_set_flag(TTY_HEREDOC, 0);
+		tty_set_flag(TTY_SIGNAL_INT, 1);
 		write(STDERR_FILENO, "\n", 1);
 		close(STDIN_FILENO);
 		return ;
 	}
 	if (tty_get_flag(TTY_IS_CHILD))
 	{
-		if (number == SIGQUIT)
-			write(STDERR_FILENO, "Quit\n", 5);
-		else
-			write(STDERR_FILENO, "\n", 1);
+		if (sig == SIGQUIT)
+			write(STDERR_FILENO, "Quit", 4);
+		write(STDERR_FILENO, "\n", 1);
 		return ;
 	}
-	if (number == SIGINT || number == SIGQUIT)
+	if (sig == SIGINT || sig == SIGQUIT)
 	{
-		if (number == SIGINT)
+		if (sig == SIGINT)
 		{
 			if (!tty_get_flag(TTY_OMIT_LF))
 				write(STDOUT_FILENO, "\n", 1);

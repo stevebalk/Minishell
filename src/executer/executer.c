@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 14:40:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/02 17:53:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,7 +402,7 @@ void run_builtin_in_parent(t_ms *ms, int input_fd)
 	if (io.is_valid)
 	{
 		redirect_fds(ms, &io, input_fd, NULL);
-		builtin_master(ms, ms->cmd->argv);
+		ms->last_exit_code = builtin_master(ms, ms->cmd->argv);
 	}
 	close_io_fds(&io);
 	free_cmd_head(&ms->cmd);
@@ -512,9 +512,6 @@ void executer(t_ms *ms)
 {
 	if (ms->cmd == NULL)
 		return;
-	// create_cmd_io_list(ms);
-	// print_cmd_io_list(ms->cmd_io);
-	// execute_cmd_io(ms, ms->cmd_io);
 	if (!execute_heredocs(ms))
 		dup2(ms->fd_stdin, STDIN_FILENO);
 	else
@@ -522,6 +519,17 @@ void executer(t_ms *ms)
 		tty_enter(1);
 		parent(ms, get_number_of_commands(ms->cmd));
 		tty_enter(0);
+	}
+	if (tty_get_flag(TTY_SIGNAL_INT))
+	{
+		ms->last_exit_code = 130;
+		tty_set_flag(TTY_SIGNAL_INT, 0);
+		
+	}
+	else if (tty_get_flag(TTY_SIGNAL_QUIT))
+	{
+		ms->last_exit_code = 131;
+		tty_set_flag(TTY_SIGNAL_QUIT, 0);
 	}
 	free_cmd_io_list(&(ms->cmd_io));
 	free_cmd_list(&(ms->cmd));

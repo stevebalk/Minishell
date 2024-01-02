@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 14:46:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/02 16:06:07 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef enum e_token_type
 # define TTY_IS_CHILD 0
 # define TTY_HEREDOC 1
 # define TTY_OMIT_LF 2
+# define TTY_SIGNAL_QUIT 3
+# define TTY_SIGNAL_INT 4
 
 /* Token struct, created by the lexer to
 store the tokens used by the parser. */

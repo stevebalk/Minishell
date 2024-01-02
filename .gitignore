@@ -18,3 +18,4 @@ libs/readline-install
 child.txt
 child_cleaned.txt
 outMaxtest
+valgrind-out.txt
