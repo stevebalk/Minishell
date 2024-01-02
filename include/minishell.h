@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 13:13:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/02 14:46:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,15 @@ typedef enum e_token_type
 
 # define TOKEN_TYPES	"|<>"
 
-/* Token struct, created by the lexer to
-store the tokens used by the parser.
+// Flags for terminal and signal behavior
 
-Doubly linked list
-type		= Which token type (WORD, PIPE, REDIRECT ...)
-content		= String for the specific token
-join		= Should the content joined with the next token?
-*/
+# define TTY_IS_CHILD 0
+# define TTY_HEREDOC 1
+# define TTY_OMIT_LF 2
+
+/* Token struct, created by the lexer to
+store the tokens used by the parser. */
+
 typedef struct s_token
 {
 	t_token_type	type;
@@ -190,13 +191,13 @@ int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
 /* EXECUTER */
 void		executer(t_ms *ms);
-t_cmd_io	*create_cmd_io_node(t_ms *ms);
-t_cmd_io	*cmd_io_append_node(t_ms *ms);
-void		create_cmd_io_list(t_ms *ms);
+// t_cmd_io	*create_cmd_io_node(t_ms *ms);
+// t_cmd_io	*cmd_io_append_node(t_ms *ms);
+// void		create_cmd_io_list(t_ms *ms);
 void		print_file_error(char *msg);
 int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
-char		*heredoc(char *delimiter, t_ms *ms);
+char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
 
 /* Error handling */
 
@@ -246,4 +247,11 @@ char 	**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
 // executer
 // check_command
 char	*check_program_with_path(t_ms *ms, char *prog_name);
+
+// TTY and signal handling
+void	tty_setup(void);
+void	tty_enter(int is_child);
+int		tty_get_flag(unsigned int index);
+void	tty_set_flag(unsigned int index, int enable);
+
 #endif

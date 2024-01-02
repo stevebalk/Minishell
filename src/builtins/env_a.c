@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 17:41:32 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/02 15:08:50 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
 	//printf("set_shell_var_to_pwd  file: %s   line: %d\n", __FILE__, __LINE__);
 	pwd = get_val_of_var(env_llst, "PWD");
 	shell = join_three_string("SHELL=", pwd, "");
+	free(pwd);
 	//printf("shell: >%s<\n", shell);
 	export_single_arg(env_llst, env_llst_sorted, shell);
 	free(shell);

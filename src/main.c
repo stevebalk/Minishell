@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 14:50:33 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/02 14:41:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../include/minishell.h"
+// #include "../include/minishell.h"
 #include "minishell.h"
 
 /* DEBUG DELETE LATER */
@@ -40,10 +40,7 @@ void test(t_ms *ms)
 }
 */
 
-
-
-
-void ini_env_history_etc(t_ms *ms, char **env)
+void	ini_env_history_etc(t_ms *ms, char **env)
 {
 	load_env_to_llst(&ms->env_llst, env);
 	copy_env_home_to_ms_struct(ms);
@@ -54,40 +51,39 @@ void ini_env_history_etc(t_ms *ms, char **env)
 	history_master(ms);
 	add_shell_level(&ms->env_llst, &ms->env_llst_sorted);
 	set_shell_var_to_pwd(&ms->env_llst, &ms->env_llst_sorted);
-
-
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	t_ms	ms;
-	c_yellow(); printf("*** main () ***\n"); c_reset();
+	t_ms ms;
+	c_yellow();
+	printf("*** main () ***\n");
+	c_reset();
 	init_ms(&ms);
-	//show_env_arr(env);
+	tty_setup();
+	// show_env_arr(env);
 	(void)argc;
 	(void)argv;
 	(void)env;
 
 	if (!LOGO_ABOVE_PROMPT)
 		intro3();
-
-	signal(SIGINT, handle_sigint);
 	ini_env_history_etc(&ms, env);
-	
-	//printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
+
+	// printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
 	prompt_handler(&ms);
-	
+
 	free_ms(&ms);
-	
+
 	c_red();
-	printf("*** ~main () ***\n"); c_reset();
+	printf("*** ~main () ***\n");
+	c_reset();
 	return (EXIT_SUCCESS);
 }
 
 /* ---------- INPUT TEST MAIN ------------- */
 
-
-void prettyPrintCmd(t_cmd *cmd) 
+void	prettyPrintCmd(t_cmd *cmd)
 {
 	char *tokenTypeNames[] = {
 		"WORD",
@@ -97,32 +93,40 @@ void prettyPrintCmd(t_cmd *cmd)
 		"INFILE",
 		"HERE_DOC",
 		"VARIABLE",
-		"EOF"
-	};
+		"EOF"};
 	int count = 0;
-	while (cmd != NULL) {
-		c_green(); printf("Command");
-		c_red(); printf("  >");
-		c_green(); printf(" %i ", count);
-		
-		c_red(); printf("< \n");
-		
-		if (cmd->argv != NULL) {
+	while (cmd != NULL)
+	{
+		c_green();
+		printf("Command");
+		c_red();
+		printf("  >");
+		c_green();
+		printf(" %i ", count);
+
+		c_red();
+		printf("< \n");
+
+		if (cmd->argv != NULL)
+		{
 			c_cyan();
 			printf("  Arguments:\n");
 			char **arg = cmd->argv;
-			while (*arg != NULL) {
+			while (*arg != NULL)
+			{
 				c_purple();
 				printf("    %s\n", *arg);
 				arg++;
 			}
 		}
 
-		if (cmd->redirs != NULL) {
+		if (cmd->redirs != NULL)
+		{
 			c_cyan();
 			printf("  Redirections:\n");
 			t_redir *redir = cmd->redirs;
-			while (redir != NULL) {
+			while (redir != NULL)
+			{
 				c_blue();
 				printf("    Type:");
 				c_purple();
@@ -160,7 +164,6 @@ void prettyPrintCmd(t_cmd *cmd)
 // 	// printf("~Main\n");
 // 	//free_ms(&ms);
 // }
-
 
 // int	main(int argc, char **argv)
 // {
@@ -219,4 +222,3 @@ void prettyPrintCmd(t_cmd *cmd)
 
 //     return 0;
 // }
-

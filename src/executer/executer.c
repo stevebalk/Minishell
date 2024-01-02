@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/01 12:45:32 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/02 14:40:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -479,13 +479,15 @@ size_t get_number_of_commands(t_cmd *cmd)
 	return (i);
 }
 
-void execute_heredocs(t_ms *ms)
+int execute_heredocs(t_ms *ms)
 {
-	t_cmd *cur_cmd;
-	t_redir *cur_redir;
+	t_cmd	*cur_cmd;
+	t_redir	*cur_redir;
+	int		is_valid;
 	char *tmp;
 
 	cur_cmd = ms->cmd;
+	is_valid = 1;
 	while (cur_cmd)
 	{
 		cur_redir = cur_cmd->redirs;
@@ -494,13 +496,16 @@ void execute_heredocs(t_ms *ms)
 			if (cur_redir->type == TOKEN_HERE_DOC)
 			{
 				tmp = cur_redir->target;
-				cur_redir->target = heredoc(cur_redir->target, ms);
+				cur_redir->target = heredoc(cur_redir->target, ms, &is_valid);
 				free(tmp);
+				if (!is_valid)
+					return (0);
 			}
 			cur_redir = cur_redir->next;
 		}
 		cur_cmd = cur_cmd->next;
 	}
+	return (is_valid);
 }
 
 void executer(t_ms *ms)
@@ -510,8 +515,14 @@ void executer(t_ms *ms)
 	// create_cmd_io_list(ms);
 	// print_cmd_io_list(ms->cmd_io);
 	// execute_cmd_io(ms, ms->cmd_io);
-	execute_heredocs(ms);
-	parent(ms, get_number_of_commands(ms->cmd));
+	if (!execute_heredocs(ms))
+		dup2(ms->fd_stdin, STDIN_FILENO);
+	else
+	{
+		tty_enter(1);
+		parent(ms, get_number_of_commands(ms->cmd));
+		tty_enter(0);
+	}
 	free_cmd_io_list(&(ms->cmd_io));
 	free_cmd_list(&(ms->cmd));
 }

@@ -3,17 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:20:50 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 18:15:43 by jopeters         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:56:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtins.h"
+#include <signal.h>
 
-void	handle_sigint(int sig)
+void handle_sigint(int sig)
 {
-    c_yellow(); printf("\nSig: %i \nControl-C pressed. Exiting.\n", sig);
-    //exit(0);
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
