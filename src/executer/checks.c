@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:43 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/18 16:36:19 by jopeters         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:24:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_builtin_command(char *str)
 	built_ins[6] = "exit";
 	built_ins[7] = NULL;
 	i = 0;
-	while (built_ins[i] != NULL)
+	while (str != NULL && built_ins[i] != NULL)
 	{
 		if ((ft_strncmp(built_ins[i], str, ft_strlen(str)) == 0) &&
 			(ft_strlen(built_ins[i]) == ft_strlen(str)))

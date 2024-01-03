@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 17:53:31 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 09:29:45 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,20 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 		exit_with_code(ms, 0);
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
 	path_program = check_program_with_path(ms, io->command_arr[0]);
-	// show_env_arr(new_env);
-	// printf("path_program: >%s< \n", path_program);
 
 	if (is_builtin_command(io->command_arr[0]))
 		exit(builtin_master(ms, io->command_arr));
-	else
+	else if (path_program != NULL)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 			perror("exeve error");
 	}
 	ft_free_array((void **)new_env);
-	free(path_program);
-	perror("command does not exist");
+	if (path_program)
+		free(path_program);
+	ft_putstr_fd(io->command_arr[0], 3);
+	ft_putstr_fd(": ", 3);
+	ft_putendl_fd("command not found", 3);
 	exit_with_code(ms, 127);
 }
 
