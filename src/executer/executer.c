@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 13:16:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 13:51:00 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,7 @@ int check_redirection(t_redir *redir, t_cmd_io *io)
 		return (redir_infile(redir, io));
 	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
 		return (redir_outfile(redir, io));
+	return (0);
 }
 
 void set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
