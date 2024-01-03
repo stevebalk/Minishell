@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 14:10:14 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 14:03:26 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@
 # include <dirent.h>
 // # include "struct.h"
 
-#define FILE_HISTORY "history.txt"
-#define MAX_HISTORY 10
-#define CLR_SCREEN 0
-#define LOGO_ABOVE_PROMPT 0
+// #define FILE_HISTORY "history.txt"
+// #define MAX_HISTORY 10
+// #define CLR_SCREEN 0
 
 //debug
 //#define PRINT_DEALLOC
