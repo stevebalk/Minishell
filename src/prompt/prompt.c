@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 13:00:27 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 13:56:29 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	prompt_handler(t_ms *ms)
 			// hit_sig = 1;
 			if (ft_strlen(prompt_in) > 0)
 			{
+				clear_history();
 				add_variable_to_llst(&ms->hist_llst, prompt_in);
 				lex(prompt_in, ms);
 				expand(ms);
@@ -86,7 +87,8 @@ void	prompt_handler(t_ms *ms)
 				executer(ms);
 				limit_history_llst(&ms->hist_llst);
 				write_history_llst(ms->tmp_history_folder_file, &ms->hist_llst);
-				add_history(prompt_in);
+				add_history_llst_to_prompt(&ms->hist_llst);
+				//add_history(prompt_in);
 				free_n_null((void **)&prompt_in);
 			}
 			else
