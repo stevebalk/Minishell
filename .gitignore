@@ -19,3 +19,4 @@ child.txt
 child_cleaned.txt
 outMaxtest
 valgrind-out.txt
+data.csv

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 12:51:15 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 13:16:38 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,7 +279,7 @@ int check_redirection(t_redir *redir, t_cmd_io *io)
 		return (redir_heredoc(redir, io));
 	if (redir->type == TOKEN_INFILE)
 		return (redir_infile(redir, io));
-	if (redir->type == TOKEN_REDIRECT || TOKEN_REDIRECT_APPEND)
+	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
 		return (redir_outfile(redir, io));
 }
 
