@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 16:06:07 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 10:55:45 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ void		executer(t_ms *ms);
 // t_cmd_io	*cmd_io_append_node(t_ms *ms);
 // void		create_cmd_io_list(t_ms *ms);
 void		print_file_error(char *msg);
+void		print_execution_error(char *path_name, char *msg);
 int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
 char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);

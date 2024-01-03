@@ -3,31 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   check_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 14:54:21 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 11:14:53 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-// check every Path in PATH Array with program name; returns a valid path or NULL
-char *check_program_with_path(t_ms *ms, char *prog_name)
+static char	*check_direct_path(t_ms *ms, char *path)
+{
+	if (!access(path, F_OK))
+	{
+		if (!access(path, X_OK))
+			return (path);
+		else
+		{
+			ft_putstr_fd("minishell: ", 3);
+			ft_putstr_fd(path, 3);
+			ft_putstr_fd(": ", 3);
+			ft_putendl_fd(strerror(errno), 3);
+			exit_with_code(ms, 126);
+		}
+	}
+	return (NULL);
+}
+
+static char	*check_env_paths(t_ms *ms, char *prog_name)
 {
 	char	*tmp_prog;
 	int		i;
-	
-	//c_yellow(); printf("check_program_with_path()  >"); c_green(); printf("%s", prog_name); 
-	//c_yellow(); printf("<\n"); c_reset();
-	if (!access(prog_name, F_OK))
-		return (prog_name);
-			
-	i = -1;
-	while (ms->path_arr[++i])
+
+	i = 0;
+	while (ms->path_arr[i])
 	{
 		tmp_prog = join_three_string(ms->path_arr[i], "/", prog_name);
-		//c_cyan(); printf("i: %i   >%s< \n", i, tmp_prog);
 		if (!access(tmp_prog, F_OK))
 			return (tmp_prog);
 		else
@@ -36,10 +47,15 @@ char *check_program_with_path(t_ms *ms, char *prog_name)
 				free(tmp_prog);
 			tmp_prog = NULL;
 		}
+		i++;
 	}
-	
-	//c_red(); printf("~check_program_with_path()  >"); c_green(); printf("%s", tmp_prog); 
-	//c_red(); printf("<\n"); c_reset();
-	//fflush(stdout);
 	return (NULL);
+}
+
+// check every Path in PATH Array with program name; returns a valid path or NULL
+char *check_program_with_path(t_ms *ms, char *prog_name)
+{
+	if (check_direct_path(ms, prog_name))
+		return (prog_name);
+	return (check_env_paths(ms, prog_name));
 }

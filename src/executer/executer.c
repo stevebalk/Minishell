@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 09:37:47 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 11:06:52 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,20 +115,17 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 		{
-			ft_putstr_fd("minishell: ", 3);
-			ft_putstr_fd(io->command_arr[0], 3);
-			ft_putstr_fd(": ", 3);
-			ft_putendl_fd(strerror(errno), 3);
+			perror("execve error: ");
 			exit_with_code(ms, errno);
-			// perror("execve error");
 		}
 	}
+	print_execution_error(io->command_arr[0], "command not found");
 	ft_free_array((void **)new_env);
 	if (path_program)
 		free(path_program);
-	ft_putstr_fd(io->command_arr[0], 3);
-	ft_putstr_fd(": ", 3);
-	ft_putendl_fd("command not found", 3);
+	// ft_putstr_fd(io->command_arr[0], 3);
+	// ft_putstr_fd(": ", 3);
+	// ft_putendl_fd("command not found", 3);
 	exit_with_code(ms, 127);
 }
 
