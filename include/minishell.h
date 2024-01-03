@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 14:04:19 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 17:53:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int			set_special_token(char *str, t_token *token, t_ms *ms);
 /* EXPANDER */
 
 void		expand(t_ms *ms);
-void		check_if_valid_quote_count(t_token *token, t_ms *ms);
+int			is_valid_quote_count(char *str);
 t_expand	*create_expand_node(t_ms *ms);
 t_expand	*append_chunk(t_ms *ms);
 void		append_and_fill_chunk_with_str(t_ms *ms, const char *src,

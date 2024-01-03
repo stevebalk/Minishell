@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2023/11/28 17:22:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 17:54:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	expand(t_ms *ms)
 	{
 		if (cur->type == TOKEN_WORD)
 		{
-			check_if_valid_quote_count(cur, ms);
 			if (!cur->prev || (cur->prev && cur->prev->type != TOKEN_HERE_DOC))
 				expand_word_token(cur, ms);
 		}
