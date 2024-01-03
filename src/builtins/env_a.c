@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/02 15:08:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 12:57:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 	if (!env[0])
 	{
 		//printf("!env[0]\n");
-		ft_lstadd_back(env_lst, ft_lstnew((void *)""));
+		str = (char*)ft_calloc(1, sizeof(char));
+		ft_lstadd_back(env_lst, ft_lstnew((void *)str));
 	}
 	else
 	{
-		while (i++, env[i])
+		while (i++, env[i] && ft_strlen(env[i])> 0)
 		{
-			
 			str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 			if (!str)
 				return ;
@@ -80,12 +80,10 @@ int	show_env_llist(t_list **lst)
 	//c_yellow(); printf("show_env_llist()\n"); c_reset();
 	while (tmp_lst)
 	{
-		c_reset();
-		//printf("i: %i  >", i);
 		c_green();
-		printf("%s\n", (char *)tmp_lst->content);
+		if (ft_strlen((char *)tmp_lst->content) > 0)
+			printf("%s\n", (char *)tmp_lst->content);
 		c_reset();
-		//printf("<\n");
 		tmp_lst = tmp_lst->next;
 	}
 
@@ -101,32 +99,30 @@ int	show_export_llist(t_list **lst)
 	tmp_lst = *lst;
 	while (tmp_lst)
 	{
-		c_reset();
-		//printf("i: %i  >", i);
-		printf("declare -x ");
-		c_green();
 		line = (char *)tmp_lst->content;
-		ichar = 0;
-		while(  line[ichar])	
+		if (ft_strlen(line) > 0)
 		{
-			//if (line[ichar] != '=')
-			//	printf("%c", line[ichar]);
-			printf("%c", line[ichar]);
-			if (line[ichar] == '=')	
+			c_reset();
+			printf("declare -x ");
+			c_green();
+			ichar = 0;
+			while( line[ichar])	
 			{
-				if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
-					printf("\"");
-				//ichar++;
+				printf("%c", line[ichar]);
+				if (line[ichar] == '=')	
+				{
+					if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
+						printf("\"");
+				}
+				ichar++;
 			}
-			ichar++;
+			if (line[ichar-1] != '\"')
+				printf("\"");
+			c_reset();
+			printf("\n");
 		}
-		if (line[ichar-1] != '\"')
-			printf("\"");
-		c_reset();
-		printf("\n");
 		tmp_lst = tmp_lst->next;
 	}
-
 	return (0);
 }
 
@@ -180,14 +176,32 @@ void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
 {
 	char	*pwd;
 	char	*shell;
-	
+	char	*buffer;
+	size_t	size;
+
+	size = 1024;
+	buffer = (char *)ft_calloc(size, sizeof(char));
+	 
 	//printf("set_shell_var_to_pwd  file: %s   line: %d\n", __FILE__, __LINE__);
 	pwd = get_val_of_var(env_llst, "PWD");
-	shell = join_three_string("SHELL=", pwd, "");
-	free(pwd);
+	//printf("xxx pwd: %s\n", pwd);
+	if (!pwd)
+	{
+		getcwd(buffer, size);
+		shell = join_three_string("SHELL=", buffer, "");
+
+	}
+	else
+		shell = join_three_string("SHELL=", pwd, "");
+
+	//printf("xxx pwd: %s\n", pwd);
+
+	//shell = join_three_string("SHELL=", pwd, "");
 	//printf("shell: >%s<\n", shell);
 	export_single_arg(env_llst, env_llst_sorted, shell);
 	free(shell);
+	free(buffer);
+	free(pwd);
 }
 
 	

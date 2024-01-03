@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 10:55:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 12:53:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "../libs/readline/include/readline/readline.h"
 # include "../libs/libft/include/libft.h"
 # include <signal.h>
+# include <termios.h>
 # include <dirent.h>
 # include "lexer.h"
 # include "expander.h"
@@ -37,6 +38,10 @@
 # define FILE_HISTORY "history.txt"
 # define MAX_HISTORY 10
 # define CLR_SCREEN 0
+
+# define TTY_IS_CHILD 0
+# define TTY_HEREDOC 1
+# define TTY_OMIT_LF 2
 
 /*
 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣤⡀⠀⠀

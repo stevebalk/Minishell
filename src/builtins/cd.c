@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/21 17:15:27 by jonas            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:42:42 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,10 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		if (!tmp_str)
 		{
 			c_red();
-			printf("cd: OLDPWD not set\n");
+			printf("minishell: cd: OLDPWD not set\n");
 			c_reset();
+			exit_code = 1;
+			printf("exit code OLD... : %i\n", exit_code);
 		}
 		else
 		{
@@ -137,6 +139,7 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	//	free(tmp_str);
 	free_n_null((void **)&tmp_str);
 	//c_red(); printf("~builtin_cd()\n"); c_reset();
+	printf("exit code builtin CD... : %i\n", exit_code);
 	return (exit_code);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/02 14:41:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 12:59:39 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ void test(t_ms *ms)
 void	ini_env_history_etc(t_ms *ms, char **env)
 {
 	load_env_to_llst(&ms->env_llst, env);
+	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
+
 	copy_env_home_to_ms_struct(ms);
 	copy_path_to_ms_ms_struct(ms);
-	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
 	sort_list(ms->env_llst_sorted);
 	set_history_path(ms);
 	history_master(ms);
@@ -76,7 +77,7 @@ int	main(int argc, char **argv, char **env)
 	free_ms(&ms);
 
 	c_red();
-	printf("*** ~main () ***\n");
+	printf("*** ~main () ***\n"); 
 	c_reset();
 	return (EXIT_SUCCESS);
 }

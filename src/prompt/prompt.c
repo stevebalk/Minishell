@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/02 14:43:18 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 13:00:27 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ void	prompt_handler(t_ms *ms)
 		// rl_clear_history();
 		if (LOGO_ABOVE_PROMPT == 1)
 			intro3();
-		// prompt_in = readline("\001\e[00;31m\002minihell\001\e[0m\002>>\001\e[0m\002");
-		// prompt_in = readline("\001\033[0;31m\002minihell\001\033[0;33m\002>>\001\033[0;36m\002");
 		prompt_in = readline("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36m");
+
 		tty_set_flag(TTY_OMIT_LF, 0);
 
 		// if (prompt_in != NULL || hit_sig == 0)
@@ -95,17 +94,27 @@ void	prompt_handler(t_ms *ms)
 		}
 		else
 		{
-			printf("\nprompt_in == NULL\n");
+			//rl_replace_line("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36mExit", 0);
+			//rl_replace_line("Exit", 1);
+			//rl_on_new_line();
+			//prompt_in = readline("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36mexit\n");
+
+			//rl_redisplay();
+			//printf("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36mExit");
+			//printf("\nprompt_in == NULL\n");
 			// hit_sig = 1;
 			// printf("sig == 2 \n");c_red(); 
 			free_n_null((void **)&prompt_in);
 			// printf("exit\n");
+			c_red();
+			write(STDERR_FILENO, "exit\n", 5);
+
 			break ;
 		}
 		count++;
 	}
-	c_red();
-	printf("~prompt Handler()\n");
+	//c_red();
+	//printf("~prompt Handler()\n");
 }
 
 /*
