@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 12:57:37 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:54:48 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,34 +174,17 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 // update the "SHELL" variable with PWD
 void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
 {
-	char	*pwd;
 	char	*shell;
 	char	*buffer;
 	size_t	size;
 
 	size = 1024;
 	buffer = (char *)ft_calloc(size, sizeof(char));
-	 
-	//printf("set_shell_var_to_pwd  file: %s   line: %d\n", __FILE__, __LINE__);
-	pwd = get_val_of_var(env_llst, "PWD");
-	//printf("xxx pwd: %s\n", pwd);
-	if (!pwd)
-	{
-		getcwd(buffer, size);
-		shell = join_three_string("SHELL=", buffer, "");
-
-	}
-	else
-		shell = join_three_string("SHELL=", pwd, "");
-
-	//printf("xxx pwd: %s\n", pwd);
-
-	//shell = join_three_string("SHELL=", pwd, "");
-	//printf("shell: >%s<\n", shell);
+	getcwd(buffer, size);
+	shell = join_three_string("SHELL=", buffer, "/minishell");
 	export_single_arg(env_llst, env_llst_sorted, shell);
 	free(shell);
 	free(buffer);
-	free(pwd);
 }
 
 	
