@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 11:06:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 11:53:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -424,6 +424,19 @@ void child(t_ms *ms, int input_fd, int fds[2])
 	execute_io(ms, &io);
 }
 
+void	waiting(t_ms *ms, int pid, size_t number_of_commands)
+{
+	int status;
+	size_t i;
+
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		ms->last_exit_code = WEXITSTATUS(status);
+	i = 0;
+	while (i++ < number_of_commands - 1)
+		waitpid(-1, NULL, 0);
+}
+
 void parent(t_ms *ms, size_t number_of_commands)
 {
 	int input_fd;
@@ -465,10 +478,7 @@ void parent(t_ms *ms, size_t number_of_commands)
 		}
 	}
 	reset_redirections(ms);
-	waitpid(pid, &ms->last_exit_code, 0);
-	i = 0;
-	while (i++ < number_of_commands - 1)
-		waitpid(-1, NULL, 0);
+	waiting(ms, pid, number_of_commands);
 }
 
 size_t get_number_of_commands(t_cmd *cmd)
