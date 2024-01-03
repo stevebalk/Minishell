@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 09:29:45 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 09:37:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,14 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	else if (path_program != NULL)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
-			perror("exeve error");
+		{
+			ft_putstr_fd("minishell: ", 3);
+			ft_putstr_fd(io->command_arr[0], 3);
+			ft_putstr_fd(": ", 3);
+			ft_putendl_fd(strerror(errno), 3);
+			exit_with_code(ms, errno);
+			// perror("execve error");
+		}
 	}
 	ft_free_array((void **)new_env);
 	if (path_program)
