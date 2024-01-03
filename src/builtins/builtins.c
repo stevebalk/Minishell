@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/22 15:43:59 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:32:52 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 		//printf("unset\n");
 		exit_code = builtin_unset(ms, cmd_arr);
 	}
-	printf("exit code builtin master: %i\n", exit_code);
+	//printf("exit code builtin master: %i\n", exit_code);
 	
 	return (exit_code);
 }

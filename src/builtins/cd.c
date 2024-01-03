@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/22 15:42:42 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:32:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	//	free(tmp_str);
 	free_n_null((void **)&tmp_str);
 	//c_red(); printf("~builtin_cd()\n"); c_reset();
-	printf("exit code builtin CD... : %i\n", exit_code);
+	//printf("exit code builtin CD... : %i\n", exit_code);
 	return (exit_code);
 }
 
