@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:14:53 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/05 14:12:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:36:28 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,9 @@ void	check_if_valid_quote_count(t_token *token, t_ms *ms)
 		str++;
 	}
 	if (quote != 0)
-		ms_error(ms, "Wrong number of quotes", 1, 0);
+	{
+		ms_error(ms, "unexpected EOF while looking for matching ` '", 0, 0);
+		ft_putstr_fd("unexpected EOF while looking for matching ` '", 2);
+
+	}
 }

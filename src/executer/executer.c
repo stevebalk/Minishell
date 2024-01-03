@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 16:29:27 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:40:28 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 		{
-			perror("execve error: ");
+			perror("execve error");
 			exit_with_code(ms, errno);
 		}
 	}
@@ -301,15 +301,6 @@ void set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
 			break;
 		cur = cur->next;
 	}
-	// if (io->is_valid)
-	// {
-	// if (cmd->next)
-	// {
-	// 	if (io->out_fd != -1)
-	// 		close(io->out_fd);
-	// 	io->out_fd = fd[1];
-	// }
-	// }
 }
 
 void reset_redirections(t_ms *ms)
@@ -352,8 +343,6 @@ void set_input_io(int input_fd, t_cmd_io *cmd_io)
 	{
 		if (pipe(here_doc_fd) == -1)
 			perror("Pipe: Error: set_input_io: TOKEN_HEREDOC");
-		// if (dup2(here_doc_fd[1], STDOUT_FILENO) == -1)
-		// 	perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdout");
 		if (dup2(here_doc_fd[0], STDIN_FILENO) == -1)
 			perror("Dup2: Error: set_input_io: TOKEN_HEREDOC: stdin");
 		write(here_doc_fd[1], cmd_io->input, ft_strlen(cmd_io->input));
