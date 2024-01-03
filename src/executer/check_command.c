@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 11:14:53 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:23:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	*check_direct_path(t_ms *ms, char *path)
 {
+	printf("check_direct_path() path >%s<\n", path);
 	if (!access(path, F_OK))
 	{
 		if (!access(path, X_OK))
@@ -26,6 +27,14 @@ static char	*check_direct_path(t_ms *ms, char *path)
 			ft_putendl_fd(strerror(errno), 3);
 			exit_with_code(ms, 126);
 		}
+	}
+	else
+	{
+		ft_putstr_fd("minishell: ", 3);
+		ft_putstr_fd(path, 3);
+		ft_putstr_fd(": ", 3);
+		ft_putendl_fd(strerror(errno), 3);
+		exit_with_code(ms, 127);
 	}
 	return (NULL);
 }
@@ -53,9 +62,12 @@ static char	*check_env_paths(t_ms *ms, char *prog_name)
 }
 
 // check every Path in PATH Array with program name; returns a valid path or NULL
-char *check_program_with_path(t_ms *ms, char *prog_name)
+char *check_program_with_path(t_ms *ms, char *input)
 {
-	if (check_direct_path(ms, prog_name))
-		return (prog_name);
-	return (check_env_paths(ms, prog_name));
+	if (ft_strchr(input, '/')) // if input contains a '/' it is a direct path
+	{
+		if (check_direct_path(ms, input))
+			return (input);
+	}
+	return (check_env_paths(ms, input));
 }

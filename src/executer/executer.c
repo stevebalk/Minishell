@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 13:51:00 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:29:27 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	if (io->command_arr == NULL)
 		exit_with_code(ms, 0);
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
-	path_program = check_program_with_path(ms, io->command_arr[0]);
 
 	if (is_builtin_command(io->command_arr[0]))
 		exit(builtin_master(ms, io->command_arr));
-	else if (path_program != NULL)
+	path_program = check_program_with_path(ms, io->command_arr[0]);
+	if (path_program != NULL)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 		{
@@ -123,9 +123,6 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	ft_free_array((void **)new_env);
 	if (path_program)
 		free(path_program);
-	// ft_putstr_fd(io->command_arr[0], 3);
-	// ft_putstr_fd(": ", 3);
-	// ft_putendl_fd("command not found", 3);
 	exit_with_code(ms, 127);
 }
 
@@ -281,6 +278,7 @@ int check_redirection(t_redir *redir, t_cmd_io *io)
 		return (redir_infile(redir, io));
 	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
 		return (redir_outfile(redir, io));
+	return (0);
 	return (0);
 }
 
