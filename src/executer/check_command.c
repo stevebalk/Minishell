@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 16:23:31 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/03 17:44:01 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ static char	*check_env_paths(t_ms *ms, char *prog_name)
 // check every Path in PATH Array with program name; returns a valid path or NULL
 char *check_program_with_path(t_ms *ms, char *input)
 {
-	if (ft_strchr(input, '/')) // if input contains a '/' it is a direct path
+	if (ft_strlen(input) == 0)
+		return (NULL);
+	else if (ft_strchr(input, '/')) // if input contains a '/' it is a direct path
 	{
 		if (check_direct_path(ms, input))
 			return (input);
