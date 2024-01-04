@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:19:49 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:34:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	delete_node_from_llst(t_list **head, t_list *node_to_delete);
 void	update_content_in_node(t_list *node, char *new_content);
 
 // util lst c
-void	get_val_of_var_value_allocation(char *v_name, void *cont,
+void	get_val_of_var_v_alloc(char *v_name, void *cont,
 			char **tmp_value);
 char	*get_val_of_var(t_list **llst, char *var_name);
 

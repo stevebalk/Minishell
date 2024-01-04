@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/08 14:58:31 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:34:14 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 // this function is for get_val_of_var();
 // don´t call it alone!; its for finding the value of an var
-void	get_val_of_var_value_allocation(char *v_name, void *cont,
-	char **tmp_value)
+void	get_val_of_var_v_alloc(char *v_name, void *cont, char **tmp_value)
 {
 	char		*tmp_str;
 	t_var_names	tmp_var;
@@ -52,16 +51,15 @@ char	*get_val_of_var(t_list **llst, char *var_name)
 {
 	t_list	*tmp_lst;
 	char	*tmp_value;
+	
 
 	tmp_value = NULL;
 	tmp_lst = *llst;
-	//c_yellow(); printf("get_val_of_var() --> var_name >%s<\n", var_name); c_reset();
 	while (tmp_lst)
 	{
-		get_val_of_var_value_allocation(var_name, tmp_lst->content, &tmp_value);
+		get_val_of_var_v_alloc(var_name, tmp_lst->content, &tmp_value);
 		tmp_lst = tmp_lst->next;
 	}
-	//c_red(); printf("~get_val_of_var() --> var_name>%s<   value >%s<\n", var_name, tmp_value); c_reset();
 	return (tmp_value);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_lst_b.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:01:41 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 11:56:16 by jopeters         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:15:56 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	copy_llst(t_list **src_llst, t_list **new_llst)
 {
 	t_list	*tmp_src;
 	char	*str;
-	//c_yellow(); printf("copy_llst()\n"); c_reset();
+
 	tmp_src = *src_llst;
 	if (tmp_src == NULL)
 		return ;
@@ -35,7 +35,6 @@ void	copy_llst(t_list **src_llst, t_list **new_llst)
 			ft_lstadd_back(new_llst, ft_lstnew((void *)str));
 		tmp_src = tmp_src->next;
 	}
-    //c_yellow(); printf("~copy_llst()\n"); c_reset();
 }
 
 // to swap data of two nodes
@@ -82,7 +81,7 @@ void	delete_node_from_llst(t_list **head, t_list *node_to_delete)
 {
 	t_list	*temp;
 	t_list	*prev;
-	//c_yellow(); printf("delete_node_from_llst() "); c_red();  printf("content >%s<\n", (char *)node_to_delete->content); c_reset();
+
 	if (*head == NULL || node_to_delete == NULL)
 		return ;
 	if (*head == node_to_delete)

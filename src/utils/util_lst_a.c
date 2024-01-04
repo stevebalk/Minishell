@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:46:15 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:15:38 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,13 @@ void	lst_dealloc(t_list **llist, int free_content)
 
 	if (!llist)
 		return ;
-	//else
-	//	printf("llst is TRUE \n");
-
 	cur = *llist;
 	while (cur != NULL)
 	{
 		aux = cur;
 		cur = cur->next;
 		if (aux->content && free_content)
-		{
-			//printf("free content: >%s<\n", (char*)aux->content);
 			free(aux->content);
-		}
 		free(aux);
 	}
 	*llist = NULL;
@@ -54,8 +48,6 @@ void	lst_dealloc(t_list **llist, int free_content)
 // updates the content of a node 
 void	update_content_in_node(t_list *node, char *new_content)
 {
-	//c_yellow();
-	//printf("update_content_in_node() --> new_content >%s<   old node->content >%s<\n", new_content, (char*)node->content);c_reset();
 	if (node && node->content)
 		free(node->content);
 	else
@@ -71,7 +63,6 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	char	*tmp_str;
 
 	tmp_lst = *llst;
-	//c_yellow(); printf("find_var_in_llst() --> var >%s<\n", var); c_reset();
 	while (tmp_lst)
 	{
 		tmp_str = (char *)tmp_lst->content;
@@ -79,19 +70,16 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 			&& ((ft_strlen(tmp_str) == ft_strlen(var))
 				|| (tmp_str[ft_strlen(var)] == '=')))
 		{
-			//c_green(); printf("  -> found var >%s< with = \n", var);
-			//c_purple(); printf("  -> content >%s< \n", tmp_str);
 			return (tmp_lst);
 			break ;
 		}
 		tmp_lst = tmp_lst->next;
 	}
-	//c_red(); printf("~find_var_in_llst() --> not found >%s<\n", var); c_reset();
 	return (NULL);
 }
 
-/* adding a node with a string to a linked list i.a "A=hello"; no parsing involved!;
-creates a new llist if llist is null; mallocs for char *   */
+// adding a node with a string to a linked list i.a "A=hello"; no parsing
+// involved! creates a new llist if llist is null; mallocs for char_ptr
 void	add_variable_to_llst(t_list **llst, char *var)
 {
 	char	*str;
