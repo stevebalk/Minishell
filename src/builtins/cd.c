@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:44:05 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:54:18 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,19 +129,13 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	return (exit_code);
 }
 
-int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
+static int	builtin_cd_chge_dir_pwd(t_list **env_llst, t_list **env_llst_sorted, char *path, int exit_code)
 {
-	int		exit_code;
-	char	*last_pwd;
 	char	*tmp_value;
+	char	*last_pwd;
 
-	exit_code = 0;
 	last_pwd = get_val_of_var(env_llst, "PWD");
-	if (!path)
-		return (exit_code = 1, exit_code);
-
-	exit_code = chdir(path);
-    if (exit_code != 0) 
+	if (exit_code != 0)
 	{
 		c_red();
 		fflush(stdout);
@@ -152,8 +146,8 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 		perror("");
 		c_reset();
 		free_n_null((void **)&last_pwd);
-        return (exit_code = 1, exit_code);
-    }
+		exit_code = 1;
+	}
 	else
 	{
 		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
@@ -162,6 +156,44 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 		free(tmp_value);
 	}
 	free_n_null((void **)&last_pwd);
+	return (exit_code);
+}
+
+int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
+{
+	int		exit_code;
+	//char	*last_pwd;
+	//char	*tmp_value;
+
+	exit_code = 0;
+	if (!path)
+		return (exit_code = 1, exit_code);
+
+	exit_code = chdir(path);
+
+	exit_code = builtin_cd_chge_dir_pwd(env_llst, env_llst_sorted, path, exit_code);
+	
+	// if (exit_code != 0)
+	// {
+	// 	c_red();
+	// 	fflush(stdout);
+	// 	ft_putstr_fd("minishell", 2);
+	// 	ft_putstr_fd(": ", 2);
+	// 	ft_putstr_fd(path, 2);
+	// 	ft_putstr_fd(": ", 2);
+	// 	perror("");
+	// 	c_reset();
+	// 	free_n_null((void **)&last_pwd);
+	// return (exit_code = 1, exit_code);
+	// }
+	// else
+	// {
+	// 	tmp_value = join_three_string("OLDPWD", "=", last_pwd);
+	// 	export_single_arg(env_llst, env_llst_sorted, tmp_value);
+	// 	builtin_pwd(env_llst, env_llst_sorted, 0);
+	// 	free(tmp_value);
+	// }
+	//free_n_null((void **)&last_pwd);
 	return (exit_code);
 }
 
