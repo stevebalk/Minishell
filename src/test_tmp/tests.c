@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:54:15 by jonas             #+#    #+#             */
-/*   Updated: 2023/12/19 14:19:52 by jopeters         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:19:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void test_export_arg_array(t_list	*env_llst, t_list	*env_llst_sorted)
 	c_yellow(); printf("test_export_arg_array()\n"); c_reset();
 	char *arr[1] = {NULL};
 	//char *arr[4] = {"huhu", "moin", "Steve=huhu", NULL};
-	export_arg_arr(&env_llst, &env_llst_sorted, arr);
+	exp_arg_arr(&env_llst, &env_llst_sorted, arr);
 }
 
 void test_get_val_of_var(t_list	*env_llst, t_list	*env_llst_sorted)

@@ -6,14 +6,14 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/20 18:24:38 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:19:49 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 	
 // manage whole arg array; adds or update to env and export llst
-int	export_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
+int	exp_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr)
 {
 	//c_yellow(); printf("export_arg_arr  \n"); c_reset();
 	int	i;
