@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:34 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:04 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:05:37 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	check_var_name(char *str)
 // updated var with all var names and values
 void	get_var_names(t_var_names *var, char *str)
 {
-	//c_blue(); printf("get_var_names() string >%s<\n", str); 
 	var->has_equal = has_str_symbol(str, '=');
 	var->raw_copy = get_string_from_string(str);
 	var->var_name = get_string_till_first_symbol(str, '=');
@@ -61,5 +60,4 @@ void	get_var_names(t_var_names *var, char *str)
 	var->value_without_quotes = get_string_without_symbols(var->raw_value, '"');
 	var->value_added_quotes = get_string_with_symbols_at_end_and_front
 		(var->value_without_quotes, '"');
-	//c_red(); printf("get_var_names() string >%s<\n", str); 
 }

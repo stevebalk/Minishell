@@ -6,13 +6,12 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 12:20:47 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:03:06 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 #include "../../include/minishell.h"
-
 
 void	exit_handler(t_ms *ms)
 {
@@ -23,24 +22,3 @@ void	exit_handler(t_ms *ms)
 	free_ms(ms);
 	exit(0);
 }
-
-/*
-BASH
-exit 		--> exits the bash
-
-exit a		--> exits the bash, but with error
-exit
-bash: exit: a: numeric argument required
-
-exit 1		--> exits the bash with exit code
-
-bash-3.2$ exit (1)		--> NO exit but error
-bash: syntax error near unexpected token `1'
-
-bash-3.2$ exit "1"		--> exits without error and with exit code 1
-exit
-
-bash-3.2$ exit 1 2		--> no Exit
-exit
-bash: exit: too many arguments
-*/
