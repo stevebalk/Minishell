@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:20:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,5 +263,8 @@ void	tty_setup(void);
 void	tty_enter(int is_child);
 int		tty_get_flag(unsigned int index);
 void	tty_set_flag(unsigned int index, int enable);
+void	tty_reset_flags(void);
+void	signal_handler(int sig);
+void	signal_handler_child(int sig);
 
 #endif
