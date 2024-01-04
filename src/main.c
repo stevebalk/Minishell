@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 16:53:26 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ini_env_history_etc(t_ms *ms, char **env)
 	copy_llst(&ms->env_llst, &ms->env_llst_sorted);
 
 	copy_env_home_to_ms_struct(ms);
-	copy_path_to_ms_ms_struct(ms);
+	copy_path_to_ms_struct(ms);
 	sort_list(ms->env_llst_sorted);
 	set_history_path(ms);
 	history_master(ms);

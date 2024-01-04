@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 13:16:47 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,17 @@ void print_cmd_io_list(const t_cmd_io *head)
 // 	// close(fds[1]); /// <<<< MUST FIX
 // }
 
-void execute_io(t_ms *ms, t_cmd_io *io)
+void	execute_io(t_ms *ms, t_cmd_io *io)
 {
-	char **new_env;
-	char *path_program;
+	char	**new_env;
+	char	*path_program;
 
 	if (!io->is_valid)
 		exit_with_code(ms, 1);
 	if (io->command_arr == NULL)
 		exit_with_code(ms, 0);
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
-
+	copy_path_to_ms_struct(ms);
 	if (is_builtin_command(io->command_arr[0]))
 		exit(builtin_master(ms, io->command_arr));
 	path_program = check_program_with_path(ms, io->command_arr[0]);

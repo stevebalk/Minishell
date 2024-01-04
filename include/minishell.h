@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 12:20:55 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void	set_history_path(t_ms *ms);
 
 
 // env b
-void	copy_path_to_ms_ms_struct(t_ms *ms);
+void	copy_path_to_ms_struct(t_ms *ms);
 void	copy_env_home_to_ms_struct(t_ms *ms);
 char 	**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
 
