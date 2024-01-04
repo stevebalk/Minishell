@@ -6,19 +6,19 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 16:54:48 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:20:29 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 
 
-// adding a node with a string to a linked list i.a "A=hello"; no parsing involved!; creates a new llist if llist is null; mallocs for char *
+/* adding a node with a string to a linked list i.a "A=hello"; no parsing involved!;
+creates a new llist if llist is null; mallocs for char *   */
 void	add_variable_to_llst(t_list **llst, char *var)
 {
 	char	*str;
-	//c_yellow(); printf("add_variable_to_llst() var >%s<\n", var); c_reset();
-	
+
 	str = (char *)malloc(sizeof(char) * (ft_strlen(var) + 1));
 	ft_strlcpy(str, var, ft_strlen(var) + 1);
 	if (!llst)
@@ -31,7 +31,6 @@ void	add_variable_to_llst(t_list **llst, char *var)
 void	show_env_arr(char **env)
 {
 	int	i;
-	//c_yellow(); printf("show_env_arr()\n"); c_reset();
 
 	i = -1;
 	while (i++, env[i])
@@ -43,18 +42,16 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 {
 	char	*str;
 	int		i;
-	//c_yellow(); printf("load_env()\n"); c_reset();
-	//show_env_arr(env);
+
 	i = -1;
 	if (!env[0])
 	{
-		//printf("!env[0]\n");
-		str = (char*)ft_calloc(1, sizeof(char));
+		str = (char *)ft_calloc(1, sizeof(char));
 		ft_lstadd_back(env_lst, ft_lstnew((void *)str));
 	}
 	else
 	{
-		while (i++, env[i] && ft_strlen(env[i])> 0)
+		while (i++, env[i] && ft_strlen(env[i]) > 0)
 		{
 			str = (char *)malloc(sizeof(char) * (ft_strlen(env[i]) + 1));
 			if (!str)
@@ -66,7 +63,6 @@ void	load_env_to_llst(t_list **env_lst, char **env)
 				ft_lstadd_back(env_lst, ft_lstnew((void *)str));
 		}
 	}
-	//c_yellow(); printf("~load_env()\n"); c_reset();
 }
 
 // showing all list entrys seperated by a newline
@@ -77,7 +73,6 @@ int	show_env_llist(t_list **lst)
 
 	exit_code = 0;
 	tmp_lst = *lst;
-	//c_yellow(); printf("show_env_llist()\n"); c_reset();
 	while (tmp_lst)
 	{
 		c_green();
@@ -105,18 +100,17 @@ int	show_export_llist(t_list **lst)
 			c_reset();
 			printf("declare -x ");
 			c_green();
-			ichar = 0;
-			while( line[ichar])	
+			ichar = -1;
+			while (ichar++, line[ichar])
 			{
 				printf("%c", line[ichar]);
-				if (line[ichar] == '=')	
+				if (line[ichar] == '=')
 				{
-					if (line[ichar+1] != '\"' && line[ichar+1] != '\0')
+					if (line[ichar + 1] != '\"' && line[ichar + 1] != '\0')
 						printf("\"");
 				}
-				ichar++;
 			}
-			if (line[ichar-1] != '\"')
+			if (line[ichar - 1] != '\"')
 				printf("\"");
 			c_reset();
 			printf("\n");
@@ -129,25 +123,13 @@ int	show_export_llist(t_list **lst)
 // adds +1 to the SHLVL env/export variable
 void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 {
-	/* 
-	1. reading the val of SHLVL
-	2. converting into int                      
-	3. +1
-	4. converting into string
-	5. updating ENV/Export              
-	
-	*/
-	//c_yellow(); printf("add_shell_level()\n"); c_reset();
-
 	char		*tmp_var_with_value;
 	char		*tmp_value;
 	char		*new_value;
 	t_var_names	var;
-	
-	//show_env_llist(env_llst);
 
 	tmp_value = get_val_of_var(env_llst, "SHLVL");
-	
+
 	if (tmp_value)
 	{
 		var.self_value = ft_atoi(tmp_value) + 1;
@@ -159,16 +141,12 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 		new_value =  ft_itoa(0);
 		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
 	}
-
 	get_var_names(&var, tmp_var_with_value);
 	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
-	
 	free_n_null((void **)&new_value);
 	free_n_null((void **)&tmp_var_with_value);
 	free_n_null((void **)&tmp_value);
 	dealloc_var_names(&var);
-
-	//c_red(); printf("~add_shell_level()\n"); c_reset();
 }
 
 // update the "SHELL" variable with PWD
@@ -186,12 +164,3 @@ void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
 	free(shell);
 	free(buffer);
 }
-
-	
-
-/*
-Achtung:
-bei Export wird alles in "" gespeichert, auch wenn es als a='huhu' reinkommt
-bei Env wird es ohne "" gespeichert es sei denn es gehört dazu a='"huhu"'
-
-*/
