@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:48:52 by jonas             #+#    #+#             */
-/*   Updated: 2024/01/04 16:57:04 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 17:04:09 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*join_three_string(char *str1, char *str2, char *str3)
 	return (new_str);
 }
 
-static int count_symbol(char *str, char symbol)
+static	int	count_symbol(char *str, char symbol)
 {
 	int		count;
 	int		i;
