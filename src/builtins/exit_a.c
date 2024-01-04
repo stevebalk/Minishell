@@ -6,20 +6,22 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2023/11/29 13:32:50 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 12:20:47 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
+#include "../../include/minishell.h"
 
-int	ms_exit(char *arg)
+
+void	exit_handler(t_ms *ms)
 {
-	(void)arg;
-	/*
-	free everything
-	*/
-
-	return (0);
+	c_red();
+	write(STDERR_FILENO, "exit\n", 5);
+	c_cyan();
+	c_reset();
+	free_ms(ms);
+	exit(0);
 }
 
 /*
