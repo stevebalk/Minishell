@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:40:32 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:10:05 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:21:59 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int	builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd)
 	buffer = (char *)malloc(size * sizeof(char));
 	if (buffer == NULL)
 		perror("Unable to allocate buffer");
-
 	if (getcwd(buffer, size) == NULL)
 		perror("Error getting current directory");
-
 	if (print_pwd)
 	{
 		c_green();
