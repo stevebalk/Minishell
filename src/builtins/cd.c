@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 16:32:49 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:22:10 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		else
 		{
 			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+			builtin_pwd(&ms->env_llst, &ms->env_llst_sorted, 1);
 			free_n_null((void **)&tmp_str);
 		}
 	}
@@ -145,9 +146,9 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 
 int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path)
 {
-	int	exit_code;
-	char *last_pwd;
-	char *tmp_value;
+	int		exit_code;
+	char	*last_pwd;
+	char	*tmp_value;
 	
 	exit_code = 0;
 	//const char *path = "./libs/libft"; 
