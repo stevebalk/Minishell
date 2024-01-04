@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 16:32:52 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 12:04:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 	}
 	if ((ft_strncmp(cmd_arr[0], "exit", 4) == 0) && (ft_strlen(cmd_arr[0]) == 4))
 	{
-		c_red();printf("exit\n");c_cyan(); printf("todo: free and exit minishell \n"); 
+		c_red();
+		write(STDERR_FILENO, "exit\n", 5);
+		c_cyan();
 		c_reset();
 		free_ms(ms);
 		exit(0);
