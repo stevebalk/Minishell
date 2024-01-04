@@ -6,7 +6,7 @@
 #    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/04 16:58:56 by jonas            ###   ########.fr        #
+#    Updated: 2024/01/04 17:14:21 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,6 @@ SRC_FILES	=	main \
 				utils/dealloc \
 				utils/j_temp \
 				prompt/prompt \
-				test_tmp/tests \
 				init/init_structs \
 				error/error_handling \
 				error/error_checks \
@@ -125,7 +124,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/utils
 			@mkdir -p $(OBJ_DIR)/builtins
 			@mkdir -p $(OBJ_DIR)/prompt
-			@mkdir -p $(OBJ_DIR)/test_tmp
 			@mkdir -p $(OBJ_DIR)/init
 			@mkdir -p $(OBJ_DIR)/lexer
 			@mkdir -p $(OBJ_DIR)/expander
