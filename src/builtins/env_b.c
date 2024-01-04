@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:42:10 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 void	copy_path_to_ms_struct(t_ms *ms)
 {
 	char	*path_value;
+
 	path_value = get_val_of_var(&ms->env_llst, "PATH");
 	ft_free_array((void **)ms->path_arr);
 	if (path_value)
 		ms->path_arr = ft_split(path_value, ':');
-	else
-		ms->path_arr = ft_split("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", ':');
-
 	free_n_null((void **)&path_value);
 }
 
