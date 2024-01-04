@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:15:56 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:37:40 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:46:26 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	c_reset(void)
 	printf("\033[0m");
 }
 
-static void intro3_b(void)
+static	void	intro3_b(void)
 {
 	c_green();
 	printf("██║░╚═╝░██║██║██║░╚███║██║");

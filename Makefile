@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/04 13:48:59 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/04 16:58:56 by jonas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC_FILES	=	main \
 				utils/util_lst_c \
 				utils/util_strings_a \
 				utils/util_strings_b \
+				utils/util_strings_c \
 				utils/dealloc \
 				utils/j_temp \
 				prompt/prompt \

@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:20 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:43:47 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:47:50 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	set_history_path(t_ms *ms)
 			= join_three_string(path, "/", FILE_HISTORY);
 	else
 	{
-		if (getcwd(pwd, size) == NULL) 
+		if (getcwd(pwd, size) == NULL)
 			perror("not get cwd for history after failed to set tmp dir\n");
 		else
 			ms->tmp_history_folder_file
