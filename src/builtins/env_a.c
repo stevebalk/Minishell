@@ -6,26 +6,14 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:20:29 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:45:46 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 
 
-/* adding a node with a string to a linked list i.a "A=hello"; no parsing involved!;
-creates a new llist if llist is null; mallocs for char *   */
-void	add_variable_to_llst(t_list **llst, char *var)
-{
-	char	*str;
 
-	str = (char *)malloc(sizeof(char) * (ft_strlen(var) + 1));
-	ft_strlcpy(str, var, ft_strlen(var) + 1);
-	if (!llst)
-		*llst = ft_lstnew((void *)str);
-	else
-		ft_lstadd_back(llst, ft_lstnew((void *)str));
-}
 
 // shows all entries of the env array coming from outside by argument 3
 void	show_env_arr(char **env)
@@ -121,7 +109,7 @@ int	show_export_llist(t_list **lst)
 }
 
 // adds +1 to the SHLVL env/export variable
-void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
+void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 {
 	char		*tmp_var_with_value;
 	char		*tmp_value;
@@ -129,16 +117,15 @@ void add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
 	t_var_names	var;
 
 	tmp_value = get_val_of_var(env_llst, "SHLVL");
-
 	if (tmp_value)
 	{
 		var.self_value = ft_atoi(tmp_value) + 1;
-		new_value =  ft_itoa(var.self_value);
+		new_value = ft_itoa(var.self_value);
 		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
 	}
 	else
 	{
-		new_value =  ft_itoa(0);
+		new_value = ft_itoa(0);
 		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
 	}
 	get_var_names(&var, tmp_var_with_value);

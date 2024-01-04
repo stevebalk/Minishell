@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:35:14 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/22 16:36:48 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:46:15 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,18 @@ t_list	*find_var_in_llst(t_list **llst, char *var)
 	}
 	//c_red(); printf("~find_var_in_llst() --> not found >%s<\n", var); c_reset();
 	return (NULL);
+}
+
+/* adding a node with a string to a linked list i.a "A=hello"; no parsing involved!;
+creates a new llist if llist is null; mallocs for char *   */
+void	add_variable_to_llst(t_list **llst, char *var)
+{
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * (ft_strlen(var) + 1));
+	ft_strlcpy(str, var, ft_strlen(var) + 1);
+	if (!llst)
+		*llst = ft_lstnew((void *)str);
+	else
+		ft_lstadd_back(llst, ft_lstnew((void *)str));
 }
