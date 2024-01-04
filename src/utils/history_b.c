@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jopeters <jopeters@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:20 by jopeters          #+#    #+#             */
-/*   Updated: 2023/12/19 17:16:46 by jopeters         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:43:47 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,37 +38,30 @@ void	limit_history_llst(t_list **history_lst)
 		lst_delete_first(history_lst);
 }
 
-void set_history_path(t_ms *ms)
+void	set_history_path(t_ms *ms)
 {
-	char *path;
-	char *pwd;
-    size_t size = 1024;
-	
-	(void)ms;
+	char	*path;
+	char	*pwd;
+	size_t	size;
+
+	size = 1024;
 	path = NULL;
 	pwd = NULL;
-	
-	//c_yellow(); printf("set_history_path\n");
-	//c_reset();
-	
 	pwd = (char *)malloc(sizeof(char) * size);
 	if (!pwd)
 		return ;
 	path = get_val_of_var(&ms->env_llst, "TMPDIR");
 	if (path)
-		ms->tmp_history_folder_file = join_three_string(path, "/", FILE_HISTORY);
+		ms->tmp_history_folder_file
+			= join_three_string(path, "/", FILE_HISTORY);
 	else
 	{
 		if (getcwd(pwd, size) == NULL) 
-			perror("couldn´t get cwd for history after failed to set tmp directory\n");
+			perror("not get cwd for history after failed to set tmp dir\n");
 		else
-			ms->tmp_history_folder_file = join_three_string(pwd, "/", FILE_HISTORY);
+			ms->tmp_history_folder_file
+				= join_three_string(pwd, "/", FILE_HISTORY);
 	}
-	//printf(">>%s<<     pwd >>%s<<    path >>%s<<\n", ms->tmp_history_folder_file, pwd, path);
-	//printf("ms->tmp_his_folder_file >>%s<<  \n", ms->tmp_history_folder_file);
-
-	//show_env_arr(env);
-
 	free(path);
 	free(pwd);
 }
