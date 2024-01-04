@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 18:04:06 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/04 11:53:56 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void quick_lexer(t_ms *ms, char *prompt_in)
 void	prompt_handler(t_ms *ms)
 {
 	char	*prompt_in;
-	int		count;
 
-	count = 0;
 	prompt_in = NULL;
 	if (CLR_SCREEN == 1)
 		clear_screen();
@@ -93,7 +91,6 @@ void	prompt_handler(t_ms *ms)
 			break ;
 		}
 		free_n_null((void **)&prompt_in);
-		count++;
 	}
 }
 
