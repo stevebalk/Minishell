@@ -6,17 +6,32 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 12:09:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/04 12:45:16 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+static void	is_directory(t_ms *ms, char *path)
+{
+	int strlen = ft_strlen(path);
+		if (path[strlen - 1] == '/')
+		{
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd(path, STDERR_FILENO);
+			ft_putstr_fd(": ", STDERR_FILENO);
+			ft_putendl_fd("is a directory", STDERR_FILENO);
+			exit_with_code(ms, 126);
+		}
+}
 
 static char	*check_direct_path(t_ms *ms, char *path)
 {
 	printf("check_direct_path() path >%s<\n", path);
 	if (!access(path, F_OK))
 	{
+		is_directory(ms, path);
+		printf("check_direct_path() path >%s< exists\n", path);
 		if (!access(path, X_OK))
 			return (path);
 		else

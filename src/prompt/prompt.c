@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 11:53:56 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:13:06 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	prompt_handler(t_ms *ms)
 		prompt_in = readline("\033[0;35mmini(s)hell\033[0;33m >> \033[0;36m");
 
 		tty_set_flag(TTY_OMIT_LF, 0);
-		if (!is_valid_quote_count(prompt_in))
+		if (prompt_in != NULL && !is_valid_quote_count(prompt_in))
 		{
 			free_n_null((void **)&prompt_in);
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 11:49:20 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 12:38:04 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:09:24 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	signal_handler(int sig)
 				write(STDOUT_FILENO, "\n", 1);
 			(rl_replace_line("", 1), rl_on_new_line());
 		}
+		rl_on_new_line();
 		rl_redisplay();
 	}
 }
