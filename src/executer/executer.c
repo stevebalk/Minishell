@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 16:17:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/04 17:30:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,9 +325,10 @@ void close_io_fds(t_cmd_io *io)
 	}
 }
 
-void set_input_io(int input_fd, t_cmd_io *cmd_io)
+void set_input_io(int input_fd, int fds[2], t_cmd_io *cmd_io)
 {
 	int here_doc_fd[2];
+	(void) fds;
 
 	if (cmd_io->intype == TOKEN_INFILE)
 	{
@@ -352,8 +353,11 @@ void set_input_io(int input_fd, t_cmd_io *cmd_io)
 		if (dup2(input_fd, STDIN_FILENO) == -1)
 			perror("Dup2: Error set_input_io: input_fd to STDIN");
 	}
-	if (input_fd != STDIN_FILENO)
-		close(input_fd);
+	// if (input_fd != STDIN_FILENO)
+	// {
+	// 	close(input_fd);
+	// 	close(fds[0]);
+	// }
 }
 
 void set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
@@ -370,7 +374,7 @@ void set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 		if (dup2(fds[1], STDOUT_FILENO) == -1)
 		{
 			perror("Dup2: Error set_output_io: TOKEN_PIPE");
-			close(fds[1]);
+			// close(fds[1]);
 		}
 	}
 	else
@@ -380,10 +384,17 @@ void set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
 	}
 }
 
-void redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fd[2])
+void redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fds[2])
 {
-	set_input_io(input_fd, io);
-	set_output_io(ms, fd, io);
+	set_input_io(input_fd, fds, io);
+	set_output_io(ms, fds, io);
+	if (ms->cmd->next != NULL)
+	{
+		close(fds[1]);
+		close(fds[0]);
+	}
+	if (input_fd != STDIN_FILENO)
+		close(input_fd);
 }
 
 void run_builtin_in_parent(t_ms *ms, int input_fd)
