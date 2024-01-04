@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:17:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,11 +282,9 @@ int check_redirection(t_redir *redir, t_cmd_io *io)
 	return (0);
 }
 
-void set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io, int fd[2])
+void set_io_redirections(t_cmd *cmd, t_cmd_io *io)
 {
 	t_redir *cur;
-	(void)fd;
-	(void)ms;
 
 	if (cmd == NULL)
 		return;
@@ -354,6 +352,8 @@ void set_input_io(int input_fd, t_cmd_io *cmd_io)
 		if (dup2(input_fd, STDIN_FILENO) == -1)
 			perror("Dup2: Error set_input_io: input_fd to STDIN");
 	}
+	if (input_fd != STDIN_FILENO)
+		close(input_fd);
 }
 
 void set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io)
@@ -391,7 +391,7 @@ void run_builtin_in_parent(t_ms *ms, int input_fd)
 	t_cmd_io io;
 
 	init_cmd_io(&io);
-	set_io_redirections(ms, ms->cmd, &io, NULL);
+	set_io_redirections(ms->cmd, &io);
 	if (io.is_valid)
 	{
 		redirect_fds(ms, &io, input_fd, NULL);
@@ -407,7 +407,7 @@ void child(t_ms *ms, int input_fd, int fds[2])
 	t_cmd_io io;
 
 	init_cmd_io(&io);
-	set_io_redirections(ms, ms->cmd, &io, fds);
+	set_io_redirections(ms->cmd, &io);
 	redirect_fds(ms, &io, input_fd, fds);
 	execute_io(ms, &io);
 }

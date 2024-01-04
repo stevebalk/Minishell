@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/03 13:02:37 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/04 13:48:59 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ SRC_FILES	=	main \
 				executer/create_cmd_io \
 				executer/redir_to_io \
 				signal_handling/tty \
+				signal_handling/signal \
 
 
 H_FILES		=	include\builtins.h \
