@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 16:40:28 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/04 12:08:04 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void execute_io(t_ms *ms, t_cmd_io *io)
 	if (is_builtin_command(io->command_arr[0]))
 		exit(builtin_master(ms, io->command_arr));
 	path_program = check_program_with_path(ms, io->command_arr[0]);
+	printf(" path_program >%s< \n", path_program);
 	if (path_program != NULL)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
