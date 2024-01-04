@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:22:10 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:36:52 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,49 +72,52 @@ cd -
 bash: cd: OLDPWD not set
 */
 
-
+static void builtin_cd_if_a(t_ms *ms, int *exit_code)
+{
+	char	*tmp_str;
+	tmp_str = get_val_of_var(&ms->env_llst, "HOME");
+	if (tmp_str)
+		*exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+	else
+	{
+		perror("cd: HOME not set\n");
+		*exit_code = 1;
+	}
+	free_n_null((void **)&tmp_str);
+}
 
 int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
-	int exit_code;
-	char *tmp_str;
-	(void)tmp_str;
+	int		exit_code;
+	char	*tmp_str;
+	//(void)tmp_str;
 	(void)env_llst;
 	(void)env_llst_sorted;
 	tmp_str = NULL;
-	
-	exit_code = 0;
-	//c_yellow(); printf("builtin_cd()  >%s<\n", in); c_reset();
-	
+	exit_code = 0;	
 	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
 	{
-		// switching to env home dir  
-		tmp_str = get_val_of_var(&ms->env_llst, "HOME");
-		//c_purple(); printf("switching to env HOME  dir()   >%s< \n", tmp_str); c_reset();
-		if (tmp_str)
-			exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
-		else
-		{
-			perror("cd: HOME not set\n");
-			exit_code = 1;
-		}
-		// free(tmp_str);
-		// tmp_str = NULL;
-		free_n_null((void **)&tmp_str);
+		builtin_cd_if_a(ms, &exit_code);
+		// tmp_str = get_val_of_var(&ms->env_llst, "HOME");
+		// if (tmp_str)
+		// 	exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
+		// else
+		// {
+		// 	perror("cd: HOME not set\n");
+		// 	exit_code = 1;
+		// }
+		// free_n_null((void **)&tmp_str);
 	}
 	else if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
 	{
-		// switching to last dir
-		// if !OLDWPD  --> "cd: OLDPWD not set"
 		tmp_str = get_val_of_var(&ms->env_llst, "OLDPWD");
-		//c_purple(); printf("switching to last dir   >%s< \n", tmp_str); c_reset();
 		if (!tmp_str)
 		{
 			c_red();
 			printf("minishell: cd: OLDPWD not set\n");
 			c_reset();
 			exit_code = 1;
-			printf("exit code OLD... : %i\n", exit_code);
+			//printf("exit code OLD... : %i\n", exit_code);
 		}
 		else
 		{
@@ -124,23 +127,11 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 		}
 	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
-	{
-		// switching to home dir from 
-		//c_purple(); printf("switching to home dir()   >%s< \n", ms->home_dir); c_reset();
 		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
-	}
 	else 
-	{
-		//printf("go to dir --> \n");
 		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, in);
-	}
 
-	// if new change directory is valid --> copy pwd  to old pwd
-	//if (tmp_str)
-	//	free(tmp_str);
 	free_n_null((void **)&tmp_str);
-	//c_red(); printf("~builtin_cd()\n"); c_reset();
-	//printf("exit code builtin CD... : %i\n", exit_code);
 	return (exit_code);
 }
 
