@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:42:21 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:44:05 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,9 @@ static void	builtin_cd_if_b(t_ms *ms, int *exit_code)
 int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
 	int		exit_code;
-	char	*tmp_str;
-
+	
 	(void)env_llst;
 	(void)env_llst_sorted;
-	tmp_str = NULL;
 	exit_code = 0;	
 	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
 		builtin_cd_if_a(ms, &exit_code);
@@ -128,8 +126,6 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	else
 		exit_code = builtin_cd_change_dir(&ms->env_llst,
 				&ms->env_llst_sorted, in);
-
-	free_n_null((void **)&tmp_str);
 	return (exit_code);
 }
 
@@ -138,26 +134,15 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 	int		exit_code;
 	char	*last_pwd;
 	char	*tmp_value;
-	
+
 	exit_code = 0;
-	//const char *path = "./libs/libft"; 
-
-	//c_yellow(); printf("builtin_cd_change_dir()  >%s<\n", path); 	c_reset();
-	//fflush(stdout);
-	
 	last_pwd = get_val_of_var(env_llst, "PWD");
-
-	//c_purple(); printf("last pwd from env >%s<\n", last_pwd); c_reset();
-    // Change the current working directory
-	// char *tmp_path;
-	// tmp_path = join_three_string(last_pwd, path, "");
 	if (!path)
 		return (exit_code = 1, exit_code);
-		
+
 	exit_code = chdir(path);
     if (exit_code != 0) 
 	{
-		//c_blue(); printf("MIST\n"); c_reset();
 		c_red();
 		fflush(stdout);
 		ft_putstr_fd("minishell", 2);
@@ -167,21 +152,16 @@ int	builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *pat
 		perror("");
 		c_reset();
 		free_n_null((void **)&last_pwd);
-		//printf("exit code: %i \n", exit_code);
         return (exit_code = 1, exit_code);
     }
 	else
-	{	
+	{
 		tmp_value = join_three_string("OLDPWD", "=", last_pwd);
-		//c_blue(); printf("set OLD PWD   new DIR >%s<\n", tmp_value); c_reset();
-
 		export_single_arg(env_llst, env_llst_sorted, tmp_value);
 		builtin_pwd(env_llst, env_llst_sorted, 0);
 		free(tmp_value);
 	}
-	//free_n_null((void **)&tmp_path);
 	free_n_null((void **)&last_pwd);
-	//c_red(); printf("~builtin_cd_change_dir()\n"); c_reset();
 	return (exit_code);
 }
 
