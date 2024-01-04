@@ -6,12 +6,24 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:17:12 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 16:34:14 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 16:41:16 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 
+static void get_val_of_var_v_alloc_if(t_var_names	*tmp_var, char **tmp_value)
+{
+	if (tmp_var->value_without_quotes)
+	{
+		*tmp_value = (char *)malloc(sizeof(char)
+				* (ft_strlen(tmp_var->value_without_quotes) + 1));
+		if (!*tmp_value)
+			return ;
+		ft_strlcpy(*tmp_value, tmp_var->value_without_quotes,
+			ft_strlen(tmp_var->value_without_quotes) + 1);
+	}
+}
 // this function is for get_val_of_var();
 // don´t call it alone!; its for finding the value of an var
 void	get_val_of_var_v_alloc(char *v_name, void *cont, char **tmp_value)
@@ -31,15 +43,17 @@ void	get_val_of_var_v_alloc(char *v_name, void *cont, char **tmp_value)
 		&& ((l_cont == l_v_name) || is_s_in_pos_of_str(tmp_str, l_v_name, '=')))
 	{
 		get_var_names(&tmp_var, tmp_str);
-		if (tmp_var.value_without_quotes)
-		{
-			*tmp_value = (char *)malloc(sizeof(char)
-					* (ft_strlen(tmp_var.value_without_quotes) + 1));
-			if (!*tmp_value)
-				return ;
-			ft_strlcpy(*tmp_value, tmp_var.value_without_quotes,
-				ft_strlen(tmp_var.value_without_quotes) + 1);
-		}
+		get_val_of_var_v_alloc_if(&tmp_var, tmp_value);
+		
+		// if (tmp_var.value_without_quotes)
+		// {
+		// 	*tmp_value = (char *)malloc(sizeof(char)
+		// 			* (ft_strlen(tmp_var.value_without_quotes) + 1));
+		// 	if (!*tmp_value)
+		// 		return ;
+		// 	ft_strlcpy(*tmp_value, tmp_var.value_without_quotes,
+		// 		ft_strlen(tmp_var.value_without_quotes) + 1);
+		// }
 		dealloc_var_names(&tmp_var);
 	}
 	free(tmp_str);
