@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:42:10 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 14:47:41 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,48 @@ char	**copy_llst_to_char_arr(t_list **llst, t_ms *ms)
 		tmp_llst = tmp_llst->next;
 	}
 	return (arr);
+}
+
+// adds +1 to the SHLVL env/export variable
+void	add_shell_level(t_list **env_llst, t_list **env_llst_sorted)
+{
+	char		*tmp_var_with_value;
+	char		*tmp_value;
+	char		*new_value;
+	t_var_names	var;
+
+	tmp_value = get_val_of_var(env_llst, "SHLVL");
+	if (tmp_value)
+	{
+		var.self_value = ft_atoi(tmp_value) + 1;
+		new_value = ft_itoa(var.self_value);
+		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
+	}
+	else
+	{
+		new_value = ft_itoa(0);
+		tmp_var_with_value = join_three_string("SHLVL", "=", new_value);
+	}
+	get_var_names(&var, tmp_var_with_value);
+	update_or_create_llst_var(env_llst, env_llst_sorted, &var);
+	free_n_null((void **)&new_value);
+	free_n_null((void **)&tmp_var_with_value);
+	free_n_null((void **)&tmp_value);
+	dealloc_var_names(&var);
+}
+
+// update the "SHELL" variable with PWD
+void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted)
+{
+	char	*shell;
+	char	*buffer;
+	size_t	size;
+
+	size = 1024;
+	buffer = (char *)ft_calloc(size, sizeof(char));
+	getcwd(buffer, size);
+	shell = join_three_string("SHELL=", buffer, "/minishell");
+	export_single_arg(env_llst, env_llst_sorted, shell);
+	free(shell);
+	free(buffer);
 }
