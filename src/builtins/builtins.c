@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:04:04 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:26:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	builtin_compare(char *cmd_in, char *cmd_manual)
 
 	strlen_cmd_in = ft_strlen(cmd_in);
 	strlen_cmd_manual = ft_strlen(cmd_manual);
-	if (ft_strncmp(cmd_in, cmd_manual, strlen_cmd_manual) == 0 &&
-		strlen_cmd_in == strlen_cmd_manual)
+	if (ft_strncmp(cmd_in, cmd_manual, strlen_cmd_manual) == 0
+		&& strlen_cmd_in == strlen_cmd_manual)
 		return (1);
 	return (0);
 }

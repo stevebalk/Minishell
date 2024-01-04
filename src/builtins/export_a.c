@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:05:20 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:28:10 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 
 	(void) env_llst;
 	(void) env_llst_sorted;
-
 	ini_var_names_to_null(&var);
 	if (!check_var_name(str))
 	{

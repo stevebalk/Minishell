@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:01:23 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:24:30 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:27:52 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	is_unset_var_valid(char *var)
 		if (i > 0 && !check_other_c(var[i]))
 			return (0);
 	}
-
 	return (1);
 }
 
@@ -37,10 +36,8 @@ int	builtin_unset(t_ms *ms, char **arr)
 
 	ret_code = 0;
 	i = 0;
-
 	if (!arr)
 		return (0);
-
 	while (i++, arr[i])
 	{
 		if (is_unset_var_valid(arr[i]))
@@ -53,7 +50,7 @@ int	builtin_unset(t_ms *ms, char **arr)
 		else
 		{
 			c_red();
-			printf("minishell: unset: `%s': not a valid identifier\n", arr[i]); 
+			printf("minishell: unset: `%s': not a valid identifier\n", arr[i]);
 			c_reset();
 			ret_code = 1;
 		}

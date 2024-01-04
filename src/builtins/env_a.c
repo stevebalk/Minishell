@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:55:06 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 15:28:42 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	show_env_llist(t_list **lst)
 		c_reset();
 		tmp_lst = tmp_lst->next;
 	}
-
 	return (exit_code);
 }
 
