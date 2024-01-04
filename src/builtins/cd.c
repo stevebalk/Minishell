@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:40:52 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 13:42:21 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 {
 	int		exit_code;
 	char	*tmp_str;
-	//(void)tmp_str;
+
 	(void)env_llst;
 	(void)env_llst_sorted;
 	tmp_str = NULL;
@@ -121,29 +121,13 @@ int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
 	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
 		builtin_cd_if_a(ms, &exit_code);
 	else if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)
-	{
 		builtin_cd_if_b(ms, &exit_code);
-
-		// tmp_str = get_val_of_var(&ms->env_llst, "OLDPWD");
-		// if (!tmp_str)
-		// {
-		// 	c_red();
-		// 	printf("minishell: cd: OLDPWD not set\n");
-		// 	c_reset();
-		// 	exit_code = 1;
-		// 	//printf("exit code OLD... : %i\n", exit_code);
-		// }
-		// else
-		// {
-		// 	exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, tmp_str);
-		// 	builtin_pwd(&ms->env_llst, &ms->env_llst_sorted, 1);
-		// 	free_n_null((void **)&tmp_str);
-		// }
-	}
 	else if (ft_strncmp(in, "~", 1) == 0 && ft_strlen(in) == 1)
-		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, ms->home_dir);
-	else 
-		exit_code = builtin_cd_change_dir(&ms->env_llst, &ms->env_llst_sorted, in);
+		exit_code = builtin_cd_change_dir(&ms->env_llst,
+				&ms->env_llst_sorted, ms->home_dir);
+	else
+		exit_code = builtin_cd_change_dir(&ms->env_llst,
+				&ms->env_llst_sorted, in);
 
 	free_n_null((void **)&tmp_str);
 	return (exit_code);
