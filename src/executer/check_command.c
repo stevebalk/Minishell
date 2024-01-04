@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_command.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/03 17:44:01 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/04 12:09:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ static char	*check_direct_path(t_ms *ms, char *path)
 			return (path);
 		else
 		{
-			ft_putstr_fd("minishell: ", 3);
-			ft_putstr_fd(path, 3);
-			ft_putstr_fd(": ", 3);
-			ft_putendl_fd(strerror(errno), 3);
+			ft_putstr_fd("minishell: ", STDERR_FILENO);
+			ft_putstr_fd(path, STDERR_FILENO);
+			ft_putstr_fd(": ", STDERR_FILENO);
+			ft_putendl_fd(strerror(errno), STDERR_FILENO);
 			exit_with_code(ms, 126);
 		}
 	}
 	else
 	{
-		ft_putstr_fd("minishell: ", 3);
-		ft_putstr_fd(path, 3);
-		ft_putstr_fd(": ", 3);
-		ft_putendl_fd(strerror(errno), 3);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(path, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putendl_fd(strerror(errno), STDERR_FILENO);
 		exit_with_code(ms, 127);
 	}
 	return (NULL);
