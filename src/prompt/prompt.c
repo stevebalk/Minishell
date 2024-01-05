@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:16:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 13:13:06 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 16:42:34 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	prompt_handler(t_ms *ms)
 		else
 		{
 			c_red();
-			write(STDERR_FILENO, "exit\n", 5);
+			// write(STDERR_FILENO, "exit\n", 5);
 			free_n_null((void **)&prompt_in);
 			break ;
 		}

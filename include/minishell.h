@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 15:10:08 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 16:35:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # include "parser.h"
 # include "executer.h"
 # include "builtins.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 # define FILE_HISTORY "history.txt"
 # define MAX_HISTORY 10
@@ -207,6 +209,7 @@ void		print_execution_error(char *path_name, char *msg);
 void		print_command_not_found_error(char *cmd);
 int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
+int			is_regular_file(const char *path);
 char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
 
 /* Error handling */

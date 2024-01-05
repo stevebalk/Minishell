@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 14:17:03 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 17:06:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@
 // 		ft_putendl_fd("", 1);
 // 	}
 // }
+
+int is_regular_file(const char *path)
+{
+	struct stat path_stat;
+	stat(path, &path_stat);
+	return S_ISREG(path_stat.st_mode);
+}
 
 void	execute_io(t_ms *ms, t_cmd_io *io)
 {
@@ -140,10 +147,9 @@ int check_redirection(t_redir *redir, t_cmd_io *io)
 	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
 		return (redir_outfile(redir, io));
 	return (0);
-	return (0);
 }
 
-void set_io_redirections(t_cmd *cmd, t_cmd_io *io)
+void set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io)
 {
 	t_redir *cur;
 
@@ -157,7 +163,10 @@ void set_io_redirections(t_cmd *cmd, t_cmd_io *io)
 	{
 		io->is_valid = check_redirection(cur, io);
 		if (!io->is_valid)
-			break;
+		{
+			exit_with_code(ms, 1);
+			// break;
+		}
 		cur = cur->next;
 	}
 }
@@ -255,7 +264,7 @@ void run_builtin_in_parent(t_ms *ms, int input_fd)
 	t_cmd_io io;
 
 	init_cmd_io(&io);
-	set_io_redirections(ms->cmd, &io);
+	set_io_redirections(ms, ms->cmd, &io);
 	if (io.is_valid)
 	{
 		redirect_fds(ms, &io, input_fd, NULL);
@@ -271,7 +280,7 @@ void child(t_ms *ms, int input_fd, int fds[2])
 	t_cmd_io io;
 
 	init_cmd_io(&io);
-	set_io_redirections(ms->cmd, &io);
+	set_io_redirections(ms, ms->cmd, &io);
 	redirect_fds(ms, &io, input_fd, fds);
 	execute_io(ms, &io);
 }

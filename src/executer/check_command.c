@@ -6,30 +6,29 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 14:09:37 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 16:38:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-static void	is_directory(t_ms *ms, char *path)
+static void	check_if_its_a_file(t_ms *ms, char *path)
 {
-	int strlen = ft_strlen(path);
-		if (path[strlen - 1] == '/')
-		{
-			ft_putstr_fd("minishell: ", STDERR_FILENO);
-			ft_putstr_fd(path, STDERR_FILENO);
-			ft_putstr_fd(": ", STDERR_FILENO);
-			ft_putendl_fd("is a directory", STDERR_FILENO);
-			exit_with_code(ms, 126);
-		}
+	if (!is_regular_file(path))
+	{
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(path, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putendl_fd("is a directory", STDERR_FILENO);
+		exit_with_code(ms, 126);
+	}
 }
 
 static char	*check_direct_path(t_ms *ms, char *path)
 {
 	if (!access(path, F_OK))
 	{
-		is_directory(ms, path);
+		check_if_its_a_file(ms, path);
 		if (!access(path, X_OK))
 			return (path);
 		else
