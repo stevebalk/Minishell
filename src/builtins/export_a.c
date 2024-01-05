@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:28:10 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:56:45 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 	ini_var_names_to_null(&var);
 	if (!check_var_name(str))
 	{
-		printf("minishell: export: ‘%s': not a valid identifier\n", str);
+		c_red();
+		fflush(stdout);
+		ft_putstr_fd("minishell: export: ‘", STDERR_FILENO);
+		ft_putstr_fd(str, STDERR_FILENO);
+		ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
 		return (1);
 	}
 	get_var_names(&var, str);
