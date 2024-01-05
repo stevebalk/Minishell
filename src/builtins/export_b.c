@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:05:37 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 15:01:43 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	check_var_name(char *str)
 	int	i;
 
 	i = -1;
+	if (ft_strlen(str) == 1 && str[0] == '=')
+		return (0);
 	while (i++, str[i] && str[i] != '=')
 	{
 		if (i == 0 && !check_first_c(str[i]))
