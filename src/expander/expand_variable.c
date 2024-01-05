@@ -6,22 +6,11 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 11:20:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 10:30:59 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/// DELETE LATER ///
-/* TEST FUNCTION */
-char	*get_env_variable_value(char *var_name)
-{
-	if (var_name)
-	{
-		return (ft_strdup("_*VAR*_"));
-	}
-	return (NULL);
-}
 
 // static void expand_to_prev_exit_code(char **str, t_expand *chunk, t_ms *ms)
 static void	expand_to_prev_exit_code(char **str, t_ms *ms)
@@ -87,11 +76,11 @@ void	expand_numerical_variable(char **str, t_ms *ms, char *prev_quote)
 expands it */
 void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 {
-	if (is_numerical_variable(*str)) // "$2"
+	if (is_numerical_variable(*str))
 		expand_numerical_variable(str, ms, prev_quote);
-	else if (is_exit_code_variable(*str)) // "$?"
+	else if (is_exit_code_variable(*str))
 		expand_to_prev_exit_code(str, ms);
-	else if (is_metachar_variable(*str)) // "$///" or "$."
+	else if (is_metachar_variable(*str))
 	{
 		if (!is_quote((*str) + 1))
 		{
@@ -100,7 +89,7 @@ void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 		}
 		(*str)++;
 	}
-	else	// $adas or $dadas...
+	else
 		copy_env_variable(str, ms, prev_quote);
 	return ;
 }

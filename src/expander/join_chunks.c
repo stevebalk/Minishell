@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:10:48 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 10:51:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 10:31:21 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,9 @@ char	*join_chunks_to_final_word(t_ms *ms)
 	is_legit_str = 0;
 	final_str_len = 0;
 	final_str_len = get_final_str_len(ms, &is_legit_str);
-	// if (legit_str && final_str_len == 0)
-	// 	return (ft_strdup(""));
 	if (is_legit_str == 0 && final_str_len == 0)
 	{
 		free_expander_list(&(ms->exp));
-		// free(ms->exp);
 		return (NULL);
 	}
 	final_string = ft_calloc(final_str_len + 1, sizeof(char));
