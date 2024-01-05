@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 10:30:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 12:44:17 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	expand_to_prev_exit_code(char **str, t_ms *ms)
 	free(exit_code);
 }
 
-// void	copy_until_blocker(char **str, t_expand *chunk, t_ms *ms)
 void	copy_until_blocker(char **str, t_ms *ms)
 {
 	char		*str_start;
@@ -76,6 +75,12 @@ void	expand_numerical_variable(char **str, t_ms *ms, char *prev_quote)
 expands it */
 void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 {
+	if (*(*str + 1) == ' ' || *(*str + 1) == '\0' || *(*str + 1) == '$'
+	|| is_quote(*str + 1))
+	{
+		copy_until_blocker(str, ms);
+		return ;
+	}
 	if (is_numerical_variable(*str))
 		expand_numerical_variable(str, ms, prev_quote);
 	else if (is_exit_code_variable(*str))
