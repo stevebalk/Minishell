@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:38:01 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 12:44:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 13:03:38 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ expands it */
 void	expand_env_varible(char **str, t_ms *ms, char *prev_quote)
 {
 	if (*(*str + 1) == ' ' || *(*str + 1) == '\0' || *(*str + 1) == '$'
-	|| is_quote(*str + 1))
+		|| is_quote(*str + 1))
 	{
 		copy_until_blocker(str, ms);
 		return ;
