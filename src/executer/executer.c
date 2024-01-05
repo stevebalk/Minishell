@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 13:07:17 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:17:03 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 	if (io->command_arr == NULL)
 		exit_with_code(ms, 0);
 	if (is_builtin_command(io->command_arr[0]))
-		exit(builtin_master(ms, io->command_arr));
+		exit_with_code(ms, builtin_master(ms, io->command_arr));
 	new_env = copy_llst_to_char_arr(&ms->env_llst, ms);
 	copy_path_to_ms_struct(ms);
 	path_program = check_program_with_path(ms, io->command_arr[0]);
@@ -64,7 +64,7 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 		{
-			perror("execve error");
+			print_file_error(path_program);
 			exit_with_code(ms, errno);
 		}
 	}

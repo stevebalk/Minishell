@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 14:44:27 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:46:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	main(int argc, char **argv, char **env)
 
 	init_ms(&ms);
 	tty_setup();
-	if (!LOGO_ABOVE_PROMPT)
-		intro3();
+	// if (!LOGO_ABOVE_PROMPT)
+	// 	intro3();
 	ini_env_history_etc(&ms, env);
 	prompt_handler(&ms);
 	//free_ms(&ms);

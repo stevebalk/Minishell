@@ -22,4 +22,3 @@ valgrind-out.txt
 data.csv
 test.sh
 minishell_tester/
-/minishell_tester/

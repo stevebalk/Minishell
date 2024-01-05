@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 11:23:56 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:09:37 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ static void	is_directory(t_ms *ms, char *path)
 
 static char	*check_direct_path(t_ms *ms, char *path)
 {
-	printf("check_direct_path() path >%s<\n", path);
 	if (!access(path, F_OK))
 	{
 		is_directory(ms, path);
-		printf("check_direct_path() path >%s< exists\n", path);
 		if (!access(path, X_OK))
 			return (path);
 		else
