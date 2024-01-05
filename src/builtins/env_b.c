@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_b.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:11:41 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 14:47:41 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 11:41:04 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	copy_path_to_ms_struct(t_ms *ms)
 	ft_free_array((void **)ms->path_arr);
 	if (path_value)
 		ms->path_arr = ft_split(path_value, ':');
+	else
+		ms->path_arr = NULL;
 	free_n_null((void **)&path_value);
 }
 

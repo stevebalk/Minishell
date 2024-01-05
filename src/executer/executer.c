@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 17:26:39 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 10:25:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 11:13:06 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 			exit_with_code(ms, errno);
 		}
 	}
-	print_execution_error(io->command_arr[0], "command not found");
+	print_command_not_found_error(io->command_arr[0]);
 	ft_free_array((void **)new_env);
 	if (path_program)
 		free(path_program);
