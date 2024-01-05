@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 14:49:33 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 15:12:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int	len_array(char **arr)
 	return (count);
 }
 
-void	builtin_exit(t_ms *ms, char **arr)
+int	builtin_exit(t_ms *ms, char **arr)
 {
 	if (len_array(arr) == 1)
 		exit_handler(ms);
@@ -42,10 +42,15 @@ void	builtin_exit(t_ms *ms, char **arr)
 			ft_putstr_fd(arr[1], STDERR_FILENO);
 			ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 			c_reset();
+			ms->last_exit_code = 255;
 		}
 	}
 	else
-		write(STDERR_FILENO, "minishell: exit: too many arguments\n", 36);
+	{
+		ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
+		ms->last_exit_code = 1;
+	}
+	return (ms->last_exit_code);
 }
 
 void	exit_handler(t_ms *ms)

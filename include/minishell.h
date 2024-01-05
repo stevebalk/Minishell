@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 14:21:20 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 15:10:08 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str)
 int		builtin_master(t_ms *ms, char **cmd_arr);
 int		builtin_unset(t_ms *ms, char **arr);
 void	exit_handler(t_ms *ms);
-void	builtin_exit(t_ms *ms, char **arr);
+int		builtin_exit(t_ms *ms, char **arr);
 
 void	history_master(t_ms *ms);
 void	set_history_path(t_ms *ms);

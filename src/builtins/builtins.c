@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 13:57:34 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 15:10:16 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 	if (builtin_compare(cmd_arr[0], "unset"))
 		exit_code = builtin_unset(ms, cmd_arr);
 	if (builtin_compare(cmd_arr[0], "exit"))
-		builtin_exit(ms, cmd_arr);
+		exit_code = builtin_exit(ms, cmd_arr);
 		//exit_handler(ms);
 	return (exit_code);
 }
