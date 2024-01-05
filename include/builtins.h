@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 16:34:27 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 13:57:57 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,10 +175,10 @@ int		builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 //void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
 int		builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
 	
-void test_change_dir(void);
-void test_getcwd(void);
-void test_opendir(void);
-void test_is_dir_valid(char *dir);
+// void test_change_dir(void);
+// void test_getcwd(void);
+// void test_opendir(void);
+// void test_is_dir_valid(char *dir);
 
 
 #endif

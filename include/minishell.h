@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 11:07:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 13:58:12 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,7 @@ void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str)
 int		builtin_master(t_ms *ms, char **cmd_arr);
 int		builtin_unset(t_ms *ms, char **arr);
 void	exit_handler(t_ms *ms);
+int		builtin_exit(t_ms *ms, char **arr);
 
 void	history_master(t_ms *ms);
 void	set_history_path(t_ms *ms);
