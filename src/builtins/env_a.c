@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_a.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:22:48 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:28:42 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 19:56:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ int	show_env_llist(t_list **lst)
 	tmp_lst = *lst;
 	while (tmp_lst)
 	{
-		c_green();
 		if (ft_strlen((char *)tmp_lst->content) > 0)
 			printf("%s\n", (char *)tmp_lst->content);
-		c_reset();
 		tmp_lst = tmp_lst->next;
 	}
 	return (exit_code);
@@ -74,9 +72,7 @@ void	show_export_llist_line(char *line)
 	int	ichar;
 
 	ichar = -1;
-	c_reset();
 	printf("declare -x ");
-	c_green();
 	while (ichar++, line[ichar])
 	{
 		printf("%c", line[ichar]);
@@ -88,7 +84,6 @@ void	show_export_llist_line(char *line)
 	}
 	if (line[ichar - 1] != '\"')
 		printf("\"");
-	c_reset();
 	printf("\n");
 }
 
