@@ -6,7 +6,7 @@
 /*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 14:20:43 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:32:08 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	exit_handler(t_ms *ms)
 	c_cyan();
 	c_reset();
 	free_ms(ms);
-	//printf("last exit code: %i\n", exit_code);
+	printf("last exit code: %i\n", exit_code);
 	exit(exit_code);
 }

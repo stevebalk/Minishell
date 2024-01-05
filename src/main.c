@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
+/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 13:09:49 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 14:44:27 by jonas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	main(int argc, char **argv, char **env)
 		intro3();
 	ini_env_history_etc(&ms, env);
 	prompt_handler(&ms);
-	free_ms(&ms);
+	//free_ms(&ms);
+	exit_handler(&ms);
 	return (EXIT_SUCCESS);
 }
 
