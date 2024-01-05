@@ -6,12 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:15:34 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 16:38:42 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 21:23:42 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
+// checks if the path is a regular file
 static void	check_if_its_a_file(t_ms *ms, char *path)
 {
 	if (!is_regular_file(path))
@@ -24,6 +25,7 @@ static void	check_if_its_a_file(t_ms *ms, char *path)
 	}
 }
 
+// checks if the path is valid and executable
 static char	*check_direct_path(t_ms *ms, char *path)
 {
 	if (!access(path, F_OK))
@@ -51,6 +53,7 @@ static char	*check_direct_path(t_ms *ms, char *path)
 	return (NULL);
 }
 
+
 static char	*check_env_paths(t_ms *ms, char *prog_name)
 {
 	char	*tmp_prog;
@@ -73,12 +76,12 @@ static char	*check_env_paths(t_ms *ms, char *prog_name)
 	return (NULL);
 }
 
-// check every Path in PATH Array with program name; returns a valid path or NULL
-char *check_program_with_path(t_ms *ms, char *input)
+// check every Path in PATH Array with program name returns a valid path or NULL
+char	*check_program_with_path(t_ms *ms, char *input)
 {
 	if (ft_strlen(input) == 0)
 		return (NULL);
-	else if (ft_strchr(input, '/')) // if input contains a '/' it is a direct path
+	else if (ft_strchr(input, '/'))
 	{
 		if (check_direct_path(ms, input))
 			return (input);
