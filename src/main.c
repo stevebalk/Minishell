@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 14:37:15 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 13:09:49 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,17 @@ void	ini_env_history_etc(t_ms *ms, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	t_ms ms;
-	c_yellow();
-	printf("*** main () ***\n");
-	c_reset();
-	init_ms(&ms);
-	tty_setup();
-	// show_env_arr(env);
 	(void)argc;
 	(void)argv;
 	(void)env;
 
+	init_ms(&ms);
+	tty_setup();
 	if (!LOGO_ABOVE_PROMPT)
 		intro3();
 	ini_env_history_etc(&ms, env);
-
-	// printf("%s   FILE: %s   Line: %d\n", __DATE__, __FILE__, __LINE__ );
 	prompt_handler(&ms);
-
 	free_ms(&ms);
-
-	c_red();
-	printf("*** ~main () ***\n"); 
-	c_reset();
 	return (EXIT_SUCCESS);
 }
 
