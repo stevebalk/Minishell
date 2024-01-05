@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:53 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 15:10:16 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 17:33:32 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	builtin_master(t_ms *ms, char **cmd_arr)
 
 	exit_code = 0;
 	if (builtin_compare(cmd_arr[0], "cd"))
-		exit_code = builtin_cd(ms, NULL, NULL, cmd_arr[1]);
+		exit_code = builtin_cd(ms, cmd_arr);
 	if (builtin_compare(cmd_arr[0], "echo"))
 		exit_code = builtin_echo(cmd_arr);
 	if (builtin_compare(cmd_arr[0], "env"))

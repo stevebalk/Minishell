@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 15:28:57 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 17:35:00 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,18 @@ static void	builtin_cd_if_lastdir(t_ms *ms, int *exit_code)
 }
 
 // executes cd - cd ~  and other cd 
-int	builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in)
+int	builtin_cd(t_ms *ms, char **argv)
 {
 	int		exit_code;
+	char	*in;
 
-	(void)env_llst;
-	(void)env_llst_sorted;
 	exit_code = 0;
+	if (get_size_of_array(argv) > 2)
+	{
+		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
+		return (1);
+	}
+	in = argv[1];
 	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
 		builtin_cd_if_home(ms, &exit_code);
 	else if (ft_strncmp(in, "-", 1) == 0 && ft_strlen(in) == 1)

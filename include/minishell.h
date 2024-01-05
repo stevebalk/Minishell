@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 16:35:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/05 17:33:15 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,12 +235,13 @@ void		free_cmd_io_list(t_cmd_io **list);
 
 void		exit_with_code(t_ms *ms, int exit_code);
 
-
+/* Utils */
+size_t		get_size_of_array(char **arr);
 
 // Jonas
 // Prompt
 void	prompt_handler(t_ms *ms);
-int		builtin_cd(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *in);
+int		builtin_cd(t_ms *ms, char **argv);
 void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
 void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str);
 

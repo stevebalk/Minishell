@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_c.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:48:52 by jonas             #+#    #+#             */
-/*   Updated: 2024/01/04 17:04:09 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 17:27:07 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,14 @@ char	*get_string_without_symbols(char *str_in, char symbol)
 	}
 	new_str[i2] = '\0';
 	return (new_str);
+}
+
+size_t	get_size_of_array(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
