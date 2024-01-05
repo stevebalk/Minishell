@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:33:11 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 15:02:43 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/05 20:24:35 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	export_single_arg(t_list **env_llst, t_list **env_llst_sorted, char *str)
 		fflush(stdout);
 		ft_putstr_fd("minishell: export: ‘", STDERR_FILENO);
 		ft_putstr_fd(str, STDERR_FILENO);
+		ft_putstr_fd("'", STDERR_FILENO);
 		ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
 		return (1);
 	}
