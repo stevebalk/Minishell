@@ -28,3 +28,5 @@ valgrind_check.sh
 valgrind_readline_leaks_ignore.txt
 Jonas_Anleitung.txt
 drawio/
+tests/
+
