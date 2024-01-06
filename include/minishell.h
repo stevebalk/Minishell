@@ -6,13 +6,12 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 14:39:57 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 15:09:43 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
 
 # include <stdio.h>
 # include <unistd.h>
@@ -185,8 +184,6 @@ t_token		*token_list_append(t_ms *ms);
 int			set_word_token(char *str, t_token *token, t_ms *ms);
 int			set_special_token(char *str, t_token *token, t_ms *ms);
 
-
-
 /********************************************************************/
 /*                          EXPANDER                                */
 /********************************************************************/
@@ -218,7 +215,6 @@ t_redir		*append_redir_node(t_ms *ms, t_cmd *cmd);
 t_redir		*create_heredoc_only_redir(t_redir *list);
 int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 
-
 /********************************************************************/
 /*                          EXECUTER                                */
 /********************************************************************/
@@ -230,12 +226,12 @@ void		print_command_not_found_error(char *cmd);
 int			is_builtin_command(char *str);
 int			is_regular_file(const char *path);
 int			check_redirection(t_redir *redir, t_cmd_io *io);
-char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
+char		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
 size_t		get_env_var_name_len(char *str);
 void		concatinate_line_input_to_str(char **dst, char *src);
 char		*expand_delimiter(char *str);
 void		expand_dollar_sign(char *dst, char *src,
-						size_t *src_pos, size_t *dst_pos);
+				size_t *src_pos, size_t *dst_pos);
 char		*expand_heredoc_string(char *str, t_ms *ms);
 void		append_env_var(char **dst_str, char **str, t_ms *ms);
 int			execute_heredocs(t_ms *ms);
@@ -256,8 +252,10 @@ size_t		get_number_of_commands(t_cmd *cmd);
 
 void		prompt_handler(t_ms *ms);
 int			builtin_cd(t_ms *ms, char **argv);
-void		test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
-void		test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str);
+void		test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst,
+				t_list **env_llst_sorted, char *str);
+void		test_parser_get_var(t_list **env_llst,
+				t_list **env_llst_sorted, char *str);
 int			builtin_master(t_ms *ms, char **cmd_arr);
 int			builtin_unset(t_ms *ms, char **arr);
 void		exit_handler(t_ms *ms);
@@ -282,7 +280,7 @@ void		exit_with_code(t_ms *ms, int exit_code);
 char		*check_program_with_path(t_ms *ms, char *prog_name);
 void		copy_path_to_ms_struct(t_ms *ms);
 void		copy_env_home_to_ms_struct(t_ms *ms);
-char 		**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
+char		**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
 void		append_string(t_ms *ms, char **dst_str, char *src_str, size_t len);
 
 /********************************************************************/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 13:57:57 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/06 15:11:48 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,6 @@ typedef struct s_var_names
 	int		self_value;
 }	t_var_names;
 
-
-int		main(int argc, char **argv, char **env);
-
-// Prompt
-//void	prompt_handler(t_ms *ms);
-
-// prompt/signal
-void	handle_sigint(int sig);
-
 // builtin
 // echo
 int		builtin_echo(char **str_arr);
@@ -74,7 +65,6 @@ void	set_shell_var_to_pwd(t_list **env_llst, t_list **env_llst_sorted);
 // export
 int		exp_arg_arr(t_list **env_llst, t_list **env_llst_sorted, char **arr);
 
-
 void	test_parser_export(t_list **env_llst, t_list **env_llst_sorted,
 			char *str);
 int		export_single_arg(t_list **env_llst,
@@ -82,9 +72,10 @@ int		export_single_arg(t_list **env_llst,
 void	update_or_create_llst_var(t_list **env_llst,
 			t_list **env_llst_sorted, t_var_names *var);
 
-			
-void	update_util_env(t_list **env_llst, t_var_names *var, char *env_var_with_value);
-void	update_util_export(t_list **env_llst_sorted, t_var_names *var, char *exp_var_with_value);
+void	update_util_env(t_list **env_llst, t_var_names *var,
+			char *env_var_with_value);
+void	update_util_export(t_list **env_llst_sorted, t_var_names *var,
+			char *exp_var_with_value);
 
 void	show_var_names(t_var_names *var);
 
@@ -172,13 +163,7 @@ void	test_echo(void);
 int		builtin_pwd(t_list **env_llst, t_list **env_llst_sorted, int print_pwd);
 
 // CD
-//void	builtin_cd(t_list **env_llst, t_list **env_llst_sorted,char *in);
-int		builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted, char *path);
-	
-// void test_change_dir(void);
-// void test_getcwd(void);
-// void test_opendir(void);
-// void test_is_dir_valid(char *dir);
-
+int		builtin_cd_change_dir(t_list **env_llst, t_list **env_llst_sorted,
+			char *path);
 
 #endif
