@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 12:08:19 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 13:27:51 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,8 @@ char		*expand_delimiter(char *str);
 void		expand_dollar_sign(char *dst, char *src,
 						size_t *src_pos, size_t *dst_pos);
 char		*expand_heredoc_string(char *str, t_ms *ms);
+void	append_env_var(char **dst_str, char **str, t_ms *ms);
+
 
 
 

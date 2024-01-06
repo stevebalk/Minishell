@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/06 12:05:08 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/06 13:32:13 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,9 +89,9 @@ SRC_FILES	=	main \
 				executer/list_functions \
 				executer/check_command \
 				executer/checks \
-				executer/heredoc \
-				executer/heredoc_expand \
-				executer/heredoc_utils \
+				executer/heredoc/heredoc \
+				executer/heredoc/heredoc_expand \
+				executer/heredoc/heredoc_utils \
 				executer/create_cmd_io \
 				executer/redir_to_io \
 				signal_handling/tty \
@@ -133,6 +133,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 			@mkdir -p $(OBJ_DIR)/error
 			@mkdir -p $(OBJ_DIR)/free
 			@mkdir -p $(OBJ_DIR)/executer
+			@mkdir -p $(OBJ_DIR)/executer/heredoc
 			@mkdir -p $(OBJ_DIR)/signal_handling
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
