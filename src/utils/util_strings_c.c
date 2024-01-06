@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:48:52 by jonas             #+#    #+#             */
-/*   Updated: 2024/01/06 12:06:01 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:14:56 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ size_t	get_size_of_array(char **arr)
 }
 
 /* Checks if string has a quote in it */
-int has_quotes(const char *str)
+int	has_quotes(const char *str)
 {
 	while (*str)
 	{

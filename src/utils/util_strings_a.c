@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/06 12:05:40 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:15:29 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,18 @@ char	*get_string_from_string(char *str_in)
 
 /* Appends a string to a dst string, allocates mem for new strlen and
 frees old dst string if not empty */
-void append_string(t_ms *ms, char **dst_str, char *src_str, size_t len)
+void	append_string(t_ms *ms, char **dst_str, char *src_str, size_t len)
 {
-	char *temp;
+	char	*temp;
 
 	if (dst_str == NULL || src_str == NULL)
-		return;
+		return ;
 	if (*dst_str == NULL)
 	{
 		*dst_str = malloc((len + 1) * sizeof(char));
 		check_if_malloc_failed(*dst_str, ms);
 		ft_strlcpy(*dst_str, src_str, len + 1);
-		return;
+		return ;
 	}
 	else
 	{

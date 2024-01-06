@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:43:55 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 20:38:04 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:15:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	exit_handler(t_ms *ms)
 {
 	c_red();
-	ft_putstr_fd("exit\n",STDERR_FILENO);
+	ft_putstr_fd("exit\n", STDERR_FILENO);
 	c_reset();
 	exit_with_code(ms, ms->last_exit_code);
 }
