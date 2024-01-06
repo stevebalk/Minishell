@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:56:23 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/06 15:11:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 17:45:14 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define BUILTINS_H
 # include <stdio.h>
 # include <stdlib.h>
-// # include <readline/readline.h>
-// # include <readline/history.h>
 # include "../libs/readline/include/readline/readline.h"
 # include "../libs/readline/include/readline/history.h"
 
@@ -23,14 +21,6 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <dirent.h>
-// # include "struct.h"
-
-// #define FILE_HISTORY "history.txt"
-// #define MAX_HISTORY 10
-// #define CLR_SCREEN 0
-
-//debug
-//#define PRINT_DEALLOC
 
 // contains, the copy of a  export var like >a="huhu"<; the var_name >a<,
 // the raw value >"huhu"< the value witout quotes >huhu<
