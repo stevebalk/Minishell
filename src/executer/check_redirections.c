@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redir_to_io.c                                      :+:      :+:    :+:   */
+/*   check_redirections.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 17:19:38 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 00:12:31 by sbalk            ###   ########.fr       */
+/*   Created: 2024/01/06 13:41:40 by sbalk             #+#    #+#             */
+/*   Updated: 2024/01/06 13:58:26 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	redir_infile_to_io(t_redir *redir, t_cmd_io *io)
+static int	redir_infile(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
-	if (io->intype && io->intype == TOKEN_HERE_DOC)
-	{
-		free(io->input);
-		io->input = NULL;
-	}
 	io->in_fd = open(redir->target, O_RDONLY, 0644);
 	if (io->in_fd == -1)
 	{
@@ -32,7 +27,7 @@ static int	redir_infile_to_io(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static int	redir_outfile_to_io(t_redir *redir, t_cmd_io *io)
+static int	redir_outfile(t_redir *redir, t_cmd_io *io)
 {
 	if (io->out_fd != -1)
 		close(io->out_fd);
@@ -50,25 +45,23 @@ static int	redir_outfile_to_io(t_redir *redir, t_cmd_io *io)
 	return (1);
 }
 
-static void	redir_heredoc_to_io(t_redir *redir, t_cmd_io *io, char *hd_str)
+static int	redir_heredoc(t_redir *redir, t_cmd_io *io)
 {
 	if (io->in_fd != -1)
 		close(io->in_fd);
-	io->input = hd_str;
+	io->input = redir->target;
 	io->intype = redir->type;
 	io->in_fd = -1;
+	return (1);
 }
 
-int	redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str)
+int	check_redirection(t_redir *redir, t_cmd_io *io)
 {
-	int	ret;
-
-	ret = 1;
-	if (redir->type == TOKEN_INFILE)
-		ret = redir_infile_to_io(redir, io);
-	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
-		ret = redir_outfile_to_io(redir, io);
 	if (redir->type == TOKEN_HERE_DOC)
-		redir_heredoc_to_io(redir, io, heredoc_str);
-	return (ret);
+		return (redir_heredoc(redir, io));
+	if (redir->type == TOKEN_INFILE)
+		return (redir_infile(redir, io));
+	if (redir->type == TOKEN_REDIRECT || redir->type == TOKEN_REDIRECT_APPEND)
+		return (redir_outfile(redir, io));
+	return (0);
 }

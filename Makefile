@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/06 13:32:13 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/06 13:56:43 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,14 +86,15 @@ SRC_FILES	=	main \
 				parser/redir_list_functions \
 				executer/executer \
 				executer/error \
-				executer/list_functions \
+				executer/check_redirections \
+				executer/execute \
+				executer/utils \
+				executer/redirections \
 				executer/check_command \
 				executer/checks \
 				executer/heredoc/heredoc \
 				executer/heredoc/heredoc_expand \
 				executer/heredoc/heredoc_utils \
-				executer/create_cmd_io \
-				executer/redir_to_io \
 				signal_handling/tty \
 				signal_handling/signal \
 

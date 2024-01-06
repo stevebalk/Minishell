@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 13:27:51 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:02:12 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,9 +227,9 @@ void		executer(t_ms *ms);
 void		print_file_error(char *msg);
 void		print_execution_error(char *path_name, char *msg);
 void		print_command_not_found_error(char *cmd);
-int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
 int			is_regular_file(const char *path);
+int			check_redirection(t_redir *redir, t_cmd_io *io);
 char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
 size_t		get_env_var_name_len(char *str);
 void		concatinate_line_input_to_str(char **dst, char *src);
@@ -237,10 +237,18 @@ char		*expand_delimiter(char *str);
 void		expand_dollar_sign(char *dst, char *src,
 						size_t *src_pos, size_t *dst_pos);
 char		*expand_heredoc_string(char *str, t_ms *ms);
-void	append_env_var(char **dst_str, char **str, t_ms *ms);
-
-
-
+void		append_env_var(char **dst_str, char **str, t_ms *ms);
+int			execute_heredocs(t_ms *ms);
+void		run_builtin_in_parent(t_ms *ms, int input_fd);
+void		execute_io(t_ms *ms, t_cmd_io *io);
+void		reset_redirections(t_ms *ms);
+void		set_input_io(int input_fd, t_cmd_io *cmd_io);
+void		set_output_io(t_ms *ms, int fds[2], t_cmd_io *cmd_io);
+void		set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io);
+void		redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fds[2]);
+void		init_cmd_io(t_cmd_io *io);
+void		close_io_fds(t_cmd_io *io);
+size_t		get_number_of_commands(t_cmd *cmd);
 
 /********************************************************************/
 /*                          PROMPT                                  */
