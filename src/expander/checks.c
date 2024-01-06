@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:14:53 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 10:30:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:25:18 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ size_t	is_env_variable(const char *str)
 		return (1);
 	return (0);
 }
+
 /* Checks if any quote has a closing quote */
 int	is_valid_quote_count(char *str)
 {

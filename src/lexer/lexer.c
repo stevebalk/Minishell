@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:13:27 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/20 15:30:58 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:26:43 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	lex(char *str, t_ms *ms)
 		while (ft_is_space(str))
 			str++;
 		if (*str == '\0')
-			break;
-			// ms->tk = NULL;
+			break ;
 		cur_token = token_list_append(ms);
 		str += set_token(cur_token, str, ms);
 	}

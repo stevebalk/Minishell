@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:14:36 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/21 16:53:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:26:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int	set_special_token(char *str, t_token *token, t_ms *ms)
 		ret++;
 	}
 	else if (ft_strncmp(str, "<", 1) == 0)
-		token->type = TOKEN_INFILE;
+		token->type = TOKEN_INFILE ;
 	else if (ft_strncmp(str, ">>", 2) == 0)
 	{
 		token->type = TOKEN_REDIRECT_APPEND;
 		ret++;
 	}
 	else if (ft_strncmp(str, ">", 1) == 0)
-		token->type = TOKEN_REDIRECT;
+		token->type = TOKEN_REDIRECT ;
 	else if (ft_strncmp(str, "|", 1) == 0)
 		token->type = TOKEN_PIPE;
 	create_token_content(token, str, ret, ms);
@@ -63,7 +63,8 @@ int	set_word_token(char *str, t_token *token, t_ms *ms)
 			quote = str[length];
 		else if (str[length] == quote)
 			quote = 0;
-		if (quote == 0 && (str[length] == ' ' || ft_strchr(TOKEN_TYPES, str[length])))
+		if (quote == 0 && (str[length] == ' '
+				|| ft_strchr(TOKEN_TYPES, str[length])))
 			break ;
 		length++;
 	}
