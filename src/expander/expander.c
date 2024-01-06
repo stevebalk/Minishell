@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 16:54:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 17:00:54 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	expand_word_token(t_token *tk, t_ms *ms)
 			expand_double_quote_content(&str, ms, &prev_quote);
 	}
 	temp = join_chunks_to_final_word(ms);
-	if (temp == NULL)
+	if (temp == NULL && tk->prev
+		&& (tk->prev->type == TOKEN_INFILE || tk->prev->type == TOKEN_REDIRECT
+			|| tk->prev->type == TOKEN_REDIRECT_APPEND))
 		ambigous_redirect_error(ms, tk->content);
 	free(tk->content);
 	tk->content = temp;
