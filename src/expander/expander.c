@@ -6,11 +6,19 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:07:23 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 17:54:59 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 16:54:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	ambigous_redirect_error(t_ms *ms, char *file_name)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(file_name, STDERR_FILENO);
+	ft_putendl_fd(": ambigous redirect", STDERR_FILENO);
+	ms->last_exit_code = 1;
+}
 
 /* Expands all legit env variables based on there enclosing quotes
 and removes all unecessary quotes */
@@ -18,6 +26,7 @@ void	expand_word_token(t_token *tk, t_ms *ms)
 {
 	char		*str;
 	char		prev_quote;
+	char		*temp;
 
 	str = tk->content;
 	prev_quote = 0;
@@ -30,8 +39,11 @@ void	expand_word_token(t_token *tk, t_ms *ms)
 		else
 			expand_double_quote_content(&str, ms, &prev_quote);
 	}
+	temp = join_chunks_to_final_word(ms);
+	if (temp == NULL)
+		ambigous_redirect_error(ms, tk->content);
 	free(tk->content);
-	tk->content = join_chunks_to_final_word(ms);
+	tk->content = temp;
 	ms->exp = NULL;
 }
 

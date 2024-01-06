@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:48:40 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 14:03:21 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 16:46:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,13 @@ void	set_io_redirections(t_ms *ms, t_cmd *cmd, t_cmd_io *io)
 	{
 		io->is_valid = check_redirection(cur, io);
 		if (!io->is_valid)
+		{
+			if (io->in_fd != -1)
+				close(io->in_fd);
+			if (io->out_fd != -1)
+				close(io->out_fd);
 			exit_with_code(ms, 1);
+		}
 		cur = cur->next;
 	}
 }
