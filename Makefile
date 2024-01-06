@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/06 13:56:43 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/06 17:43:23 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ READLINE_NAME = libreadline.a
 READLINE_INSTALL_DIR = libs/readline-install/
 CC			= cc
 CFLAGS		= -Werror -Wall -Wextra -g
-#CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
+# CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -110,8 +110,8 @@ SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 
-# all:		readline_install $(NAME)
-all:		$(NAME)
+all:		readline_install $(NAME)
+# all:		$(NAME)
 
 # $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
@@ -142,13 +142,13 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 clean:
 			@$(RM) -rf $(OBJ_DIR)
 			@make clean -C $(LIB_DIR)
-#			@make clean -C $(READLINE_INSTALL_DIR)
+			@make clean -C $(READLINE_INSTALL_DIR)
 			@echo "$(BLUE)$(NAME) Object files cleaned!$(DEF_COLOR)"
 			@echo "$(BLUE)$(NAME) Readline install files cleaned!$(DEF_COLOR)"
 
 fclean:		clean
 			@make fclean -C $(LIB_DIR)
-#			@$(RM) -rf $(READLINE_DIR)
+			@$(RM) -rf $(READLINE_DIR)
 			@$(RM) -f $(NAME)
 			@echo "$(CYAN)$(NAME) Readline lib cleaned!$(DEF_COLOR)"
 			@echo "$(CYAN)$(NAME) Executable files cleaned!$(DEF_COLOR)"
@@ -165,12 +165,14 @@ git:		fclean
 			@git status
 
 readline_install:
-			export CURRENT_DIRECTORY="$(shell pwd)" && \
-			mkdir -p $(READLINE_DIR) && \
-			cd $(READLINE_INSTALL_DIR) && \
-			./configure --prefix=$$CURRENT_DIRECTORY/$(READLINE_DIR) && \
-			make && \
-			make install-static
+			@if [ ! -f "$(READLINE_DIR_SUB)$(READLINE_NAME)" ]; then \
+				export CURRENT_DIRECTORY="$(shell pwd)" && \
+				mkdir -p $(READLINE_DIR) && \
+				cd $(READLINE_INSTALL_DIR) && \
+				./configure --prefix=$$CURRENT_DIRECTORY/$(READLINE_DIR) && \
+				make && \
+				make install-static; \
+			fi
 
 .PHONY:		all clean fclean re norm git readline_install
 
