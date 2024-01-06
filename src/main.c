@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:03:32 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 14:29:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 15:06:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **env)
 	(void) argv;
 	init_ms(&ms);
 	tty_setup();
-	if (!LOGO_ABOVE_PROMPT)
+	if (SHOW_LOGO)
 		intro3();
 	ini_env_history_etc(&ms, env);
 	prompt_handler(&ms);

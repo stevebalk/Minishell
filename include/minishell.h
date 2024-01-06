@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 14:02:12 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 14:39:57 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ Minishell
 
 # define FILE_HISTORY "history.txt"
 # define MAX_HISTORY 30
-# define CLR_SCREEN 0
-# define LOGO_ABOVE_PROMPT 0
+# define SHOW_LOGO 1
+# define PROMPT "\033[0;35mmini(s)hell\033[0;33m >> \033[0;36m"
 
 /********************************************************************/
 /*                          DATA_STRUCTS                            */
