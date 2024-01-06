@@ -6,11 +6,12 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:48:52 by jonas             #+#    #+#             */
-/*   Updated: 2024/01/05 17:27:07 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 12:06:01 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
+#include "minishell.h"
 
 // add str1 + str2 + str3; you have to free memory later
 char	*join_three_string(char *str1, char *str2, char *str3)
@@ -80,4 +81,16 @@ size_t	get_size_of_array(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+/* Checks if string has a quote in it */
+int has_quotes(const char *str)
+{
+	while (*str)
+	{
+		if (is_quote(str))
+			return (1);
+		str++;
+	}
+	return (0);
 }

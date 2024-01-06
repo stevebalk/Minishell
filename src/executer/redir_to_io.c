@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:19:38 by sbalk             #+#    #+#             */
-/*   Updated: 2023/12/22 11:28:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 00:12:31 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ static void	redir_heredoc_to_io(t_redir *redir, t_cmd_io *io, char *hd_str)
 	io->intype = redir->type;
 	io->in_fd = -1;
 }
-
 
 int	redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str)
 {

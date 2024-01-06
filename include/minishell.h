@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/05 21:15:38 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 12:08:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,13 +163,13 @@ void		init_ms(t_ms *ms);
 # define TTY_SIGNAL_QUIT 3
 # define TTY_SIGNAL_INT 4
 
-void	tty_setup(void);
-void	tty_enter(int is_child);
-int		tty_get_flag(unsigned int index);
-void	tty_set_flag(unsigned int index, int enable);
-void	tty_reset_flags(void);
-void	signal_handler(int sig);
-void	signal_handler_child(int sig);
+void		tty_setup(void);
+void		tty_enter(int is_child);
+int			tty_get_flag(unsigned int index);
+void		tty_set_flag(unsigned int index, int enable);
+void		tty_reset_flags(void);
+void		signal_handler(int sig);
+void		signal_handler_child(int sig);
 
 /********************************************************************/
 /*                          LEXER                                   */
@@ -231,21 +231,29 @@ int			redir_to_io(t_redir *redir, t_cmd_io *io, char *heredoc_str);
 int			is_builtin_command(char *str);
 int			is_regular_file(const char *path);
 char 		*heredoc(char *delimiter, t_ms *ms, int *is_valid);
+size_t		get_env_var_name_len(char *str);
+void		concatinate_line_input_to_str(char **dst, char *src);
+char		*expand_delimiter(char *str);
+void		expand_dollar_sign(char *dst, char *src,
+						size_t *src_pos, size_t *dst_pos);
+char		*expand_heredoc_string(char *str, t_ms *ms);
+
+
 
 /********************************************************************/
 /*                          PROMPT                                  */
 /********************************************************************/
 
-void	prompt_handler(t_ms *ms);
-int		builtin_cd(t_ms *ms, char **argv);
-void	test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
-void	test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str);
-int		builtin_master(t_ms *ms, char **cmd_arr);
-int		builtin_unset(t_ms *ms, char **arr);
-void	exit_handler(t_ms *ms);
-void	builtin_exit(t_ms *ms, char **arr);
-void	history_master(t_ms *ms);
-void	set_history_path(t_ms *ms);
+void		prompt_handler(t_ms *ms);
+int			builtin_cd(t_ms *ms, char **argv);
+void		test_parser_cd_pwd_home(t_ms *ms, t_list **env_llst, t_list **env_llst_sorted, char *str);
+void		test_parser_get_var(t_list **env_llst, t_list **env_llst_sorted, char *str);
+int			builtin_master(t_ms *ms, char **cmd_arr);
+int			builtin_unset(t_ms *ms, char **arr);
+void		exit_handler(t_ms *ms);
+void		builtin_exit(t_ms *ms, char **arr);
+void		history_master(t_ms *ms);
+void		set_history_path(t_ms *ms);
 
 /********************************************************************/
 /*                          UTILS                                   */
@@ -257,6 +265,7 @@ size_t		is_env_variable(const char *str);
 size_t		is_exit_code_variable(const char *str);
 int			is_metachar_variable(char *str);
 int			is_numerical_variable(char *str);
+int			has_quotes(const char *str);
 void		check_if_malloc_failed(void *src, t_ms *ms);
 void		ms_error(t_ms *ms, char *msg, int shall_exit, int use_errno);
 void		exit_with_code(t_ms *ms, int exit_code);
@@ -264,6 +273,7 @@ char		*check_program_with_path(t_ms *ms, char *prog_name);
 void		copy_path_to_ms_struct(t_ms *ms);
 void		copy_env_home_to_ms_struct(t_ms *ms);
 char 		**copy_llst_to_char_arr(t_list **llst, t_ms *ms);
+void		append_string(t_ms *ms, char **dst_str, char *src_str, size_t len);
 
 /********************************************************************/
 /*                          FREEING                                 */

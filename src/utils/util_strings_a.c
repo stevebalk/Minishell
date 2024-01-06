@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   util_strings_a.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jonas <jonas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 15:00:37 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/04 16:53:16 by jonas            ###   ########.fr       */
+/*   Updated: 2024/01/06 12:05:40 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
+#include "minishell.h"
 
 // returns a string till the first occurence of the given symbol
 char	*get_string_till_first_symbol(char *str_in, char symbol)
@@ -95,4 +96,30 @@ char	*get_string_from_string(char *str_in)
 		new_str[i] = str_in[i];
 	new_str[i] = '\0';
 	return (new_str);
+}
+
+/* Appends a string to a dst string, allocates mem for new strlen and
+frees old dst string if not empty */
+void append_string(t_ms *ms, char **dst_str, char *src_str, size_t len)
+{
+	char *temp;
+
+	if (dst_str == NULL || src_str == NULL)
+		return;
+	if (*dst_str == NULL)
+	{
+		*dst_str = malloc((len + 1) * sizeof(char));
+		check_if_malloc_failed(*dst_str, ms);
+		ft_strlcpy(*dst_str, src_str, len + 1);
+		return;
+	}
+	else
+	{
+		temp = malloc((ft_strlen(*dst_str) + len + 1) * sizeof(char));
+		check_if_malloc_failed(temp, ms);
+		ft_strlcpy(temp, *dst_str, ft_strlen(*dst_str) + 1);
+		ft_strlcat(temp, src_str, ft_strlen(temp) + len + 1);
+		free(*dst_str);
+		*dst_str = temp;
+	}
 }

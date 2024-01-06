@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jonas <jonas@student.42.fr>                +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/04 17:25:35 by jonas            ###   ########.fr        #
+#    Updated: 2024/01/06 12:05:08 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,8 @@ SRC_FILES	=	main \
 				executer/check_command \
 				executer/checks \
 				executer/heredoc \
+				executer/heredoc_expand \
+				executer/heredoc_utils \
 				executer/create_cmd_io \
 				executer/redir_to_io \
 				signal_handling/tty \

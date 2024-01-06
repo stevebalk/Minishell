@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:54:43 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/03 09:24:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/06 00:11:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	is_builtin_command(char *str)
 	i = 0;
 	while (str != NULL && built_ins[i] != NULL)
 	{
-		if ((ft_strncmp(built_ins[i], str, ft_strlen(str)) == 0) &&
-			(ft_strlen(built_ins[i]) == ft_strlen(str)))
+		if ((ft_strncmp(built_ins[i], str, ft_strlen(str)) == 0)
+			&& (ft_strlen(built_ins[i]) == ft_strlen(str)))
 			return (1);
 		i++;
 	}
