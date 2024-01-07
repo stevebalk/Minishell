@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:05:04 by jopeters          #+#    #+#             */
-/*   Updated: 2024/01/05 17:35:00 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/07 12:34:58 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ int	builtin_cd(t_ms *ms, char **argv)
 	char	*in;
 
 	exit_code = 0;
-	if (get_size_of_array(argv) > 2)
-	{
-		ft_putstr_fd("minishell: cd: too many arguments\n", STDERR_FILENO);
-		return (1);
-	}
 	in = argv[1];
 	if ((!in) || (ft_strncmp(in, "", 0) == 0 && ft_strlen(in) == 0))
 		builtin_cd_if_home(ms, &exit_code);
