@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:47:21 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 15:04:30 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/08 13:28:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,11 @@ void	execute_io(t_ms *ms, t_cmd_io *io)
 	{
 		if (execve(path_program, io->command_arr, new_env) == -1)
 		{
-			print_file_error(path_program);
+			execve_error(io, new_env, path_program);
 			exit_with_code(ms, errno);
 		}
 	}
-	print_command_not_found_error(io->command_arr[0]);
-	ft_free_array((void **)new_env);
-	if (path_program)
-		free(path_program);
+	command_not_found(io, io->command_arr[0], new_env, path_program);
 	exit_with_code(ms, 127);
 }
 

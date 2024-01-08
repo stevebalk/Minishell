@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:02:49 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/06 15:09:43 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/08 13:29:47 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,6 @@ int			unexpected_token(t_ms *ms, char *token_name, int shall_free);
 void		executer(t_ms *ms);
 void		print_file_error(char *msg);
 void		print_execution_error(char *path_name, char *msg);
-void		print_command_not_found_error(char *cmd);
 int			is_builtin_command(char *str);
 int			is_regular_file(const char *path);
 int			check_redirection(t_redir *redir, t_cmd_io *io);
@@ -245,6 +244,8 @@ void		redirect_fds(t_ms *ms, t_cmd_io *io, int input_fd, int fds[2]);
 void		init_cmd_io(t_cmd_io *io);
 void		close_io_fds(t_cmd_io *io);
 size_t		get_number_of_commands(t_cmd *cmd);
+void		command_not_found(t_cmd_io *io, char *cmd, char **env, char *path);
+void		execve_error(t_cmd_io *io, char **env, char *path);
 
 /********************************************************************/
 /*                          PROMPT                                  */
