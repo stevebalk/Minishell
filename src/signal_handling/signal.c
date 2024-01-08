@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 13:45:53 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/04 14:01:52 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/08 14:00:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	signal_handler(int sig)
 	else if (tty_get_flag(TTY_IS_CHILD))
 	{
 		if (sig == SIGQUIT)
-			write(STDERR_FILENO, "Quit (core dumped)", 19);
+			write(STDERR_FILENO, "Quit: 3", 7);
 		write(STDERR_FILENO, "\n", 1);
 	}
 	else if (sig == SIGINT || sig == SIGQUIT)
