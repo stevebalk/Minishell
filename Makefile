@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
+#    By: sbalk <sbalk@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:06:14 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/06 17:43:23 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/12 09:55:59 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ READLINE_DIR_SUB = libs/readline/lib/
 READLINE_NAME = libreadline.a
 READLINE_INSTALL_DIR = libs/readline-install/
 CC			= cc
-CFLAGS		= -Werror -Wall -Wextra -g
-# CFLAGS		= -Werror -Wall -Wextra -fsanitize=address -g
+CFLAGS		= -Werror -Wall -Wextra
 RM			= rm
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -109,15 +108,10 @@ H_FILES		=	include\builtins.h \
 SRC				=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-
 all:		readline_install $(NAME)
-# all:		$(NAME)
 
-# $(READLINE_DIR)$(READLINE_NAME) -lreadline
 $(NAME):	$(OBJ)
 			@make -C $(LIB_DIR)
-#			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -L $(READLINE_DIR) -lreadline -o $(NAME)
-#			@$(CC) $(CFLAGS) $(OBJ) -L $(LIB_DIR) -lft -lreadline -o $(NAME)
 			@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -L $(LIB_DIR) -lft -L $(READLINE_DIR_SUB) -lreadline -lhistory -lncurses -ltermcap
 			@echo "$(GREEN)Created $(NAME)!$(DEF_COLOR)"
 
@@ -175,7 +169,3 @@ readline_install:
 			fi
 
 .PHONY:		all clean fclean re norm git readline_install
-
-# configure --prefix=$HOME/libreadline && make && make install-static
-# export C_INCLUDE_PATH=$HOME/libreadline/include
-# gcc -o myprogram myprogram.c $HOME/libreadline/lib/libreadline.a $HOME/libreadline/libhistory.a -lncurses -ltermcap
